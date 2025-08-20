@@ -1,7 +1,4 @@
-Example plain HTML site using GitLab Pages.
-
-Learn more about GitLab Pages at https://pages.gitlab.io and the official
-documentation https://docs.gitlab.com/ce/user/project/pages/.
+Este projeto é uma aplicação web totalmente responsiva, construída com HTML, Bootstrap 5 e JavaScript. O backend utiliza ZeroSheets como serviço serverless para armazenamento e processamento de dados. Hospedado no GitLab Pages, garante fácil acesso, escalabilidade e manutenção simplificada.
 
 ---
 
