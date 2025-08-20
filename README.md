@@ -1,9 +1,9 @@
-Este projeto é uma aplicação web totalmente responsiva. Com serviço serverless para armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
+**WS-gestão** Este projeto é uma aplicação web totalmente responsiva. Com serviço serverless para armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
 
 ---
 
 <!-- Ferramentas utilizadas -->
-**WS-gestão**  *developement [wellerson Jesus](https://www.instagram.com/wellerson.jesus/)*
+**development** [wellerson Jesus](https://www.instagram.com/wellerson.jesus/)*
 
 - [GitLab CI](#gitlab-ci)
 - [GitLab User or Group Pages](#gitlab-user-or-group-pages)
