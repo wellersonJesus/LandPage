@@ -1,15 +1,18 @@
-Este projeto é uma aplicação web totalmente responsiva, construída com HTML, Bootstrap 5 e JavaScript. O backend utiliza ZeroSheets como serviço serverless para armazenamento e processamento de dados. Hospedado no GitLab Pages, garante fácil acesso, escalabilidade e manutenção simplificada.
+Este projeto é uma aplicação web totalmente responsiva. Com serviço serverless para armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
 
 ---
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+<!-- Ferramentas utilizadas -->
+**WS-gestão**  *developement [wellerson Jesus](https://www.instagram.com/wellerson.jesus/)*
 
 - [GitLab CI](#gitlab-ci)
 - [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [Did you fork this project?](#did-you-fork-this-project)
-- [Troubleshooting](#troubleshooting)
+- [GitLab Pages](#did-you-fork-this-project)
+- [ZeroSheets](https://www.zerosheets.com/)
+- [HTML](https://www.w3schools.com/html/)
+- [CSS](https://www.w3schools.com/css/)
+- [Bootstrap](https://getbootstrap.com/)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
