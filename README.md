@@ -75,11 +75,6 @@ npm install -g live-server http-server
 cd ws-gestao/public
 
 # 4️⃣ Rodar o projeto
-# Opção A: http-server
-http-server -p 8080
-# Acesse: http://localhost:8080/index.html
-
-# Opção B: live-server (abre automaticamente e recarrega ao salvar)
 live-server
 
 # 5️⃣ Parar o servidor
