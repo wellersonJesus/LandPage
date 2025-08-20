@@ -3,16 +3,15 @@
 ---
 
 <!-- Ferramentas utilizadas -->
-**development** [wellerson Jesus](https://www.instagram.com/wellerson.jesus/)*
+**Tecnologias e Ferramentas Utilizadas**
 
-- [GitLab CI](#gitlab-ci)
-- [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [GitLab Pages](#did-you-fork-this-project)
-- [ZeroSheets](https://www.zerosheets.com/)
-- [HTML](https://www.w3schools.com/html/)
-- [CSS](https://www.w3schools.com/css/)
-- [Bootstrap](https://getbootstrap.com/)
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem gratuita para sites estáticos.  
+- [ZeroSheets](https://www.zerosheets.com/) — Backend serverless para manipulação de dados em planilhas.  
+- [HTML](https://www.w3schools.com/html/) — Estruturação do conteúdo da aplicação.  
+- [CSS](https://www.w3schools.com/css/) — Estilização e layout da aplicação.  
+- [Bootstrap](https://getbootstrap.com/) — Framework CSS para design responsivo.  
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica e interatividade no frontend.
+
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
