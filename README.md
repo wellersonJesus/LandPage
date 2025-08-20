@@ -3,6 +3,7 @@
 ---
 
 <!-- Ferramentas utilizadas -->
+
 **Tecnologias e Ferramentas Utilizadas**
 
 - [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem gratuita para sites estáticos.  
@@ -12,52 +13,49 @@
 - [Bootstrap](https://getbootstrap.com/) — Framework CSS para design responsivo.  
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica e interatividade no frontend.
 
+<!-- Estrutura do Projeto -->
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## GitLab CI & Estrutura
 
-## GitLab CI
-
-This project's static Pages are built by [GitLab CI][ci], following the steps
-defined in [`.gitlab-ci.yml`](.gitlab-ci.yml):
+Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml).  
+Abaixo está a estrutura de diretórios e arquivos do projeto:
 
 ```
-image: busybox
+ws-gestao/
+│
+├─ index.html               # Página principal / login
+├─ dashboard.html           # Dashboard após login
+├─ style/                  
+│   └─ main.css             # Estilos globais (Bootstrap já incluído)
+├─ js/
+│   ├─ app.js               # JS principal (login, navegação)
+│   ├─ dashboard.js         # JS do dashboard, manipula JSON
+│   └─ zerosheets.js        # Funções para ler/escrever na ZeroSheets
+├─ data/
+│   └─ exemplo.json         # JSON de exemplo (pode simular ZeroSheets)
+├─ components/              # Componentes HTML reutilizáveis
+│   ├─ header.html
+│   ├─ footer.html
+│   └─ form-insert.html     # Formulário de inserção de dados
+├─ assets/                  
+│   ├─ images/              # Imagens do projeto
+│   └─ icons/               # Ícones
+└─ README.md                # Documentação do projeto
 
-pages:
-  stage: deploy
-  script:
-  - echo 'Nothing to do...'
-  artifacts:
-    paths:
-    - public
-    expire_in: 1 day
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
 ```
 
-The above example expects to put all your HTML files in the `public/` directory.
+⚡ **Observação**: no GitLab Pages, todos os arquivos são publicados a partir da pasta `public/`.  
+Certifique-se de mover os arquivos finais para `public/` ou ajustar o `.gitlab-ci.yml` conforme necessário.
 
-## GitLab User or Group Pages
+---
 
-To use this project as your user/group website, you will need one additional
-step: just rename your project to `namespace.gitlab.io`, where `namespace` is
-your `username` or `groupname`. This can be done by navigating to your
-project's **Settings**.
+## 📌 Créditos  
 
-Read more about [user/group Pages][userpages] and [project Pages][projpages].
+<div align="center">
 
-## Did you fork this project?
+© **JesusWellerson | Development Innovation**  
+📍 Belo Horizonte, 20 Agosto 2024  
 
-If you forked this project for your own use, please go to your project's
-**Settings** and remove the forking relationship, which won't be necessary
-unless you want to contribute back to the upstream project.
+🔗 [LinkedIn](https://www.linkedin.com) | [GitHub](https://www.github.com)
 
-## Troubleshooting
-
-1. CSS is missing! That means that you have wrongly set up the CSS URL in your
-   HTML files. Have a look at the [index.html] for an example.
-
-[ci]: https://about.gitlab.com/gitlab-ci/
-[index.html]: https://gitlab.com/pages/plain-html/blob/master/public/index.html
-[userpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#user-or-group-pages
-[projpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#project-pages
+</div>
