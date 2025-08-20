@@ -18,11 +18,16 @@
 ## GitLab CI & Estrutura
 
 Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml). 
- 
+
 Abaixo está a estrutura de diretórios e arquivos do projeto:
 
 ```
 ws-gestao/
+│
+├─ pages/                  # 🔹 Todas as páginas secundárias da aplicação
+│   ├─ produtos.html        # Página de produtos
+│   ├─ clientes.html        # Página de clientes
+│   └─ estoque.html         # Página de estoque
 │
 ├─ index.html               # Página principal / login
 ├─ dashboard.html           # Dashboard após login
@@ -30,19 +35,23 @@ ws-gestao/
 │   └─ main.css             # Estilos globais (Bootstrap já incluído)
 ├─ js/
 │   ├─ app.js               # JS principal (login, navegação)
-│   ├─ dashboard.js         # JS do dashboard, manipula JSON
-│   └─ zerosheets.js        # Funções para ler/escrever na ZeroSheets
+│   ├─ dashboard.js         # JS do dashboard
+│   └─ zerosheets.js        # Integração com ZeroSheets
 ├─ data/
-│   └─ exemplo.json         # JSON de exemplo (pode simular ZeroSheets)
-├─ components/              # Componentes HTML reutilizáveis
+│   └─ exemplo.json
+├─ components/
 │   ├─ header.html
 │   ├─ footer.html
-│   └─ form-insert.html     # Formulário de inserção de dados
-├─ assets/                  
-│   ├─ images/              # Imagens do projeto
-│   └─ icons/               # Ícones
-└─ README.md                # Documentação do projeto
-
+│   └─ form-insert.html
+├─ assets/
+│   ├─ images/
+│   └─ icons/
+├─ credentials/
+│   ├─ keys.example.json
+│   └─ keys.json
+├─ .env
+├─ .gitignore
+└─ README.md
 ```
 
 ⚡ **Observação**: no GitLab Pages, todos os arquivos são publicados a partir da pasta `public/`.  
