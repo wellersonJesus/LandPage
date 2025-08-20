@@ -17,7 +17,8 @@
 
 ## GitLab CI & Estrutura
 
-Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml).  
+Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml). 
+ 
 Abaixo está a estrutura de diretórios e arquivos do projeto:
 
 ```
@@ -55,7 +56,6 @@ Certifique-se de mover os arquivos finais para `public/` ou ajustar o `.gitlab-c
 
 © **JesusWellerson | Development Innovation**  
 📍 Belo Horizonte, 20 Agosto 2024  
-
 🔗 [LinkedIn](https://www.linkedin.com) | [GitHub](https://www.github.com)
 
 </div>
