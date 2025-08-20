@@ -24,34 +24,36 @@ Abaixo está a estrutura de diretórios e arquivos do projeto:
 ```
 ws-gestao/
 │
-├─ pages/                  # 🔹 Todas as páginas secundárias da aplicação
-│   ├─ produtos.html        # Página de produtos
-│   ├─ clientes.html        # Página de clientes
-│   └─ estoque.html         # Página de estoque
+├─ public/                  # 🔹 Arquivos publicados GitLab Pages
+│   ├─ index.html           # Página principal / login
+│   ├─ dashboard.html       # Dashboard após login
+│   ├─ pages/               # Páginas secundárias da aplicação
+│   │   └─ estoque.html     # Página de estoque
+│   ├─ style/              
+│   │   └─ main.css         # Estilos globais (Bootstrap incluído)
+│   ├─ js/
+│   │   ├─ app.js           # JS principal (login, navegação)
+│   │   ├─ dashboard.js     # Lógica do dashboard
+│   │   └─ zerosheets.js    # Integração com ZeroSheets
+│   ├─ components/          
+│   │   ├─ header.html
+│   │   ├─ footer.html
+│   │   └─ form-insert.html
+│   └─ assets/              
+│       ├─ images/          
+│       └─ icons/           
 │
-├─ index.html               # Página principal / login
-├─ dashboard.html           # Dashboard após login
-├─ style/                  
-│   └─ main.css             # Estilos globais (Bootstrap já incluído)
-├─ js/
-│   ├─ app.js               # JS principal (login, navegação)
-│   ├─ dashboard.js         # JS do dashboard
-│   └─ zerosheets.js        # Integração com ZeroSheets
-├─ data/
-│   └─ exemplo.json
-├─ components/
-│   ├─ header.html
-│   ├─ footer.html
-│   └─ form-insert.html
-├─ assets/
-│   ├─ images/
-│   └─ icons/
-├─ credentials/
-│   ├─ keys.example.json
-│   └─ keys.json
-├─ .env
-├─ .gitignore
-└─ README.md
+├─ data/                    # Dados locais / mock
+│   └─ exemplo.json         
+│
+├─ credentials/             # 🔑 Chaves e tokens (não versionar)
+│   ├─ keys.example.json    # Estrutura de chaves pública
+│   └─ keys.json            # Chaves reais (ignorar no git)
+│
+├─ .env                     # Variáveis de ambiente (tokens, URLs privadas)
+├─ .gitignore               # Ignora arquivos sensíveis e temporários
+├─ .gitlab-ci.yml           # Configuração do GitLab CI/CD
+└─ README.md                # Documentação do projeto
 ```
 
 ⚡ **Observação**: no GitLab Pages, todos os arquivos são publicados a partir da pasta `public/`.  
