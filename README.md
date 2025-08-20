@@ -57,9 +57,8 @@ ws-gestao/
 ├─ .gitlab-ci.yml           # Configuração do GitLab CI/CD
 └─ README.md                # Documentação do projeto
 ```
----
 
-## 🚀 Rodando o WS-Gestão localmente
+## 🚀 Rodando app
 
 ```bash
 # 1️⃣ Instalar Node.js e npm (Linux/Ubuntu)
@@ -80,7 +79,6 @@ live-server
 # 5️⃣ Parar o servidor
 # Pressione Ctrl + C no terminal onde o servidor está rodando
 ```
----
 
 ⚡ **Observação**: no GitLab Pages, todos os arquivos são publicados a partir da pasta `public/`.  
 Certifique-se de mover os arquivos finais para `public/` ou ajustar o `.gitlab-ci.yml` conforme necessário.
