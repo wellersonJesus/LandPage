@@ -26,26 +26,29 @@ Abaixo está a estrutura de diretórios e arquivos do projeto:
 ```
 ws-gestao/
 │
-├─ public/                  # 🔹 Arquivos publicados GitLab Pages
-│   ├─ index.html           # Página principal / login
+├─ public/                  # 🔹 Raiz publicada no GitLab Pages
+│   ├─ index.html           # Página principal / Login
 │   ├─ dashboard.html       # Dashboard após login
-│   ├─ pages/               # Páginas secundárias da aplicação
-│   │   └─ estoque.html     # Página de estoque
+│   ├─ pages/               # Páginas secundárias
+│   │   └─ estoque.html     # Página de Estoque
+│   │
 │   ├─ style/              
-│   │   └─ main.css         # Estilos globais (Bootstrap incluído)
+│   │   └─ main.css         # Estilos globais (Bootstrap + custom)
+│   │
 │   ├─ js/
 │   │   ├─ app.js           # JS principal (login, navegação)
-│   │   ├─ dashboard.js     # Lógica do dashboard
+│   │   ├─ dashboard.js     # JS da tela de dashboard
 │   │   └─ zerosheets.js    # Integração com ZeroSheets
-│   ├─ components/          
+│   │
+│   ├─ components/          # Componentes HTML reutilizáveis
 │   │   ├─ header.html
 │   │   ├─ footer.html
 │   │   └─ form-insert.html
-│   └─ assets/              
-│       ├─ images/          
-│       └─ icons/           
+│   │
+│   └─ img/                 # Imagens da aplicação
+│       └─ logo.png         # Logo principal
 │
-├─ data/                    # Dados locais / mock
+├─ data/                    # Dados locais (mock para testes)
 │   └─ exemplo.json         
 │
 ├─ credentials/             # 🔑 Chaves e tokens (não versionar)
@@ -54,7 +57,7 @@ ws-gestao/
 │
 ├─ .env                     # Variáveis de ambiente (tokens, URLs privadas)
 ├─ .gitignore               # Ignora arquivos sensíveis e temporários
-├─ .gitlab-ci.yml           # Configuração do GitLab CI/CD
+├─ .gitlab-ci.yml           # Configuração GitLab CI/CD
 └─ README.md                # Documentação do projeto
 ```
 
@@ -90,7 +93,7 @@ Certifique-se de mover os arquivos finais para `public/` ou ajustar o `.gitlab-c
 <div align="center">
 
 © **JesusWellerson | Development Innovation**  
-📍 Belo Horizonte, 20 Agosto 2024  
+📍 Belo Horizonte, 23 Agosto 2024  
 🔗 [LinkedIn](https://www.linkedin.com) | [GitHub](https://www.github.com)
 
 </div>
