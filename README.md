@@ -1,4 +1,4 @@
-[**WS-gestão**](https://ws-gestao-d10f13.gitlab.io/) 
+# **[🌏 WS-gestão**](https://ws-gestao-d10f13.gitlab.io/) 
 
 Este projeto é uma aplicação web totalmente responsiva. Com serviço serverless para armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
 
@@ -93,7 +93,7 @@ Certifique-se de mover os arquivos finais para `public/` ou ajustar o `.gitlab-c
 <div align="center">
 
 © **JesusWellerson | Development Innovation**  
-📍 Belo Horizonte, 23 Agosto 2024  
+📍 Belo Horizonte, 06 Setembro 2025  
 🔗 [LinkedIn](https://www.linkedin.com) | [GitHub](https://www.github.com)
 
 </div>
