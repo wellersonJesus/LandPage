@@ -8,10 +8,9 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   const adminEmail = "admin@gmail.com";
   const adminPassword = "1234";
 
-  if (email === adminEmail && password === adminPassword) {
+  if(email === adminEmail && password === adminPassword) {
     alert("✅ Login realizado com sucesso!");
-    // Caminho relativo para dashboard.html dentro de pages/
-    window.location.href = "pages/dashboard.html";
+    window.location.href = "pages/dashboard.html"; // Caminho correto no GitLab Pages
   } else {
     alert("❌ Email ou senha inválidos.");
   }
