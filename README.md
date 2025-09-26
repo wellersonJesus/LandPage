@@ -23,6 +23,10 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 
 Abaixo está a estrutura de diretórios e arquivos do projeto:
 
+## Estrutura do Projeto
+
+<details>
+<summary>Clique aqui para expandir a Estrutura do Projeto</summary>
 ```
 ws-gestao/
 │
@@ -60,6 +64,7 @@ ws-gestao/
 ├─ .gitlab-ci.yml           # Configuração GitLab CI/CD
 └─ README.md                # Documentação do projeto
 ```
+</details>
 
 ## 🚀 Rodando app
 
