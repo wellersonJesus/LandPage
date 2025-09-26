@@ -1,13 +1,8 @@
-// Verifica se o usuário está logado
+// Verifica login
 if(sessionStorage.getItem('loggedIn') !== 'true') {
-  alert("❌ Você precisa fazer login primeiro!");
+  alert("❌ Você precisa estar logado.");
   window.location.href = "../index.html";
 } else {
-  const userEmail = sessionStorage.getItem('userEmail');
-  document.getElementById('userEmailDisplay').innerText = `Você está logado como: ${userEmail}`;
+  document.getElementById('userEmail').textContent = 
+    "Você está logado como: " + sessionStorage.getItem('userEmail');
 }
-
-// Logout
-document.getElementById('logoutBtn').addEventListener('click', function() {
-  sessionStorage.clear();
-});
