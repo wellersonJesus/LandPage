@@ -25,40 +25,39 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 ```bash
 ws-gestao/
 │
-├─ public/ # 🔹 Raiz publicada no GitLab Pages
-│ ├─ index.html # Página principal / Login
+├─ public/
+│ ├─ index.html           # Página principal / Login
+│ ├─ pages/
+│ │ ├─ dashboard.html     # Dashboard após login
+│ │ └─ estoque.html       # Página de Estoque
 │ │
-│ ├─ pages/ # Páginas secundárias
-│ │   └─ estoque.html # Página de Estoque
-│ │   └─ dashboard.html # Dashboard após login 
-│ │
-| ├─ style/
-│ │ └─ main.css # Estilos globais (Bootstrap + custom)
+│ ├─ style/
+│ │ └─ main.css           # Estilos globais (Bootstrap + custom)
 │ │
 │ ├─ js/
-│ │ ├─ app.js # JS principal (login, navegação)
-│ │ ├─ dashboard.js # JS da tela de dashboard
-│ │ └─ zerosheets.js # Integração com ZeroSheets
+│ │ ├─ app.js             # JS principal (login, navegação)
+│ │ ├─ dashboard.js       # JS da tela de dashboard
+│ │ └─ zerosheets.js      # Integração com ZeroSheets
 │ │
-│ ├─ components/ # Componentes HTML reutilizáveis
+│ ├─ components/
 │ │ ├─ header.html
 │ │ ├─ footer.html
 │ │ └─ form-insert.html
 │ │
-│ └─ img/ # Imagens da aplicação
-│ └─ logo.png # Logo principal
+│ └─ img/
+│   └─ logo.jpg
 │
-├─ data/ # Dados locais (mock para testes)
+├─ data/
 │ └─ exemplo.json
 │
-├─ credentials/ # 🔑 Chaves e tokens (não versionar)
-│ ├─ keys.example.json # Estrutura de chaves pública
-│ └─ keys.json # Chaves reais (ignorar no git)
+├─ credentials/           # 🔑 Tokens e keys (não versionar)
+│ ├─ keys.example.json
+│ └─ keys.json
 │
-├─ .env # Variáveis de ambiente (tokens, URLs privadas)
-├─ .gitignore # Ignora arquivos sensíveis e temporários
-├─ .gitlab-ci.yml # Configuração GitLab CI/CD
-└─ README.md # Documentação do projeto
+├─ .env
+├─ .gitignore
+├─ .gitlab-ci.yml
+└─ README.md
 ```
 </details>
 
