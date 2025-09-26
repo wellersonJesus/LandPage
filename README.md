@@ -96,11 +96,11 @@ Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.y
 no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
 Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
 
-📌 Créditos
+---
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-📍 Belo Horizonte, 06 Setembro 2025<br>
+📍 Belo Horizonte, 26 Setembro 2025<br>
 🔗 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">LinkedIn</a> | 
-<a href="https://github.com/wellersonJesus" target="_blank">GitHub</a>
+<a href="https://github.com/wellersonJesus" target="_blank">📌 GitHub</a>
 </div>
