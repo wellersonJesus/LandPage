@@ -4,6 +4,8 @@ pages:
   stage: deploy
   script:
     - echo "Deploying WS-Gestão to GitLab Pages..."
+    # Certifique-se que todos os arquivos estão no diretório 'public'
+    - ls -la public   # Opcional: ver se os arquivos estão lá
   artifacts:
     paths:
       - public
