@@ -27,43 +27,41 @@ Abaixo está a estrutura de diretórios e arquivos do projeto:
 
 <details>
 <summary>Clique aqui para expandir a Estrutura do Projeto</summary>
-```
 ws-gestao/
 │
-├─ public/                  # 🔹 Raiz publicada no GitLab Pages
-│   ├─ index.html           # Página principal / Login
-│   ├─ dashboard.html       # Dashboard após login
-│   ├─ pages/               # Páginas secundárias
-│   │   └─ estoque.html     # Página de Estoque
-│   │
-│   ├─ style/              
-│   │   └─ main.css         # Estilos globais (Bootstrap + custom)
-│   │
-│   ├─ js/
-│   │   ├─ app.js           # JS principal (login, navegação)
-│   │   ├─ dashboard.js     # JS da tela de dashboard
-│   │   └─ zerosheets.js    # Integração com ZeroSheets
-│   │
-│   ├─ components/          # Componentes HTML reutilizáveis
-│   │   ├─ header.html
-│   │   ├─ footer.html
-│   │   └─ form-insert.html
-│   │
-│   └─ img/                 # Imagens da aplicação
-│       └─ logo.png         # Logo principal
+├─ public/ # 🔹 Raiz publicada no GitLab Pages
+│ ├─ index.html # Página principal / Login
+│ ├─ dashboard.html # Dashboard após login
+│ ├─ pages/ # Páginas secundárias
+│ │ └─ estoque.html # Página de Estoque
+│ │
+│ ├─ style/
+│ │ └─ main.css # Estilos globais (Bootstrap + custom)
+│ │
+│ ├─ js/
+│ │ ├─ app.js # JS principal (login, navegação)
+│ │ ├─ dashboard.js # JS da tela de dashboard
+│ │ └─ zerosheets.js # Integração com ZeroSheets
+│ │
+│ ├─ components/ # Componentes HTML reutilizáveis
+│ │ ├─ header.html
+│ │ ├─ footer.html
+│ │ └─ form-insert.html
+│ │
+│ └─ img/ # Imagens da aplicação
+│ └─ logo.png # Logo principal
 │
-├─ data/                    # Dados locais (mock para testes)
-│   └─ exemplo.json         
+├─ data/ # Dados locais (mock para testes)
+│ └─ exemplo.json
 │
-├─ credentials/             # 🔑 Chaves e tokens (não versionar)
-│   ├─ keys.example.json    # Estrutura de chaves pública
-│   └─ keys.json            # Chaves reais (ignorar no git)
+├─ credentials/ # 🔑 Chaves e tokens (não versionar)
+│ ├─ keys.example.json # Estrutura de chaves pública
+│ └─ keys.json # Chaves reais (ignorar no git)
 │
-├─ .env                     # Variáveis de ambiente (tokens, URLs privadas)
-├─ .gitignore               # Ignora arquivos sensíveis e temporários
-├─ .gitlab-ci.yml           # Configuração GitLab CI/CD
-└─ README.md                # Documentação do projeto
-```
+├─ .env # Variáveis de ambiente (tokens, URLs privadas)
+├─ .gitignore # Ignora arquivos sensíveis e temporários
+├─ .gitlab-ci.yml # Configuração GitLab CI/CD
+└─ README.md # Documentação do projeto
 </details>
 
 ## 🚀 Rodando app
