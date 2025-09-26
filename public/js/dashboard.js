@@ -1,8 +1,8 @@
-// Verifica login
-if(sessionStorage.getItem('loggedIn') !== 'true') {
-  alert("❌ Você precisa estar logado.");
-  window.location.href = "../index.html";
+// Mostra o email do usuário logado
+const userEmail = sessionStorage.getItem('userEmail');
+if (userEmail) {
+  document.getElementById('userEmail').innerText = userEmail;
 } else {
-  document.getElementById('userEmail').textContent = 
-    "Você está logado como: " + sessionStorage.getItem('userEmail');
+  // Se não estiver logado, volta para login
+  window.location.href = "../index.html";
 }
