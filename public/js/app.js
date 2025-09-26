@@ -1,11 +1,21 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  const adminEmail = "admin@wsgestao.com";
-  const adminPassword = "1234";
+  // Carrega credenciais do arquivo JSON
+  let credentials;
+  try {
+    const response = await fetch('../credentials/keys.json');
+    credentials = await response.json();
+  } catch (err) {
+    alert("❌ Erro ao carregar credenciais. Tente novamente.");
+    console.error(err);
+    return;
+  }
+
+  const { adminEmail, adminPassword } = credentials;
 
   // Valida formato de email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -17,9 +27,9 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   if (email === adminEmail && password === adminPassword) {
     sessionStorage.setItem('loggedIn', 'true');
     sessionStorage.setItem('userEmail', email);
-    
+
     alert("✅ Login realizado com sucesso!");
-    window.location.href = "pages/dashboard.html"; // Redireciona imediatamente
+    window.location.href = "pages/dashboard.html";
   } else {
     alert("❌ Email ou senha inválidos.");
   }
