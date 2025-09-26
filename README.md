@@ -1,18 +1,10 @@
 # [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
 
-<details>
-<summary>ℹ️ Sobre o Projeto</summary>
-
-Este projeto é uma aplicação web totalmente responsiva.  
-Com serviço serverless para armazenamento e processamento de dados.  
-Garante fácil acesso, escalabilidade e manutenção simplificada.
-
-</details>
+Este projeto é uma aplicação web totalmente responsiva. Com serviço serverless para armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
 
 ---
 
-<details>
-<summary>🛠 Tecnologias e Ferramentas Utilizadas</summary>
+## **Tecnologias e Ferramentas Utilizadas**
 
 - [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem gratuita para sites estáticos  
 - [ZeroSheets](https://www.zerosheets.com/) — Backend serverless para manipulação de dados em planilhas  
@@ -21,15 +13,16 @@ Garante fácil acesso, escalabilidade e manutenção simplificada.
 - [Bootstrap](https://getbootstrap.com/) — Framework CSS para design responsivo  
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica e interatividade no frontend  
 
-</details>
-
 ---
 
+## GitLab CI & Estrutura
+
+Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml).  
+
 <details>
-<summary>📂 GitLab CI & Estrutura do Projeto</summary>
+<summary>📂 Clique aqui para expandir a Estrutura do Projeto</summary>
 
-Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml).
-
+```bash
 ws-gestao/
 │
 ├─ public/ # 🔹 Raiz publicada no GitLab Pages
@@ -65,7 +58,7 @@ ws-gestao/
 ├─ .gitignore # Ignora arquivos sensíveis e temporários
 ├─ .gitlab-ci.yml # Configuração GitLab CI/CD
 └─ README.md # Documentação do projeto
-
+```
 </details>
 
 ---
@@ -93,13 +86,13 @@ live-server public
 # Pressione Ctrl + C no terminal onde o servidor está rodando
 ⚡ Observação: no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
 Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
+```
+⚡ Observação: no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
+Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
 
-</details>
-<details> <summary>📌 Créditos</summary> <div align="center">
+
+📌 Créditos
 
 © JesusWellerson | Development Innovation
 📍 Belo Horizonte, 06 Setembro 2025
-🔗 LinkedIn
- | GitHub
-
-</div> </details> ```
+🔗 LinkedIn | GitHub
