@@ -77,7 +77,7 @@ npm install -g live-server http-server
 cd ws-gestao/public
 
 # 4️⃣ Rodar o projeto
-live-server
+live-server public
 
 # 5️⃣ Parar o servidor
 # Pressione Ctrl + C no terminal onde o servidor está rodando
