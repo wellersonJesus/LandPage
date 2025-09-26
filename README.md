@@ -27,11 +27,12 @@ ws-gestao/
 │
 ├─ public/ # 🔹 Raiz publicada no GitLab Pages
 │ ├─ index.html # Página principal / Login
-│ ├─ dashboard.html # Dashboard após login
-│ ├─ pages/ # Páginas secundárias
-│ │ └─ estoque.html # Página de Estoque
 │ │
-│ ├─ style/
+│ ├─ pages/ # Páginas secundárias
+│ │   └─ estoque.html # Página de Estoque
+│ │   └─ dashboard.html # Dashboard após login 
+│ │
+| ├─ style/
 │ │ └─ main.css # Estilos globais (Bootstrap + custom)
 │ │
 │ ├─ js/
