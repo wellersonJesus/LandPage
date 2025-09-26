@@ -3,7 +3,8 @@ image: alpine:latest
 pages:
   stage: deploy
   script:
-    - echo "🚀 Deploy WS-Gestão para GitLab Pages"
+    - mv public public-out
+    - mv public-out public
   artifacts:
     paths:
       - public
