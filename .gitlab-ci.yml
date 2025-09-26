@@ -3,8 +3,7 @@ image: alpine:latest
 pages:
   stage: deploy
   script:
-    - mv public public-out
-    - mv public-out public
+    - echo "Deploying to GitLab Pages"
   artifacts:
     paths:
       - public
