@@ -26,18 +26,19 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 ws-gestao/
 │
 ├─ public/
-│ ├─ index.html           # Página principal / Login
+│ ├─ index.html           
 │ ├─ pages/
-│ │ ├─ dashboard.html     # Dashboard após login
-│ │ └─ estoque.html       # Página de Estoque
+│ │ ├─ dashboard.html     
+│ │ └─ estoque.html       
 │ │
 │ ├─ style/
 │ │ └─ main.css           # Estilos globais (Bootstrap + custom)
 │ │
 │ ├─ js/
 │ │ ├─ app.js             # JS principal (login, navegação)
-│ │ ├─ dashboard.js       # JS da tela de dashboard
-│ │ └─ zerosheets.js      # Integração com ZeroSheets
+│ │ ├─ dashboard.js        
+│ │ └─ login.js           
+│ │ └─ zerosheets.js
 │ │
 │ ├─ components/
 │ │ ├─ header.html
@@ -50,9 +51,8 @@ ws-gestao/
 ├─ data/
 │ └─ exemplo.json
 │
-├─ credentials/           # 🔑 Tokens e keys (não versionar)
-│ ├─ keys.example.json
-│ └─ keys.json
+├─ credentials/           
+│ └─ keys.json            # 🔑 Tokens e keys (não versionar)  
 │
 ├─ .env
 ├─ .gitignore
