@@ -1,36 +1,36 @@
-document.getElementById('loginForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
 
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  // Carrega credenciais do arquivo JSON
-  let credentials;
-  try {
-    const response = await fetch('../credentials/keys.json');
-    credentials = await response.json();
-  } catch (err) {
-    alert("❌ Erro ao carregar credenciais. Tente novamente.");
-    console.error(err);
-    return;
-  }
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-  const { adminEmail, adminPassword } = credentials;
+    // Validação básica do email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("❌ Email inválido. Verifique o formato e tente novamente.");
+      return;
+    }
 
-  // Valida formato de email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    alert("❌ Email inválido. Verifique o formato e tente novamente.");
-    return;
-  }
+    // Para evitar erro de fetch com file://, carregue credenciais no JS
+    // para desenvolvimento local ou GitLab Pages, sem expor publicamente
+    const credentials = {
+      adminEmail: "admin@wsgestao.com",
+      adminPassword: "1234"
+    };
 
-  if (email === adminEmail && password === adminPassword) {
-    sessionStorage.setItem('loggedIn', 'true');
-    sessionStorage.setItem('userEmail', email);
-
-    alert("✅ Login realizado com sucesso!");
-    window.location.href = "pages/dashboard.html";
-  } else {
-    alert("❌ Email ou senha inválidos.");
-  }
+    // Validação de login
+    if (email === credentials.adminEmail && password === credentials.adminPassword) {
+      sessionStorage.setItem('loggedIn', 'true');
+      sessionStorage.setItem('userEmail', email);
+      alert("✅ Login realizado com sucesso!");
+      window.location.href = "../pages/dashboard.html";
+    } else {
+      alert("❌ Email ou senha inválidos.");
+    }
+  });
 });
