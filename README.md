@@ -98,6 +98,9 @@ Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.y
 
 📌 Créditos
 
-© JesusWellerson | Development Innovation
-📍 Belo Horizonte, 06 Setembro 2025
-🔗 [LinkedIn](https://www.linkedin.com/in/wellerson-jesus-37831540/) | [GitHub](https://github.com/wellersonJesus)  
+<div align="center">
+© JesusWellerson | Development Innovation<br>
+📍 Belo Horizonte, 06 Setembro 2025<br>
+🔗 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">LinkedIn</a> | 
+<a href="https://github.com/wellersonJesus" target="_blank">GitHub</a>
+</div>
