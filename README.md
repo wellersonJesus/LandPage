@@ -1,32 +1,35 @@
 # [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
 
-Este projeto é uma aplicação web totalmente responsiva. Com serviço serverless para armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
+<details>
+<summary>ℹ️ Sobre o Projeto</summary>
+
+Este projeto é uma aplicação web totalmente responsiva.  
+Com serviço serverless para armazenamento e processamento de dados.  
+Garante fácil acesso, escalabilidade e manutenção simplificada.
+
+</details>
 
 ---
 
-<!-- Ferramentas utilizadas -->
+<details>
+<summary>🛠 Tecnologias e Ferramentas Utilizadas</summary>
 
-**Tecnologias e Ferramentas Utilizadas**
+- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem gratuita para sites estáticos  
+- [ZeroSheets](https://www.zerosheets.com/) — Backend serverless para manipulação de dados em planilhas  
+- [HTML](https://www.w3schools.com/html/) — Estruturação do conteúdo da aplicação  
+- [CSS](https://www.w3schools.com/css/) — Estilização e layout da aplicação  
+- [Bootstrap](https://getbootstrap.com/) — Framework CSS para design responsivo  
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica e interatividade no frontend  
 
-- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem gratuita para sites estáticos.  
-- [ZeroSheets](https://www.zerosheets.com/) — Backend serverless para manipulação de dados em planilhas.  
-- [HTML](https://www.w3schools.com/html/) — Estruturação do conteúdo da aplicação.  
-- [CSS](https://www.w3schools.com/css/) — Estilização e layout da aplicação.  
-- [Bootstrap](https://getbootstrap.com/) — Framework CSS para design responsivo.  
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica e interatividade no frontend.
+</details>
 
-<!-- Estrutura do Projeto -->
-
-## GitLab CI & Estrutura
-
-Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml). 
-
-Abaixo está a estrutura de diretórios e arquivos do projeto:
-
-## Estrutura do Projeto
+---
 
 <details>
-<summary>Clique aqui para expandir a Estrutura do Projeto</summary>
+<summary>📂 GitLab CI & Estrutura do Projeto</summary>
+
+Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml).
+
 ws-gestao/
 │
 ├─ public/ # 🔹 Raiz publicada no GitLab Pages
@@ -62,9 +65,13 @@ ws-gestao/
 ├─ .gitignore # Ignora arquivos sensíveis e temporários
 ├─ .gitlab-ci.yml # Configuração GitLab CI/CD
 └─ README.md # Documentação do projeto
+
 </details>
 
-## 🚀 Rodando app
+---
+
+<details>
+<summary>🚀 Rodando o App</summary>
 
 ```bash
 # 1️⃣ Instalar Node.js e npm (Linux/Ubuntu)
@@ -84,19 +91,15 @@ live-server public
 
 # 5️⃣ Parar o servidor
 # Pressione Ctrl + C no terminal onde o servidor está rodando
-```
+⚡ Observação: no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
+Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
 
-⚡ **Observação**: no GitLab Pages, todos os arquivos são publicados a partir da pasta `public/`.  
-Certifique-se de mover os arquivos finais para `public/` ou ajustar o `.gitlab-ci.yml` conforme necessário.
+</details>
+<details> <summary>📌 Créditos</summary> <div align="center">
 
----
+© JesusWellerson | Development Innovation
+📍 Belo Horizonte, 06 Setembro 2025
+🔗 LinkedIn
+ | GitHub
 
-## 📌 Créditos  
-
-<div align="center">
-
-© **JesusWellerson | Development Innovation**  
-📍 Belo Horizonte, 06 Setembro 2025  
-🔗 [LinkedIn](https://www.linkedin.com) | [GitHub](https://www.github.com)
-
-</div>
+</div> </details> ```
