@@ -87,12 +87,17 @@ live-server public
 ⚡ Observação: no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
 Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
 ```
-⚡ Observação: no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
-Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
+</details>
 
+---
+
+⚡ Observação: 
+
+no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
+Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
 
 📌 Créditos
 
 © JesusWellerson | Development Innovation
 📍 Belo Horizonte, 06 Setembro 2025
-🔗 LinkedIn | GitHub
+🔗 [LinkedIn](https://www.linkedin.com/in/wellerson-jesus-37831540/) | [GitHub](https://github.com/wellersonJesus)  
