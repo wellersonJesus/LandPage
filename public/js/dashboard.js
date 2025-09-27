@@ -1,9 +1,9 @@
-// Função de redirecionamento dinâmico
+// Redirecionamento dinâmico
 const redirectToLogin = () => {
   if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
     window.location.href = "http://127.0.0.1:8080/index.html";
   } else {
-    window.location.href = "/ws-gestao/index.html";
+    window.location.href = `${window.location.origin}/ws-gestao/index.html`;
   }
 };
 
@@ -11,10 +11,9 @@ const redirectToLogin = () => {
 const userEmail = sessionStorage.getItem('userEmail');
 
 if (userEmail) {
-  const userEmailEl = document.getElementById('userEmail');
-  if (userEmailEl) userEmailEl.innerText = userEmail;
+  const el = document.getElementById('userEmail');
+  if (el) el.innerText = userEmail;
 } else {
-  // Não logado → volta para login
   redirectToLogin();
 }
 

@@ -1,83 +1,67 @@
-// ------------------------------
-// IMPORTS FIREBASE
-// ------------------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// ------------------------------
-// PEGANDO CREDENCIAIS DO WINDOW
-// ------------------------------
+// Credenciais injetadas
 const adminCredentials = window.adminCredentials;
 const firebaseConfig = window.firebaseConfig;
 
-// ------------------------------
-// INICIALIZAÇÃO DO FIREBASE
-// ------------------------------
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// ------------------------------
-// FUNÇÕES DE UTILIDADE
-// ------------------------------
-const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+// Funções utilitárias
+const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const showAlert = (message, type = 'info') => {
-  alert(`${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}`);
+  alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${message}`);
 };
 
-const setUserSession = (email) => {
-  sessionStorage.setItem('loggedIn', 'true');
-  sessionStorage.setItem('userEmail', email);
-};
-
+const setUserSession = email => sessionStorage.setItem('userEmail', email);
 const redirectToDashboard = () => {
-  window.location.href = "pages/dashboard.html";
+  if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
+    window.location.href = "http://127.0.0.1:8080/pages/dashboard.html";
+  } else {
+    window.location.href = `${window.location.origin}/ws-gestao/pages/dashboard.html`;
+  }
 };
 
-// ------------------------------
-// EVENTO DOMContentLoaded
-// ------------------------------
+// DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const googleLoginBtn = document.getElementById('googleLogin');
 
-  // LOGIN ADMIN
-  loginForm.addEventListener('submit', (e) => {
+  // Login admin
+  loginForm.addEventListener('submit', e => {
     e.preventDefault();
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
-    if (!email || !password) { showAlert("Preencha todos os campos.", "error"); return; }
-    if (!isValidEmail(email)) { showAlert("Email inválido.", "error"); return; }
+    if (!email || !password) { showAlert("Preencha todos os campos", "error"); return; }
+    if (!isValidEmail(email)) { showAlert("Email inválido", "error"); return; }
 
-    if (email === adminCredentials.email && password === adminCredentials.password) {
+    if (email===adminCredentials.email && password===adminCredentials.password) {
       setUserSession(email);
       showAlert("Login realizado com sucesso!", "success");
       redirectToDashboard();
-    } else {
-      showAlert("Email ou senha inválidos.", "error");
-    }
+    } else showAlert("Email ou senha inválidos", "error");
   });
 
-  // LOGIN GOOGLE
+  // Login Google
   googleLoginBtn.addEventListener('click', async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      setUserSession(user.email);
-      showAlert(`Bem-vindo, ${user.displayName}`, "success");
+      setUserSession(result.user.email);
+      showAlert(`Bem-vindo, ${result.user.displayName}`, "success");
       redirectToDashboard();
-    } catch (error) {
-      console.error("Erro no login Google:", error);
-      showAlert("Erro ao autenticar com Google.", "error");
+    } catch(e) {
+      console.error(e);
+      showAlert("Erro ao autenticar com Google", "error");
     }
   });
 
-  // REDIRECIONAMENTO AUTOMÁTICO
-  if (sessionStorage.getItem('loggedIn') === 'true') {
-    redirectToDashboard();
-  }
+  // Redireciona automaticamente se já logado
+  if (sessionStorage.getItem('userEmail')) redirectToDashboard();
 });
