@@ -6,12 +6,12 @@ Este projeto é uma aplicação web totalmente responsiva. Com serviço serverle
 
 ## **Tecnologias e Ferramentas Utilizadas**
 
-- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem gratuita para sites estáticos  
-- [ZeroSheets](https://www.zerosheets.com/) — Backend serverless para manipulação de dados em planilhas  
-- [HTML](https://www.w3schools.com/html/) — Estruturação do conteúdo da aplicação  
-- [CSS](https://www.w3schools.com/css/) — Estilização e layout da aplicação  
-- [Bootstrap](https://getbootstrap.com/) — Framework CSS para design responsivo  
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica e interatividade no frontend  
+- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/) — Hospedagem sites estáticos  
+- [ZeroSheets](https://www.zerosheets.com/) — Backend serverless   
+- [HTML](https://www.w3schools.com/html/) — Estruturação da aplicação  
+- [CSS](https://www.w3schools.com/css/) — Estilização e layout   
+- [Bootstrap](https://getbootstrap.com/) — Framework CSS design responsivo  
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — Lógica interatividade frontend  
 
 ---
 
@@ -63,6 +63,8 @@ ws-gestao/
 
 ---
 
+## Run WS-gestão
+
 <details>
 <summary>🚀 Rodando o App</summary>
 
@@ -93,7 +95,7 @@ Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.y
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-📍 Belo Horizonte, 26 Setembro 2025<br>
+📍 Belo Horizonte, 27 Setembro 2025<br>
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">🔗 LinkedIn</a> | 
 <a href="https://github.com/wellersonJesus" target="_blank">📌 GitHub</a>
 </div>
