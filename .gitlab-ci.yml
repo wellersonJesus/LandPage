@@ -1,40 +1,11 @@
 image: alpine:latest
 
-stages:
-  - build
-  - deploy
-
-# Job que gera o keys.local.js dinamicamente
-build_keys:
-  stage: build
-  script:
-    - echo "Gerando keys.local.js a partir de variáveis de ambiente..."
-    - mkdir -p public/js
-    - echo "// Credenciais do administrador" > public/js/keys.local.js
-    - echo "export const adminCredentials = {" >> public/js/keys.local.js
-    - echo "  email: \"${ADMIN_EMAIL}\"," >> public/js/keys.local.js
-    - echo "  password: \"${ADMIN_PASSWORD}\"" >> public/js/keys.local.js
-    - echo "};" >> public/js/keys.local.js
-    - echo "" >> public/js/keys.local.js
-    - echo "// Configurações do Firebase" >> public/js/keys.local.js
-    - echo "export const firebaseConfig = {" >> public/js/keys.local.js
-    - echo "  apiKey: \"${FIREBASE_API_KEY}\"," >> public/js/keys.local.js
-    - echo "  authDomain: \"${FIREBASE_AUTH_DOMAIN}\"," >> public/js/keys.local.js
-    - echo "  projectId: \"${FIREBASE_PROJECT_ID}\"," >> public/js/keys.local.js
-    - echo "  storageBucket: \"${FIREBASE_STORAGE_BUCKET}\"," >> public/js/keys.local.js
-    - echo "  messagingSenderId: \"${FIREBASE_MESSAGING_SENDER_ID}\"," >> public/js/keys.local.js
-    - echo "  appId: \"${FIREBASE_APP_ID}\"," >> public/js/keys.local.js
-    - echo "  measurementId: \"${FIREBASE_MEASUREMENT_ID}\"" >> public/js/keys.local.js
-    - echo "};" >> public/js/keys.local.js
-  artifacts:
-    paths:
-      - public/js/keys.local.js
-
-# Job que publica no GitLab Pages
 pages:
   stage: deploy
   script:
     - echo "Deploying WS-Gestão to GitLab Pages..."
+    - cp keys.ci.js public/js/keys.local.js
+    - echo "Sem keys CI, apenas login Google"
     - ls -la public
   artifacts:
     paths:
