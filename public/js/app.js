@@ -13,6 +13,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 const isGitLab = window.location.hostname.includes('gitlab.io');
 const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
 const baseURL = isGitLab ? `/${repoName}/` : '/';
+const baseDashboard = isGitLab ? `/${repoName}/pages/dashboard.html` : 'pages/dashboard.html';
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
@@ -27,7 +28,13 @@ const setUserSession = (email) => {
   sessionStorage.setItem('loggedIn', 'true');
   sessionStorage.setItem('userEmail', email);
 };
-const redirectToDashboard = () => window.location.href = `${baseURL}pages/dashboard.html`;
+
+// ------------------------------
+// Redireciona para dashboard
+// ------------------------------
+const redirectToDashboard = () => {
+  window.location.href = baseDashboard;
+};
 
 // ------------------------------
 // DOM
