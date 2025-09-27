@@ -2,7 +2,7 @@
 // Importa credenciais
 // ------------------------------
 import { adminCredentials, firebaseConfig } from './keys.local.js'; // LOCAL
-// No CI/CD, ./keys.js é gerado automaticamente
+// Em produção, o CI gera ./keys.js automaticamente
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -10,9 +10,9 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // ------------------------------
 // Base URL dinâmica
 // ------------------------------
-const repoName = 'ws-gestao'; // nome do repositório
+const repoName = 'ws-gestao'; // Nome do repositório GitLab Pages
 const isGitLab = window.location.hostname.includes('gitlab.io');
-const baseURL = isGitLab ? `/${repoName}/` : '/';
+const baseURL = isGitLab ? `/${repoName}/` : './'; // './' funciona local
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const passwordInput = document.getElementById('password');
   const googleLoginBtn = document.getElementById('googleLogin');
 
-  // Redireciona automaticamente se já estiver logado
+  // Redireciona se já estiver logado
   if(sessionStorage.getItem('loggedIn') === 'true') redirectToDashboard();
 
   // Login admin
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else showAlert("Email ou senha inválidos","error");
   });
 
-  // Login Google via Firebase
+  // Login Google
   googleLoginBtn.addEventListener('click', async () => {
     try {
       const result = await signInWithPopup(auth, provider);
