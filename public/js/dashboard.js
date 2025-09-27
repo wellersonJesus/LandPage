@@ -1,23 +1,18 @@
-const redirectToLogin = () => {
-  const repo = 'ws-gestao';
-  const base = (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1'))
-    ? '../index.html'
-    : `${window.location.origin}/${repo}/index.html`;
-  window.location.href = base;
-};
+// Base URL dinâmica
+const isGitLab = window.location.hostname.includes('gitlab.io');
+const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
+const baseURL = isGitLab ? `/${repoName}/` : '/';
 
+// Mostra email do usuário logado
 const userEmail = sessionStorage.getItem('userEmail');
-if(userEmail){
-  const el = document.getElementById('userEmail');
-  if(el) el.innerText = userEmail;
-}else{
-  redirectToLogin();
+if(!userEmail){
+  window.location.href = `${baseURL}index.html`;
+} else {
+  document.getElementById('userEmail').innerText = userEmail;
 }
 
-const logoutBtn = document.getElementById('logoutBtn');
-if(logoutBtn){
-  logoutBtn.addEventListener('click',()=>{
-    sessionStorage.clear();
-    redirectToLogin();
-  });
-}
+// Logout
+document.getElementById('logoutBtn')?.addEventListener('click', () => {
+  sessionStorage.clear();
+  window.location.href = `${baseURL}index.html`;
+});
