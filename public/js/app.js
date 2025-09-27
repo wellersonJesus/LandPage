@@ -2,7 +2,7 @@
 // Importa credenciais
 // ------------------------------
 import { adminCredentials, firebaseConfig } from './keys.local.js'; // LOCAL
-// Em produção, o CI gera ./keys.js automaticamente
+// Para produção, o CI deve gerar ./keys.js automaticamente
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -10,9 +10,8 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // ------------------------------
 // Base URL dinâmica
 // ------------------------------
-const repoName = 'ws-gestao'; // Nome do repositório GitLab Pages
 const isGitLab = window.location.hostname.includes('gitlab.io');
-const baseURL = isGitLab ? `/${repoName}/` : './'; // './' funciona local
+const baseURL = isGitLab ? '/' : './';
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
