@@ -1,11 +1,10 @@
-image: alpine:latest
+image: node:20-alpine
 
 pages:
   stage: deploy
   script:
-    - echo "Deploying WS-Gestão to GitLab Pages..."
-    - cp keys.ci.js public/js/keys.local.js
-    - echo "Sem keys CI, apenas login Google"
+    - npm install
+    - npm run generate-keys || echo "Sem keys CI, apenas login Google"
     - ls -la public
   artifacts:
     paths:
