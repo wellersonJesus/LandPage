@@ -2,39 +2,32 @@
 // Importa credenciais
 // ------------------------------
 import { adminCredentials, firebaseConfig } from './keys.local.js'; // LOCAL
-// Para produção, o CI deve gerar ./keys.js automaticamente
+// No CI/CD, ./keys.js é gerado automaticamente
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // ------------------------------
-// Inicializa Firebase
+// Base URL dinâmica
 // ------------------------------
+const repoName = 'ws-gestao'; // nome do repositório
+const isGitLab = window.location.hostname.includes('gitlab.io');
+const baseURL = isGitLab ? `/${repoName}/` : '/';
+
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // ------------------------------
-// Funções utilitárias
+// Utilitários
 // ------------------------------
 const showAlert = (msg, type='info') => alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${msg}`);
 const setUserSession = (email) => {
   sessionStorage.setItem('loggedIn', 'true');
   sessionStorage.setItem('userEmail', email);
 };
-
-// ------------------------------
-// Redirecionamento direto
-// ------------------------------
-const redirectToDashboard = () => {
-  // LOCAL
-  if(window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'){
-    window.location.href = 'pages/dashboard.html';
-  } else {
-    // GitLab Pages
-    window.location.href = '/ws-gestao/pages/dashboard.html';
-  }
-};
+const redirectToDashboard = () => window.location.href = `${baseURL}pages/dashboard.html`;
 
 // ------------------------------
 // DOM
@@ -45,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const passwordInput = document.getElementById('password');
   const googleLoginBtn = document.getElementById('googleLogin');
 
-  // Redireciona se já estiver logado
+  // Redireciona automaticamente se já estiver logado
   if(sessionStorage.getItem('loggedIn') === 'true') redirectToDashboard();
 
   // Login admin
@@ -63,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else showAlert("Email ou senha inválidos","error");
   });
 
-  // Login Google
+  // Login Google via Firebase
   googleLoginBtn.addEventListener('click', async () => {
     try {
       const result = await signInWithPopup(auth, provider);
