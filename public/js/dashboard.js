@@ -1,22 +1,31 @@
-// Base URL dinâmica
-const isGitLab = window.location.hostname.includes('gitlab.io');
-const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
-const baseIndex = isGitLab ? `/${repoName}/index.html` : "../index.html";
-
+// ------------------------------
 // Mostra email do usuário logado
+// ------------------------------
 const userEmail = sessionStorage.getItem('userEmail');
+
 if(!userEmail){
-  window.location.href = baseIndex;
+  // REDIRECIONA PARA LOGIN
+  if(window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'){
+    window.location.href = '../index.html';
+  } else {
+    window.location.href = '/ws-gestao/index.html';
+  }
 } else {
   const emailEl = document.getElementById('userEmail');
   if(emailEl) emailEl.innerText = userEmail;
 }
 
+// ------------------------------
 // Logout
+// ------------------------------
 const logoutBtn = document.getElementById('logoutBtn');
 if(logoutBtn){
   logoutBtn.addEventListener('click', () => {
     sessionStorage.clear();
-    window.location.href = baseIndex;
+    if(window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'){
+      window.location.href = '../index.html';
+    } else {
+      window.location.href = '/ws-gestao/index.html';
+    }
   });
 }

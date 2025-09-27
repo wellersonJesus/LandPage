@@ -8,20 +8,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // ------------------------------
-// Base URL dinâmica
-// ------------------------------
-const isGitLab = window.location.hostname.includes('gitlab.io');
-const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
-const baseURL = isGitLab ? `/${repoName}/` : '/';
-const baseDashboard = isGitLab ? `/${repoName}/pages/dashboard.html` : 'pages/dashboard.html';
-
 // Inicializa Firebase
+// ------------------------------
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // ------------------------------
-// Utilitários
+// Funções utilitárias
 // ------------------------------
 const showAlert = (msg, type='info') => alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${msg}`);
 const setUserSession = (email) => {
@@ -30,10 +24,16 @@ const setUserSession = (email) => {
 };
 
 // ------------------------------
-// Redireciona para dashboard
+// Redirecionamento direto
 // ------------------------------
 const redirectToDashboard = () => {
-  window.location.href = baseDashboard;
+  // LOCAL
+  if(window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'){
+    window.location.href = 'pages/dashboard.html';
+  } else {
+    // GitLab Pages
+    window.location.href = '/ws-gestao/pages/dashboard.html';
+  }
 };
 
 // ------------------------------
