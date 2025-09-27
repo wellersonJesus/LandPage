@@ -1,0 +1,17 @@
+{
+  "name": "ws-gestao",
+  "version": "1.0.0",
+  "description": "Aplicação WS-Gestão",
+  "type": "module",
+  "scripts": {
+    "generate-keys": "node scripts/generate-keys.js",
+    "start": "npm run generate-keys && live-server public"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "live-server": "^1.2.2"
+  },
+  "devDependencies": {},
+  "author": "Seu Nome",
+  "license": "MIT"
+}

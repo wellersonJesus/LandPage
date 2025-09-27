@@ -39,8 +39,8 @@ ws-gestao/
 │ │ ├─ dashboard.js        
 │ │ ├─ login.js           
 │ │ ├─ zerosheets.js
-| | └─ keys.local.js      # usado LOCALMENTE
-│ │ └─ keys.js            # 🔑 Gerado automaticamente, não versionar
+│ │ ├─ keys.local.js      # usado LOCALMENTE
+│ │ └─ keys.js            # 🔑 Gerado pelo script, não versionar
 │
 │ ├─ components/
 │ │ ├─ header.html
@@ -54,9 +54,9 @@ ws-gestao/
 │ └─ exemplo.json
 │
 ├─ scripts/
-│ └─ generate-keys.js     # Script que gera keys.js a partir do .env
+│ └─ generate-keys.js     # gera keys.js a partir de .env
 │
-├─ .env                    # Todas as credenciais e keys
+├─ .env                    # credenciais privadas
 ├─ .gitignore
 ├─ .gitlab-ci.yml
 └─ README.md
@@ -71,28 +71,17 @@ ws-gestao/
 <summary>🚀 Rodando o App</summary>
 
 ```bash
-# 1️⃣ Instalar Node.js e npm (Linux/Ubuntu)
-sudo apt update
-sudo apt install nodejs npm -y
-node -v
-npm -v
+# 1️⃣ Atualiza o sistema e instala Node.js e npm
+sudo apt update && sudo apt install nodejs npm -y
 
-# 2️⃣ Instalar servidor local (live-server e http-server)
-npm install -g live-server http-server
+# 2️⃣ Inicializa package.json automaticamente
+npm init -y
 
-# 3️⃣ Entrar na pasta do projeto
-cd ws-gestao/public
+# 3️⃣ Instala dependências necessárias
+npm install dotenv live-server --save
 
-# 4️⃣ Rodar o projeto
-live-server public
-
-# 5️⃣ Parar o servidor
-# Pressione Ctrl + C no terminal onde o servidor está rodando
-⚡ Observação: no GitLab Pages, todos os arquivos são publicados a partir da pasta public/.
-Certifique-se de mover os arquivos finais para public/ ou ajustar o .gitlab-ci.yml conforme necessário.
-
-# Limpe cache do PC:
-CTRL + SHIFT + R (recarregar ignorando cache).
+# 4️⃣ Gera keys.js a partir do .env e inicia o servidor
+npm start
 ```
 </details>
 

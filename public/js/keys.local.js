@@ -13,3 +13,5 @@ export const firebaseConfig = {
   messagingSenderId: "SEU_SENDER_ID",
   appId: "SEU_APP_ID"
 };
+
+

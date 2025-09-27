@@ -1,20 +1,22 @@
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') }); // lê .env
+import fs from 'fs';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// Caminho de saída
-const outPath = path.join(__dirname, '..', 'public', 'js', 'keys.js');
-
-// Monta objeto com as variáveis que você quer expor ao frontend
-const keys = {
-  PUBLIC_API_KEY: process.env.PUBLIC_API_KEY,
-  OTHER_PUBLIC_KEY: process.env.OTHER_PUBLIC_KEY
-  // Não expor SECRET_TOKEN no frontend!
+const content = `
+export const adminCredentials = {
+  email: "${process.env.ADMIN_EMAIL}",
+  password: "${process.env.ADMIN_PASSWORD}"
 };
 
-// Conteúdo final em JS
-const content = `window.__KEYS__ = ${JSON.stringify(keys, null, 2)};`;
+export const firebaseConfig = {
+  apiKey: "${process.env.FIREBASE_API_KEY}",
+  authDomain: "${process.env.FIREBASE_AUTH_DOMAIN}",
+  projectId: "${process.env.FIREBASE_PROJECT_ID}",
+  storageBucket: "${process.env.FIREBASE_STORAGE_BUCKET}",
+  messagingSenderId: "${process.env.FIREBASE_MESSAGING_SENDER_ID}",
+  appId: "${process.env.FIREBASE_APP_ID}"
+};
+`;
 
-// Cria keys.js
-fs.writeFileSync(outPath, content, 'utf8');
-console.log('✅ keys.js gerado em public/js/keys.js');
+fs.writeFileSync('public/js/keys.js', content.trim());
+console.log('✅ keys.js gerado com sucesso!');
