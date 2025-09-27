@@ -1,15 +1,11 @@
-# Ignorar credenciais sensíveis
-credentials/keys.json
-
-# Node modules (se houver)
+# Node / build
 node_modules/
-
-# Arquivos de build/dist
 dist/
-build/
+public/js/keys.js
 
-# Outros arquivos temporários
-*.log
+# Credenciais
+.env
+
+# OS / editor
 .DS_Store
-
-
+*.log

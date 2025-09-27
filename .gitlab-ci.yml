@@ -4,6 +4,8 @@ pages:
   stage: deploy
   script:
     - echo "Deploying WS-Gestão to GitLab Pages..."
+    # Injeta keys de CI/CD (só no runner, NÃO comitar)
+    - cp keys.ci.js public/js/keys.local.js || echo "Sem keys CI, apenas login Google"
     - ls -la public
   artifacts:
     paths:

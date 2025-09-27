@@ -1,39 +1,83 @@
+// ------------------------------
+// IMPORTS FIREBASE
+// ------------------------------
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+// ------------------------------
+// PEGANDO CREDENCIAIS DO WINDOW
+// ------------------------------
+const adminCredentials = window.adminCredentials;
+const firebaseConfig = window.firebaseConfig;
+
+// ------------------------------
+// INICIALIZAÇÃO DO FIREBASE
+// ------------------------------
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// ------------------------------
+// FUNÇÕES DE UTILIDADE
+// ------------------------------
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const showAlert = (message, type = 'info') => {
+  alert(`${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}`);
+};
+
+const setUserSession = (email) => {
+  sessionStorage.setItem('loggedIn', 'true');
+  sessionStorage.setItem('userEmail', email);
+};
+
+const redirectToDashboard = () => {
+  window.location.href = "pages/dashboard.html";
+};
+
+// ------------------------------
+// EVENTO DOMContentLoaded
+// ------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
+  const googleLoginBtn = document.getElementById('googleLogin');
 
-  if (!loginForm) {
-    console.error("❌ Formulário de login não encontrado.");
-    return;
-  }
-
+  // LOGIN ADMIN
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
-    // Validação básica
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alert("❌ Email inválido.");
-      return;
-    }
+    if (!email || !password) { showAlert("Preencha todos os campos.", "error"); return; }
+    if (!isValidEmail(email)) { showAlert("Email inválido.", "error"); return; }
 
-    // Credenciais fixas
-    const credentials = {
-      adminEmail: "admin@wsgestao.com",
-      adminPassword: "1234"
-    };
-
-    if (email === credentials.adminEmail && password === credentials.adminPassword) {
-      sessionStorage.setItem('loggedIn', 'true');
-      sessionStorage.setItem('userEmail', email);
-      alert("✅ Login realizado com sucesso!");
-      window.location.href = "pages/dashboard.html";
+    if (email === adminCredentials.email && password === adminCredentials.password) {
+      setUserSession(email);
+      showAlert("Login realizado com sucesso!", "success");
+      redirectToDashboard();
     } else {
-      alert("❌ Email ou senha inválidos.");
+      showAlert("Email ou senha inválidos.", "error");
     }
   });
+
+  // LOGIN GOOGLE
+  googleLoginBtn.addEventListener('click', async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      setUserSession(user.email);
+      showAlert(`Bem-vindo, ${user.displayName}`, "success");
+      redirectToDashboard();
+    } catch (error) {
+      console.error("Erro no login Google:", error);
+      showAlert("Erro ao autenticar com Google.", "error");
+    }
+  });
+
+  // REDIRECIONAMENTO AUTOMÁTICO
+  if (sessionStorage.getItem('loggedIn') === 'true') {
+    redirectToDashboard();
+  }
 });

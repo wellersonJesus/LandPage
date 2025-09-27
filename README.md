@@ -32,14 +32,16 @@ ws-gestao/
 │ │ └─ estoque.html       
 │ │
 │ ├─ style/
-│ │ └─ main.css           # Estilos globais (Bootstrap + custom)
+│ │ └─ main.css           
 │ │
 │ ├─ js/
-│ │ ├─ app.js             # JS principal (login, navegação)
+│ │ ├─ app.js             
 │ │ ├─ dashboard.js        
-│ │ └─ login.js           
-│ │ └─ zerosheets.js
-│ │
+│ │ ├─ login.js           
+│ │ ├─ zerosheets.js
+| | └─ keys.local.js      # usado LOCALMENTE
+│ │ └─ keys.js            # 🔑 Gerado automaticamente, não versionar
+│
 │ ├─ components/
 │ │ ├─ header.html
 │ │ ├─ footer.html
@@ -51,10 +53,10 @@ ws-gestao/
 ├─ data/
 │ └─ exemplo.json
 │
-├─ credentials/           
-│ └─ keys.json            # 🔑 Tokens e keys (não versionar)  
+├─ scripts/
+│ └─ generate-keys.js     # Script que gera keys.js a partir do .env
 │
-├─ .env
+├─ .env                    # Todas as credenciais e keys
 ├─ .gitignore
 ├─ .gitlab-ci.yml
 └─ README.md
