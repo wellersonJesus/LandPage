@@ -11,7 +11,8 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // Base URL dinâmica
 // ------------------------------
 const isGitLab = window.location.hostname.includes('gitlab.io');
-const baseURL = isGitLab ? '/' : './';
+const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
+const baseURL = isGitLab ? `/${repoName}/` : './';
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);

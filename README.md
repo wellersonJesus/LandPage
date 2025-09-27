@@ -82,6 +82,9 @@ npm install dotenv live-server --save
 
 # 4️⃣ Gera keys.js a partir do .env e inicia o servidor
 npm start
+
+# Instal firebase
+npm install firebase
 ```
 </details>
 
