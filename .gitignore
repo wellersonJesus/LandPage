@@ -5,7 +5,7 @@ public/js/keys.js
 
 # Credenciais
 .env
-public/js/keys.local.js
+public/js/*.local.js
 
 # OS / editor
 .DS_Store
