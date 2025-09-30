@@ -10,9 +10,13 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // ------------------------------
 // Base URL dinâmica
 // ------------------------------
-const isGitLab = window.location.hostname.includes('gitlab.io');
-const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
-const baseURL = isGitLab ? `/${repoName}/` : './';
+const isGitLab = window.location.hostname.includes("gitlab.io");
+const pathParts = window.location.pathname.split("/").filter(Boolean);
+const repoName = isGitLab && pathParts.length > 0 ? pathParts[0] : "";
+const baseURL = isGitLab ? `/${repoName}/` : "/";
+
+
+
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
