@@ -2,30 +2,26 @@
 // Base URL dinâmica
 // ------------------------------
 const isGitLab = window.location.hostname.includes("gitlab.io");
-const repoName = isGitLab ? window.location.pathname.split("/")[1] : "";
-const baseURL = isGitLab
-  ? `/${repoName}/` // GitLab Pages: raiz do repositório
-  : "/";            // Localhost: raiz do servidor
+const pathParts = window.location.pathname.split("/").filter(Boolean);
+const repoName = isGitLab && pathParts.length > 0 ? pathParts[0] : "";
+const baseURL = isGitLab ? `/${repoName}/pages/` : "../pages/";
 
 // ------------------------------
-// Função de redirecionamento seguro
+// Função de redirecionamento
 // ------------------------------
 const goToLogin = () => {
   window.location.href = `${baseURL}index.html`;
 };
 
 // ------------------------------
-// Verifica se está logado
+// Verifica sessão
 // ------------------------------
 const userEmail = sessionStorage.getItem("userEmail");
-
 if (!userEmail) {
   goToLogin();
 } else {
   const userEmailElem = document.getElementById("userEmail");
-  if (userEmailElem) {
-    userEmailElem.innerText = userEmail;
-  }
+  if (userEmailElem) userEmailElem.innerText = userEmail;
 }
 
 // ------------------------------
@@ -34,7 +30,7 @@ if (!userEmail) {
 const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
-    sessionStorage.clear(); // limpa sessão
-    goToLogin();            // volta pro login certo
+    sessionStorage.clear();
+    goToLogin();
   });
 }

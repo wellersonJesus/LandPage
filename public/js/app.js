@@ -11,14 +11,17 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // Base URL dinâmica
 // ------------------------------
 const isGitLab = window.location.hostname.includes("gitlab.io");
+
+// Nome do repositório (primeira pasta do path)
 const pathParts = window.location.pathname.split("/").filter(Boolean);
 const repoName = isGitLab && pathParts.length > 0 ? pathParts[0] : "";
-const baseURL = isGitLab ? `/${repoName}/` : "/";
 
+// Base para redirecionamento
+const baseURL = isGitLab ? `/${repoName}/pages/` : "./";
 
-
-
-// Inicializa Firebase
+// ------------------------------
+// Firebase
+// ------------------------------
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -31,7 +34,7 @@ const setUserSession = (email) => {
   sessionStorage.setItem('loggedIn', 'true');
   sessionStorage.setItem('userEmail', email);
 };
-const redirectToDashboard = () => window.location.href = `${baseURL}pages/dashboard.html`;
+const redirectToDashboard = () => window.location.href = `${baseURL}dashboard.html`;
 
 // ------------------------------
 // DOM
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const passwordInput = document.getElementById('password');
   const googleLoginBtn = document.getElementById('googleLogin');
 
-  // Redireciona se já estiver logado
+  // Se já está logado → dashboard
   if(sessionStorage.getItem('loggedIn') === 'true') redirectToDashboard();
 
   // Login admin
