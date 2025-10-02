@@ -1,13 +1,14 @@
-# Node / build
+# Node
 node_modules/
 dist/
+
+# Build / deploy
 public/js/keys.js
 
-# Credenciais
+# Credenciais privadas
 .env
 public/js/*.local.js
 
 # OS / editor
 .DS_Store
 *.log
-.gitlab-ci.yml

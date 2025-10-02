@@ -4,8 +4,10 @@ pages:
   stage: deploy
   script:
     - npm install
-    - npm run generate-keys || echo "Sem keys CI, apenas login Google"
-    - ls -la public
+    # Gera keys.js temporário para o GitLab Pages
+    - echo "export const adminCredentials = { email: 'admin@teste.com', password: '123456' };" > public/js/keys.js
+    - echo "export const firebaseConfig = $FIREBASE_CONFIG;" >> public/js/keys.js
+    - ls -la public/js
   artifacts:
     paths:
       - public
