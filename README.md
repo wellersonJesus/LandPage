@@ -39,9 +39,9 @@ ws-gestao/
 │ │ ├─ dashboard.js        
 │ │ ├─ login.js           
 │ │ ├─ zerosheets.js
-│ │ ├─ keys.local.js      # usado LOCALMENTE
-│ │ └─ keys.js            # 🔑 Gerado pelo script, não versionar
-│
+│ │ ├─ keys.local.js      # usado LOCAL
+│ │ └─ keys.js            # 🔑 gerado pelo CI/CD, não versionar
+│ │
 │ ├─ components/
 │ │ ├─ header.html
 │ │ ├─ footer.html
