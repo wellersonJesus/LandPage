@@ -10,3 +10,4 @@ public/js/*.local.js
 # OS / editor
 .DS_Store
 *.log
+.gitlab-ci.yml
