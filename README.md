@@ -26,37 +26,30 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 ws-gestao/
 │
 ├─ public/
-│ ├─ index.html           
+│ ├─ index.html
 │ ├─ pages/
-│ │ ├─ dashboard.html     
-│ │ └─ estoque.html       
-│ │
+│ │ ├─ dashboard.html
+│ │ └─ estoque.html
 │ ├─ style/
-│ │ └─ main.css           
-│ │
+│ │ └─ main.css
 │ ├─ js/
-│ │ ├─ app.js             
-│ │ ├─ dashboard.js        
-│ │ ├─ login.js           
+│ │ ├─ app.js
+│ │ ├─ dashboard.js
+│ │ ├─ login.js
 │ │ ├─ zerosheets.js
-│ │ ├─ keys.local.js      # usado LOCAL
-│ │ └─ keys.js            # 🔑 gerado pelo CI/CD, não versionar
-│ │
+│ │ ├─ keys.local.js       # 🔑 usado local
+│ │ └─ keys.reco.js        # 🔑 gerado no CI/CD para o repo (GitLab Pages)
 │ ├─ components/
 │ │ ├─ header.html
 │ │ ├─ footer.html
 │ │ └─ form-insert.html
-│ │
 │ └─ img/
 │   └─ logo.jpg
 │
-├─ data/
-│ └─ exemplo.json
-│
 ├─ scripts/
-│ └─ generate-keys.js     # gera keys.js a partir de .env
+│ └─ generate-case.js      # cria keys.local.js ou keys.reco.js
 │
-├─ .env                    # credenciais privadas
+├─ .env                     # variáveis privadas locais
 ├─ .gitignore
 ├─ .gitlab-ci.yml
 └─ README.md
@@ -81,7 +74,8 @@ npm init -y
 npm install dotenv live-server --save
 
 # 4️⃣ Gera keys.js a partir do .env e inicia o servidor
-npm start
+npm run generate-keys
+live-server public
 
 # Instal firebase
 npm install firebase

@@ -4,8 +4,8 @@
   "description": "Aplicação WS-Gestão",
   "type": "module",
   "scripts": {
-    "generate-keys": "node scripts/generate-keys.js",
-    "start": "npm run generate-keys && live-server public"
+    "generate-keys": "node scripts/generate-case.js",
+    "start": "npm run generate-case && live-server public"
   },
   "dependencies": {
     "dotenv": "^16.6.1",
