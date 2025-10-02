@@ -4,9 +4,6 @@ pages:
   stage: deploy
   script:
     - npm install
-    # Gera keys.js para GitLab Pages (dados de teste ou públicos)
-    - echo "export const adminCredentials = { email: 'admin@teste.com', password: '123456' };" > public/js/keys.js
-    - echo "export const firebaseConfig = $FIREBASE_CONFIG;" >> public/js/keys.js
     - npm run generate-keys || echo "Sem keys CI, apenas login Google"
     - ls -la public
   artifacts:
