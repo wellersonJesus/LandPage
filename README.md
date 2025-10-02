@@ -65,8 +65,7 @@ ws-gestao/
 
 ---
 
-## Run WS-gestão
-
+## Run WS-gestão PullRequestClosed.svg	{octicons/prClosed}	PullRequestClosed	 
 <details>
 <summary>🚀 Rodando o App</summary>
 
