@@ -7,13 +7,7 @@ pages:
   stage: deploy
   script:
     - npm install
-
-    # Cria keys.js temporário usando variáveis do GitLab (protegidas)
-    - |
-      echo "/* 🔑 Arquivo gerado automaticamente no CI */" > public/js/keys.js
-      echo "export const adminCredentials = { email: 'admin@teste.com', password: '123456' };" >> public/js/keys.js
-      echo "export const firebaseConfig = ${FIREBASE_CONFIG};" >> public/js/keys.js
-
+    - node scripts/generate-keys.js
     - ls -la public/js
   artifacts:
     paths:
