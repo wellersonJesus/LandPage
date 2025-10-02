@@ -51,16 +51,12 @@
 
 <!-- Scripts -->
 <script type="module">
-  // Detecta ambiente
-  const isCI = window.location.hostname.includes('gitlab.io');
-  const keyFile = isCI ? './js/keys.reco.js' : './js/keys.local.js';
-
-  import(keyFile)
-    .then(module => {
-      window.keys = module;
-    })
-    .catch(err => console.error('Erro ao carregar keys.js:', err));
+  const isGitLab = window.location.hostname.includes('gitlab.io');
+  const baseURL = isGitLab ? '/ws-gestao/' : './';
 </script>
+
+<!-- Importa keys do CI/CD -->
+<script type="module" src="js/keys.reco.js"></script>
 <script type="module" src="js/app.js"></script>
 
 </body>
