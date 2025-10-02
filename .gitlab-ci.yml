@@ -7,8 +7,8 @@ pages:
   stage: deploy
   script:
     - npm install
-    - node scripts/generate-keys.js
-    - ls -la public/js
+    - node scripts/generate-keys.js   # gera keys.js no CI/CD
+    - ls -la public/js                # só pra debug
   artifacts:
     paths:
       - public

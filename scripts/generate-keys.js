@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const content = `
-// Gerado automaticamente a partir do .env (não versionar)
+const content = `/* 🔑 Gerado automaticamente no CI/CD */
 
 // Credenciais do administrador
 export const adminCredentials = {
@@ -24,5 +23,5 @@ export const firebaseConfig = {
 };
 `;
 
-fs.writeFileSync('./public/js/keys.js', content);
+fs.writeFileSync('./public/js/keys.js', content, 'utf-8');
 console.log("✅ keys.js gerado com sucesso!");
