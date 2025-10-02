@@ -1,4 +1,4 @@
-# <span style="color:blue;">🌏 WS-gestão</span>
+# [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
 
 Aplicação web totalmente responsiva. Serviço serverless com armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
 
@@ -20,7 +20,7 @@ Aplicação web totalmente responsiva. Serviço serverless com armazenamento e p
 Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLab Pages**, seguindo as instruções do arquivo [`.gitlab-ci.yml`](.gitlab-ci.yml).  
 
 <details>
-<summary><span style="color:orange;">📂 Clique aqui para expandir a Estrutura do Projeto</span></summary>
+<summary>📂 Clique aqui para expandir a Estrutura do Projeto</summary>
 
 ```bash
 ws-gestao/
