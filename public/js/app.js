@@ -10,18 +10,11 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // ------------------------------
 // Base URL dinâmica
 // ------------------------------
-const isGitLab = window.location.hostname.includes("gitlab.io");
+const isGitLab = window.location.hostname.includes('gitlab.io');
+const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
+const baseURL = isGitLab ? `/${repoName}/` : './';
 
-// Nome do repositório (primeira pasta do path)
-const pathParts = window.location.pathname.split("/").filter(Boolean);
-const repoName = isGitLab && pathParts.length > 0 ? pathParts[0] : "";
-
-// Base para redirecionamento
-const baseURL = isGitLab ? `/${repoName}/pages/` : "./";
-
-// ------------------------------
-// Firebase
-// ------------------------------
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -29,12 +22,16 @@ const provider = new GoogleAuthProvider();
 // ------------------------------
 // Utilitários
 // ------------------------------
-const showAlert = (msg, type='info') => alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${msg}`);
+const showAlert = (msg, type='info') => {
+  alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${msg}`);
+};
 const setUserSession = (email) => {
   sessionStorage.setItem('loggedIn', 'true');
   sessionStorage.setItem('userEmail', email);
 };
-const redirectToDashboard = () => window.location.href = `${baseURL}dashboard.html`;
+const redirectToDashboard = () => {
+  window.location.href = `${baseURL}pages/dashboard.html`;
+};
 
 // ------------------------------
 // DOM
@@ -45,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const passwordInput = document.getElementById('password');
   const googleLoginBtn = document.getElementById('googleLogin');
 
-  // Se já está logado → dashboard
+  // Redireciona se já estiver logado
   if(sessionStorage.getItem('loggedIn') === 'true') redirectToDashboard();
 
   // Login admin
@@ -59,8 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if(email === adminCredentials.email && password === adminCredentials.password){
       setUserSession(email);
       showAlert("Login realizado com sucesso!","success");
-      redirectToDashboard();
-    } else showAlert("Email ou senha inválidos","error");
+
+      // Delay para o usuário ver a mensagem
+      setTimeout(() => {
+        redirectToDashboard();
+      }, 1000);
+    } else {
+      showAlert("Email ou senha inválidos","error");
+    }
   });
 
   // Login Google
@@ -69,7 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await signInWithPopup(auth, provider);
       setUserSession(result.user.email);
       showAlert(`Bem-vindo, ${result.user.displayName}`,"success");
-      redirectToDashboard();
+
+      // Delay para o usuário ver a mensagem
+      setTimeout(() => {
+        redirectToDashboard();
+      }, 1000);
     } catch(err){
       console.error(err);
       showAlert("Erro ao autenticar com Google","error");

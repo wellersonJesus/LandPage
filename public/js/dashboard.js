@@ -1,36 +1,35 @@
 // ------------------------------
 // Base URL dinâmica
 // ------------------------------
-const isGitLab = window.location.hostname.includes("gitlab.io");
-const pathParts = window.location.pathname.split("/").filter(Boolean);
-const repoName = isGitLab && pathParts.length > 0 ? pathParts[0] : "";
-const baseURL = isGitLab ? `/${repoName}/pages/` : "../pages/";
+const isGitLab = window.location.hostname.includes('gitlab.io');
+const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
+const baseURL = isGitLab ? `/${repoName}/` : '/';
 
 // ------------------------------
-// Função de redirecionamento
+// Redirecionamentos
 // ------------------------------
-const goToLogin = () => {
-  window.location.href = `${baseURL}index.html`;
-};
+const redirectToHome = () => window.location.href = `${baseURL}index.html`;
 
 // ------------------------------
-// Verifica sessão
+// Verificação de sessão
 // ------------------------------
-const userEmail = sessionStorage.getItem("userEmail");
+const userEmail = sessionStorage.getItem('userEmail');
 if (!userEmail) {
-  goToLogin();
+  redirectToHome(); // não logado → volta para login
 } else {
-  const userEmailElem = document.getElementById("userEmail");
+  const userEmailElem = document.getElementById('userEmail');
   if (userEmailElem) userEmailElem.innerText = userEmail;
 }
 
 // ------------------------------
 // Logout
 // ------------------------------
-const logoutBtn = document.getElementById("logoutBtn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    sessionStorage.clear();
-    goToLogin();
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.clear();
+      redirectToHome(); // volta para index.html correto
+    });
+  }
+});
