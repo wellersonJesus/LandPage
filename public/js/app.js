@@ -11,8 +11,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstati
 // Base URL dinâmica
 // ------------------------------
 const isGitLab = window.location.hostname.includes('gitlab.io');
-const repoName = isGitLab ? window.location.pathname.split('/')[1] : '';
-const baseURL = isGitLab ? `/${repoName}/` : './';
+const baseURL = isGitLab ? '/' : './';
 
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
@@ -22,16 +21,12 @@ const provider = new GoogleAuthProvider();
 // ------------------------------
 // Utilitários
 // ------------------------------
-const showAlert = (msg, type='info') => {
-  alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${msg}`);
-};
+const showAlert = (msg, type='info') => alert(`${type==='success'?'✅':type==='error'?'❌':'ℹ️'} ${msg}`);
 const setUserSession = (email) => {
   sessionStorage.setItem('loggedIn', 'true');
   sessionStorage.setItem('userEmail', email);
 };
-const redirectToDashboard = () => {
-  window.location.href = `${baseURL}pages/dashboard.html`;
-};
+const redirectToDashboard = () => window.location.href = `${baseURL}pages/dashboard.html`;
 
 // ------------------------------
 // DOM
@@ -56,14 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(email === adminCredentials.email && password === adminCredentials.password){
       setUserSession(email);
       showAlert("Login realizado com sucesso!","success");
-
-      // Delay para o usuário ver a mensagem
-      setTimeout(() => {
-        redirectToDashboard();
-      }, 1000);
-    } else {
-      showAlert("Email ou senha inválidos","error");
-    }
+      redirectToDashboard();
+    } else showAlert("Email ou senha inválidos","error");
   });
 
   // Login Google
@@ -72,11 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await signInWithPopup(auth, provider);
       setUserSession(result.user.email);
       showAlert(`Bem-vindo, ${result.user.displayName}`,"success");
-
-      // Delay para o usuário ver a mensagem
-      setTimeout(() => {
-        redirectToDashboard();
-      }, 1000);
+      redirectToDashboard();
     } catch(err){
       console.error(err);
       showAlert("Erro ao autenticar com Google","error");
