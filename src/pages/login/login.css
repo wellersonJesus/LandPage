@@ -1,0 +1,13 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Nunito', sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.btn-outline-danger i,
+.btn-outline-primary i {
+  margin-right: 5px;
+}

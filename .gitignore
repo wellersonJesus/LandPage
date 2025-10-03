@@ -1,14 +1,24 @@
 # Node
 node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build
 dist/
+build/
+public/
 
-# Build / deploy
-public/js/keys.js
-
-# Credenciais privadas
+# Credenciais (geradas ou locais)
+src/app/keys.js
 .env
-public/js/*.local.js
+.env.local
+.env.development
+.env.production
 
-# OS / editor
+# IDEs / SO
+.vscode/
+.idea/
+*.swp
 .DS_Store
-*.log
+Thumbs.db

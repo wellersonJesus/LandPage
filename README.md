@@ -25,33 +25,50 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 ```bash
 ws-gestao/
 │
-├─ public/
-│ ├─ index.html
-│ ├─ pages/
-│ │ ├─ dashboard.html
-│ │ └─ estoque.html
-│ ├─ style/
-│ │ └─ main.css
-│ ├─ js/
-│ │ ├─ app.js
-│ │ ├─ dashboard.js
-│ │ ├─ login.js
-│ │ ├─ zerosheets.js
-│ │ ├─ keys.local.js       # 🔑 usado local
-│ │ └─ keys.reco.js        # 🔑 gerado no CI/CD para o repo (GitLab Pages)
-│ ├─ components/
-│ │ ├─ header.html
-│ │ ├─ footer.html
-│ │ └─ form-insert.html
-│ └─ img/
-│   └─ logo.jpg
+├─ src/                         
+│  ├─ app/                      # núcleo da aplicação
+│  │   ├─ app.js                # inicialização global
+│  │   ├─ router.js             # controle de rotas (simples em JS)
+│  │   ├─ config.js             # configs globais (ex: baseURL, versão, etc.)
+│  │   └─ keys.js               # 🔑 gerado a partir do .env (NÃO versionado)
+│  │
+│  ├─ pages/                    # cada tela (modularizado)
+│  │   ├─ login/
+│  │   │   ├─ login.html
+│  │   │   ├─ login.js
+│  │   │   └─ login.css
+│  │   ├─ dashboard/
+│  │   │   ├─ dashboard.html
+│  │   │   ├─ dashboard.js
+│  │   │   └─ dashboard.css
+│  │   └─ ...
+│  │
+│  ├─ services/                 # integração e lógica de negócio
+│  │   ├─ firebase.service.js   # login social (Google, etc.)
+│  │   ├─ auth.service.js       # autenticação admin/local
+│  │   ├─ storage.service.js    # manipulação de session/localStorage
+│  │   └─ zerosheets.service.js # integração com Google Sheets (simulando DB)
+│  │
+│  ├─ assets/                   # estáticos (imagens, ícones, CSS global)
+│  │   ├─ img/
+│  │   ├─ icons/
+│  │   └─ styles/
+│  │        ├─ global.css
+│  │        └─ theme.css
+│  │
+│  ├─ index.html                # SPA bootstrap (carrega main.js)
+│  └─ main.js                   # entrypoint → inicializa app.js e router
 │
-├─ scripts/
-│ └─ generate-case.js      # cria keys.local.js ou keys.reco.js
+├─ public/                      # build final para deploy (output do CI/CD)
+│   └─ ...
 │
-├─ .env                     # variáveis privadas locais
+├─ scripts/                     # scripts auxiliares (CI/CD)
+│  ├─ generate-case.js          # gera src/app/keys.js a partir do .env
+│  └─ zerosheets.js             # utilitário p/ conexão com Google Sheets
+│
+├─ package.json
+├─ .env                         # credenciais (Firebase + Sheets API)
 ├─ .gitignore
-├─ .gitlab-ci.yml
 └─ README.md
 ```
 </details>
@@ -64,21 +81,17 @@ ws-gestao/
 <summary>🚀 Rodando o App</summary>
 
 ```bash
-# 1️⃣ Atualiza o sistema e instala Node.js e npm
-sudo apt update && sudo apt install nodejs npm -y
+# 1️⃣ Atualiza o sistema e instala Node.js e npm (Linux)
+sudo apt update && sudo apt install -y nodejs npm
 
-# 2️⃣ Inicializa package.json automaticamente
-npm init -y
+# 2️⃣ Instala dependências do projeto
+npm install
 
-# 3️⃣ Instala dependências necessárias
-npm install dotenv live-server --save
-
-# 4️⃣ Gera keys.js a partir do .env e inicia o servidor
+# 3️⃣ Gera src/app/keys.js a partir do .env
 npm run generate-keys
-live-server public
 
-# Instal firebase
-npm install firebase
+# 4️⃣ Inicia servidor local (abre a pasta src)
+npm start
 ```
 </details>
 
@@ -86,7 +99,7 @@ npm install firebase
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-📍 Belo Horizonte, 27 Setembro 2025<br>
+📍 Belo Horizonte, 03 Outubro 2025<br>
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">🔗 LinkedIn</a> | 
 <a href="https://github.com/wellersonJesus" target="_blank">📌 GitHub</a>
 </div>

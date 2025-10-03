@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WS-Gestão - Login</title>
+
+  <!-- Base dinâmica para GitLab Pages -->
+  <script>
+    const isGitLab = window.location.hostname.includes('gitlab.io');
+    const repoName = 'ws-gestao';
+    const baseURL = isGitLab ? `/${repoName}/` : './';
+    document.write(`<base href="${baseURL}">`);
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/styles/global.css">
+  <link rel="stylesheet" href="assets/styles/theme.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+</head>
+<body class="d-flex flex-column vh-100">
+
+  <div class="container d-flex justify-content-center align-items-center flex-grow-1">
+    <div class="card p-5 shadow-lg" style="max-width: 380px; width: 100%;">
+      
+      <!-- Logo -->
+      <div class="text-center mb-4">
+        <img src="assets/img/logo.jpg" alt="Logo WS-Gestão" width="150" class="img-fluid">
+      </div>
+
+      <!-- Formulário de Login -->
+      <form id="loginForm" novalidate>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-3">
+          Entrar <i class="bi bi-box-arrow-in-right ms-1"></i>
+        </button>
+      </form>
+
+      <hr>
+
+      <!-- Login Social -->
+      <div class="d-flex gap-2">
+        <button id="googleLogin" type="button" class="btn btn-outline-danger w-50">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button id="instagramLogin" type="button" class="btn btn-outline-primary w-50">
+          <i class="fab fa-instagram"></i> Instagram
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="app/keys.js"></script>
+  <script type="module" src="app/login.js"></script>
+
+  <script>
+    // Botão Instagram redireciona para link externo
+    const instagramBtn = document.getElementById('instagramLogin');
+    instagramBtn?.addEventListener('click', () => {
+      window.open('https://www.instagram.com/seu_perfil', '_blank');
+    });
+  </script>
+</body>
+</html>

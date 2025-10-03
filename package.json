@@ -1,18 +1,21 @@
 {
   "name": "ws-gestao",
   "version": "1.0.0",
-  "description": "Aplicação WS-Gestão",
+  "description": "Aplicação WS-Gestão estilo Ionic",
   "type": "module",
   "scripts": {
-    "generate-keys": "node scripts/generate-case.js",
-    "start": "npm run generate-case && live-server public"
+    "dev": "live-server src",
+    "build": "rm -rf public && mkdir public && cp -r src/* public",
+    "start": "npm run generate-keys && npx live-server src --port=5500 --open=pages/login/login.html --watch=src",
+    "generate-keys": "node scripts/generate-case.js"
   },
   "dependencies": {
     "dotenv": "^16.6.1",
-    "firebase": "^12.3.0",
+    "firebase": "^12.3.0"
+  },
+  "devDependencies": {
     "live-server": "^1.2.2"
   },
-  "devDependencies": {},
-  "author": "Jesus Wellerson",
+  "author": "Wellerson Jesus",
   "license": "MIT"
 }

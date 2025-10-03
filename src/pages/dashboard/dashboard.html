@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WS-Gestão - Dashboard</title>
+
+  <!-- Base dinâmica para GitLab Pages -->
+  <script>
+    const isGitLab = window.location.hostname.includes('gitlab.io');
+    const repoName = 'ws-gestao';
+    const baseURL = isGitLab ? `/${repoName}/` : './';
+    document.write(`<base href="${baseURL}">`);
+  </script>
+
+  <link href="../../assets/styles/global.css" rel="stylesheet">
+  <link href="dashboard.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+  <div class="container">
+    <h1 class="mb-4">📊 Bem-vindo ao Dashboard WS-Gestão</h1>
+    <p>Você está logado como <strong id="userEmail"></strong></p>
+    <button id="logoutBtn" class="btn btn-danger">Sair</button>
+
+    <hr>
+
+    <!-- Conteúdo adicional do Dashboard -->
+    <div id="dashboardContent">
+      <p>Aqui você pode adicionar gráficos, tabelas e relatórios.</p>
+    </div>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
