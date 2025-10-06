@@ -71,10 +71,11 @@
 
   <!-- Scripts -->
   <script type="module">
-    // Logo dinâmico
-    document.getElementById('logoImg').src = `${window.BASE_URL}./assets/img/logo.jpg`;
+    // Define a logo dinamicamente
+    const logo = document.getElementById('logoImg');
+    logo.src = `${window.BASE_URL}assets/img/logo.jpg`;
 
-    // Importa scripts JS
+    // Importa módulos JS
     import(`${window.BASE_URL}app/keys.js`);
     import(`${window.BASE_URL}pages/login/login.js`);
   </script>
