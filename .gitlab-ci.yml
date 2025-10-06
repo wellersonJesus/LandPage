@@ -1,11 +1,15 @@
-# 🚀 CI/CD para WS-Gestão - GitLab Pages
+# =================================================
+# 🚀 CI/CD WS-Gestão para GitLab Pages
+# =================================================
 image: node:20-alpine
 
 stages:
   - build
   - deploy
 
+# -------------------------------------------------
 # 1️⃣ Build do projeto
+# -------------------------------------------------
 build_project:
   stage: build
   script:
@@ -14,11 +18,13 @@ build_project:
     - npm run build                 # gera public/ para deploy
   artifacts:
     paths:
-      - public                      # salva a pasta public para o deploy
+      - public                      # salva a pasta public para deploy
   only:
     - main                           # só executa na branch main
 
+# -------------------------------------------------
 # 2️⃣ Deploy no GitLab Pages
+# -------------------------------------------------
 pages:
   stage: deploy
   dependencies:

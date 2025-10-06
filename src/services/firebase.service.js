@@ -2,11 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { firebaseConfig } from '../app/keys.js';
 
-// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Login Google
 export async function signInWithGoogle() {
   const provider = new GoogleAuthProvider();
   try {
@@ -16,9 +14,4 @@ export async function signInWithGoogle() {
     console.error("Erro no login Google:", err);
     throw err;
   }
-}
-
-// Logout
-export function logout() {
-  auth.signOut();
 }
