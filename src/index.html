@@ -5,49 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WS-Gestão - Login</title>
 
-  <!-- Base dinâmica para GitLab Pages -->
+  <!-- Base dinâmica -->
   <script>
-    const isGitLab = window.location.hostname.includes('gitlab.io');
-    const repoName = 'ws-gestao';
-    const baseURL = isGitLab ? `/${repoName}/` : './';
-    document.write(`<base href="${baseURL}">`);
-  </script>
-
-  <!-- Logo -->
-  <div class="text-center mb-4">
-    <img 
-      src="" 
-      alt="Logo WS-Gestão" 
-      width="150" 
-      class="img-fluid"
-      onerror="this.onerror=null;this.src='https://via.placeholder.com/150?text=Logo';"
-      id="logoImg"
-    />
-  </div>
-
-  <script>
-    document.getElementById('logoImg').src = `${baseURL}assets/img/logo.jpg`;
+    window.BASE_URL = window.location.hostname.includes('gitlab.io') 
+      ? '/ws-gestao/' 
+      : './';
   </script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="assets/styles/global.css">
-  <link rel="stylesheet" href="assets/styles/theme.css">
+  <link rel="stylesheet" href="./assets/styles/global.css">
+  <link rel="stylesheet" href="./assets/styles/theme.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Favicon -->
-  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
 </head>
 <body class="d-flex flex-column vh-100">
 
   <div class="container d-flex justify-content-center align-items-center flex-grow-1">
     <div class="card p-5 shadow-lg" style="max-width: 380px; width: 100%;">
-
+      
       <!-- Logo -->
       <div class="text-center mb-4">
         <img 
-          src="./assets/img/logo.jpg" 
+          src="" 
+          id="logoImg"
           alt="Logo WS-Gestão" 
           width="150" 
           class="img-fluid"
@@ -59,11 +43,25 @@
       <form id="loginForm" novalidate>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Digite seu email" autocomplete="username" required>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Digite seu email"
+            autocomplete="username"
+            required
+          >
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+          >
         </div>
         <button type="submit" class="btn btn-primary w-100 mb-3">
           Entrar <i class="bi bi-box-arrow-in-right ms-1"></i>
@@ -86,7 +84,15 @@
   </div>
 
   <!-- Scripts principais -->
-  <script type="module" src="app/keys.js"></script>
-  <script type="module" src="pages/login/login.js"></script>
+  <script type="module">
+    // Define a logo dinamicamente
+    const logo = document.getElementById('logoImg');
+    logo.src = `${window.BASE_URL}assets/img/logo.jpg`;
+
+    // Importa módulos JS
+    import(`${window.BASE_URL}app/keys.js`);
+    import(`${window.BASE_URL}pages/login/login.js`);
+  </script>
+
 </body>
 </html>
