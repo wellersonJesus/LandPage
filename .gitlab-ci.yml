@@ -9,14 +9,14 @@ stages:
 build_project:
   stage: build
   script:
-    - npm install
-    - npm run generate-keys      # gera src/app/keys.js
-    - npm run build               # gera build final em public/
+    - npm ci                       # instala dependências de forma limpa
+    - npm run generate-keys         # gera src/app/keys.js a partir do .env
+    - npm run build                 # gera public/ para deploy
   artifacts:
     paths:
-      - public
+      - public                      # salva a pasta public para o deploy
   only:
-    - main
+    - main                           # só executa na branch main
 
 # 2️⃣ Deploy no GitLab Pages
 pages:
@@ -27,6 +27,6 @@ pages:
     - echo "📦 Deploy GitLab Pages concluído"
   artifacts:
     paths:
-      - public
+      - public                      # conteúdo da pasta public será publicado
   only:
     - main
