@@ -1,34 +1,30 @@
 // src/services/auth.service.js
 import { adminCredentials } from '../app/keys.js';
-import { firebaseService } from './firebase.service.js';
-import { storageService } from './storage.service.js';
+import * as firebaseService from './firebase.service.js';
+import * as storageService from './storage.service.js';
 
 class AuthService {
-  // Login admin/local
   loginAdmin(email, password) {
     if (email === adminCredentials.email && password === adminCredentials.password) {
-      storageService.setItem('loggedIn', true);
-      storageService.setItem('userEmail', email);
+      storageService.setUserSession(email);
       return true;
     }
     return false;
   }
 
-  // Login via Google
   async loginGoogle() {
-    const email = await firebaseService.loginWithGoogle();
-    storageService.setItem('loggedIn', true);
-    storageService.setItem('userEmail', email);
-    return email;
+    const user = await firebaseService.signInWithGoogle();
+    storageService.setUserSession(user.email);
+    return user.email;
   }
 
   logout() {
-    storageService.clear();
-    firebaseService.logout();
+    storageService.clearUserSession();
+    firebaseService.logoutFirebase();
   }
 
   getUserEmail() {
-    return storageService.getItem('userEmail');
+    return storageService.getUserSession();
   }
 
   isLoggedIn() {

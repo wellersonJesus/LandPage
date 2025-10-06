@@ -25,50 +25,46 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 ```bash
 ws-gestao/
 │
-├─ src/                         
-│  ├─ app/                      # núcleo da aplicação
-│  │   ├─ app.js                # inicialização global
-│  │   ├─ router.js             # controle de rotas (simples em JS)
-│  │   ├─ config.js             # configs globais (ex: baseURL, versão, etc.)
-│  │   └─ keys.js               # 🔑 gerado a partir do .env (NÃO versionado)
+├─ src/
+│  ├─ app/
+│  │   ├─ app.js
+│  │   ├─ config.js
+│  │   ├─ keys.js             # 🔑 gerado automaticamente pelo generate-case.js
 │  │
-│  ├─ pages/                    # cada tela (modularizado)
+│  ├─ pages/
 │  │   ├─ login/
 │  │   │   ├─ login.html
-│  │   │   ├─ login.js
-│  │   │   └─ login.css
+│  │   │   └─ login.js
 │  │   ├─ dashboard/
 │  │   │   ├─ dashboard.html
-│  │   │   ├─ dashboard.js
-│  │   │   └─ dashboard.css
+│  │   │   └─ dashboard.js
 │  │   └─ ...
 │  │
-│  ├─ services/                 # integração e lógica de negócio
-│  │   ├─ firebase.service.js   # login social (Google, etc.)
-│  │   ├─ auth.service.js       # autenticação admin/local
-│  │   ├─ storage.service.js    # manipulação de session/localStorage
-│  │   └─ zerosheets.service.js # integração com Google Sheets (simulando DB)
+│  ├─ services/
+│  │   ├─ firebase.service.js
+│  │   ├─ auth.service.js
+│  │   └─ storage.service.js
 │  │
-│  ├─ assets/                   # estáticos (imagens, ícones, CSS global)
+│  ├─ assets/
 │  │   ├─ img/
+│  │   │   └─ logo.jpg
 │  │   ├─ icons/
+│  │   │   └─ favicon.ico
 │  │   └─ styles/
-│  │        ├─ global.css
-│  │        └─ theme.css
+│  │       ├─ global.css
+│  │       └─ theme.css
 │  │
-│  ├─ index.html                # SPA bootstrap (carrega main.js)
-│  └─ main.js                   # entrypoint → inicializa app.js e router
+│  └─ main.js
 │
-├─ public/                      # build final para deploy (output do CI/CD)
-│   └─ ...
+├─ public/                    # Build final para deploy (gerado pelo npm run build)
 │
-├─ scripts/                     # scripts auxiliares (CI/CD)
-│  ├─ generate-case.js          # gera src/app/keys.js a partir do .env
-│  └─ zerosheets.js             # utilitário p/ conexão com Google Sheets
+├─ scripts/
+│  └─ generate-case.js        # Gera src/app/keys.js a partir do .env
 │
 ├─ package.json
-├─ .env                         # credenciais (Firebase + Sheets API)
+├─ .env
 ├─ .gitignore
+├─ .gitlab-ci.yml
 └─ README.md
 ```
 </details>
@@ -81,23 +77,20 @@ ws-gestao/
 <summary>🚀 Script de inicialização e build do projeto WS-Gestão</summary>
 
 ```bash
-# 1️⃣ Atualiza o sistema e instala Node.js + npm (Ubuntu/Debian)
-sudo apt update && sudo apt install -y nodejs npm
-
-# 2️⃣ Instala as dependências do projeto (baseadas no package.json)
+# 1️⃣ Instala Node.js + dependências
 npm install
 
-# 3️⃣ Gera automaticamente o arquivo src/app/keys.js a partir do .env
-# (Essencial antes de rodar ou compilar o projeto)
+# 2️⃣ Gera keys.js a partir do .env
 npm run generate-keys
 
-# 4️⃣ Executa o servidor local para desenvolvimento (abre src/pages/login/login.html)
-# Use este comando enquanto estiver desenvolvendo o projeto.
+# 3️⃣ Desenvolvimento local
 npm start
 
-# ⚙️ 5️⃣ (Opcional) Gera o build final na pasta public/
-# Use este comando apenas quando quiser preparar os arquivos para deploy (ex: GitLab Pages, Vercel etc.)
+# 4️⃣ Build para deploy
 npm run build
+
+# 5️⃣ Limpar keys.js (se não for mais usar)
+npm run clean-keys
 ```
 </details>
 
@@ -105,7 +98,7 @@ npm run build
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-📍 Belo Horizonte, 03 Outubro 2025<br>
+📍 Belo Horizonte, 06 Outubro 2025<br>
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">🔗 LinkedIn</a> | 
 <a href="https://github.com/wellersonJesus" target="_blank">📌 GitHub</a>
 </div>

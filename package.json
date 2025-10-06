@@ -7,7 +7,8 @@
     "generate-keys": "node scripts/generate-case.js",
     "dev": "npm run generate-keys && live-server src",
     "build": "npm run generate-keys && rm -rf public && mkdir public && cp -r src/* public",
-    "start": "npm run generate-keys && npx live-server src --port=5500 --open=pages/login/login.html --watch=src"
+    "start": "npm run generate-keys && npx live-server src --port=5500 --open=pages/login/login.html --watch=src",
+    "clean-keys": "rm -f src/app/keys.js"
   },
   "dependencies": {
     "dotenv": "^16.6.1",

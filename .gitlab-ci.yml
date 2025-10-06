@@ -1,0 +1,32 @@
+# 🚀 CI/CD para WS-Gestão - GitLab Pages
+image: node:20-alpine
+
+stages:
+  - build
+  - deploy
+
+# 1️⃣ Build do projeto
+build_project:
+  stage: build
+  script:
+    - npm install
+    - npm run generate-keys      # gera src/app/keys.js
+    - npm run build               # gera build final em public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+
+# 2️⃣ Deploy no GitLab Pages
+pages:
+  stage: deploy
+  dependencies:
+    - build_project
+  script:
+    - echo "📦 Deploy GitLab Pages concluído"
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

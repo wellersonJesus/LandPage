@@ -31,7 +31,13 @@
 
       <!-- Logo -->
       <div class="text-center mb-4">
-        <img src="assets/img/logo.jpg" alt="Logo WS-Gestão" width="150" class="img-fluid">
+        <img 
+          src="assets/img/logo.jpg" 
+          alt="Logo WS-Gestão" 
+          width="150" 
+          class="img-fluid"
+          onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Logo';"
+        />
       </div>
 
       <!-- Formulário de Login -->
@@ -80,7 +86,7 @@
 
   <!-- Scripts principais -->
   <script type="module" src="app/keys.js"></script>
-  <script type="module" src="app/login.js"></script>
+  <script type="module" src="pages/login/login.js"></script>
 
 </body>
 </html>

@@ -1,7 +1,6 @@
-// src/pages/login/login.js
 import { adminCredentials } from '../../app/keys.js';
 import { signInWithGoogle } from '../../services/firebase.service.js';
-import { setUserSession, isLoggedIn } from '../../services/storage.service.js';
+import { setUserSession, getUserSession, clearUserSession } from '../../services/storage.service.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
@@ -10,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const googleBtn = document.getElementById('googleLogin');
   const instagramBtn = document.getElementById('instagramLogin');
 
-  if (isLoggedIn()) {
+  if (getUserSession()) {
     window.location.href = '../dashboard/dashboard.html';
   }
 
+  // Login admin/local
   loginForm?.addEventListener('submit', e => {
     e.preventDefault();
     const email = emailInput.value.trim();
@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Login Google
   googleBtn?.addEventListener('click', async () => {
     try {
       const user = await signInWithGoogle();
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Instagram
   instagramBtn?.addEventListener('click', () => {
     window.open('https://www.instagram.com/seu_perfil', '_blank');
   });
