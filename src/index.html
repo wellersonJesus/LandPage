@@ -23,11 +23,12 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
 </head>
+
 <body class="d-flex flex-column vh-100">
 
   <div class="container d-flex justify-content-center align-items-center flex-grow-1">
     <div class="card p-5 shadow-lg" style="max-width: 380px; width: 100%;">
-      
+
       <!-- Logo -->
       <div class="text-center mb-4">
         <img src="assets/img/logo.jpg" alt="Logo WS-Gestão" width="150" class="img-fluid">
@@ -37,11 +38,25 @@
       <form id="loginForm" novalidate>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Digite seu email"
+            autocomplete="username"
+            required
+          >
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+          >
         </div>
         <button type="submit" class="btn btn-primary w-100 mb-3">
           Entrar <i class="bi bi-box-arrow-in-right ms-1"></i>
@@ -63,16 +78,9 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- Scripts principais -->
   <script type="module" src="app/keys.js"></script>
   <script type="module" src="app/login.js"></script>
 
-  <script>
-    // Botão Instagram redireciona para link externo
-    const instagramBtn = document.getElementById('instagramLogin');
-    instagramBtn?.addEventListener('click', () => {
-      window.open('https://www.instagram.com/seu_perfil', '_blank');
-    });
-  </script>
 </body>
 </html>
