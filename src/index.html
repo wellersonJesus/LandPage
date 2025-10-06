@@ -13,6 +13,22 @@
     document.write(`<base href="${baseURL}">`);
   </script>
 
+  <!-- Logo -->
+  <div class="text-center mb-4">
+    <img 
+      src="" 
+      alt="Logo WS-Gestão" 
+      width="150" 
+      class="img-fluid"
+      onerror="this.onerror=null;this.src='https://via.placeholder.com/150?text=Logo';"
+      id="logoImg"
+    />
+  </div>
+
+  <script>
+    document.getElementById('logoImg').src = `${baseURL}assets/img/logo.jpg`;
+  </script>
+
   <!-- CSS -->
   <link rel="stylesheet" href="assets/styles/global.css">
   <link rel="stylesheet" href="assets/styles/theme.css">
