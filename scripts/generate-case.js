@@ -23,5 +23,9 @@ export const firebaseConfig = ${JSON.stringify(firebaseConfig, null, 2)};
 export const adminCredentials = ${JSON.stringify(adminCredentials, null, 2)};
 `;
 
+if (!fs.existsSync("src/app")) {
+  fs.mkdirSync("src/app", { recursive: true });
+}
+
 fs.writeFileSync("src/app/keys.js", content);
 console.log("✅ src/app/keys.js gerado com sucesso!");

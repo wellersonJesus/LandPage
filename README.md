@@ -78,20 +78,26 @@ ws-gestao/
 ## Run WS-gestão
 
 <details>
-<summary>🚀 Rodando o App</summary>
+<summary>🚀 Script de inicialização e build do projeto WS-Gestão</summary>
 
 ```bash
-# 1️⃣ Atualiza o sistema e instala Node.js e npm (Linux)
+# 1️⃣ Atualiza o sistema e instala Node.js + npm (Ubuntu/Debian)
 sudo apt update && sudo apt install -y nodejs npm
 
-# 2️⃣ Instala dependências do projeto
+# 2️⃣ Instala as dependências do projeto (baseadas no package.json)
 npm install
 
-# 3️⃣ Gera src/app/keys.js a partir do .env
+# 3️⃣ Gera automaticamente o arquivo src/app/keys.js a partir do .env
+# (Essencial antes de rodar ou compilar o projeto)
 npm run generate-keys
 
-# 4️⃣ Inicia servidor local (abre a pasta src)
+# 4️⃣ Executa o servidor local para desenvolvimento (abre src/pages/login/login.html)
+# Use este comando enquanto estiver desenvolvendo o projeto.
 npm start
+
+# ⚙️ 5️⃣ (Opcional) Gera o build final na pasta public/
+# Use este comando apenas quando quiser preparar os arquivos para deploy (ex: GitLab Pages, Vercel etc.)
+npm run build
 ```
 </details>
 

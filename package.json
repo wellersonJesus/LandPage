@@ -4,10 +4,10 @@
   "description": "Aplicação WS-Gestão estilo Ionic",
   "type": "module",
   "scripts": {
-    "dev": "live-server src",
-    "build": "rm -rf public && mkdir public && cp -r src/* public",
-    "start": "npm run generate-keys && npx live-server src --port=5500 --open=pages/login/login.html --watch=src",
-    "generate-keys": "node scripts/generate-case.js"
+    "generate-keys": "node scripts/generate-case.js",
+    "dev": "npm run generate-keys && live-server src",
+    "build": "npm run generate-keys && rm -rf public && mkdir public && cp -r src/* public",
+    "start": "npm run generate-keys && npx live-server src --port=5500 --open=pages/login/login.html --watch=src"
   },
   "dependencies": {
     "dotenv": "^16.6.1",

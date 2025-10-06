@@ -16,6 +16,9 @@ src/app/keys.js
 .env.development
 .env.production
 
+# Ambiente
+.env
+
 # IDEs / SO
 .vscode/
 .idea/
