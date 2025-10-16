@@ -1,4 +1,4 @@
-# [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
+  # [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
 
 Aplicação web totalmente responsiva. Serviço serverless com armazenamento e processamento de dados. Garante fácil acesso, escalabilidade e manutenção simplificada.
 
@@ -24,47 +24,37 @@ Este projeto utiliza **GitLab CI/CD** para build e deploy automático no **GitLa
 
 ```bash
 ws-gestao/
-│
 ├─ src/
-│  ├─ app/
-│  │   ├─ app.js
-│  │   ├─ config.js
-│  │   ├─ keys.js             # 🔑 gerado automaticamente pelo generate-case.js
-│  │
-│  ├─ pages/
-│  │   ├─ login/
-│  │   │   ├─ login.html
-│  │   │   └─ login.js
-│  │   ├─ dashboard/
-│  │   │   ├─ dashboard.html
-│  │   │   └─ dashboard.js
-│  │   └─ ...
-│  │
-│  ├─ services/
-│  │   ├─ firebase.service.js
-│  │   ├─ auth.service.js
-│  │   └─ storage.service.js
-│  │
-│  ├─ assets/
-│  │   ├─ img/
-│  │   │   └─ logo.jpg
-│  │   ├─ icons/
-│  │   │   └─ favicon.ico
-│  │   └─ styles/
-│  │       ├─ global.css
-│  │       └─ theme.css
-│  │
-│  └─ main.js
-│
-├─ public/                    # Build final para deploy (gerado pelo npm run build)
-│
+│   ├─ assets/
+│   │   ├─ icons/
+│   │   │   └─ favicon.ico
+│   │   ├─ img/
+│   │   │   └─ logo.jpg
+│   │   └─ styles/
+│   │       ├─ global.css
+│   │       └─ theme.css
+│   ├─ config/
+│   │   └─ zerosheets.js
+│   ├─ controllers/
+│   │   ├─ authController.js
+│   │   └─ sheetController.js
+│   ├─ routes/
+│   │   ├─ authRoutes.js
+│   │   └─ sheetRoutes.js
+│   └─ middlewares/
+│       └─ authMiddleware.js
+├─ pages/
+│   ├─ login/
+│   │   ├─ login.html
+│   │   └─ login.js
+│   └─ dashboard/
+│       ├─ dashboard.html
+│       └─ dashboard.js
 ├─ scripts/
-│  └─ generate-case.js        # Gera src/app/keys.js a partir do .env
-│
-├─ package.json
+│   └─ generate-keys.js
 ├─ .env
-├─ .gitignore
-├─ .gitlab-ci.yml
+├─ package.json
+├─ server.js
 └─ README.md
 ```
 </details>
@@ -98,7 +88,7 @@ npm run clean-keys
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-📍 Belo Horizonte, 06 Outubro 2025<br>
+📍 Belo Horizonte, 16 Outubro 2025<br>
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">🔗 LinkedIn</a> | 
 <a href="https://github.com/wellersonJesus" target="_blank">📌 GitHub</a>
 </div>

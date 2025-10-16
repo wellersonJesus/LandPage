@@ -1,27 +1,13 @@
 # Node
 node_modules/
+dist/
+build/
+
+# Env
+.env
+src/config/keys.js
+
+# Logs
 npm-debug.log
 yarn-debug.log
 yarn-error.log
-
-# Build
-dist/
-build/
-public/
-
-# Credenciais (geradas ou locais)
-src/app/keys.js
-.env
-.env.local
-.env.development
-.env.production
-
-# Ambiente
-.env
-
-# IDEs / SO
-.vscode/
-.idea/
-*.swp
-.DS_Store
-Thumbs.db

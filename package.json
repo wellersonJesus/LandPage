@@ -1,22 +1,16 @@
 {
   "name": "ws-gestao",
   "version": "1.0.0",
-  "description": "Aplicação WS-Gestão estilo Ionic",
   "type": "module",
+  "author": "Wellerson Jesus",
   "scripts": {
-    "generate-keys": "node scripts/generate-case.js",
-    "clean-keys": "rm -f src/app/keys.js",
-    "dev": "npm run generate-keys && live-server src",
-    "build": "npm run generate-keys && rm -rf public && mkdir public && cp -r src/* public",
-    "start": "npm run generate-keys && npx live-server src --port=5500 --open=pages/login/login.html --watch=src"
+    "start": "node server.js"
   },
   "dependencies": {
-    "dotenv": "^16.6.1",
-    "firebase": "^12.3.0"
-  },
-  "devDependencies": {
-    "live-server": "^1.2.2"
-  },
-  "author": "Wellerson Jesus",
-  "license": "MIT"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase": "^12.4.0",
+    "node-fetch": "^3.3.2",
+    "open": "^9.1.0"
+  }
 }

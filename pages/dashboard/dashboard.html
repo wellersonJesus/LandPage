@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WS-Gestão - Dashboard</title>
+
+<!-- CSS Global e Tema -->
+<link rel="stylesheet" href="/src/assets/styles/global.css">
+<link rel="stylesheet" href="/src/assets/styles/theme.css">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" href="/src/assets/icons/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<header class="bg-primary text-white p-3 d-flex justify-content-between align-items-center">
+  <h1>📋 WS-Gestão — Dashboard</h1>
+  <div>
+    <span id="userName" class="me-3"></span>
+    <button id="logoutBtn" class="btn btn-sm btn-light">Sair</button>
+  </div>
+</header>
+
+<main class="container py-4">
+  <section class="form-section mb-4">
+    <h2>Adicionar Registro</h2>
+    <form id="dataForm" class="d-flex flex-wrap gap-2">
+      <select id="tipo" class="form-select w-auto">
+        <option value="Cadastro">Cadastro</option>
+        <option value="Inventario">Inventario</option>
+      </select>
+      <input type="text" id="nome" class="form-control w-auto" placeholder="Nome" required>
+      <select id="status" class="form-select w-auto">
+        <option value="Ativo">Ativo</option>
+        <option value="Pendente">Pendente</option>
+      </select>
+      <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+    <p id="responseMsg" class="mt-2"></p>
+  </section>
+
+  <section class="table-section">
+    <h2>Dados da Planilha</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr id="table-header"></tr>
+      </thead>
+      <tbody id="table-body">
+        <tr><td colspan="5" class="text-center">Carregando dados...</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="bg-primary text-white text-center p-3">
+  © JesusWellerson | Innovation<br>
+  <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">LinkedIn</a> |
+  <a href="https://github.com/wellersonJesus" target="_blank">GitHub</a>
+</footer>
+
+<script type="module" src="/pages/dashboard/dashboard.js"></script>
+</body>
+</html>

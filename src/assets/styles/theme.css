@@ -1,81 +1,98 @@
-/* ==============================
-   THEME COLORS
-============================== */
-
-/* Paleta principal */
-:root {
-  --primary-color: #0d6efd;
-  --secondary-color: #6c757d;
-  --success-color: #198754;
-  --danger-color: #dc3545;
-  --warning-color: #ffc107;
-  --info-color: #0dcaf0;
-  --light-color: #f8f9fa;
-  --dark-color: #212529;
-
-  --font-family-base: 'Nunito', sans-serif;
+.btn-primary {
+    background-color: #007bff !important;
+    border: none;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3 !important;
+  }
+  /* Header */
+header {
+  background-color: #007BFF;
+  color: #fff;
 }
 
-/* Botões */
+/* Footer */
+footer {
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+/* Botões primários */
 .btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: #007BFF;
+  border: none;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background-color: darken(var(--primary-color), 10%);
+  background-color: #fff;
 }
 
+/* Botões secundários / outline */
 .btn-outline-primary {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
+  border: 1px solid #007BFF;
+  color: #007BFF;
+  background-color: transparent;
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--primary-color);
+  background-color: #007BFF;
   color: #fff;
 }
 
-.btn-danger {
-  background-color: var(--danger-color);
-  border-color: var(--danger-color);
-  color: #fff;
-}
-
+/* Botões Google e Instagram */
 .btn-outline-danger {
-  color: var(--danger-color);
-  border-color: var(--danger-color);
+  border: 1px solid #db4437;
+  color: #db4437;
+  background-color: transparent;
 }
 
 .btn-outline-danger:hover {
-  background-color: var(--danger-color);
+  background-color: #db4437;
   color: #fff;
 }
 
-/* Inputs e selects */
-input, select, textarea {
-  font-family: var(--font-family-base);
+.btn-outline-primary.instagram {
+  border: 1px solid #C13584;
+  color: #C13584;
 }
 
-/* Links */
-a {
-  color: var(--primary-color);
+.btn-outline-primary.instagram:hover {
+  background-color: #C13584;
+  color: #fff;
 }
 
-a:hover {
-  color: darken(var(--primary-color), 10%);
+/* Alerts / Mensagens */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
 }
 
-/* Headers e títulos */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-base);
-  color: var(--dark-color);
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
 }
 
-/* Cards e containers */
-.card {
-  background-color: var(--light-color);
-  border-radius: 12px;
-  padding: 1rem;
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Login card centralizado */
+.login-form .card {
+  max-width: 380px;
+  width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+  .d-flex.flex-wrap.gap-2 {
+    flex-direction: column !important;
+  }
+
+  input, select, button {
+    width: 100% !important;
+  }
 }

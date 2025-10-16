@@ -1,0 +1,209 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+header {
+  background-color: #007BFF;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+/* Formulário principal */
+form#dataForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: flex-start; /* elementos alinhados no topo */
+}
+
+form#dataForm label {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 180px;
+  font-weight: bold;
+}
+
+form#dataForm input, form#dataForm select {
+  padding: 6px 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Botões na mesma linha dos campos */
+form#dataForm .btn-group {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end; /* alinhar os botões à mesma altura dos inputs */
+}
+
+form#dataForm select#tipo,
+form#dataForm button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  transition: background-color 0.3s;
+}
+
+form#dataForm select#tipo {
+  margin-top: 25px; /* ajuste fino para alinhar com os inputs */
+}
+
+form#dataForm button {
+  margin-top: 25px; /* ajuste fino para alinhar com os inputs */
+}
+
+form#dataForm select#tipo:hover,
+form#dataForm button:hover {
+  background-color: #0056b3;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: white;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #007BFF;
+  color: white;
+}
+
+table td.actions {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Botões ação da tabela */
+.deleteBtn, .refreshBtn {
+  cursor: pointer;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.deleteBtn {
+  background-color: #dc3545;
+}
+
+.deleteBtn:hover {
+  background-color: #a71d2a;
+}
+
+.refreshBtn {
+  background-color: #28a745;
+}
+
+.refreshBtn:hover {
+  background-color: #1e7e34;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+#editFields, #formFields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+#editFields label, #formFields label {
+  flex: 1 1 180px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+#editFields input, #formFields input {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Footer */
+footer {
+  background-color: #3399ff;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+footer a {
+  color: #e0f0ff;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  color: #007BFF;
+  transform: scale(1.1);
+  text-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
