@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import open from "open";
 
 dotenv.config();
 
@@ -60,7 +61,9 @@ app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname, "pages/dashboard/dashboard.html"));
 });
 
+
 // Inicializa servidor
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`🌍 Servidor ativo em http://localhost:${PORT}`);
+  open(`http://localhost:${PORT}`);
 });
