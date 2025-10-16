@@ -3,6 +3,7 @@ const userNameSpan = document.getElementById("userName");
 const logoutBtn = document.getElementById("logoutBtn");
 const tableBody = document.getElementById("table-body");
 const tableHeader = document.getElementById("table-header");
+const tableTitle = document.getElementById("table-title");
 const dataForm = document.getElementById("dataForm");
 const responseMsg = document.getElementById("responseMsg");
 const tipoSelect = document.getElementById("tipo");
@@ -20,10 +21,11 @@ logoutBtn.addEventListener("click", () => {
   window.location.href = "/";
 });
 
-// 🔹 Funções ZeroSheets
+// 🔹 Configuração ZeroSheets
 const API_URL = "https://api.zerosheets.com/v1/g1t";
 const HEADERS = { Authorization: `Bearer hqzrV9MU0WOawxgz9Zqd28MRNbeABuyw`, "Content-Type": "application/json" };
 
+// 🔹 Funções CRUD
 async function getData() {
   const res = await fetch(API_URL, { headers: HEADERS });
   return await res.json();
@@ -43,22 +45,27 @@ async function deleteRow(lineNumber) {
   await fetch(`${API_URL}/${lineNumber}`, { method: "DELETE", headers: HEADERS });
 }
 
-// 🔹 Renderiza tabela filtrando por tipo
-async function renderTable(filterTipo = null) {
+// 🔹 Renderiza tabela filtrando por tipo e atualiza título
+async function renderTable(filterTipo) {
   try {
     const data = await getData();
     tableBody.innerHTML = "";
 
-    if (!data.length) {
-      tableBody.innerHTML = `<tr><td colspan="5" class="text-center">Nenhum registro encontrado</td></tr>`;
+    // Atualiza título da tabela
+    tableTitle.textContent = filterTipo === "Cadastro" ? "Dados do Cadastro" :
+                             filterTipo === "Inventario" ? "Dados do Inventário" :
+                             "Dados da Planilha";
+
+    // Filtra pelo tipo
+    const filtered = filterTipo ? data.filter(r => r.Tipo === filterTipo) : data;
+
+    if (!filtered.length) {
+      tableBody.innerHTML = `<tr><td colspan="9" class="text-center">Nenhum registro deste tipo</td></tr>`;
       tableHeader.innerHTML = "";
       return;
     }
 
-    // Filtra pelo tipo
-    const filtered = filterTipo ? data.filter(r => r.tipo === filterTipo) : data;
-
-    // Cabeçalho dinâmico
+    // Cabeçalho dinâmico (sem _lineNumber)
     const headers = Object.keys(filtered[0]).filter(k => k !== "_lineNumber");
     tableHeader.innerHTML = [...headers, "Ações"].map(h => `<th>${h}</th>`).join("");
 
@@ -77,7 +84,7 @@ async function renderTable(filterTipo = null) {
 
     // Eventos editar/deletar
     document.querySelectorAll(".btn-delete").forEach(btn =>
-      btn.addEventListener("click", async e => {
+      btn.addEventListener("click", async () => {
         if (!confirm("Deseja excluir este registro?")) return;
         await deleteRow(btn.dataset.line);
         renderTable(tipoSelect.value);
@@ -85,18 +92,18 @@ async function renderTable(filterTipo = null) {
     );
 
     document.querySelectorAll(".btn-edit").forEach(btn =>
-      btn.addEventListener("click", e => {
+      btn.addEventListener("click", () => {
         const row = filtered.find(r => r._lineNumber == btn.dataset.line);
-        document.getElementById("nome").value = row.nome || "";
-        document.getElementById("status").value = row.status || "Ativo";
-        document.getElementById("tipo").value = row.tipo || "Cadastro";
+        document.getElementById("nome").value = row.Nome || "";
+        document.getElementById("status").value = row.Status || "Ativo";
+        document.getElementById("tipo").value = row.Tipo || "Cadastro";
         dataForm.dataset.editing = btn.dataset.line;
       })
     );
 
   } catch (err) {
     console.error(err);
-    tableBody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">Erro ao carregar dados</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="9" class="text-center text-danger">Erro ao carregar dados</td></tr>`;
   }
 }
 
@@ -104,9 +111,9 @@ async function renderTable(filterTipo = null) {
 dataForm.addEventListener("submit", async e => {
   e.preventDefault();
   const payload = {
-    tipo: document.getElementById("tipo").value,
-    nome: document.getElementById("nome").value,
-    status: document.getElementById("status").value,
+    Tipo: tipoSelect.value,
+    Nome: document.getElementById("nome").value,
+    Status: document.getElementById("status").value,
   };
 
   try {
@@ -132,8 +139,8 @@ dataForm.addEventListener("submit", async e => {
   }
 });
 
-// 🔹 Filtrar tabela ao mudar tipo
+// 🔹 Filtra tabela e atualiza título quando muda tipo
 tipoSelect.addEventListener("change", () => renderTable(tipoSelect.value));
 
-// 🔹 Carrega todos os dados inicialmente
-renderTable();
+// 🔹 Carrega dados inicialmente (padrão Cadastro)
+renderTable(tipoSelect.value);

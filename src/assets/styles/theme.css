@@ -18,6 +18,20 @@ footer {
   font-size: 0.875rem;
 }
 
+/* Footer links hover */
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.footer-links a:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: #9e9b98;
+}
+
 /* Botões primários */
 .btn-primary {
   background-color: #007BFF;
@@ -61,6 +75,17 @@ footer {
 .btn-outline-primary.instagram:hover {
   background-color: #C13584;
   color: #fff;
+}
+
+/* Hover suave para o botão Sair */
+.btn-danger {
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #fff;
+  color: #dc3545;
+  border-color: #dc3545;
 }
 
 /* Alerts / Mensagens */
