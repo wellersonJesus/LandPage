@@ -4,22 +4,22 @@ const logoutBtn = document.getElementById("logoutBtn");
 const tableBody = document.getElementById("table-body");
 const tableHeader = document.getElementById("table-header");
 const tableTitle = document.getElementById("table-title");
-const dataForm = document.getElementById("dataForm");
-const responseMsg = document.getElementById("responseMsg");
 const tipoSelect = document.getElementById("tipo");
 
 // 🔹 Checa autenticação
 const token = localStorage.getItem("authToken");
 const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 if (!token || !loggedUser) window.location.href = "/";
-userNameSpan.textContent = loggedUser.email;
+if (userNameSpan) userNameSpan.textContent = loggedUser.email;
 
 // 🔹 Logout
-logoutBtn.addEventListener("click", () => {
-  localStorage.removeItem("authToken");
-  localStorage.removeItem("loggedUser");
-  window.location.href = "/";
-});
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("loggedUser");
+    window.location.href = "/";
+  });
+}
 
 // 🔹 Configuração ZeroSheets
 const API_URL = "https://api.zerosheets.com/v1/g1t";
@@ -49,6 +49,7 @@ async function deleteRow(lineNumber) {
 async function renderTable(filterTipo) {
   try {
     const data = await getData();
+    if (!tableBody || !tableHeader || !tableTitle) return;
     tableBody.innerHTML = "";
 
     // Atualiza título da tabela
@@ -65,8 +66,11 @@ async function renderTable(filterTipo) {
       return;
     }
 
-    // Cabeçalho dinâmico (sem _lineNumber)
-    const headers = Object.keys(filtered[0]).filter(k => k !== "_lineNumber");
+    // Define colunas visíveis dependendo do tipo
+    const colunasCadastro = ["id", "Nome", "Email", "Telefone", "Produto", "Quantidade ", "Valor"];
+    const colunasInventario = ["Produto", "Quantidade ", "Valor"];
+    const headers = filterTipo === "Cadastro" ? colunasCadastro : colunasInventario;
+
     tableHeader.innerHTML = [...headers, "Ações"].map(h => `<th>${h}</th>`).join("");
 
     // Linhas
@@ -75,6 +79,9 @@ async function renderTable(filterTipo) {
       tr.innerHTML = [
         ...headers.map(h => `<td>${row[h] || ""}</td>`),
         `<td class="d-flex gap-1">
+          <button class="btn btn-sm btn-primary btn-add" data-line="${row._lineNumber}">
+            <i class="fa fa-plus"></i>
+          </button>
           <button class="btn btn-sm btn-success btn-edit" data-line="${row._lineNumber}"><i class="fa fa-pen"></i></button>
           <button class="btn btn-sm btn-danger btn-delete" data-line="${row._lineNumber}"><i class="fa fa-trash"></i></button>
         </td>`
@@ -82,7 +89,7 @@ async function renderTable(filterTipo) {
       tableBody.appendChild(tr);
     });
 
-    // Eventos editar/deletar
+    // Eventos dos botões
     document.querySelectorAll(".btn-delete").forEach(btn =>
       btn.addEventListener("click", async () => {
         if (!confirm("Deseja excluir este registro?")) return;
@@ -94,6 +101,7 @@ async function renderTable(filterTipo) {
     document.querySelectorAll(".btn-edit").forEach(btn =>
       btn.addEventListener("click", () => {
         const row = filtered.find(r => r._lineNumber == btn.dataset.line);
+        if (!row) return;
         document.getElementById("nome").value = row.Nome || "";
         document.getElementById("status").value = row.Status || "Ativo";
         document.getElementById("tipo").value = row.Tipo || "Cadastro";
@@ -101,46 +109,24 @@ async function renderTable(filterTipo) {
       })
     );
 
+    document.querySelectorAll(".btn-add").forEach(btn =>
+      btn.addEventListener("click", () => {
+        const row = filtered.find(r => r._lineNumber == btn.dataset.line);
+        if (!row) return;
+        const payload = {};
+        headers.forEach(col => payload[col] = row[col] || "");
+        createRow(payload).then(() => renderTable(tipoSelect.value));
+      })
+    );
+
   } catch (err) {
     console.error(err);
-    tableBody.innerHTML = `<tr><td colspan="9" class="text-center text-danger">Erro ao carregar dados</td></tr>`;
+    if (tableBody) tableBody.innerHTML = `<tr><td colspan="9" class="text-center text-danger">Erro ao carregar dados</td></tr>`;
   }
 }
 
-// 🔹 Adicionar/Editar registro
-dataForm.addEventListener("submit", async e => {
-  e.preventDefault();
-  const payload = {
-    Tipo: tipoSelect.value,
-    Nome: document.getElementById("nome").value,
-    Status: document.getElementById("status").value,
-  };
-
-  try {
-    if (dataForm.dataset.editing) {
-      await patchRow(dataForm.dataset.editing, payload);
-      delete dataForm.dataset.editing;
-      responseMsg.textContent = "✅ Registro atualizado!";
-    } else {
-      await createRow(payload);
-      responseMsg.textContent = "✅ Registro adicionado!";
-    }
-
-    responseMsg.classList.remove("text-danger");
-    responseMsg.classList.add("text-success");
-    dataForm.reset();
-    renderTable(tipoSelect.value);
-
-  } catch (err) {
-    console.error(err);
-    responseMsg.textContent = "❌ Erro ao salvar registro!";
-    responseMsg.classList.remove("text-success");
-    responseMsg.classList.add("text-danger");
-  }
-});
-
 // 🔹 Filtra tabela e atualiza título quando muda tipo
-tipoSelect.addEventListener("change", () => renderTable(tipoSelect.value));
+if (tipoSelect) tipoSelect.addEventListener("change", () => renderTable(tipoSelect.value));
 
 // 🔹 Carrega dados inicialmente (padrão Cadastro)
-renderTable(tipoSelect.value);
+renderTable(tipoSelect ? tipoSelect.value : "Cadastro");
