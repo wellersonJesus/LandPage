@@ -71,17 +71,17 @@ ws-gestao/
 ## 🛢️ Created databases dbHeaver
 
 <details>
-<summary>🚀 Script database WS-Gestão</summary>
+<summary>🛢️ Script database WS-Gestão</summary>
 
 ```bash
-# 1️⃣ Vá para a pasta do backend
-cd /home/well/Documentos/projetos/ws-gestao/backend
+# 1️⃣ Vá para a pasta do db
+cd /home/well/Documentos/projetos/ws-gestao/backend/db
 
 # 2️⃣ Instale o sqlite3 via npm
 npm install sqlite3
 
-# 3️⃣ No terminal, dentro da pasta backend:
-node ./backend/src/db/init-db.js
+# 3️⃣ No terminal, dentro da pasta db:
+node ./init-db.js
 ```
 
 ---

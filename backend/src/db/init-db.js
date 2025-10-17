@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './backend/src/db/ws_gestao_local.db');
+const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './wsgestao_local.db');
 const dirPath = path.dirname(dbPath);
 
 // ✅ Garantir que a pasta do banco exista
