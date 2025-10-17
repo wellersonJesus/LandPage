@@ -97,10 +97,10 @@ npm run clean-keys
 
 💡 Observações Importantes
 
-Front-end: Angular + Bootstrap hospedado no GitLab Pages, acessa dados via API.
-Back-end: Node.js + SQLite hospedado no Render, realiza CRUD completo.
-Backup: data.json atualizado incrementalmente, histórico acessível via endpoint /api/historico.
-Segurança: API protegida por API_KEY interna, credenciais de admin e usuário configuráveis via .env.
+- Front-end: Angular + Bootstrap hospedado no GitLab Pages, acessa dados via API.
+- Back-end: Node.js + SQLite hospedado no Render, realiza CRUD completo.
+- Backup: data.json atualizado incrementalmente, histórico acessível via endpoint /api/historico.
+- Segurança: API protegida por API_KEY interna, credenciais de admin e usuário configuráveis via .env.
 
 ---
 
