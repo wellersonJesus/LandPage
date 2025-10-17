@@ -1,6 +1,13 @@
 # [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
 
-Aplicação web totalmente responsiva. Serviço full-stack com front-end hospedado no **GitLab Pages** e back-end em **Node.js + SQLite** hospedado no **Render**. Permite CRUD completo de dados, histórico incremental em JSON e fácil manutenção.  
+## 💡 Observações Importantes
+
+Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e back-end em **Node.js + SQLite** no **Render**. Permite **CRUD completo**, histórico incremental em JSON e fácil manutenção.
+
+- **Front-end:** Angular + Bootstrap, consumindo dados via API.  
+- **Back-end:** Node.js + SQLite, gerenciando CRUD e fornecendo endpoints REST.  
+- **Backup:** `data.json` atualizado incrementalmente, acessível via `/api/historico`.  
+- **Segurança:** API protegida por **API_KEY** e credenciais configuráveis via `.env`.  
 
 ---
 
@@ -92,15 +99,6 @@ ng build --prod
 npm run clean-keys
 ```
 </details>
-
----
-
-💡 Observações Importantes
-
-- Front-end: Angular + Bootstrap hospedado no GitLab Pages, acessa dados via API.
-- Back-end: Node.js + SQLite hospedado no Render, realiza CRUD completo.
-- Backup: data.json atualizado incrementalmente, histórico acessível via endpoint /api/historico.
-- Segurança: API protegida por API_KEY interna, credenciais de admin e usuário configuráveis via .env.
 
 ---
 
