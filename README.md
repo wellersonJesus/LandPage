@@ -34,33 +34,48 @@ ws-gestao/
 ├─ frontend/                   ← Angular + Bootstrap (Hospedagem: GitLab Pages)
 │   ├─ src/
 │   │   ├─ app/
-│   │   │   ├─ components/     ← Componentes da interface
-│   │   │   ├─ services/       ← Serviços Angular para consumir API
+│   │   │   ├─ components/
+│   │   │   │    └─ login/
+│   │   │   │        ├─ login.component.html
+│   │   │   │        └─ login.component.ts
+│   │   │   ├─ services/
+│   │   │   │    └─ auth.service.ts      ← Consome API para login
+│   │   │   ├─ app.component.html
+│   │   │   ├─ app.component.css
 │   │   │   └─ app.module.ts
 │   │   ├─ assets/
 │   │   │   ├─ img/
 │   │   │   └─ styles/
+│   │   │       └─ main.css
+│   │   ├─ environments/
+│   │   │   ├─ environment.ts
+│   │   │   └─ environment.prod.ts
 │   │   ├─ index.html
-│   │   └─ main.ts
+│   │   ├─ main.ts
+│   │   ├─ polyfills.ts
+│   │   └─ tsconfig.app.json
 │   ├─ angular.json
 │   └─ package.json
 │
 ├─ backend/                    ← Node.js + SQLite (Render)
 │   ├─ src/
 │   │   ├─ controllers/
-│   │   │   └─ sheetController.js  ← Funções CRUD para SQLite
+│   │   │   ├─ sheetController.js        ← Funções CRUD para SQLite
+│   │   │   └─ authController.js         ← Login e autenticação
 │   │   ├─ routes/
-│   │   │   └─ sheetRoutes.js      ← Rotas da API
+│   │   │   ├─ authRoutes.js
+│   │   │   └─ sheetRoutes.js
 │   │   ├─ db/
-│   │   │   ├── database.sqlite     ← Banco de dados SQLite
-│   │   |   ├── init-db.js          ← esse script aqui
-|   │   │   └── wsgestao_local.db   ← será criado automaticamente
+│   │   │   ├── database.sqlite          ← Banco de dados SQLite
+│   │   │   ├── init-db.js               ← Script para criar/ popular db
+│   │   │   └── wsgestao_local.db       ← Criado automaticamente
 │   │   └─ utils/
-│   │       └─ backup.js           ← Função backup incremental para data.json
-│   ├─ server.js                   ← Servidor Express
+│   │       ├─ generate-keys.js         ← Gera keys.js a partir do .env
+│   │       └─ backup.js                ← Função backup incremental para data.json
+│   ├─ server.js                         ← Servidor Express
 │   └─ package.json
 │
-├─ .env                        ← Configurações, credenciais e paths
+├─ .env                                  ← Configurações, credenciais e paths
 ├─ .gitignore
 └─ README.md
 ```
@@ -68,7 +83,7 @@ ws-gestao/
 
 ---
 
-## 🛢️ Created databases dbHeaver
+## Created databases dbHeaver
 
 <details>
 <summary>🛢️ Script database WS-Gestão</summary>
@@ -93,31 +108,28 @@ node ./init-db.js
 <summary>🚀 Script de inicialização e build do projeto WS-Gestão</summary>
 
 ```bash
-# 1️⃣ Instala Node.js + dependências (back-end)
+# 1️⃣ Instala Node.js + dependências (Back-end)
 cd backend
 npm install
 
-# 2️⃣ Instala dependências do Angular (front-end)
+# 2️⃣ Instala dependências do Angular (Front-end)
 cd ../frontend
 npm install
 
-# 3️⃣ Gera keys.js a partir do .env (se necessário)
+# 3️⃣ Gera keys.js no backend a partir do .env (se necessário)
 npm run generate-keys
 
-# 4️⃣ Desenvolvimento local
-# Back-end
+# ===========================
+# 4️⃣ Desenvolvimento Local
+# ===========================
+
+# Back-end (Node.js + SQLite)
 cd ../backend
-npm start
+node ./server.js        # ou "npm start" se estiver configurado no package.json
 
-# Front-end
+# Front-end (Angular)
 cd ../frontend
-ng serve
-
-# 5️⃣ Build front-end para deploy no GitLab Pages
-ng build --prod
-
-# 6️⃣ Limpar keys.js (se não for mais usar)
-npm run clean-keys
+npm start               # 🌍 rodar localmente na porta padrão 4200
 ```
 </details>
 

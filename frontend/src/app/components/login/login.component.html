@@ -1,0 +1,16 @@
+<div class="login-container">
+    <h2>Login WS-Gestão</h2>
+    <form (submit)="login($event)">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+    <p class="text-danger" *ngIf="error">{{ error }}</p>
+  </div>
+  
