@@ -45,14 +45,16 @@ ws-gestao/
 │   ├─ angular.json
 │   └─ package.json
 │
-├─ backend/                    ← Node.js + SQLite (Hospedagem: Render)
+├─ backend/                    ← Node.js + SQLite (Render)
 │   ├─ src/
 │   │   ├─ controllers/
 │   │   │   └─ sheetController.js  ← Funções CRUD para SQLite
 │   │   ├─ routes/
 │   │   │   └─ sheetRoutes.js      ← Rotas da API
 │   │   ├─ db/
-│   │   │   └─ database.sqlite     ← Banco de dados SQLite
+│   │   │   ├── database.sqlite     ← Banco de dados SQLite
+│   │   |   ├── init-db.js          ← esse script aqui
+|   │   │   └── wsgestao_local.db   ← será criado automaticamente
 │   │   └─ utils/
 │   │       └─ backup.js           ← Função backup incremental para data.json
 │   ├─ server.js                   ← Servidor Express
@@ -63,6 +65,24 @@ ws-gestao/
 └─ README.md
 ```
 </details>
+
+---
+
+## 🛢️ Created databases dbHeaver
+
+<details>
+<summary>🚀 Script database WS-Gestão</summary>
+
+```bash
+# 1️⃣ Vá para a pasta do backend
+cd /home/well/Documentos/projetos/ws-gestao/backend
+
+# 2️⃣ Instale o sqlite3 via npm
+npm install sqlite3
+
+# 3️⃣ No terminal, dentro da pasta backend:
+node ./backend/src/db/init-db.js
+```
 
 ---
 
@@ -83,7 +103,7 @@ npm install
 # 3️⃣ Gera keys.js a partir do .env (se necessário)
 npm run generate-keys
 
-# 4️⃣ Desenvolvimento local (back-end + front-end)
+# 4️⃣ Desenvolvimento local
 # Back-end
 cd ../backend
 npm start
