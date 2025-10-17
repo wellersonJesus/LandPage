@@ -59,7 +59,7 @@ ws-gestao/
 │   └─ package.json
 │
 ├─ .env                        ← Configurações, credenciais e paths
-│
+├─ .gitignore
 └─ README.md
 ```
 </details>
