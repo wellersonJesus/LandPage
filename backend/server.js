@@ -11,8 +11,7 @@ const PORT = process.env.PORT || 3000;
 const BASE_URL = `http://localhost:${PORT}`;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor backend rodando na porta ${PORT}`);
-  console.log(`🌐 Abrindo navegador em: ${BASE_URL}`);
+  console.log(`🌐 Servidor backend rodando em: ${BASE_URL}`);
 
   // Detecta SO e abre URL corretamente
   const platform = process.platform;
