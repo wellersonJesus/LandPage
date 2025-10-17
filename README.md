@@ -83,6 +83,7 @@ npm install sqlite3
 # 3️⃣ No terminal, dentro da pasta db:
 node ./init-db.js
 ```
+</details>
 
 ---
 
