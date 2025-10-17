@@ -21,9 +21,9 @@ if (logoutBtn) {
   });
 }
 
-// 🔹 Configuração ZeroSheets
-const API_URL = "https://api.zerosheets.com/v1/g1t";
-const HEADERS = { Authorization: `Bearer hqzrV9MU0WOawxgz9Zqd28MRNbeABuyw`, "Content-Type": "application/json" };
+// 🔹 Configuração API (usar proxy se tiver CORS)
+const API_URL = "/api/zerosheets"; 
+const HEADERS = { "Content-Type": "application/json" };
 
 // 🔹 Funções CRUD
 async function getData() {
@@ -45,30 +45,29 @@ async function deleteRow(lineNumber) {
   await fetch(`${API_URL}/${lineNumber}`, { method: "DELETE", headers: HEADERS });
 }
 
-// 🔹 Renderiza tabela filtrando por tipo e atualiza título
+// 🔹 Renderiza tabela
 async function renderTable(filterTipo) {
   try {
     const data = await getData();
     if (!tableBody || !tableHeader || !tableTitle) return;
     tableBody.innerHTML = "";
 
-    // Atualiza título da tabela
+    // Atualiza título
     tableTitle.textContent = filterTipo === "Cadastro" ? "Dados do Cadastro" :
                              filterTipo === "Inventario" ? "Dados do Inventário" :
                              "Dados da Planilha";
 
     // Filtra pelo tipo
     const filtered = filterTipo ? data.filter(r => r.Tipo === filterTipo) : data;
-
     if (!filtered.length) {
       tableBody.innerHTML = `<tr><td colspan="9" class="text-center">Nenhum registro deste tipo</td></tr>`;
       tableHeader.innerHTML = "";
       return;
     }
 
-    // Define colunas visíveis dependendo do tipo
-    const colunasCadastro = ["id", "Nome", "Email", "Telefone", "Produto", "Quantidade ", "Valor"];
-    const colunasInventario = ["Produto", "Quantidade ", "Valor"];
+    // Colunas por tipo
+    const colunasCadastro = ["id", "Nome", "Email", "Telefone"];
+    const colunasInventario = ["id", "Produto", "Quantidade ", "Valor"];
     const headers = filterTipo === "Cadastro" ? colunasCadastro : colunasInventario;
 
     tableHeader.innerHTML = [...headers, "Ações"].map(h => `<th>${h}</th>`).join("");
@@ -79,17 +78,15 @@ async function renderTable(filterTipo) {
       tr.innerHTML = [
         ...headers.map(h => `<td>${row[h] || ""}</td>`),
         `<td class="d-flex gap-1">
-          <button class="btn btn-sm btn-primary btn-add" data-line="${row._lineNumber}">
-            <i class="fa fa-plus"></i>
-          </button>
-          <button class="btn btn-sm btn-success btn-edit" data-line="${row._lineNumber}"><i class="fa fa-pen"></i></button>
-          <button class="btn btn-sm btn-danger btn-delete" data-line="${row._lineNumber}"><i class="fa fa-trash"></i></button>
+          <button class="btn btn-sm btn-primary btn-add" data-line="${row._lineNumber}" title="Adicionar"><i class="fa fa-plus"></i></button>
+          <button class="btn btn-sm btn-success btn-edit" data-line="${row._lineNumber}" title="Editar"><i class="fa fa-pen"></i></button>
+          <button class="btn btn-sm btn-danger btn-delete" data-line="${row._lineNumber}" title="Remover"><i class="fa fa-trash"></i></button>
         </td>`
       ].join("");
       tableBody.appendChild(tr);
     });
 
-    // Eventos dos botões
+    // Eventos
     document.querySelectorAll(".btn-delete").forEach(btn =>
       btn.addEventListener("click", async () => {
         if (!confirm("Deseja excluir este registro?")) return;
@@ -99,24 +96,11 @@ async function renderTable(filterTipo) {
     );
 
     document.querySelectorAll(".btn-edit").forEach(btn =>
-      btn.addEventListener("click", () => {
-        const row = filtered.find(r => r._lineNumber == btn.dataset.line);
-        if (!row) return;
-        document.getElementById("nome").value = row.Nome || "";
-        document.getElementById("status").value = row.Status || "Ativo";
-        document.getElementById("tipo").value = row.Tipo || "Cadastro";
-        dataForm.dataset.editing = btn.dataset.line;
-      })
+      btn.addEventListener("click", () => openModal("edit", filtered.find(r => r._lineNumber == btn.dataset.line), headers))
     );
 
     document.querySelectorAll(".btn-add").forEach(btn =>
-      btn.addEventListener("click", () => {
-        const row = filtered.find(r => r._lineNumber == btn.dataset.line);
-        if (!row) return;
-        const payload = {};
-        headers.forEach(col => payload[col] = row[col] || "");
-        createRow(payload).then(() => renderTable(tipoSelect.value));
-      })
+      btn.addEventListener("click", () => openModal("add", filtered.find(r => r._lineNumber == btn.dataset.line), headers))
     );
 
   } catch (err) {
@@ -125,8 +109,73 @@ async function renderTable(filterTipo) {
   }
 }
 
-// 🔹 Filtra tabela e atualiza título quando muda tipo
+// 🔹 Modal de adicionar/editar
+function openModal(action, row = {}, headers = []) {
+  // Cria estrutura do modal dinamicamente
+  const modal = document.createElement("div");
+  modal.className = "modal fade show";
+  modal.style.display = "block";
+  modal.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">${action === "add" ? "Adicionar Registro" : "Editar Registro"}</h5>
+          <button type="button" class="btn-close btn-close-white" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          ${headers.map(h => `
+            <div class="mb-2">
+              <label class="form-label">${h}</label>
+              <input type="text" class="form-control" name="${h}" value="${row[h] || ""}">
+            </div>`).join("")}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
+          ${action === "edit" ? `<button type="button" class="btn btn-danger btn-delete-modal">Excluir</button>` : ""}
+          <button type="button" class="btn btn-primary btn-save">Salvar</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Fechar modal
+  modal.querySelector(".btn-close").addEventListener("click", () => modal.remove());
+  modal.querySelector(".btn-cancel").addEventListener("click", () => modal.remove());
+
+  // Salvar registro
+  modal.querySelector(".btn-save").addEventListener("click", async () => {
+    const payload = {};
+    headers.forEach(h => {
+      const val = modal.querySelector(`input[name="${h}"]`).value;
+      payload[h] = val;
+    });
+
+    try {
+      if (action === "add") await createRow(payload);
+      else if (action === "edit") await patchRow(row._lineNumber, payload);
+      modal.remove();
+      renderTable(tipoSelect.value);
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao salvar registro");
+    }
+  });
+
+  // Excluir do modal
+  if (action === "edit") {
+    modal.querySelector(".btn-delete-modal").addEventListener("click", async () => {
+      if (!confirm("Deseja excluir este registro?")) return;
+      await deleteRow(row._lineNumber);
+      modal.remove();
+      renderTable(tipoSelect.value);
+    });
+  }
+}
+
+// 🔹 Filtra tabela ao mudar tipo
 if (tipoSelect) tipoSelect.addEventListener("change", () => renderTable(tipoSelect.value));
 
-// 🔹 Carrega dados inicialmente (padrão Cadastro)
+// 🔹 Carrega dados inicialmente
 renderTable(tipoSelect ? tipoSelect.value : "Cadastro");

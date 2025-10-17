@@ -1,15 +1,11 @@
-import jwt from "jsonwebtoken";
+const { API_KEY } = require('../config/zerosheets');
 
-export const authenticate = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) return res.status(401).json({ error: "Token ausente" });
-
-  const token = authHeader.split(" ")[1];
-  try {
-    const decoded = jwt.verify(token, process.env.APP_SECRET);
-    req.user = decoded;
+function authMiddleware(req, res, next) {
+    const token = req.headers['x-api-key'];
+    if (!token || token !== API_KEY) {
+        return res.status(401).json({ error: 'Não autorizado' });
+    }
     next();
-  } catch (err) {
-    return res.status(403).json({ error: "Token inválido ou expirado" });
-  }
-};
+}
+
+module.exports = authMiddleware;
