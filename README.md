@@ -96,11 +96,7 @@ O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em
 
 **WS Manager** é uma plataforma completa para gerenciar suas finanças, contratos, investimentos, dispositivos, acessos e habilidades, unindo de forma simples e prática sua vida pessoal e profissional em um único workspace.
 
-Este guia mostra como criar, popular e verificar o banco de dados SQLite do projeto.
-
----
-
-Estrutura tabelas **SQLite**:
+Tabelas **SQLite**:
 
 ```bash
 1 empresa  
