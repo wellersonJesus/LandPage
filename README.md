@@ -86,12 +86,10 @@ WS Manager/
 
 ## Scripts 
 
-#### 🧩 Estrutura do Banco de Dados
-
-O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em desempenho e simplicidade.
-
 <details>
 <summary>🛢️ database dbheaver/sqlite3</summary>
+
+O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em desempenho e simplicidade.
 
 ```bash
 # 1️⃣ Vá para a pasta do banco de dados
