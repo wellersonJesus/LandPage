@@ -69,10 +69,11 @@ WS Manager/
 │   │   │   ├── database.sqlite          ← Banco de dados SQLite
 │   │   │   ├── init-db.js               ← Script para criar/ popular db
 │   │   │   ├── DATABASE_SCHEMA.md      
-│   │   │   └── wsgestao_local.db       ← Criado automaticamente
+│   │   │   ├── seed-db.js
+│   │   │   └── wsgestao_local.db        ← Criado automaticamente
 │   │   └─ utils/
-│   │       ├─ generate-keys.js         ← Gera keys.js a partir do .env
-│   │       └─ backup.js                ← Função backup incremental para data.json
+│   │       ├─ generate-keys.js          ← Gera keys.js a partir do .env
+│   │       └─ backup.js                 ← Função backup incremental para data.json
 │   ├─ server.js                         ← Servidor Express
 │   └─ package.json
 │
@@ -90,6 +91,34 @@ WS Manager/
 <summary>🛢️ database dbheaver/sqlite3</summary>
 
 O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em desempenho e simplicidade.
+
+# 🗃️ WS Manager - Banco de Dados
+
+**WS Manager** é uma plataforma completa para gerenciar suas finanças, contratos, investimentos, dispositivos, acessos e habilidades, unindo de forma simples e prática sua vida pessoal e profissional em um único workspace.
+
+Este guia mostra como criar, popular e verificar o banco de dados SQLite do projeto.
+
+---
+
+Estrutura tabelas **SQLite**:
+
+```bash
+- `empresa`  
+- `gestao`  
+- `calendario`  
+- `emprestimo`  
+- `lancamento`  
+- `manutencao`  
+- `conta`  
+- `servidor`  
+- `dispositivo`  
+- `rede`  
+- `contrato`  
+- `skill`  
+- `curso`  
+- `plataforma`  
+- `investimento`  
+```
 
 ```bash
 # 1️⃣ Vá para a pasta do banco de dados

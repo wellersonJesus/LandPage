@@ -1,5 +1,8 @@
+# Banco de Dados — WS Manager
+
+```mermaid
 erDiagram
-    empresa {
+    EMPRESA {
         INTEGER id PK
         TEXT nome
         TEXT slogan
@@ -12,7 +15,7 @@ erDiagram
         TEXT projetos_destaque
     }
 
-    gestao {
+    GESTAO {
         INTEGER id PK
         DATE data
         REAL km_percorrido
@@ -24,7 +27,7 @@ erDiagram
         REAL conta
     }
 
-    calendario {
+    CALENDARIO {
         INTEGER id PK
         DATE data
         TEXT dia_semana
@@ -33,7 +36,7 @@ erDiagram
         BOOLEAN feriado
     }
 
-    emprestimo {
+    EMPRESTIMO {
         INTEGER id PK
         TEXT cnpj
         TEXT descricao
@@ -45,7 +48,7 @@ erDiagram
         REAL valor_parcela
     }
 
-    lancamento {
+    LANCAMENTO {
         INTEGER id PK
         INTEGER ano
         INTEGER mes
@@ -54,7 +57,7 @@ erDiagram
         TEXT categoria
     }
 
-    manutencao {
+    MANUTENCAO {
         INTEGER id PK
         TEXT tipo_manutencao
         DATE data_ultima
@@ -62,14 +65,14 @@ erDiagram
         DATE data_proxima
     }
 
-    conta {
+    CONTA {
         INTEGER id PK
         TEXT titular
         TEXT tipo_conta
         TEXT identificador
     }
 
-    servidor {
+    SERVIDOR {
         INTEGER id PK
         TEXT servico
         TEXT email
@@ -79,7 +82,7 @@ erDiagram
         TEXT frase
     }
 
-    dispositivo {
+    DISPOSITIVO {
         INTEGER id PK
         TEXT dispositivo
         TEXT email
@@ -88,7 +91,7 @@ erDiagram
         TEXT tokens
     }
 
-    rede {
+    REDE {
         INTEGER id PK
         TEXT categoria
         TEXT descricao
@@ -98,7 +101,7 @@ erDiagram
         TEXT tokens
     }
 
-    contrato {
+    CONTRATO {
         INTEGER id PK
         TEXT tipo_contrato
         DATE data_inicio
@@ -119,14 +122,14 @@ erDiagram
         TEXT parceria_empresarial
     }
 
-    skill {
+    SKILL {
         INTEGER id PK
         TEXT nome
         TEXT categoria
         TEXT nivel
     }
 
-    curso {
+    CURSO {
         INTEGER id PK
         TEXT nome
         TEXT email
@@ -135,7 +138,7 @@ erDiagram
         TEXT tokens
     }
 
-    plataforma {
+    PLATAFORMA {
         INTEGER id PK
         TEXT nome
         TEXT email
@@ -144,7 +147,7 @@ erDiagram
         TEXT tokens
     }
 
-    investimento {
+    INVESTIMENTO {
         INTEGER id PK
         TEXT tipo
         TEXT descricao
@@ -154,10 +157,10 @@ erDiagram
         DATE data_vencimento
     }
 
-    %% Relações (sugestão)
-    contrato ||--o{ conta : "associado_a"
-    contrato ||--o{ investimento : "relacionado_a"
-    gestao ||--o{ lancamento : "contabiliza"
-    empresa ||--o{ contrato : "possui"
-    dispositivo ||--o{ conta : "acesso_a"
-    servidor ||--o{ plataforma : "administra"
+    %% Relações (WS Manager)
+    CONTRATO ||--o{ CONTA : "associado_a"
+    CONTRATO ||--o{ INVESTIMENTO : "relacionado_a"
+    GESTAO ||--o{ LANCAMENTO : "contabiliza"
+    EMPRESA ||--o{ CONTRATO : "possui"
+    DISPOSITIVO ||--o{ CONTA : "acesso_a"
+    SERVIDOR ||--o{ PLATAFORMA : "administra"
