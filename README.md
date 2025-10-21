@@ -83,7 +83,7 @@ ws-gestao/
 
 ---
 
-## Databases sqlite3 dbHeaver
+# Databases sqlite3 dbHeaver
 
 <details>
 <summary>🛢️ Script database sqlite3</summary>
@@ -102,7 +102,7 @@ node ./init-db.js
 
 ---
 
-## Script backend
+# Script backend
 
 <details>
 <summary>🛫 Script de inicialização e build do projeto ...</summary>
@@ -125,7 +125,7 @@ npm start
 
 ---
 
-## Script frontend
+# Script frontend
 
 <details>
 <summary>🌍 Script de inicialização frontend ...</summary>
