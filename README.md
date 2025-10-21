@@ -24,7 +24,7 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ---
 
-## Estrutura do Projeto
+## Estrutura 
 
 <details>
 <summary>📂 Clique aqui para expandir a Estrutura Completa do Projeto</summary>
@@ -83,7 +83,7 @@ ws-gestao/
 
 ---
 
-## Created databases dbHeaver
+## Databases sqlite3 dbHeaver
 
 <details>
 <summary>🛢️ Script database sqlite3</summary>
@@ -102,7 +102,7 @@ node ./init-db.js
 
 ---
 
-## Run backend
+## Script backend
 
 <details>
 <summary>🛫 Script de inicialização e build do projeto ...</summary>
@@ -125,7 +125,7 @@ npm start
 
 ---
 
-## Run backend
+## Script frontend
 
 <details>
 <summary>🌍 Script de inicialização frontend ...</summary>
