@@ -104,17 +104,20 @@ node init-db.js
 <summary>🛫 inicialização e build ...</summary>
 
 ```bash
-# 1️⃣ Entre na pasta do backend e instale dependências
+# 1️⃣ Entre na pasta do backend
 cd backend
-npm install
 
-# 2️⃣ Gere keys.js a partir do .env (se necessário)
+# 2️⃣ Instale todas as dependências necessárias
+npm install express sqlite3 sqlite dotenv open
+
+# 3️⃣ Gere keys.js a partir do .env (se necessário)
 npm run generate-keys
 
-# 3️⃣ Rode o servidor
-node ./server.js
+# 4️⃣ Rode o servidor (Node 18+ com ES Modules)
+node server.js
+# ✅ O navegador será aberto automaticamente na URL do servidor
 
-# 4️⃣ Ou, se estiver configurado no package.json:
+# 5️⃣ Alternativa usando package.json
 npm start
 ```
 </details>
