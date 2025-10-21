@@ -100,8 +100,6 @@ node ./init-db.js
 ```
 </details>
 
----
-
 #### Script backend
 
 <details>
@@ -122,8 +120,6 @@ node ./server.js
 npm start
 ```
 </details>
-
----
 
 #### Script frontend
 
