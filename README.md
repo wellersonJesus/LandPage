@@ -121,10 +121,10 @@ Tabelas **SQLite**:
 cd /home/well/Documentos/projetos/ws-gestao/backend/src/db
 
 # 2️⃣ Instale dependências (sqlite3 e sqlite)
-npm install sqlite3 sqlite
+npm install sqlite3 sqlite dotenv
 
-# 3️⃣ Inicialize o banco de dados
-node init-db.js
+# 3️⃣ Criar e popular bancos de dados
+node init-db.js && node seed-db.js
 ```
 </details>
 
