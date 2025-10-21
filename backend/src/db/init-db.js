@@ -1,11 +1,12 @@
 // backend/src/db/init-db.js
-const sqlite3 = require('sqlite3').verbose();
-const fs = require('fs');
-const path = require('path');
-const dotenv = require('dotenv');
+import sqlite3 from 'sqlite3';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Caminho do banco (usa variável de ambiente ou padrão)
 const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './wsgestao_local.db');
 const dirPath = path.dirname(dbPath);
 
@@ -81,7 +82,7 @@ db.serialize(() => {
   });
 });
 
-// Fechar banco ao final
+// ✅ Fechar banco ao final
 db.close((err) => {
   if (err) console.error('❌ Erro ao fechar o banco de dados:', err.message);
   else console.log('✅ Banco de dados fechado com sucesso.');

@@ -92,11 +92,11 @@ ws-gestao/
 # 1️⃣ Vá para a pasta do banco de dados
 cd /home/well/Documentos/projetos/ws-gestao/backend/src/db
 
-# 2️⃣ Instale o sqlite3 via npm
-npm install sqlite3
+# 2️⃣ Instale dependências (sqlite3 e sqlite)
+npm install sqlite3 sqlite
 
 # 3️⃣ Inicialize o banco de dados
-node ./init-db.js
+node init-db.js
 ```
 </details>
 
