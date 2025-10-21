@@ -1,4 +1,4 @@
-# [🌏 WS-gestão](https://ws-gestao-d10f13.gitlab.io/) 
+# [🌏 WS Manager](https://ws-gestao-d10f13.gitlab.io/) 
 
 ## 💡 Observações Importantes
 
@@ -30,7 +30,7 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 <summary>📂 Clique aqui para expandir a Estrutura Completa do Projeto</summary>
 
 ```bash
-ws-gestao/
+WS Manager/
 ├─ frontend/                   ← Angular + Bootstrap (Hospedagem: GitLab Pages)
 │   ├─ src/
 │   │   ├─ app/
@@ -68,6 +68,7 @@ ws-gestao/
 │   │   ├─ db/
 │   │   │   ├── database.sqlite          ← Banco de dados SQLite
 │   │   │   ├── init-db.js               ← Script para criar/ popular db
+│   │   │   ├── DATABASE_SCHEMA.md      
 │   │   │   └── wsgestao_local.db       ← Criado automaticamente
 │   │   └─ utils/
 │   │       ├─ generate-keys.js         ← Gera keys.js a partir do .env
@@ -84,6 +85,13 @@ ws-gestao/
 ---
 
 ## Scripts 
+
+#### 🧩 Estrutura do Banco de Dados
+
+O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em desempenho e simplicidade.
+
+📄 Consulte o diagrama completo:
+[`backend/src/db/DATABASE_SCHEMA.md`](backend/src/db/DATABASE_SCHEMA.md)
 
 <details>
 <summary>🛢️ database dbheaver/sqlite3</summary>

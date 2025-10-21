@@ -11,6 +11,7 @@ out-tsc/
 
 # SQLite
 backend/src/db/database.sqlite
+backend/src/db/DATABASE_SCHEMA.md
 
 # Backups / JSON
 backend/src/utils/data.json
