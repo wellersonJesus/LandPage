@@ -90,9 +90,6 @@ WS Manager/
 
 O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em desempenho e simplicidade.
 
-📄 Consulte o diagrama completo:
-[`backend/src/db/DATABASE_SCHEMA.md`](backend/src/db/DATABASE_SCHEMA.md)
-
 <details>
 <summary>🛢️ database dbheaver/sqlite3</summary>
 
