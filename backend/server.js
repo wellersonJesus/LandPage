@@ -36,6 +36,8 @@ app.get('/cadastro', async (req, res) => {
 
 app.post('/cadastro', async (req, res) => {
   const { Nome, Email, Telefone } = req.body;
+  if (!Nome || !Email || !Telefone) return res.status(400).json({ error: 'Campos obrigatórios: Nome, Email, Telefone' });
+
   const db = await dbPromise;
   const result = await db.run(
     'INSERT INTO Cadastro (Nome, Email, Telefone) VALUES (?, ?, ?)',
@@ -47,19 +49,24 @@ app.post('/cadastro', async (req, res) => {
 app.put('/cadastro/:id', async (req, res) => {
   const { id } = req.params;
   const { Nome, Email, Telefone } = req.body;
+  if (!Nome || !Email || !Telefone) return res.status(400).json({ error: 'Campos obrigatórios: Nome, Email, Telefone' });
+
   const db = await dbPromise;
-  await db.run(
+  const result = await db.run(
     'UPDATE Cadastro SET Nome=?, Email=?, Telefone=? WHERE id=?',
     Nome, Email, Telefone, id
   );
-  res.json({ message: 'Cadastro atualizado' });
+
+  if (result.changes === 0) return res.status(404).json({ error: `Cadastro com id ${id} não encontrado` });
+  res.json({ message: 'Cadastro atualizado com sucesso' });
 });
 
 app.delete('/cadastro/:id', async (req, res) => {
   const { id } = req.params;
   const db = await dbPromise;
-  await db.run('DELETE FROM Cadastro WHERE id=?', id);
-  res.json({ message: 'Cadastro deletado' });
+  const result = await db.run('DELETE FROM Cadastro WHERE id=?', id);
+  if (result.changes === 0) return res.status(404).json({ error: `Cadastro com id ${id} não encontrado` });
+  res.json({ message: 'Cadastro deletado com sucesso' });
 });
 
 // ---------------------- Inventario ---------------------- //
@@ -71,6 +78,8 @@ app.get('/inventario', async (req, res) => {
 
 app.post('/inventario', async (req, res) => {
   const { Produto, Quantidade, Valor } = req.body;
+  if (!Produto || Quantidade == null || Valor == null) return res.status(400).json({ error: 'Campos obrigatórios: Produto, Quantidade, Valor' });
+
   const db = await dbPromise;
   const result = await db.run(
     'INSERT INTO Inventario (Produto, Quantidade, Valor) VALUES (?, ?, ?)',
@@ -82,22 +91,26 @@ app.post('/inventario', async (req, res) => {
 app.put('/inventario/:id', async (req, res) => {
   const { id } = req.params;
   const { Produto, Quantidade, Valor } = req.body;
+  if (!Produto || Quantidade == null || Valor == null) return res.status(400).json({ error: 'Campos obrigatórios: Produto, Quantidade, Valor' });
+
   const db = await dbPromise;
-  await db.run(
+  const result = await db.run(
     'UPDATE Inventario SET Produto=?, Quantidade=?, Valor=? WHERE id=?',
     Produto, Quantidade, Valor, id
   );
-  res.json({ message: 'Item do inventário atualizado' });
+
+  if (result.changes === 0) return res.status(404).json({ error: `Item do inventário com id ${id} não encontrado` });
+  res.json({ message: 'Item do inventário atualizado com sucesso' });
 });
 
 app.delete('/inventario/:id', async (req, res) => {
   const { id } = req.params;
   const db = await dbPromise;
-  await db.run('DELETE FROM Inventario WHERE id=?', id);
-  res.json({ message: 'Item do inventário deletado' });
+  const result = await db.run('DELETE FROM Inventario WHERE id=?', id);
+  if (result.changes === 0) return res.status(404).json({ error: `Item do inventário com id ${id} não encontrado` });
+  res.json({ message: 'Item do inventário deletado com sucesso' });
 });
 
-// ====================== Iniciar servidor ====================== //
 app.listen(PORT, async () => {
   console.log(`🛫 Servidor rodando em http://localhost:${PORT}`);
   try {
