@@ -136,7 +136,6 @@ npm start
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-Belo Horizonte, 21 Outubro 2025<br>
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">LinkedIn</a> | 
 <a href="https://github.com/wellersonJesus" target="_blank">GitHub</a>
 </div>
