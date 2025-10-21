@@ -103,21 +103,21 @@ Este guia mostra como criar, popular e verificar o banco de dados SQLite do proj
 Estrutura tabelas **SQLite**:
 
 ```bash
-- `empresa`  
-- `gestao`  
-- `calendario`  
-- `emprestimo`  
-- `lancamento`  
-- `manutencao`  
-- `conta`  
-- `servidor`  
-- `dispositivo`  
-- `rede`  
-- `contrato`  
-- `skill`  
-- `curso`  
-- `plataforma`  
-- `investimento`  
+1 empresa  
+2 gestao  
+3 calendario  
+4 emprestimo  
+5 lancamento  
+6 manutencao  
+7 conta  
+8 servidor  
+9 dispositivo  
+10 rede  
+11 contrato  
+12 skill  
+13 curso  
+14 plataforma  
+15 investimento  
 ```
 
 ```bash
