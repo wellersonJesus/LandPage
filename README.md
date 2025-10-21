@@ -57,23 +57,52 @@ WS Manager/
 │   ├─ angular.json
 │   └─ package.json
 │
-├─ backend/                    ← Node.js + SQLite (Render)
+├─ backend/                             ← Node.js + SQLite
 │   ├─ src/
-│   │   ├─ controllers/
-│   │   │   ├─ sheetController.js        ← Funções CRUD para SQLite
-│   │   │   └─ authController.js         ← Login e autenticação
-│   │   ├─ routes/
-│   │   │   ├─ authRoutes.js
-│   │   │   └─ sheetRoutes.js
-│   │   ├─ db/
-│   │   │   ├── database.sqlite          ← Banco de dados SQLite
-│   │   │   ├── init-db.js               ← Script para criar/ popular db
-│   │   │   ├── DATABASE_SCHEMA.md      
-│   │   │   ├── seed-db.js
-│   │   │   └── wsgestao_local.db        ← Criado automaticamente
+│   │   ├─ controllers/                 ← Lógica de negócio (CRUD) por tabela
+│   │   │   ├─ empresaController.js
+│   │   │   ├─ gestaoController.js
+│   │   │   ├─ contratoController.js
+│   │   │   ├─ lancamentoController.js
+│   │   │   ├─ manutencaoController.js
+│   │   │   ├─ contaController.js
+│   │   │   ├─ servidorController.js
+│   │   │   ├─ dispositivoController.js
+│   │   │   ├─ redeController.js
+│   │   │   ├─ skillController.js
+│   │   │   ├─ cursoController.js
+│   │   │   ├─ plataformaController.js
+│   │   │   ├─ investimentoController.js
+│   │   │   ├─ calendarioController.js
+│   │   │   └─ emprestimoController.js
+│   │   │
+│   │   ├─ routes/                      ← Rotas por tabela
+│   │   │   ├─ empresaRoutes.js
+│   │   │   ├─ gestaoRoutes.js
+│   │   │   ├─ contratoRoutes.js
+│   │   │   ├─ lancamentoRoutes.js
+│   │   │   ├─ manutencaoRoutes.js
+│   │   │   ├─ contaRoutes.js
+│   │   │   ├─ servidorRoutes.js
+│   │   │   ├─ dispositivoRoutes.js
+│   │   │   ├─ redeRoutes.js
+│   │   │   ├─ skillRoutes.js
+│   │   │   ├─ cursoRoutes.js
+│   │   │   ├─ plataformaRoutes.js
+│   │   │   ├─ investimentoRoutes.js
+│   │   │   ├─ calendarioRoutes.js
+│   │   │   └─ emprestimoRoutes.js
+│   │   │
+│   │   ├─ db/                           ← Banco de dados e scripts
+│   │   │   ├── database.sqlite          ← Banco SQLite
+│   │   │   ├── init-db.js               ← Criação e estrutura do DB
+│   │   │   ├── seed-db.js               ← População inicial de dados
+│   │   │   └── DATABASE_SCHEMA.md       ← Documentação do schema
+│   │   │
 │   │   └─ utils/
-│   │       ├─ generate-keys.js          ← Gera keys.js a partir do .env
-│   │       └─ backup.js                 ← Função backup incremental para data.json
+│   │       ├─ generate-keys.js          ← Gera keys a partir do .env
+│   │       └─ backup.js                 ← Backup incremental em JSON
+│   │
 │   ├─ server.js                         ← Servidor Express
 │   └─ package.json
 │
@@ -135,17 +164,16 @@ node init-db.js && node seed-db.js
 # 1️⃣ Entre na pasta do backend
 cd backend
 
-# 2️⃣ Instale todas as dependências necessárias
-npm install express sqlite3 sqlite dotenv open
+# 2️⃣ instale morgan No diretório do backend:
+npm install morgan
 
-# 3️⃣ Gere keys.js a partir do .env (se necessário)
+# 3️⃣ Instale todas as dependências necessárias de uma vez
+npm install express cors sqlite3 sqlite dotenv
+
+# 4️⃣ Gere keys.js a partir do .env (caso necessário)
 npm run generate-keys
 
-# 4️⃣ Rode o servidor (Node 18+ com ES Modules)
-node server.js
-# ✅ O navegador será aberto automaticamente na URL do servidor
-
-# 5️⃣ Alternativa usando package.json
+# Inicie o servidor
 npm start
 ```
 </details>
