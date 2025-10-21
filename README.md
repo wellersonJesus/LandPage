@@ -86,50 +86,57 @@ ws-gestao/
 ## Created databases dbHeaver
 
 <details>
-<summary>🛢️ Script database WS-Gestão</summary>
+<summary>🛢️ Script database sqlite3</summary>
 
 ```bash
-# 1️⃣ Vá para a pasta do db
-cd /home/well/Documentos/projetos/ws-gestao/backend/db
+# 1️⃣ Vá para a pasta do banco de dados
+cd /home/well/Documentos/projetos/ws-gestao/backend/src/db
 
 # 2️⃣ Instale o sqlite3 via npm
 npm install sqlite3
 
-# 3️⃣ No terminal, dentro da pasta db:
+# 3️⃣ Inicialize o banco de dados
 node ./init-db.js
 ```
 </details>
 
 ---
 
-## Run WS-gestão
+## Run backend
 
 <details>
-<summary>🚀 Script de inicialização e build do projeto WS-Gestão</summary>
+<summary>🛫 Script de inicialização e build do projeto ...</summary>
 
 ```bash
-# 1️⃣ Instala Node.js + dependências (Back-end)
+# 1️⃣ Entre na pasta do backend e instale dependências
 cd backend
 npm install
 
-# 2️⃣ Instala dependências do Angular (Front-end)
+# 2️⃣ Gere keys.js a partir do .env (se necessário)
+npm run generate-keys
+
+# 3️⃣ Rode o servidor
+node ./server.js
+
+# 4️⃣ Ou, se estiver configurado no package.json:
+npm start
+```
+</details>
+
+---
+
+## Run backend
+
+<details>
+<summary>🌍 Script de inicialização frontend ...</summary>
+
+```bash
+# 1️⃣ Entre na pasta do frontend e instale dependências
 cd ../frontend
 npm install
 
-# 3️⃣ Gera keys.js no backend a partir do .env (se necessário)
-npm run generate-keys
-
-# ===========================
-# 4️⃣ Desenvolvimento Local
-# ===========================
-
-# Back-end (Node.js + SQLite)
-cd ../backend
-node ./server.js        # ou "npm start" se estiver configurado no package.json
-
-# Front-end (Angular)
-cd ../frontend
-npm start               # 🌍 rodar localmente na porta padrão 4200
+# 2️⃣ Rode a aplicação Angular na porta padrão (4200)
+npm start
 ```
 </details>
 
@@ -137,7 +144,7 @@ npm start               # 🌍 rodar localmente na porta padrão 4200
 
 <div align="center">
 © JesusWellerson | Development Innovation<br>
-📍 Belo Horizonte, 17 Outubro 2025<br>
+📍 Belo Horizonte, 21 Outubro 2025<br>
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">🔗 LinkedIn</a> | 
 <a href="https://github.com/wellersonJesus" target="_blank">📌 GitHub</a>
 </div>
