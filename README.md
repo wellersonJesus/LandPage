@@ -83,10 +83,10 @@ ws-gestao/
 
 ---
 
-#### Databases sqlite3 dbHeaver
+## Scripts 
 
 <details>
-<summary>🛢️ Script database sqlite3</summary>
+<summary>🛢️ database dbheaver/sqlite3</summary>
 
 ```bash
 # 1️⃣ Vá para a pasta do banco de dados
@@ -100,10 +100,8 @@ node ./init-db.js
 ```
 </details>
 
-#### Script backend
-
 <details>
-<summary>🛫 Script de inicialização e build do projeto ...</summary>
+<summary>🛫 inicialização e build ...</summary>
 
 ```bash
 # 1️⃣ Entre na pasta do backend e instale dependências
@@ -121,10 +119,8 @@ npm start
 ```
 </details>
 
-#### Script frontend
-
 <details>
-<summary>🌍 Script de inicialização frontend ...</summary>
+<summary>🌍 inicialização frontend ...</summary>
 
 ```bash
 # 1️⃣ Entre na pasta do frontend e instale dependências
