@@ -93,11 +93,12 @@ WS Manager/
 │   │   │   ├─ calendarioRoutes.js
 │   │   │   └─ emprestimoRoutes.js
 │   │   │
-│   │   ├─ db/                           ← Banco de dados e scripts
-│   │   │   ├── database.sqlite          ← Banco SQLite
-│   │   │   ├── init-db.js               ← Criação e estrutura do DB
-│   │   │   ├── seed-db.js               ← População inicial de dados
-│   │   │   └── DATABASE_SCHEMA.md       ← Documentação do schema
+│   │   ├─ db/                           
+│   │   │   ├── DATABASE_SCHEMA.md       ← Documentação do schema 
+│   │   │   ├── dbConnection.js          ← Banco de dados e scripts
+│   │   │   ├── init-db.js               ← Criação e estrutura do DB 
+│   │   │   ├── seed-db.js               ← População inicial de dados 
+│   │   │   └── wsmanager_local.db       ← Banco criado 
 │   │   │
 │   │   └─ utils/
 │   │       ├─ generate-keys.js          ← Gera keys a partir do .env
