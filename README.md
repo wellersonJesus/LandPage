@@ -117,7 +117,7 @@ WS Manager/
 ## Scripts 
 
 <details>
-<summary>🛢️ database dbheaver/sqlite3</summary>
+<summary>🛫 database dbheaver/sqlite3, run inicialização e build ...</summary>
 
 O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em desempenho e simplicidade.
 
@@ -146,32 +146,17 @@ Tabelas **SQLite**:
 ```
 
 ```bash
-# 1️⃣ Vá para a pasta do banco de dados
-cd /home/well/Documentos/projetos/ws-gestao/backend/src/db
+# Entre na pasta backend
+cd /home/wellerson/Documentos/Projetos/WS-Manager/backend
 
-# 2️⃣ Instale dependências (sqlite3 e sqlite)
-npm install sqlite3 sqlite dotenv
+# Instale dependências
+npm install
 
-# 3️⃣ Criar e popular bancos de dados
-node init-db.js && node seed-db.js
-```
-</details>
+# Gere keys
+node src/utils/generate-keys.js
 
-<details>
-<summary>🛫 inicialização e build ...</summary>
-
-```bash
-# 1️⃣ Entre na pasta do backend
-cd backend
-
-# 2️⃣ instale morgan No diretório do backend:
-npm install morgan
-
-# 3️⃣ Instale todas as dependências necessárias de uma vez
-npm install express cors sqlite3 sqlite dotenv
-
-# 4️⃣ Gere keys.js a partir do .env (caso necessário)
-npm run generate-keys
+# Crie as tabelas e popule
+node src/db/init-db.js && node src/db/seed-db.js
 
 # Inicie o servidor
 npm start

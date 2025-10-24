@@ -1,11 +1,15 @@
 // backend/src/db/seed-db.js
 import sqlite3 from "sqlite3";
 import path from "path";
+import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || "./wsmanager_local.db");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const dbPath = path.resolve(__dirname, '../db/wsmanager_local.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) return console.error("❌ Erro ao conectar no banco:", err.message);
@@ -14,7 +18,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 db.serialize(() => {
   // ==================================================
-  // EMPRESA
+  // 1. EMPRESA
   // ==================================================
   db.run(`
     INSERT INTO empresa (nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque)
@@ -26,7 +30,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // CONTA
+  // 2. CONTA
   // ==================================================
   db.run(`
     INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta)
@@ -36,7 +40,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // GESTAO
+  // 3. GESTAO
   // ==================================================
   db.run(`
     INSERT INTO gestao (data, km_percorrido, meta, horas_trabalhadas, receita, despesa, lucro, conta_id)
@@ -46,7 +50,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // CALENDARIO
+  // 4. CALENDARIO
   // ==================================================
   db.run(`
     INSERT INTO calendario (data, dia_semana, mes, ano, feriado)
@@ -57,16 +61,16 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // EMPRESTIMO
+  // 5. EMPRESTIMO
   // ==================================================
   db.run(`
     INSERT INTO emprestimo (cnpj, descricao, valor_total, valor_pago, valor_a_pagar, data_parcela, numero_parcela, valor_parcela)
     VALUES
-    ('12.345.678/0001-99', 'Empréstimo para expansão do negócio', 10000.00, 2500.00, 7500.00, '2025-11-10', '3/10', 1000.00);
+    ('12.345.678/0001-99', 'Empréstimo expansão', 10000.00, 2500.00, 7500.00, '2025-11-10', '3/10', 1000.00);
   `);
 
   // ==================================================
-  // LANCAMENTO
+  // 6. LANCAMENTO
   // ==================================================
   db.run(`
     INSERT INTO lancamento (data, descricao, tipo, valor, categoria, conta_id)
@@ -76,7 +80,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // MANUTENCAO
+  // 7. MANUTENCAO
   // ==================================================
   db.run(`
     INSERT INTO manutencao (dispositivo_id, data, descricao, custo, status)
@@ -86,7 +90,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // SERVIDOR
+  // 8. SERVIDOR
   // ==================================================
   db.run(`
     INSERT INTO servidor (nome, ip, sistema_operacional, status, localizacao)
@@ -96,7 +100,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // DISPOSITIVO
+  // 9. DISPOSITIVO
   // ==================================================
   db.run(`
     INSERT INTO dispositivo (nome, tipo, marca, modelo, numero_serie, status)
@@ -106,7 +110,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // REDE
+  // 10. REDE
   // ==================================================
   db.run(`
     INSERT INTO rede (nome, ip, mascara, gateway, dns, status)
@@ -115,7 +119,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // CONTRATO
+  // 11. CONTRATO
   // ==================================================
   db.run(`
     INSERT INTO contrato (empresa_id, descricao, valor, data_inicio, data_fim, status)
@@ -124,7 +128,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // SKILL
+  // 12. SKILL
   // ==================================================
   db.run(`
     INSERT INTO skill (nome, nivel, categoria)
@@ -135,7 +139,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // PLATAFORMA
+  // 13. PLATAFORMA
   // ==================================================
   db.run(`
     INSERT INTO plataforma (nome, url, tipo)
@@ -146,7 +150,7 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // CURSO
+  // 14. CURSO
   // ==================================================
   db.run(`
     INSERT INTO curso (nome, plataforma_id, carga_horaria, progresso)
@@ -156,12 +160,12 @@ db.serialize(() => {
   `);
 
   // ==================================================
-  // INVESTIMENTO
+  // 15. INVESTIMENTO
   // ==================================================
   db.run(`
     INSERT INTO investimento (tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
     VALUES
-    ('CDB', 'Aplicação de liquidez diária', 5000.00, 5.5, '2025-01-15'),
+    ('CDB', 'Aplicação liquidez diária', 5000.00, 5.5, '2025-01-15'),
     ('Tesouro Selic', 'Investimento público', 2000.00, 6.2, '2025-03-01');
   `);
 

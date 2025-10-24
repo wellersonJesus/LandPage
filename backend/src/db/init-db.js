@@ -1,4 +1,4 @@
-// backend/src/db/init-db.js
+// src/db/init-db.js
 import sqlite3 from 'sqlite3';
 import fs from 'fs';
 import path from 'path';
@@ -6,29 +6,44 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './wsmanager_local.db');
+// Usa verbose para debug
+const sqlite = sqlite3.verbose();
+
+// Caminho do banco de dados
+const dbPath = path.resolve(
+  process.env.SQLITE_PATH_LOCAL || './src/db/wsmanager_local.db'
+);
 const dirPath = path.dirname(dbPath);
 
-// Criar diretório se não existir
+// ✅ Cria pasta do banco se não existir
 if (!fs.existsSync(dirPath)) {
   fs.mkdirSync(dirPath, { recursive: true });
   console.log(`📁 Pasta criada: ${dirPath}`);
 }
 
-// Conexão com o banco
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) return console.error('❌ Erro ao abrir o banco:', err.message);
-  console.log('🗃️ Banco conectado com sucesso.');
+// ✅ Conecta/cria o banco
+const db = new sqlite.Database(dbPath, (err) => {
+  if (err) {
+    console.error('❌ Erro ao abrir o banco de dados:', err.message);
+    process.exit(1);
+  }
+  console.log('🗃️ Conexão com o banco de dados estabelecida.');
 });
 
-db.serialize(() => {
-  console.log('🚀 Criando estrutura do banco WS Manager...');
+// Verifica permissões de leitura/escrita
+try {
+  fs.accessSync(dirPath, fs.constants.R_OK | fs.constants.W_OK);
+} catch (err) {
+  console.error('❌ Sem permissão para ler/gravar na pasta do banco:', dirPath);
+  process.exit(1);
+}
 
-  // ==================================================
-  // 🏢 EMPRESA
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS empresa (
+// Criação das tabelas
+db.serialize(() => {
+  console.log('🚀 Criando todas as tabelas...');
+
+  const tables = [
+    `CREATE TABLE IF NOT EXISTS empresa (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
       slogan TEXT,
@@ -39,14 +54,17 @@ db.serialize(() => {
       missao TEXT,
       servicos TEXT,
       projetos_destaque TEXT
-    )
-  `);
-
-  // ==================================================
-  // 📈 GESTAO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS gestao (
+    )`,
+    `CREATE TABLE IF NOT EXISTS conta (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome TEXT,
+      banco TEXT,
+      tipo TEXT,
+      saldo REAL,
+      agencia TEXT,
+      numero_conta TEXT
+    )`,
+    `CREATE TABLE IF NOT EXISTS gestao (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       data DATE,
       km_percorrido REAL,
@@ -57,28 +75,16 @@ db.serialize(() => {
       lucro REAL,
       conta_id INTEGER,
       FOREIGN KEY (conta_id) REFERENCES conta(id)
-    )
-  `);
-
-  // ==================================================
-  // 📅 CALENDARIO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS calendario (
+    )`,
+    `CREATE TABLE IF NOT EXISTS calendario (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       data DATE,
       dia_semana TEXT,
       mes INTEGER,
       ano INTEGER,
       feriado BOOLEAN
-    )
-  `);
-
-  // ==================================================
-  // 💸 EMPRESTIMO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS emprestimo (
+    )`,
+    `CREATE TABLE IF NOT EXISTS emprestimo (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       cnpj TEXT,
       descricao TEXT,
@@ -88,14 +94,8 @@ db.serialize(() => {
       data_parcela DATE,
       numero_parcela TEXT,
       valor_parcela REAL
-    )
-  `);
-
-  // ==================================================
-  // 📜 LANCAMENTO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS lancamento (
+    )`,
+    `CREATE TABLE IF NOT EXISTS lancamento (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       data DATE,
       descricao TEXT,
@@ -104,14 +104,8 @@ db.serialize(() => {
       categoria TEXT,
       conta_id INTEGER,
       FOREIGN KEY (conta_id) REFERENCES conta(id)
-    )
-  `);
-
-  // ==================================================
-  // 🧰 MANUTENCAO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS manutencao (
+    )`,
+    `CREATE TABLE IF NOT EXISTS manutencao (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       dispositivo_id INTEGER,
       data DATE,
@@ -119,43 +113,16 @@ db.serialize(() => {
       custo REAL,
       status TEXT,
       FOREIGN KEY (dispositivo_id) REFERENCES dispositivo(id)
-    )
-  `);
-
-  // ==================================================
-  // 💳 CONTA
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS conta (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nome TEXT,
-      banco TEXT,
-      tipo TEXT,
-      saldo REAL,
-      agencia TEXT,
-      numero_conta TEXT
-    )
-  `);
-
-  // ==================================================
-  // 🖥️ SERVIDOR
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS servidor (
+    )`,
+    `CREATE TABLE IF NOT EXISTS servidor (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       ip TEXT,
       sistema_operacional TEXT,
       status TEXT,
       localizacao TEXT
-    )
-  `);
-
-  // ==================================================
-  // 💻 DISPOSITIVO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS dispositivo (
+    )`,
+    `CREATE TABLE IF NOT EXISTS dispositivo (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       tipo TEXT,
@@ -163,14 +130,8 @@ db.serialize(() => {
       modelo TEXT,
       numero_serie TEXT,
       status TEXT
-    )
-  `);
-
-  // ==================================================
-  // 🌐 REDE
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS rede (
+    )`,
+    `CREATE TABLE IF NOT EXISTS rede (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       ip TEXT,
@@ -178,14 +139,8 @@ db.serialize(() => {
       gateway TEXT,
       dns TEXT,
       status TEXT
-    )
-  `);
-
-  // ==================================================
-  // 📑 CONTRATO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS contrato (
+    )`,
+    `CREATE TABLE IF NOT EXISTS contrato (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       empresa_id INTEGER,
       descricao TEXT,
@@ -194,64 +149,45 @@ db.serialize(() => {
       data_fim DATE,
       status TEXT,
       FOREIGN KEY (empresa_id) REFERENCES empresa(id)
-    )
-  `);
-
-  // ==================================================
-  // 🧠 SKILL
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS skill (
+    )`,
+    `CREATE TABLE IF NOT EXISTS skill (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       nivel TEXT,
       categoria TEXT
-    )
-  `);
-
-  // ==================================================
-  // 🎓 CURSO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS curso (
+    )`,
+    `CREATE TABLE IF NOT EXISTS plataforma (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome TEXT,
+      url TEXT,
+      tipo TEXT
+    )`,
+    `CREATE TABLE IF NOT EXISTS curso (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
       plataforma_id INTEGER,
       carga_horaria TEXT,
       progresso INTEGER,
       FOREIGN KEY (plataforma_id) REFERENCES plataforma(id)
-    )
-  `);
-
-  // ==================================================
-  // 🔗 PLATAFORMA
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS plataforma (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nome TEXT,
-      url TEXT,
-      tipo TEXT
-    )
-  `);
-
-  // ==================================================
-  // 💹 INVESTIMENTO
-  // ==================================================
-  db.run(`
-    CREATE TABLE IF NOT EXISTS investimento (
+    )`,
+    `CREATE TABLE IF NOT EXISTS investimento (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       tipo TEXT,
       descricao TEXT,
       valor_aplicado REAL,
       rendimento REAL,
       data_aplicacao DATE
-    )
-  `);
+    )`
+  ];
+
+  tables.forEach(sql => db.run(sql, (err) => {
+    if (err) console.error('❌ Erro criando tabela:', err.message);
+  }));
 
   console.log('✅ Todas as tabelas criadas com sucesso!');
 });
 
+// Fecha o banco
 db.close((err) => {
   if (err) console.error('❌ Erro ao fechar o banco:', err.message);
   else console.log('✅ Banco de dados fechado com sucesso.');

@@ -7,17 +7,10 @@ import { fileURLToPath } from 'url';
 // Carrega variáveis do .env
 dotenv.config();
 
-// Corrige __dirname no ES Module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Caminho do arquivo keys.js
 const keysPath = path.resolve(__dirname, 'keys.js');
-
-// Caminho fixo para o banco local (wsmanager_local.db)
 const sqlitePath = path.resolve(__dirname, '../db/wsmanager_local.db');
-
-// Função auxiliar para pegar valores do .env ou usar padrão
 const getEnv = (key, defaultValue = '') => process.env[key] || defaultValue;
 
 // Conteúdo a ser gravado em keys.js

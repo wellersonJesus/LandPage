@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://ws-gestao.onrender.com/api'
+  apiBaseUrl: 'https://ws-manager.onrender.com/api'
 };

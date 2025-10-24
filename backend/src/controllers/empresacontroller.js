@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './backend/src/db/wsgestao_local.db');
+const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './backend/src/db/wsmanager_local.db');
 const db = new sqlite3.Database(dbPath);
 
 // Listar todas as empresas
