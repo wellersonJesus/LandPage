@@ -3,9 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import { exec } from 'child_process';
 
-// Importar rotas
+// Importar todas as rotas
 import empresaRoutes from './src/routes/empresaRoutes.js';
 import gestaoRoutes from './src/routes/gestaoRoutes.js';
 // import calendarioRoutes from './src/routes/calendarioRoutes.js';
@@ -48,28 +47,29 @@ app.use('/api/gestao', gestaoRoutes);
 // app.use('/api/plataforma', plataformaRoutes);
 // app.use('/api/investimento', investimentoRoutes);
 
-// Rota raiz para teste
-app.get('/', (req, res) => res.send('API WS-Manager online 🚀'));
+// Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
-// Tratamento de erros
+// Rota raiz da API
+app.get('/api', (req, res) =>
+  res.json({
+    message: 'API WS-Manager rodando',
+    endpoints: [
+      '/empresa', '/gestao', '/calendario', '/emprestimo', '/lancamento', '/manutencao',
+      '/conta', '/servidor', '/dispositivo', '/rede', '/contrato', '/skill', '/curso',
+      '/plataforma', '/investimento'
+    ]
+  })
+);
+
+// Tratamento global de erros
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: err.message });
 });
 
-// Porta do Render ou fallback 3000
+// Porta do Render ou fallback para 3000
 const PORT = process.env.PORT || 3000;
-const BASE_URL = `http://localhost:${PORT}`;
-
 app.listen(PORT, () => {
-  console.log(`🌐 Servidor rodando em: ${BASE_URL}`);
-
-  // Abre navegador localmente (só funciona local, não no Render)
-  if (process.env.NODE_ENV !== 'production') {
-    const platform = process.platform;
-    const cmd = platform === 'darwin' ? `open ${BASE_URL}` :
-                platform === 'win32' ? `start ${BASE_URL}` : `xdg-open ${BASE_URL}`;
-    exec(cmd, (err) => { if (err) console.error('❌ Falha ao abrir navegador:', err); });
-  }
+  console.log(`🌐 Servidor rodando na porta: ${PORT}`);
 });
