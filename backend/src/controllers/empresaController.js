@@ -1,12 +1,5 @@
 // backend/src/controllers/empresaController.js
-import sqlite3 from 'sqlite3';
-import path from 'path';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || './backend/src/db/wsmanager_local.db');
-const db = new sqlite3.Database(dbPath);
+import db from '../db/dbConnection.js';
 
 // Listar todas as empresas
 export const getAllEmpresas = (req, res) => {
@@ -43,8 +36,8 @@ export const updateEmpresa = (req, res) => {
   const { id } = req.params;
   const { nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque } = req.body;
   const sql = `UPDATE empresa 
-               SET nome = ?, slogan = ?, descricao = ?, cnpj = ?, atividade = ?, localizacao = ?, missao = ?, servicos = ?, projetos_destaque = ?
-               WHERE id = ?`;
+               SET nome=?, slogan=?, descricao=?, cnpj=?, atividade=?, localizacao=?, missao=?, servicos=?, projetos_destaque=? 
+               WHERE id=?`;
   const params = [nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque, id];
   db.run(sql, params, function(err) {
     if (err) return res.status(500).json({ error: err.message });
@@ -56,7 +49,7 @@ export const updateEmpresa = (req, res) => {
 // Deletar empresa
 export const deleteEmpresa = (req, res) => {
   const { id } = req.params;
-  db.run('DELETE FROM empresa WHERE id = ?', [id], function(err) {
+  db.run('DELETE FROM empresa WHERE id=?', [id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
     if (this.changes === 0) return res.status(404).json({ error: 'Empresa não encontrada' });
     res.json({ message: 'Empresa deletada com sucesso' });

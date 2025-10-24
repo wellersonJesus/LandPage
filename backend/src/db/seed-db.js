@@ -1,178 +1,135 @@
 // backend/src/db/seed-db.js
-import sqlite3 from "sqlite3";
-import path from "path";
-import { fileURLToPath } from "url";
-import dotenv from "dotenv";
+import db from './dbConnection.js';
 
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const dbPath = path.resolve(__dirname, '../db/wsmanager_local.db');
-
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) return console.error("❌ Erro ao conectar no banco:", err.message);
-  console.log("🌱 Iniciando seed no banco de dados...");
-});
-
+// Exemplo de seed para várias tabelas
 db.serialize(() => {
-  // ==================================================
-  // 1. EMPRESA
-  // ==================================================
-  db.run(`
-    INSERT INTO empresa (nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque)
-    VALUES
-    ('WS Manager', 'Gestão Simplificada', 'Sistema integrado de gestão empresarial e pessoal.', '12.345.678/0001-99',
-     'Tecnologia da Informação', 'São Paulo - SP', 'Automatizar e otimizar processos', 
-     'Gestão Financeira, Controle de Projetos, Monitoramento de Recursos', 
-     'Painel de Controle Financeiro, Módulo de Contratos');
-  `);
+  console.log('🚀 Inserindo dados iniciais...');
 
-  // ==================================================
-  // 2. CONTA
-  // ==================================================
-  db.run(`
-    INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta)
-    VALUES
-    ('Conta Principal', 'Banco do Brasil', 'Corrente', 15000.00, '1234-5', '98765-4'),
-    ('Conta Investimentos', 'Nubank', 'Poupança', 8700.50, '0001', '998877-6');
-  `);
+  // --- Empresa ---
+  db.run(
+    `INSERT INTO empresa (nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ['TechCorp', 'Inovação e Futuro', 'Empresa de tecnologia', '12.345.678/0001-90', 'TI', 'São Paulo', 'Transformar o mundo', 'Software, Consultoria', 'Projeto X'],
+    (err) => { if (err) console.error('❌ Empresa seed:', err.message); }
+  );
 
-  // ==================================================
-  // 3. GESTAO
-  // ==================================================
-  db.run(`
-    INSERT INTO gestao (data, km_percorrido, meta, horas_trabalhadas, receita, despesa, lucro, conta_id)
-    VALUES
-    ('2025-10-01', 120.5, 200.0, '8h', 1200.00, 400.00, 800.00, 1),
-    ('2025-10-02', 95.0, 150.0, '7h', 950.00, 300.00, 650.00, 1);
-  `);
+  // --- Conta ---
+  db.run(
+    `INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    ['Conta Principal', 'Banco XYZ', 'Corrente', 100000.00, '1234', '56789-0'],
+    (err) => { if (err) console.error('❌ Conta seed:', err.message); }
+  );
 
-  // ==================================================
-  // 4. CALENDARIO
-  // ==================================================
-  db.run(`
-    INSERT INTO calendario (data, dia_semana, mes, ano, feriado)
-    VALUES
-    ('2025-01-01', 'Quarta', 1, 2025, 1),
-    ('2025-10-12', 'Domingo', 10, 2025, 1),
-    ('2025-10-21', 'Terça', 10, 2025, 0);
-  `);
+  // --- Gestao ---
+  db.run(
+    `INSERT INTO gestao (data, km_percorrido, meta, horas_trabalhadas, receita, despesa, lucro, conta_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    ['2025-10-24', 120, 1000, '8h', 5000, 2000, 3000, 1],
+    (err) => { if (err) console.error('❌ Gestao seed:', err.message); }
+  );
 
-  // ==================================================
-  // 5. EMPRESTIMO
-  // ==================================================
-  db.run(`
-    INSERT INTO emprestimo (cnpj, descricao, valor_total, valor_pago, valor_a_pagar, data_parcela, numero_parcela, valor_parcela)
-    VALUES
-    ('12.345.678/0001-99', 'Empréstimo expansão', 10000.00, 2500.00, 7500.00, '2025-11-10', '3/10', 1000.00);
-  `);
+  // --- Calendario ---
+  db.run(
+    `INSERT INTO calendario (data, dia_semana, mes, ano, feriado)
+     VALUES (?, ?, ?, ?, ?)`,
+    ['2025-12-25', 'quinta', 12, 2025, 1],
+    (err) => { if (err) console.error('❌ Calendario seed:', err.message); }
+  );
 
-  // ==================================================
-  // 6. LANCAMENTO
-  // ==================================================
-  db.run(`
-    INSERT INTO lancamento (data, descricao, tipo, valor, categoria, conta_id)
-    VALUES
-    ('2025-10-10', 'Compra de equipamento', 'Despesa', 1200.00, 'Infraestrutura', 1),
-    ('2025-10-15', 'Pagamento de serviço', 'Receita', 2500.00, 'Consultoria', 1);
-  `);
+  // --- Emprestimo ---
+  db.run(
+    `INSERT INTO emprestimo (cnpj, descricao, valor_total, valor_pago, valor_a_pagar, data_parcela, numero_parcela, valor_parcela)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    ['12.345.678/0001-90', 'Empréstimo inicial', 50000, 10000, 40000, '2025-11-01', '1/12', 4166.66],
+    (err) => { if (err) console.error('❌ Emprestimo seed:', err.message); }
+  );
 
-  // ==================================================
-  // 7. MANUTENCAO
-  // ==================================================
-  db.run(`
-    INSERT INTO manutencao (dispositivo_id, data, descricao, custo, status)
-    VALUES
-    (1, '2025-09-20', 'Troca de SSD', 450.00, 'Concluído'),
-    (2, '2025-10-05', 'Atualização de sistema', 0.00, 'Pendente');
-  `);
+  // --- Lancamento ---
+  db.run(
+    `INSERT INTO lancamento (data, descricao, tipo, valor, categoria, conta_id)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    ['2025-10-24', 'Venda Produto X', 'Receita', 2000, 'Vendas', 1],
+    (err) => { if (err) console.error('❌ Lancamento seed:', err.message); }
+  );
 
-  // ==================================================
-  // 8. SERVIDOR
-  // ==================================================
-  db.run(`
-    INSERT INTO servidor (nome, ip, sistema_operacional, status, localizacao)
-    VALUES
-    ('Servidor Principal', '192.168.0.10', 'Ubuntu Server 22.04', 'Ativo', 'Data Center SP'),
-    ('Servidor Backup', '192.168.0.11', 'Debian 12', 'Ativo', 'Data Center SP');
-  `);
+  // --- Manutencao ---
+  db.run(
+    `INSERT INTO manutencao (dispositivo_id, data, descricao, custo, status)
+     VALUES (?, ?, ?, ?, ?)`,
+    [1, '2025-10-20', 'Troca de HD', 500, 'Concluída'],
+    (err) => { if (err) console.error('❌ Manutencao seed:', err.message); }
+  );
 
-  // ==================================================
-  // 9. DISPOSITIVO
-  // ==================================================
-  db.run(`
-    INSERT INTO dispositivo (nome, tipo, marca, modelo, numero_serie, status)
-    VALUES
-    ('Notebook Dell', 'Laptop', 'Dell', 'Inspiron 5423', 'SN12345', 'Ativo'),
-    ('Roteador TP-Link', 'Rede', 'TP-Link', 'Archer C6', 'SN9988', 'Ativo');
-  `);
+  // --- Servidor ---
+  db.run(
+    `INSERT INTO servidor (nome, ip, sistema_operacional, status, localizacao)
+     VALUES (?, ?, ?, ?, ?)`,
+    ['Servidor Principal', '192.168.0.1', 'Ubuntu 22.04', 'Ativo', 'Data Center SP'],
+    (err) => { if (err) console.error('❌ Servidor seed:', err.message); }
+  );
 
-  // ==================================================
-  // 10. REDE
-  // ==================================================
-  db.run(`
-    INSERT INTO rede (nome, ip, mascara, gateway, dns, status)
-    VALUES
-    ('Rede Interna', '192.168.0.0', '255.255.255.0', '192.168.0.1', '8.8.8.8', 'Operacional');
-  `);
+  // --- Dispositivo ---
+  db.run(
+    `INSERT INTO dispositivo (nome, tipo, marca, modelo, numero_serie, status)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    ['Notebook Dev', 'Notebook', 'Dell', 'Inspiron 5423', 'SN123456', 'Ativo'],
+    (err) => { if (err) console.error('❌ Dispositivo seed:', err.message); }
+  );
 
-  // ==================================================
-  // 11. CONTRATO
-  // ==================================================
-  db.run(`
-    INSERT INTO contrato (empresa_id, descricao, valor, data_inicio, data_fim, status)
-    VALUES
-    (1, 'Contrato de prestação de serviços de TI', 5000.00, '2025-01-01', '2025-12-31', 'Ativo');
-  `);
+  // --- Rede ---
+  db.run(
+    `INSERT INTO rede (nome, ip, mascara, gateway, dns, status)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    ['Rede Interna', '192.168.0.0', '255.255.255.0', '192.168.0.1', '8.8.8.8', 'Ativa'],
+    (err) => { if (err) console.error('❌ Rede seed:', err.message); }
+  );
 
-  // ==================================================
-  // 12. SKILL
-  // ==================================================
-  db.run(`
-    INSERT INTO skill (nome, nivel, categoria)
-    VALUES
-    ('JavaScript', 'Avançado', 'Desenvolvimento Web'),
-    ('Linux Server', 'Intermediário', 'Infraestrutura'),
-    ('SQL', 'Avançado', 'Banco de Dados');
-  `);
+  // --- Contrato ---
+  db.run(
+    `INSERT INTO contrato (empresa_id, descricao, valor, data_inicio, data_fim, status)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    [1, 'Contrato de Suporte', 12000, '2025-01-01', '2025-12-31', 'Ativo'],
+    (err) => { if (err) console.error('❌ Contrato seed:', err.message); }
+  );
 
-  // ==================================================
-  // 13. PLATAFORMA
-  // ==================================================
-  db.run(`
-    INSERT INTO plataforma (nome, url, tipo)
-    VALUES
-    ('Udemy', 'https://www.udemy.com', 'Educação'),
-    ('Render', 'https://render.com', 'Hospedagem'),
-    ('GitLab', 'https://gitlab.com', 'Controle de Versão');
-  `);
+  // --- Skill ---
+  db.run(
+    `INSERT INTO skill (nome, nivel, categoria)
+     VALUES (?, ?, ?)`,
+    ['JavaScript', 'Avançado', 'Programação'],
+    (err) => { if (err) console.error('❌ Skill seed:', err.message); }
+  );
 
-  // ==================================================
-  // 14. CURSO
-  // ==================================================
-  db.run(`
-    INSERT INTO curso (nome, plataforma_id, carga_horaria, progresso)
-    VALUES
-    ('Curso de Node.js Avançado', 1, '40h', 75),
-    ('Git e GitLab Completo', 3, '20h', 100);
-  `);
+  // --- Plataforma ---
+  db.run(
+    `INSERT INTO plataforma (nome, url, tipo)
+     VALUES (?, ?, ?)`,
+    ['Udemy', 'https://udemy.com', 'E-learning'],
+    (err) => { if (err) console.error('❌ Plataforma seed:', err.message); }
+  );
 
-  // ==================================================
-  // 15. INVESTIMENTO
-  // ==================================================
-  db.run(`
-    INSERT INTO investimento (tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
-    VALUES
-    ('CDB', 'Aplicação liquidez diária', 5000.00, 5.5, '2025-01-15'),
-    ('Tesouro Selic', 'Investimento público', 2000.00, 6.2, '2025-03-01');
-  `);
+  // --- Curso ---
+  db.run(
+    `INSERT INTO curso (nome, plataforma_id, carga_horaria, progresso)
+     VALUES (?, ?, ?, ?)`,
+    ['Curso Node.js', 1, '20h', 50],
+    (err) => { if (err) console.error('❌ Curso seed:', err.message); }
+  );
 
-  console.log("✅ Seed inserido com sucesso em todas as tabelas!");
+  // --- Investimento ---
+  db.run(
+    `INSERT INTO investimento (tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
+     VALUES (?, ?, ?, ?, ?)`,
+    ['Renda Fixa', 'Investimento Inicial', 10000, 500, '2025-10-24'],
+    (err) => { if (err) console.error('❌ Investimento seed:', err.message); }
+  );
+
+  console.log('✅ Todos os dados seed inseridos com sucesso!');
 });
 
+// Fecha conexão
 db.close((err) => {
-  if (err) console.error("❌ Erro ao fechar o banco:", err.message);
-  else console.log("🌿 Conclusão: Banco fechado após seed.");
+  if (err) console.error('❌ Erro ao fechar banco após seed:', err.message);
+  else console.log('✅ Conexão do banco fechada após seed.');
 });

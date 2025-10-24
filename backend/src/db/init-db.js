@@ -2,35 +2,27 @@
 import sqlite3 from 'sqlite3';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Usa verbose para debug
-const sqlite = sqlite3.verbose();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Caminho do banco de dados
-const dbPath = path.resolve(
-  process.env.SQLITE_PATH_LOCAL || './src/db/wsmanager_local.db'
-);
+// Caminho absoluto do banco de dados (usando variável do .env ou fallback)
+const dbPath = path.resolve(process.env.SQLITE_PATH_LOCAL || path.join(__dirname, 'wsmanager_local.db'));
+
+// Diretório do banco
 const dirPath = path.dirname(dbPath);
 
-// ✅ Cria pasta do banco se não existir
+// ✅ Cria a pasta se não existir
 if (!fs.existsSync(dirPath)) {
   fs.mkdirSync(dirPath, { recursive: true });
-  console.log(`📁 Pasta criada: ${dirPath}`);
+  console.log(`📁 Pasta criada automaticamente: ${dirPath}`);
 }
 
-// ✅ Conecta/cria o banco
-const db = new sqlite.Database(dbPath, (err) => {
-  if (err) {
-    console.error('❌ Erro ao abrir o banco de dados:', err.message);
-    process.exit(1);
-  }
-  console.log('🗃️ Conexão com o banco de dados estabelecida.');
-});
-
-// Verifica permissões de leitura/escrita
+// ✅ Verifica permissões de leitura/escrita
 try {
   fs.accessSync(dirPath, fs.constants.R_OK | fs.constants.W_OK);
 } catch (err) {
@@ -38,7 +30,17 @@ try {
   process.exit(1);
 }
 
-// Criação das tabelas
+// ✅ Conecta/cria o banco
+const sqlite = sqlite3.verbose();
+const db = new sqlite.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+  if (err) {
+    console.error('❌ Erro ao abrir/criar banco:', err.message);
+    process.exit(1);
+  }
+  console.log('🗃️ Banco conectado/criado com sucesso em:', dbPath);
+});
+
+// ✅ Criação das tabelas
 db.serialize(() => {
   console.log('🚀 Criando todas as tabelas...');
 

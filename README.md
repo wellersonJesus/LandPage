@@ -150,7 +150,7 @@ Tabelas **SQLite**:
 cd /home/wellerson/Documentos/Projetos/WS-Manager/backend
 
 # Instale dependências
-npm install
+npm install cors morgan express dotenv sqlite3
 
 # Gere keys
 node src/utils/generate-keys.js
