@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "main": "server.js",
   "description": "Backend do projeto WS-Gestão",
   "author": "Wellerson Jesus",
   "type": "module",
