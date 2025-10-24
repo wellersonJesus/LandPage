@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 // Importar todas as rotas
 import empresaRoutes from './src/routes/empresaRoutes.js';
 import gestaoRoutes from './src/routes/gestaoRoutes.js';
-// import calendarioRoutes from './src/routes/calendarioRoutes.js';
+import calendarioRoutes from './src/routes/calendarioRoutes.js';
 // import emprestimoRoutes from './src/routes/emprestimoRoutes.js';
 // import lancamentoRoutes from './src/routes/lancamentoRoutes.js';
 // import manutencaoRoutes from './src/routes/manutencaoRoutes.js';
@@ -33,7 +33,7 @@ app.use(express.json());
 // Rotas
 app.use('/api/empresa', empresaRoutes);
 app.use('/api/gestao', gestaoRoutes);
-// app.use('/api/calendario', calendarioRoutes);
+app.use('/api/calendario', calendarioRoutes);
 // app.use('/api/emprestimo', emprestimoRoutes);
 // app.use('/api/lancamento', lancamentoRoutes);
 // app.use('/api/manutencao', manutencaoRoutes);
