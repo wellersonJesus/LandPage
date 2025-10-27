@@ -22,15 +22,15 @@ db.serialize(() => {
 
   // --- Conta ---
   const contas = [
-    ['Conta Principal', 'Banco XYZ', 'Corrente', 100000.00, '1234', '56789-0', 1],
-    ['Conta Secundária', 'Banco ABC', 'Poupança', 50000.00, '5678', '12345-6', 2],
-    ['Conta Investimento', 'Banco DEF', 'Investimento', 200000.00, '9101', '11223-4', 3]
+    ['Conta Principal', 'Banco XYZ', 'Corrente', 100000.00, '1234', '56789-0', 1, 1], // contrato_id = 1, dispositivo_id = 1
+    ['Conta Secundária', 'Banco ABC', 'Poupança', 50000.00, '5678', '12345-6', 2, 2],  // contrato_id = 2, dispositivo_id = 2
+    ['Conta Investimento', 'Banco DEF', 'Investimento', 200000.00, '9101', '11223-4', 3, 3] // contrato_id = 3, dispositivo_id = 3
   ];
 
   contas.forEach(params => {
     db.run(
-      `INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta, contrato_id)
-      VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta, contrato_id, dispositivo_id)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       params,
       (err) => { if (err) console.error('❌ Conta seed:', err.message); }
     );

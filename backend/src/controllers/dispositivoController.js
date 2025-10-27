@@ -55,3 +55,38 @@ export const deleteDispositivo = (req, res) => {
     res.json({ message: 'Dispositivo deletada com sucesso' });
   });
 };
+
+// Listar todas as contas de um dispositivo
+export const getContasByDispositivo = (req, res) => {
+  const { id } = req.params; // dispositivo_id
+  const sql = `SELECT * FROM conta WHERE dispositivo_id = ?`;
+  db.all(sql, [id], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+};
+
+// Criar conta vinculada a um dispositivo
+export const createContaByDispositivo = (req, res) => {
+  const { id } = req.params; // dispositivo_id
+  const { nome, banco, tipo, saldo, agencia, numero_conta, contrato_id } = req.body;
+
+  const sql = `INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta, contrato_id, dispositivo_id)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  const params = [nome, banco, tipo, saldo, agencia, numero_conta, contrato_id, id];
+
+  db.run(sql, params, function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({
+      id: this.lastID,
+      dispositivo_id: id,
+      nome,
+      banco,
+      tipo,
+      saldo,
+      agencia,
+      numero_conta,
+      contrato_id
+    });
+  });
+};

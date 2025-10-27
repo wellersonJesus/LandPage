@@ -56,10 +56,16 @@ export const deleteContrato = (req, res) => {
   });
 };
 
-// 🔹 Listar contas de um contrato
+// 🔹 Buscar contas vinculadas a um contrato
 export const getContasByContrato = (req, res) => {
-  const { id } = req.params;
-  const sql = `SELECT * FROM conta WHERE contrato_id = ?`;
+  const { id } = req.params; // contrato_id
+
+  const sql = `
+    SELECT *
+    FROM conta
+    WHERE contrato_id = ?
+  `;
+
   db.all(sql, [id], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
@@ -120,3 +126,4 @@ export const createInvestimentoByContrato = (req, res) => {
     });
   });
 };
+
