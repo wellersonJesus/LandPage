@@ -12,21 +12,23 @@ import {
   createInvestimentoByContrato
 } from '../controllers/contratoController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
 // Rotas CRUD de contratos
-router.get('/', getAllContratos);
-router.get('/:id', getContratoById);
-router.post('/', createContrato);
-router.put('/:id', updateContrato);
-router.delete('/:id', deleteContrato);
+router.get('/', verifyToken, getAllContratos);
+router.get('/:id', verifyToken, getContratoById);
+router.post('/', verifyToken, createContrato);
+router.put('/:id', verifyToken, updateContrato);
+router.delete('/:id', verifyToken, deleteContrato);
 
 // Subrotas: contas
-router.get('/:id/contas', getContasByContrato);
-router.post('/:id/contas', createContaByContrato);
+router.get('/:id/contas', verifyToken, getContasByContrato);
+router.post('/:id/contas', verifyToken, createContaByContrato);
 
 // Subrotas: investimentos
-router.get('/:id/investimentos', getInvestimentosByContrato);
-router.post('/:id/investimentos', createInvestimentoByContrato);
+router.get('/:id/investimentos', verifyToken, getInvestimentosByContrato);
+router.post('/:id/investimentos', verifyToken, createInvestimentoByContrato);
 
 export default router;

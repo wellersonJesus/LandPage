@@ -4,12 +4,16 @@ import {
   getAllContas, getContaById, createConta, updateConta, deleteConta
 } from '../controllers/contaController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
-router.get('/', getAllContas);
-router.get('/:id', getContaById);
-router.post('/', createConta);
-router.put('/:id', updateConta);
-router.delete('/:id', deleteConta);
+router.get('/', verifyToken, getAllContas);
+router.get('/:id', verifyToken, getContaById);
+router.post('/', verifyToken, createConta);
+router.put('/:id', verifyToken, updateConta);
+router.delete('/:id', verifyToken, deleteConta);
 
 export default router;
+
+

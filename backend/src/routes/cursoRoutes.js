@@ -4,12 +4,14 @@ import {
   getAllCursos, getCursoById, createCurso, updateCurso, deleteCurso
 } from '../controllers/cursoController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
-router.get('/', getAllCursos);
-router.get('/:id', getCursoById);
-router.post('/', createCurso);
-router.put('/:id', updateCurso);
-router.delete('/:id', deleteCurso);
+router.get('/', verifyToken, getAllCursos);
+router.get('/:id', verifyToken, getCursoById);
+router.post('/', verifyToken, createCurso);
+router.put('/:id', verifyToken, updateCurso);
+router.delete('/:id', verifyToken, deleteCurso);
 
 export default router;

@@ -60,6 +60,7 @@ WS Manager/
 ├─ backend/                             ← Node.js + SQLite
 │   ├─ src/
 │   │   ├─ controllers/                 ← Lógica de negócio (CRUD) por tabela
+│   │   │   ├─ authController.js
 │   │   │   ├─ empresaController.js
 │   │   │   ├─ gestaoController.js
 │   │   │   ├─ contratoController.js
@@ -102,7 +103,8 @@ WS Manager/
 │   │   │
 │   │   └─ utils/
 │   │       ├─ generate-keys.js          ← Gera keys a partir do .env
-│   │       └─ backup.js                 ← Backup incremental em JSON
+│   │       ├─ backup.js                 ← Backup incremental em JSON
+│   │       └─ authMiddleware.js
 │   │
 │   ├─ server.js                         ← Servidor Express
 │   └─ package.json
@@ -152,6 +154,9 @@ cd /home/wellerson/Documentos/Projetos/WS-Manager/backend
 
 # Instale dependências
 npm install cors morgan express dotenv sqlite3
+
+# Instalar dependências bcryptjs
+npm install jsonwebtoken bcryptjs
 
 # Gere keys
 node src/utils/generate-keys.js

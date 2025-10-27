@@ -45,6 +45,13 @@ db.serialize(() => {
   console.log('🚀 Criando todas as tabelas...');
 
   const tables = [
+    `CREATE TABLE IF NOT EXISTS usuario (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome TEXT NOT NULL,
+      email TEXT UNIQUE NOT NULL,
+      senha TEXT NOT NULL,
+      role TEXT NOT NULL
+    )`,
     `CREATE TABLE IF NOT EXISTS empresa (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,

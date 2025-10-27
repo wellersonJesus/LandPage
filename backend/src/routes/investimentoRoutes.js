@@ -4,12 +4,14 @@ import {
   getAllInvestimentos, getInvestimentoById, createInvestimento, updateInvestimento, deleteInvestimento
 } from '../controllers/investimentoController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
-router.get('/', getAllInvestimentos);
-router.get('/:id', getInvestimentoById);
-router.post('/', createInvestimento);
-router.put('/:id', updateInvestimento);
-router.delete('/:id', deleteInvestimento);
+router.get('/', verifyToken, getAllInvestimentos);
+router.get('/:id', verifyToken, getInvestimentoById);
+router.post('/', verifyToken, createInvestimento);
+router.put('/:id', verifyToken, updateInvestimento);
+router.delete('/:id', verifyToken, deleteInvestimento);
 
 export default router;

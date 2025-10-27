@@ -1,8 +1,34 @@
-// backend/src/db/seed-db.js
-import db from './dbConnection.js';
+  import dotenv from 'dotenv';
+  import bcrypt from 'bcryptjs';
+  import db from './dbConnection.js';
 
-db.serialize(() => {
-  console.log('🚀 Inserindo dados iniciais...');
+  dotenv.config({ override: true }); // Carrega o .env
+
+  db.serialize(() => {
+    console.log('🚀 Inserindo dados iniciais...');
+
+    // --- Usuários ---
+    const saltRounds = 10;
+
+    // Fallback de senha caso a variável do .env não exista
+    const adminRawPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    const userRawPassword = process.env.USER_PASSWORD || 'user123';
+
+    const adminSenha = bcrypt.hashSync(adminRawPassword, saltRounds);
+    const userSenha = bcrypt.hashSync(userRawPassword, saltRounds);
+
+    const usuarios = [
+      ['Administrador', process.env.ADMIN_EMAIL || 'admin@example.com', adminSenha, 'admin'],
+      ['Usuário Comum', process.env.USER_EMAIL || 'user@example.com', userSenha, 'user']
+    ];
+
+    usuarios.forEach(params => {
+      db.run(
+        `INSERT INTO usuario (nome, email, senha, role) VALUES (?, ?, ?, ?)`,
+        params,
+        (err) => { if (err) console.error('❌ Usuario seed:', err.message); }
+      );
+    });
 
   // --- Empresa ---
   const empresas = [

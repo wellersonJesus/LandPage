@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 
 // Importar todas as rotas
+import usuarioRoutes from './src/routes/usuarioRoutes.js';
 import empresaRoutes from './src/routes/empresaRoutes.js';
 import gestaoRoutes from './src/routes/gestaoRoutes.js';
 import calendarioRoutes from './src/routes/calendarioRoutes.js';
@@ -31,6 +32,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Rotas
+app.use('/api', usuarioRoutes);
 app.use('/api/empresa', empresaRoutes);
 app.use('/api/gestao', gestaoRoutes);
 app.use('/api/calendario', calendarioRoutes);
@@ -55,7 +57,7 @@ app.get('/api', (req, res) =>
   res.json({
     message: 'API WS-Manager rodando',
     endpoints: [
-      '/empresa', '/gestao', '/calendario', '/emprestimo', '/lancamento', '/manutencao',
+     `/auth`, '/empresa', '/gestao', '/calendario', '/emprestimo', '/lancamento', '/manutencao',
       '/conta', '/servidor', '/dispositivo', '/rede', '/contrato', '/skill', '/curso',
       '/plataforma', '/investimento'
     ]

@@ -4,12 +4,14 @@ import {
   getAllSkills, getSkillById, createSkill, updateSkill, deleteSkill
 } from '../controllers/skillController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
-router.get('/', getAllSkills);
-router.get('/:id', getSkillById);
-router.post('/', createSkill);
-router.put('/:id', updateSkill);
-router.delete('/:id', deleteSkill);
+router.get('/', verifyToken, getAllSkills);
+router.get('/:id', verifyToken, getSkillById);
+router.post('/', verifyToken, createSkill);
+router.put('/:id', verifyToken, updateSkill);
+router.delete('/:id', verifyToken, deleteSkill);
 
 export default router;

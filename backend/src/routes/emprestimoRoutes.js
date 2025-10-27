@@ -4,12 +4,14 @@ import {
   getAllEmprestimos, getEmprestimoById, createEmprestimo, updateEmprestimo, deleteEmprestimo
 } from '../controllers/emprestimoController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
-router.get('/', getAllEmprestimos);
-router.get('/:id', getEmprestimoById);
-router.post('/', createEmprestimo);
-router.put('/:id', updateEmprestimo);
-router.delete('/:id', deleteEmprestimo);
+router.get('/', verifyToken, getAllEmprestimos);
+router.get('/:id', verifyToken, getEmprestimoById);
+router.post('/', verifyToken, createEmprestimo);
+router.put('/:id', verifyToken, updateEmprestimo);
+router.delete('/:id', verifyToken, deleteEmprestimo);
 
 export default router;

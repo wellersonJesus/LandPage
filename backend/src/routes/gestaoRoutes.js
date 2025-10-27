@@ -9,17 +9,19 @@ import {
   createLancamentoByGestao
 } from '../controllers/gestaoController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
 // Rotas principais
-router.get('/', getAllGestao);
-router.get('/:id', getGestaoById);
-router.post('/', createGestao);
-router.put('/:id', updateGestao);
-router.delete('/:id', deleteGestao);
+router.get('/', verifyToken, getAllGestao);
+router.get('/:id', verifyToken, getGestaoById);
+router.post('/', verifyToken, createGestao);
+router.put('/:id', verifyToken, updateGestao);
+router.delete('/:id', verifyToken, deleteGestao);
 
 // 🔹 Rotas relacionais (Gestão -> Lançamentos)
-router.get('/:id/lancamentos', getLancamentosByGestao);
-router.post('/:id/lancamentos', createLancamentoByGestao);
+router.get('/:id/lancamentos', verifyToken, getLancamentosByGestao);
+router.post('/:id/lancamentos', verifyToken, createLancamentoByGestao);
 
 export default router;

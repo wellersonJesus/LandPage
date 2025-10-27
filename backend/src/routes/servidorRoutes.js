@@ -9,17 +9,19 @@ import {
   createPlataformaByServidor
 } from '../controllers/servidorController.js';
 
+import { verifyToken } from '../utils/authMiddleware.js'; // middleware JWT
+
 const router = express.Router();
 
 // Rotas padrão
-router.get('/', getAllServidores);
-router.get('/:id', getServidorById);
-router.post('/', createServidor);
-router.put('/:id', updateServidor);
-router.delete('/:id', deleteServidor);
+router.get('/', verifyToken, getAllServidores);
+router.get('/:id', verifyToken, getServidorById);
+router.post('/', verifyToken, createServidor);
+router.put('/:id', verifyToken, updateServidor);
+router.delete('/:id', verifyToken, deleteServidor);
 
 // Rotas relacionais
-router.get('/:id/plataformas', getPlataformasByServidor);
-router.post('/:id/plataformas', createPlataformaByServidor);
+router.get('/:id/plataformas', verifyToken, getPlataformasByServidor);
+router.post('/:id/plataformas', verifyToken, createPlataformaByServidor);
 
 export default router;
