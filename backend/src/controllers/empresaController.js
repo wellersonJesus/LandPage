@@ -55,3 +55,36 @@ export const deleteEmpresa = (req, res) => {
     res.json({ message: 'Empresa deletada com sucesso' });
   });
 };
+
+// 🔽 Listar todos os contratos de uma empresa
+export const getContratosByEmpresa = (req, res) => {
+  const { id } = req.params;
+  const sql = `SELECT * FROM contrato WHERE empresa_id = ?`;
+  db.all(sql, [id], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+};
+
+// 🔽 Criar novo contrato vinculado a uma empresa
+export const createContratoByEmpresa = (req, res) => {
+  const { id } = req.params; // empresa_id
+  const { descricao, valor, data_inicio, data_fim, status } = req.body;
+
+  const sql = `INSERT INTO contrato (empresa_id, descricao, valor, data_inicio, data_fim, status)
+               VALUES (?, ?, ?, ?, ?, ?)`;
+  const params = [id, descricao, valor, data_inicio, data_fim, status];
+
+  db.run(sql, params, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({
+      id: this.lastID,
+      empresa_id: id,
+      descricao,
+      valor,
+      data_inicio,
+      data_fim,
+      status
+    });
+  });
+};
