@@ -56,3 +56,4 @@ export const deleteInvestimento = (req, res) => {
     res.json({ message: 'Investimento deletada com sucesso' });
   });
 };
+

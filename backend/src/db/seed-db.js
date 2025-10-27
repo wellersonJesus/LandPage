@@ -22,14 +22,15 @@ db.serialize(() => {
 
   // --- Conta ---
   const contas = [
-    ['Conta Principal', 'Banco XYZ', 'Corrente', 100000.00, '1234', '56789-0'],
-    ['Conta Secundária', 'Banco ABC', 'Poupança', 50000.00, '5678', '12345-6'],
-    ['Conta Investimento', 'Banco DEF', 'Investimento', 200000.00, '9101', '11223-4']
+    ['Conta Principal', 'Banco XYZ', 'Corrente', 100000.00, '1234', '56789-0', 1],
+    ['Conta Secundária', 'Banco ABC', 'Poupança', 50000.00, '5678', '12345-6', 2],
+    ['Conta Investimento', 'Banco DEF', 'Investimento', 200000.00, '9101', '11223-4', 3]
   ];
 
   contas.forEach(params => {
     db.run(
-      `INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta) VALUES (?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO conta (nome, banco, tipo, saldo, agencia, numero_conta, contrato_id)
+      VALUES (?, ?, ?, ?, ?, ?, ?)`,
       params,
       (err) => { if (err) console.error('❌ Conta seed:', err.message); }
     );
@@ -228,15 +229,15 @@ db.serialize(() => {
 
   // --- Investimento ---
   const investimentos = [
-    ['Renda Fixa', 'Investimento Inicial', 10000, 500, '2025-10-24'],
-    ['Ações', 'Compra de ações', 20000, 2000, '2025-10-25'],
-    ['Fundo Imobiliário', 'Investimento FIIs', 15000, 1000, '2025-10-26']
+  [1, 'Renda Fixa', 'Investimento Inicial', 10000, 500, '2025-10-24'],
+  [2, 'Ações', 'Compra de ações', 20000, 2000, '2025-10-25'],
+  [3, 'Fundo Imobiliário', 'Investimento FIIs', 15000, 1000, '2025-10-26']
   ];
 
   investimentos.forEach(params => {
     db.run(
-      `INSERT INTO investimento (tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
-       VALUES (?, ?, ?, ?, ?)`,
+      `INSERT INTO investimento (contrato_id, tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
+      VALUES (?, ?, ?, ?, ?, ?)`,
       params,
       (err) => { if (err) console.error('❌ Investimento seed:', err.message); }
     );

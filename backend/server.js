@@ -41,7 +41,7 @@ app.use('/api/conta', contaRoutes);
 app.use('/api/servidor', servidorRoutes);
 app.use('/api/dispositivo', dispositivoRoutes);
 app.use('/api/rede', redeRoutes);
-app.use('/api/contrato', contratoRoutes);
+app.use('/api/contratos', contratoRoutes);
 app.use('/api/skill', skillRoutes);
 app.use('/api/curso', cursoRoutes);
 app.use('/api/plataforma', plataformaRoutes);

@@ -55,3 +55,68 @@ export const deleteContrato = (req, res) => {
     res.json({ message: 'Contrato deletada com sucesso' });
   });
 };
+
+// 🔹 Listar contas de um contrato
+export const getContasByContrato = (req, res) => {
+  const { id } = req.params;
+  const sql = `SELECT * FROM conta WHERE contrato_id = ?`;
+  db.all(sql, [id], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+};
+
+// 🔹 Criar conta vinculada ao contrato
+export const createContaByContrato = (req, res) => {
+  const { id } = req.params; // contrato_id
+  const { tipo, numero_conta, agencia, saldo } = req.body; // remove status
+
+  const sql = `INSERT INTO conta (contrato_id, tipo, numero_conta, agencia, saldo)
+               VALUES (?, ?, ?, ?, ?)`;
+  const params = [id, tipo, numero_conta, agencia, saldo]; // só 5 parâmetros
+
+  db.run(sql, params, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({
+      id: this.lastID,
+      contrato_id: id,
+      tipo,
+      numero_conta,
+      agencia,
+      saldo
+    });
+  });
+};
+
+// 🔹 Listar investimentos de um contrato
+export const getInvestimentosByContrato = (req, res) => {
+  const { id } = req.params;
+  const sql = `SELECT * FROM investimento WHERE contrato_id = ?`;
+  db.all(sql, [id], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+};
+
+// 🔹 Criar investimento vinculado ao contrato
+export const createInvestimentoByContrato = (req, res) => {
+  const { id } = req.params; // contrato_id
+  const { tipo, descricao, valor_aplicado, rendimento, data_aplicacao } = req.body;
+  
+  const sql = `INSERT INTO investimento (contrato_id, tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
+               VALUES (?, ?, ?, ?, ?, ?)`;
+  const params = [id, tipo, descricao, valor_aplicado, rendimento, data_aplicacao];
+  
+  db.run(sql, params, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({
+      id: this.lastID,
+      contrato_id: id,
+      tipo,
+      descricao,
+      valor_aplicado,
+      rendimento,
+      data_aplicacao
+    });
+  });
+};

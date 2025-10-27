@@ -64,7 +64,9 @@ db.serialize(() => {
       tipo TEXT,
       saldo REAL,
       agencia TEXT,
-      numero_conta TEXT
+      numero_conta TEXT,
+      contrato_id INTEGER,                     -- 🔹 nova coluna relacional
+      FOREIGN KEY (contrato_id) REFERENCES contrato(id)
     )`,
     `CREATE TABLE IF NOT EXISTS gestao (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -178,7 +180,9 @@ db.serialize(() => {
       descricao TEXT,
       valor_aplicado REAL,
       rendimento REAL,
-      data_aplicacao DATE
+      data_aplicacao DATE,
+      contrato_id INTEGER,          -- 🔹 nova coluna relacional
+      FOREIGN KEY (contrato_id) REFERENCES contrato(id)
     )`
   ];
 
