@@ -55,3 +55,37 @@ export const deleteGestao = (req, res) => {
     res.json({ message: 'Gestão deletada com sucesso' });
   });
 };
+
+// 🔹 Listar lançamentos vinculados a uma gestão específica
+export const getLancamentosByGestao = (req, res) => {
+  const { id } = req.params; // id da gestão
+  const sql = `SELECT * FROM lancamento WHERE gestao_id = ?`;
+  db.all(sql, [id], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (rows.length === 0) return res.status(404).json({ message: 'Nenhum lançamento encontrado para esta gestão' });
+    res.json(rows);
+  });
+};
+
+// 🔹 Criar lançamento vinculado à gestão
+export const createLancamentoByGestao = (req, res) => {
+  const { id } = req.params; // gestao_id
+  const { tipo, descricao, valor, data, categoria } = req.body;
+
+  const sql = `INSERT INTO lancamento (gestao_id, tipo, descricao, valor, data, categoria)
+               VALUES (?, ?, ?, ?, ?, ?)`;
+  const params = [id, tipo, descricao, valor, data, categoria];
+
+  db.run(sql, params, function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({
+      id: this.lastID,
+      gestao_id: id,
+      tipo,
+      descricao,
+      valor,
+      data,
+      categoria
+    });
+  });
+};

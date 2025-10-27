@@ -107,7 +107,10 @@ db.serialize(() => {
       valor REAL,
       categoria TEXT,
       conta_id INTEGER,
-      FOREIGN KEY (conta_id) REFERENCES conta(id)
+      gestao_id INTEGER,                        -- 🔹 novo relacionamento com gestão
+      FOREIGN KEY (conta_id) REFERENCES conta(id),
+      FOREIGN KEY (gestao_id) REFERENCES gestao(id)
+    );
     )`,
     `CREATE TABLE IF NOT EXISTS manutencao (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -85,15 +85,16 @@ db.serialize(() => {
 
   // --- Lancamento ---
   const lancamentos = [
-    ['2025-10-24', 'Venda Produto X', 'Receita', 2000, 'Vendas', 1],
-    ['2025-10-25', 'Compra Materiais', 'Despesa', 500, 'Suprimentos', 2],
-    ['2025-10-26', 'Serviço contratado', 'Receita', 3000, 'Serviços', 3]
+    // data, descricao, tipo, valor, categoria, conta_id, gestao_id
+    ['2025-10-24', 'Venda Produto X', 'Receita', 2000, 'Vendas', 1, 1],
+    ['2025-10-25', 'Compra Materiais', 'Despesa', 500, 'Suprimentos', 2, 1],
+    ['2025-10-26', 'Serviço contratado', 'Receita', 3000, 'Serviços', 3, 2]
   ];
 
   lancamentos.forEach(params => {
     db.run(
-      `INSERT INTO lancamento (data, descricao, tipo, valor, categoria, conta_id)
-       VALUES (?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO lancamento (data, descricao, tipo, valor, categoria, conta_id, gestao_id)
+      VALUES (?, ?, ?, ?, ?, ?, ?)`,
       params,
       (err) => { if (err) console.error('❌ Lancamento seed:', err.message); }
     );
