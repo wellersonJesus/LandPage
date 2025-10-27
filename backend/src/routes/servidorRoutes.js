@@ -1,15 +1,25 @@
-// backend/src/routes/ServidorRoutes.js
 import express from 'express';
 import { 
-  getAllServidors, getServidorById, createServidor, updateServidor, deleteServidor
+  getAllServidores,
+  getServidorById,
+  createServidor,
+  updateServidor,
+  deleteServidor,
+  getPlataformasByServidor,
+  createPlataformaByServidor
 } from '../controllers/servidorController.js';
 
 const router = express.Router();
 
-router.get('/', getAllServidors);
+// Rotas padrão
+router.get('/', getAllServidores);
 router.get('/:id', getServidorById);
 router.post('/', createServidor);
 router.put('/:id', updateServidor);
 router.delete('/:id', deleteServidor);
+
+// Rotas relacionais
+router.get('/:id/plataformas', getPlataformasByServidor);
+router.post('/:id/plataformas', createPlataformaByServidor);
 
 export default router;

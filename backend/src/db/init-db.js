@@ -188,7 +188,14 @@ db.serialize(() => {
       data_aplicacao DATE,
       contrato_id INTEGER,          -- 🔹 nova coluna relacional
       FOREIGN KEY (contrato_id) REFERENCES contrato(id)
-    )`
+    )`,
+    `CREATE TABLE IF NOT EXISTS servidor_plataforma (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      servidor_id INTEGER,
+      plataforma_id INTEGER,
+      FOREIGN KEY (servidor_id) REFERENCES servidor(id),
+      FOREIGN KEY (plataforma_id) REFERENCES plataforma(id)
+    )`  
   ];
 
   tables.forEach(sql => db.run(sql, (err) => {

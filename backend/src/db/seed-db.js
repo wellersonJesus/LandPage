@@ -245,6 +245,22 @@ db.serialize(() => {
   });
 
   console.log('✅ Todos os dados seed inseridos com sucesso!');
+
+  // --- Servidor_Plataforma ---
+  const servidorPlataformas = [
+    [1, 1], // Servidor 1 → Plataforma 1 (Udemy)
+    [1, 2], // Servidor 1 → Plataforma 2 (Coursera)
+    [2, 3], // Servidor 2 → Plataforma 3 (edX)
+    [3, 1]  // Servidor 3 → Plataforma 1 (Udemy)
+  ];
+
+  servidorPlataformas.forEach(params => {
+    db.run(
+      `INSERT INTO servidor_plataforma (servidor_id, plataforma_id) VALUES (?, ?)`,
+      params,
+      (err) => { if (err) console.error('❌ Servidor_Plataforma seed:', err.message); }
+    );
+  });
 });
 
 // Fecha conexão
