@@ -46,6 +46,7 @@ app.use(cookieParser());              // Parse cookies
 
 // --- Rotas da API ---
 app.use('/api', usuarioRoutes);
+app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/empresa', empresaRoutes);
 app.use('/api/gestao', gestaoRoutes);
 app.use('/api/calendario', calendarioRoutes);
