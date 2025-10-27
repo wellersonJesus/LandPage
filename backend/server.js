@@ -17,7 +17,7 @@ import dispositivoRoutes from './src/routes/dispositivoRoutes.js';
 import redeRoutes from './src/routes/redeRoutes.js';
 import contratoRoutes from './src/routes/contratoRoutes.js';
 import skillRoutes from './src/routes/skillRoutes.js';
-// import cursoRoutes from './src/routes/cursoRoutes.js';
+import cursoRoutes from './src/routes/cursoRoutes.js';
 // import plataformaRoutes from './src/routes/plataformaRoutes.js';
 // import investimentoRoutes from './src/routes/investimentoRoutes.js';
 
@@ -43,7 +43,7 @@ app.use('/api/dispositivo', dispositivoRoutes);
 app.use('/api/rede', redeRoutes);
 app.use('/api/contrato', contratoRoutes);
 app.use('/api/skill', skillRoutes);
-// app.use('/api/curso', cursoRoutes);
+app.use('/api/curso', cursoRoutes);
 // app.use('/api/plataforma', plataformaRoutes);
 // app.use('/api/investimento', investimentoRoutes);
 
