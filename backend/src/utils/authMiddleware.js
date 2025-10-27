@@ -1,16 +1,23 @@
+// src/middleware/authMiddleware.js
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-export const verifyToken = (req, res, next) => {
-  // lê do cookie ou header Authorization
-  const token = req.cookies?.[process.env.JWT_COOKIE_NAME] || req.headers['authorization']?.split(' ')[1];
+/**
+ * Middleware de autenticação via JWT (Bearer Token)
+ */
+export function verifyToken(req, res, next) {
+  try {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) return res.status(401).json({ error: 'Token não fornecido' });
 
-  if (!token) return res.status(401).json({ error: 'Token não fornecido' });
+    const token = authHeader.split(' ')[1]; // remove "Bearer "
+    if (!token) return res.status(401).json({ error: 'Formato de token inválido' });
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403).json({ error: 'Token inválido ou expirado' });
-    req.user = user;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // salva os dados do usuário logado no request
     next();
-  });
-};
+  } catch (err) {
+    return res.status(403).json({ error: 'Token inválido ou expirado' });
+  }
+}
