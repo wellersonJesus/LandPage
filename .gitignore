@@ -1,31 +1,98 @@
-# Node.js
+##############################################
+# 🟢 NODE.JS / BACKEND
+##############################################
 node_modules/
-npm-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-error.log*
+package-lock.json
 
-# Angular / Front-end
+# Build e cache
 dist/
-out-tsc/
-.angular/
+out/
+.tmp/
+.cache/
+logs/
 *.log
 
 # SQLite
-backend/src/db/database.sqlite
+backend/src/db/*.sqlite
+backend/src/db/wsmanager_local.db
 backend/src/db/DATABASE_SCHEMA.md
 
-# Environment variables
+# Arquivos de build e chaves internas
+backend/src/utils/keys.js
+
+##############################################
+# 🔵 ANGULAR / FRONTEND
+##############################################
+# Compilação e cache
+dist/
+out-tsc/
+.angular/
+coverage/
+*.log
+
+# Arquivos temporários de build
+frontend/dist/
+frontend/out-tsc/
+frontend/.angular/
+
+# Dependências
+frontend/node_modules/
+
+# Ambiente
+frontend/.env
+frontend/*.env
+
+##############################################
+# 🟣 VARIÁVEIS DE AMBIENTE
+##############################################
 .env
 *.env
+.env.local
+.env.production
+.env.development
 
-# IDEs / Editor
+##############################################
+# 🟠 EDITORES / IDEs
+##############################################
 .vscode/
 .idea/
 *.sublime-project
 *.sublime-workspace
+*.swp
+*.swo
 
-# OS Files
+##############################################
+# ⚪ SISTEMA OPERACIONAL
+##############################################
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Outros arquivos sensíveis
+##############################################
+# 🔴 OUTROS ARQUIVOS SENSÍVEIS
+##############################################
+# Tokens, certificados e segredos
 keys.js
+*.pem
+*.key
+*.crt
+*.p12
+*.keystore
+
+# Backups / dumps
+*.bak
+*.sql
+*.tar
+*.zip
+*.gz
+
+##############################################
+# ⚙️ GITLAB / RENDER ESPECÍFICOS
+##############################################
+# GitLab CI cache
+.gitlab-ci.yml~
+.cache/
+tmp/
+render.yaml

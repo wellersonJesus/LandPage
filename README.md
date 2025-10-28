@@ -30,32 +30,27 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 <summary>📂 Clique aqui para expandir a Estrutura Completa do Projeto</summary>
 
 ```bash
-WS Manager/
-├─ frontend/                   ← Angular + Bootstrap (Hospedagem: GitLab Pages)
-│   ├─ src/
-│   │   ├─ app/
-│   │   │   ├─ components/
-│   │   │   │    └─ login/
-│   │   │   │        ├─ login.component.html
-│   │   │   │        └─ login.component.ts
-│   │   │   ├─ services/
-│   │   │   │    └─ auth.service.ts      ← Consome API para login
-│   │   │   ├─ app.component.html
-│   │   │   ├─ app.component.css
-│   │   │   └─ app.module.ts
-│   │   ├─ assets/
-│   │   │   ├─ img/
-│   │   │   └─ styles/
-│   │   │       └─ main.css
-│   │   ├─ environments/
-│   │   │   ├─ environment.ts
-│   │   │   └─ environment.prod.ts
-│   │   ├─ index.html
-│   │   ├─ main.ts
-│   │   ├─ polyfills.ts
-│   │   └─ tsconfig.app.json
-│   ├─ angular.json
-│   └─ package.json
+WS-Manager/
+├─ frontend/
+│    ├─ .angular/
+│    ├─ node_modules/
+│    ├─ src/
+│    │   ├─ app/
+│    │   ├─ assets/
+│    │   ├─ environments/
+│    │   ├─ index.html
+│    │   ├─ main.ts
+│    │   ├─ polyfills.ts
+│    │   └─ tsconfig.app.json
+│    ├─ .editorconfig
+│    ├─ .gitignore
+│    ├─ angular.json
+│    ├─ package.json
+│    ├─ package-lock.json
+│    ├─ README.md
+│    ├─ tsconfig.json
+│    ├─ tsconfig.spec.json
+│    └─ .vscode/
 │
 ├─ backend/                             ← Node.js + SQLite
 │   ├─ src/
@@ -170,15 +165,30 @@ npm start
 </details>
 
 <details>
-<summary>🌍 inicialização frontend ...</summary>
+<summary>📝 Frontend Angular - Node 22 - Angular 20</summary>
 
 ```bash
-# 1️⃣ Entre na pasta do frontend e instale dependências
-cd ../frontend
-npm install
+cd ~/Documentos/Projetos/WS-Manager
 
-# 2️⃣ Rode a aplicação Angular na porta padrão (4200)
-npm start
+# 1️⃣ Remover dependências antigas e cache do npm
+rm -rf frontend/node_modules
+npm cache clean --force
+
+# 2️⃣ Renomeie a pasta corrompida para backup
+mv frontend frontend_backup
+
+# 3️⃣ Crie um frontend Angular 16 limpo
+npx @angular/cli@16 new frontend --routing --style=scss --skip-install
+
+# 4️⃣ Entre na pasta do frontend
+cd frontend
+
+# 5️⃣ Instale dependências e bibliotecas compatíveis
+npm install --legacy-peer-deps
+npm install bootstrap ngx-bootstrap@10.2.0 --legacy-peer-deps
+
+# 6️⃣ Rodar servidor Angular e abrir no navegador
+npx ng serve --open
 ```
 </details>
 
