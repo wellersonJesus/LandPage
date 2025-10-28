@@ -126,21 +126,27 @@ O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em
 Tabelas **SQLite**:
 
 ```bash
-1 empresa  
-2 gestao  
-3 calendario  
-4 emprestimo  
-5 lancamento  
-6 manutencao  
-7 conta  
-8 servidor  
-9 dispositivo  
-10 rede  
-11 contrato  
-12 skill  
-13 curso  
-14 plataforma  
-15 investimento  
+ws-manager
+├─ contrato
+│  ├─ lancamento
+│  │  └─ conta
+│  │     ├─ investimento
+│  │     └─ emprestimo
+│  ├─ gestao
+│  │  ├─ skill
+│  │  ├─ curso
+│  │  └─ plataforma
+│  │     └─ servidor
+│  └─ contrato_plataforma
+│     ├─ plataforma
+│     └─ servidor
+├─ conta
+│  ├─ lancamento
+│  ├─ investimento
+│  └─ emprestimo
+└─ dispositivo
+   ├─ manutencao
+   └─ emprestimo
 ```
 
 ```bash
