@@ -36,8 +36,53 @@ WS-Manager/
 │    ├─ node_modules/
 │    ├─ src/
 │    │   ├─ app/
+│    │   │   ├─ components/
+│    │   │   │   ├─ login/
+│    │   │   │   │   ├─ login.component.html
+│    │   │   │   │   ├─ login.component.ts
+│    │   │   │   │   └─ login.component.scss
+│    │   │   │   ├─ dashboard/
+│    │   │   │   │   ├─ dashboard.component.html
+│    │   │   │   │   ├─ dashboard.component.ts
+│    │   │   │   │   └─ dashboard.component.scss
+│    │   │   │   ├─ contrato/
+│    │   │   │   │   ├─ contrato.component.html
+│    │   │   │   │   ├─ contrato.component.ts
+│    │   │   │   │   ├─ contrato.component.scss
+│    │   │   │   │   └─ modals/
+│    │   │   │   │       ├─ contrato-detalhe.modal.html
+│    │   │   │   │       └─ contrato-detalhe.modal.ts
+│    │   │   │   ├─ conta/
+│    │   │   │   │   ├─ conta.component.html
+│    │   │   │   │   ├─ conta.component.ts
+│    │   │   │   │   ├─ conta.component.scss
+│    │   │   │   │   └─ modals/
+│    │   │   │   │       ├─ lancamento.modal.html
+│    │   │   │   │       ├─ investimento.modal.html
+│    │   │   │   │       └─ emprestimo.modal.html
+│    │   │   │   ├─ dispositivo/
+│    │   │   │   │   ├─ dispositivo.component.html
+│    │   │   │   │   ├─ dispositivo.component.ts
+│    │   │   │   │   ├─ dispositivo.component.scss
+│    │   │   │   │   └─ modals/
+│    │   │   │   │       ├─ manutencao.modal.html
+│    │   │   │   │       └─ emprestimo.modal.html
+│    │   │   │   └─ modals/                   ← modais globais ou reutilizáveis
+│    │   │   │       ├─ confirmacao.modal.html
+│    │   │   │       └─ filtro.modal.html
+│    │   │   ├─ services/
+│    │   │   │   ├─ auth.service.ts
+│    │   │   │   ├─ auth.guard.ts
+│    │   │   │   └─ auth.interceptor.ts
+│    │   │   ├─ app.module.ts
+│    │   │   └─ app-routing.module.ts
 │    │   ├─ assets/
+│    │   │   ├─ img/
+│    │   │   └─ styles/
+│    │   │       └─ main.scss
 │    │   ├─ environments/
+│    │   │   ├─ environment.ts
+│    │   │   └─ environment.prod.ts
 │    │   ├─ index.html
 │    │   ├─ main.ts
 │    │   ├─ polyfills.ts
