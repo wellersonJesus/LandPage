@@ -149,22 +149,22 @@ Tabelas **SQLite**:
 ```
 
 ```bash
-# Entre na pasta backend
+# 1️⃣ Entre na pasta backend
 cd /home/wellerson/Documentos/Projetos/WS-Manager/backend
 
-# Instale dependências
+# 2️⃣ Instale as dependências principais do servidor
 npm install cors morgan express dotenv sqlite3 cookie-parser dotenv
 
-# Instalar dependências bcryptjs
+# 3️⃣ Instale as dependências de autenticação (JWT e criptografia)
 npm install jsonwebtoken bcryptjs
 
-# Gere keys
+# 4️⃣ Gere as chaves (keys.js) usadas para assinar/verificar tokens JWT
 node src/utils/generate-keys.js
 
-# Crie as tabelas e popule
+# 5️⃣ Crie as tabelas do banco e insira dados iniciais
 node src/db/init-db.js && node src/db/seed-db.js
 
-# Inicie o servidor
+# 6️⃣ Inicie o servidor Node.js
 npm start
 ```
 </details>
@@ -182,6 +182,22 @@ npm start
 ```
 </details>
 
+<details>
+<summary>🌍 Servidor Render ...</summary>
+
+```bash
+# 1️⃣ Root Directory
+backend
+
+# 2️⃣ Start Command
+npm start
+
+# 3️⃣ Environment Variables
+JWT_COOKIE_NAME • • • • • • • • • • • •
+JWT_EXPIRES_IN  • • • • • • • • • • • •
+JWT_SECRET      • • • • • • • • • • • •
+```
+</details>
 ---
 
 <div align="center">
