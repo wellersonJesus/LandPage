@@ -100,6 +100,7 @@ WS-Manager/
 │   │   │   ├── app.config.server.ts
 │   │   │   ├── app.routes.ts
 │   │   │   └── app.routes.server.ts
+│   │   │
 │   │   ├── assets/
 │   │   │   └── logo.svg
 │   │   ├── index.html            # HTML principal
