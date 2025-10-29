@@ -1,0 +1,69 @@
+.navbar {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff !important;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 20px;
+}
+
+.glass-btn {
+  background: rgba(0, 123, 255, 0.1);
+  border: 1px solid rgba(0, 123, 255, 0.4);
+  color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(0, 123, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.dropdown-menu {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item:hover {
+  background-color: #e9ecef;
+}
+
+/* Ajuste do dropdown para abrir mais abaixo */
+.dropdown-menu.custom-dropdown {
+  margin-top: 15px; /* Espaço entre o botão e o menu */
+  top: auto !important; /* Garante que o top não seja sobrescrito pelo Bootstrap */
+}
+
+/* Se quiser também adicionar uma leve sombra e borda arredondada */
+.dropdown-menu.custom-dropdown {
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  min-width: 160px; /* largura mínima do menu */
+}
+
+/* Opcional: animação suave ao abrir */
+.dropdown-menu.custom-dropdown.show {
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

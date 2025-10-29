@@ -1,65 +1,65 @@
-<div class="container mt-3">
-  <div class="row">
-    <div class="col">
-      <h2>Exemplo de componentes</h2>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Ação 1</a>
-          <a class="dropdown-item" href="#">Ação 2</a>
-          <a class="dropdown-item" href="#">Ação 3</a>
-        </div>
+<!-- HEADER -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 py-3">
+  <div class="container-fluid d-flex align-items-center justify-content-center">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center me-4" href="#">
+      <img src="public/logo.svg" alt="WS-Manager Logo" width="48" height="48" class="me-2 d-none">
+      <span class="fw-bold text-dark fs-5">WS-Manager</span>
+    </a>
+
+    <!-- Links de navegação -->
+    <ul class="navbar-nav mx-auto d-flex align-items-center gap-4">
+      <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#">Contrato</a></li>
+      <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#">Gestão</a></li>
+      <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#">Conta</a></li>
+      <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#">Dispositivo</a></li>
+    </ul>
+
+    <!-- DropDown e Botão -->
+    <div class="d-flex align-items-center gap-4">
+      <!-- Dropdown -->
+      <div class="dropdown dropdown-left-adjust" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+        <a href="#" class="nav-link p-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="74" height="24" fill="currentColor"
+            class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67" />
+          </svg>
+        </a>
+
+        <ul class="dropdown-menu shadow-sm custom-dropdown" [class.show]="dropdownOpen">
+          <li><a class="dropdown-item" href="#">Opção A</a></li>
+          <li><a class="dropdown-item" href="#">Opção B</a></li>
+          <li><a class="dropdown-item" href="#">Opção C</a></li>
+          <li><a class="dropdown-item" href="#">Opção D</a></li>
+        </ul>
       </div>
+
+      <!-- Botão Business Sign-In -->
+      <button class="btn btn-primary glass-btn d-flex align-items-center gap-2" (click)="goToDashboard()">
+        Business Sign-In
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
+          color="#007bff" class="">
+          <path stroke="#007bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"></path>
+          <path stroke="#007bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m13 8 4 4-4 4"></path>
+        </svg>
+      </button>
     </div>
   </div>
+</nav>
 
-  <div class="row mt-1">
-    <div class="col">
-      <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Exemplo de alerta</strong> o botão de fechar funciona.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
-  </div>
+<!-- BODY -->
+<main class="container text-center my-5">
+  <h1 class="display-4 fw-bold text-dark">Bem-vindo ao WS-Manager</h1>
+  <p class="lead mt-3 text-secondary">
+    Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.
+  </p>
+  <button class="btn btn-outline-primary mt-4" (click)="goToDashboard()">Acessar Dashboard</button>
+</main>
 
-  <div class="row mt-5">
-    <div class="col">
-      <h2>Exemplo de formulário</h2>
-      <form>
-        <div class="form-group">
-          <label>Texto</label>
-          <input type="text" class="form-control" placeholder="Placeholder campo texto">
-        </div>
-
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input">
-          <label class="form-check-label">Checkbox</label>
-        </div>
-
-        <div class="form-group">
-          <label>Combobox</label>
-          <select class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Textarea</label>
-          <textarea class="form-control" rows="3"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <button type="submit" class="btn btn-default ml-2">Cancelar</button>
-      </form>
-    </div>
-  </div>
-</div>
+<!-- FOOTER -->
+<footer class="bg-light text-center text-dark py-4 mt-auto">
+  <small>&copy; 2025 WS-Manager. Todos os direitos reservados.</small>
+</footer>
