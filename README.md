@@ -216,7 +216,7 @@ npm start
 </details>
 
 <details>
-<summary>📝 Frontend Angular 19</summary>
+<summary>📝 Frontend Angular CLI: 18.2.21</summary>
 
 ```bash
 # 1️⃣ Acessar o diretório do projeto
@@ -232,8 +232,9 @@ sudo npm -v install -g angular/cli
 # 4️⃣  Criar aplicacao
 npx @angular/cli@19 new frontend --routing --style=scss
 
-# 5️⃣ acesse a pasta do backend
+# 5️⃣ acesse a pasta do backend e exibe versao instalado
 cd frontend
+ng version
 
 # 6️⃣ Rodar o servidor local e abrir no navegador
 npx ng serve --open
