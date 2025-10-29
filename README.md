@@ -232,11 +232,13 @@ sudo npm -v install -g angular/cli
 # 4️⃣  Criar aplicacao
 npx @angular/cli@19 new frontend --routing --style=scss
 
-# 5️⃣  Rodar o servidor local e abrir no navegador
+# 5️⃣ acesse a pasta do backend
 cd frontend
+
+# 6️⃣ Rodar o servidor local e abrir no navegador
 npx ng serve --open
 
-# 6️⃣  Criar novos módulos, organiza e agrupa componentes, serviços e rotas. 
+# Criar novos módulos, organiza e agrupa componentes, serviços e rotas. 
 npx ng generate module nome-modulo --routing 
 
 # onstrói a interface visual do app.
