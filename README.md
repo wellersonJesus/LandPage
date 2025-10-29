@@ -31,91 +31,89 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ```bash
 WS-Manager/
-   ├─ backend/                             ← Node.js + SQLite
-   │   ├─ src/
-   │   │   ├─ controllers/                 ← Lógica de negócio (CRUD) por tabela
-   │   │   │   ├─ authController.js
-   │   │   │   ├─ empresaController.js
-   │   │   │   ├─ gestaoController.js
-   │   │   │   ├─ contratoController.js
-   │   │   │   ├─ lancamentoController.js
-   │   │   │   ├─ manutencaoController.js
-   │   │   │   ├─ contaController.js
-   │   │   │   ├─ servidorController.js
-   │   │   │   ├─ dispositivoController.js
-   │   │   │   ├─ redeController.js
-   │   │   │   ├─ skillController.js
-   │   │   │   ├─ cursoController.js
-   │   │   │   ├─ plataformaController.js
-   │   │   │   ├─ investimentoController.js
-   │   │   │   ├─ calendarioController.js
-   │   │   │   └─ emprestimoController.js
-   │   │   │
-   │   │   ├─ routes/                      ← Rotas por tabela
-   │   │   │   ├─ empresaRoutes.js
-   │   │   │   ├─ gestaoRoutes.js
-   │   │   │   ├─ contratoRoutes.js
-   │   │   │   ├─ lancamentoRoutes.js
-   │   │   │   ├─ manutencaoRoutes.js
-   │   │   │   ├─ contaRoutes.js
-   │   │   │   ├─ servidorRoutes.js
-   │   │   │   ├─ dispositivoRoutes.js
-   │   │   │   ├─ redeRoutes.js
-   │   │   │   ├─ skillRoutes.js
-   │   │   │   ├─ cursoRoutes.js
-   │   │   │   ├─ plataformaRoutes.js
-   │   │   │   ├─ investimentoRoutes.js
-   │   │   │   ├─ calendarioRoutes.js
-   │   │   │   └─ emprestimoRoutes.js
-   │   │   │
-   │   │   ├─ db/                           
-   │   │   │   ├── DATABASE_SCHEMA.md       ← Documentação do schema 
-   │   │   │   ├── dbConnection.js          ← Banco de dados e scripts
-   │   │   │   ├── init-db.js               ← Criação e estrutura do DB 
-   │   │   │   ├── seed-db.js               ← População inicial de dados 
-   │   │   │   └── wsmanager_local.db       ← Banco criado 
-   │   │   │
-   │   │   └─ utils/
-   │   │       ├─ generate-keys.js          ← Gera keys a partir do .env
-   │   │       ├─ backup.js                 ← Backup incremental em JSON
-   │   │       └─ authMiddleware.js
-   │   │
-   │   ├─ server.js                         ← Servidor Express
-   │   └─ package.json
-   │
-   ├─ .env                                  ← Configurações, credenciais e paths
-   ├─ .gitignore
-   ├─ README.md
-   │
-   └── frontend/
-   │      ├── .angular/                 # Configurações internas do Angular
-   │      ├── .editorconfig             # Configuração de formatação do editor
-   │      ├── .gitignore                # Arquivos ignorados pelo Git
-   │      ├── node_modules/             # Dependências instaladas via npm
-   │      ├── public/                   # Arquivos públicos (ex.: favicon)
-   │      │   └── favicon.ico
-   │      ├── src/                      # Código-fonte da aplicação
-   │      │   ├── app/                  # Componentes, módulos e lógica do Angular
-   │      │   │   ├── app.component.ts
-   │      │   │   ├── app.component.html
-   │      │   │   ├── app.component.scss
-   │      │   │   ├── app.component.spec.ts
-   │      │   │   ├── app.config.ts
-   │      │   │   ├── app.config.server.ts
-   │      │   │   ├── app.routes.ts
-   │      │   │   └── app.routes.server.ts
-   │      │   ├── index.html            # HTML principal
-   │      │   ├── main.ts               # Entry point do Angular
-   │      │   └── main.server.ts        # Entry point para server-side rendering
-   │      ├── angular.json              # Configuração do Angular CLI
-   │      ├── package.json              # Dependências e scripts npm
-   │      ├── package-lock.json         # Lock das versões das dependências
-   │      ├── README.md                 # Documentação do projeto
-   │      ├── tsconfig.json             # Configuração TypeScript global
-   │      ├── tsconfig.app.json         # Configuração TypeScript do app
-   │      ├── tsconfig.spec.json        # Configuração TypeScript para testes
-   │      └── .vscode/                  # Configurações do VSCode
-   └──
+├── 🟦 backend/                        ← Node.js + SQLite
+│   ├─ src/
+│   │   ├─ controllers/                ← Lógica de negócio (CRUD) por tabela
+│   │   │   ├─ authController.js
+│   │   │   ├─ empresaController.js
+│   │   │   ├─ gestaoController.js
+│   │   │   ├─ contratoController.js
+│   │   │   ├─ lancamentoController.js
+│   │   │   ├─ manutencaoController.js
+│   │   │   ├─ contaController.js
+│   │   │   ├─ servidorController.js
+│   │   │   ├─ dispositivoController.js
+│   │   │   ├─ redeController.js
+│   │   │   ├─ skillController.js
+│   │   │   ├─ cursoController.js
+│   │   │   ├─ plataformaController.js
+│   │   │   ├─ investimentoController.js
+│   │   │   ├─ calendarioController.js
+│   │   │   └─ emprestimoController.js
+│   │   │
+│   │   ├─ routes/                     ← Rotas por tabela
+│   │   │   ├─ empresaRoutes.js
+│   │   │   ├─ gestaoRoutes.js
+│   │   │   ├─ contratoRoutes.js
+│   │   │   ├─ lancamentoRoutes.js
+│   │   │   ├─ manutencaoRoutes.js
+│   │   │   ├─ contaRoutes.js
+│   │   │   ├─ servidorRoutes.js
+│   │   │   ├─ dispositivoRoutes.js
+│   │   │   ├─ redeRoutes.js
+│   │   │   ├─ skillRoutes.js
+│   │   │   ├─ cursoRoutes.js
+│   │   │   ├─ plataformaRoutes.js
+│   │   │   ├─ investimentoRoutes.js
+│   │   │   ├─ calendarioRoutes.js
+│   │   │   └─ emprestimoRoutes.js
+│   │   │
+│   │   ├─ db/
+│   │   │   ├── DATABASE_SCHEMA.md       ← Documentação do schema 
+│   │   │   ├── dbConnection.js          ← Banco de dados e scripts
+│   │   │   ├── init-db.js               ← Criação e estrutura do DB 
+│   │   │   ├── seed-db.js               ← População inicial de dados 
+│   │   │   └── wsmanager_local.db       ← Banco criado 
+│   │   │
+│   │   └─ utils/
+│   │       ├─ generate-keys.js          ← Gera keys a partir do .env
+│   │       ├─ backup.js                 ← Backup incremental em JSON
+│   │       └─ authMiddleware.js
+│   │
+│   ├─ server.js                         ← Servidor Express
+│   └─ package.json
+│
+├── 🟩 frontend/                        ← Angular 19 (LTS)
+│   ├── .angular/                 # Configurações internas do Angular
+│   ├── .editorconfig             # Configuração de formatação do editor
+│   ├── .gitignore                # Arquivos ignorados pelo Git
+│   ├── node_modules/             # Dependências instaladas via npm
+│   ├── public/                   # Arquivos públicos (ex.: favicon)
+│   │   └── favicon.ico
+│   ├── src/                      # Código-fonte da aplicação
+│   │   ├── app/                  # Componentes, módulos e lógica do Angular
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.scss
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.config.ts
+│   │   │   ├── app.config.server.ts
+│   │   │   ├── app.routes.ts
+│   │   │   └── app.routes.server.ts
+│   │   ├── index.html            # HTML principal
+│   │   ├── main.ts               # Entry point do Angular
+│   │   └── main.server.ts        # Entry point para server-side rendering
+│   ├── angular.json              # Configuração do Angular CLI
+│   ├── package.json              # Dependências e scripts npm
+│   ├── package-lock.json         # Lock das versões das dependências
+│   ├── README.md                 # Documentação do frontend
+│   ├── tsconfig.json             # Configuração TypeScript global
+│   ├── tsconfig.app.json         # Configuração TypeScript do app
+│   ├── tsconfig.spec.json        # Configuração TypeScript para testes
+│   └── .vscode/                  # Configurações do VSCode
+├── .env
+├── .gitignore
+└── README.md
 ```
 </details>
 
