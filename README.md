@@ -224,7 +224,7 @@ npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --legacy-peer-deps
 npm audit fix --force
 
 Agora no arquivo angular.json você adiciona os arquivos do Bootstrap nos nós styles e scripts que ficam no caminho architect.build.options conforme abaixo. Você precisa colocar os arquivos na mesma ordem abaixo.
-   ```
+
    angular.json
    "styles": [
                 "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -235,8 +235,6 @@ Agora no arquivo angular.json você adiciona os arquivos do Bootstrap nos nós s
                 "node_modules/popper.js/dist/umd/popper.js",
                 "node_modules/bootstrap/dist/js/bootstrap.js"
             ],
-   ```
-npm install 
 ```
 </details>
 
