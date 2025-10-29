@@ -135,7 +135,7 @@ O modelo de dados completo do WS Manager foi desenvolvido em SQLite, com foco em
 Tabelas **SQLite**:
 
 ```bash
-ws-managerssss
+ws-manager
 ├─ contrato
 │  ├─ lancamento
 │  │  └─ conta
