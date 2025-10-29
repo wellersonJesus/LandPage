@@ -223,7 +223,10 @@ npm install zone.js@~0.15.0 --save
 npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --legacy-peer-deps
 npm audit fix --force
 
-# Agora no arquivo angular.json você adiciona os arquivos do Bootstrap nos nós styles e scripts que ficam no caminho architect.build.options conforme abaixo. Você precisa colocar os arquivos na mesma ordem abaixo.
+# Agora no arquivo angular.json você adiciona os arquivos 
+# do Bootstrap nos nós styles e scripts que ficam no caminho 
+# architect.build.options conforme abaixo. 
+# Você precisa colocar os arquivos na mesma ordem abaixo.
 
 angular.json
    |
