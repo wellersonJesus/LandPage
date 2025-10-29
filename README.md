@@ -216,30 +216,31 @@ npm start
 </details>
 
 <details>
-<summary>📝 Frontend Angular - Node 22 - Angular 20</summary>
+<summary>📝 Frontend Angular 19</summary>
 
 ```bash
+# 1️⃣ Acessar o diretório do projeto
 cd ~/Documentos/Projetos/WS-Manager
 
-# 1️⃣ Remover dependências antigas e cache do npm
-rm -rf frontend/node_modules
+# 2️⃣ Remover dependências antigas e cache do npm
+rm -rf frontend node_modules package-lock.json
 npm cache clean --force
 
-# 2️⃣ Renomeie a pasta corrompida para backup
-mv frontend frontend_backup
+# 3️⃣ Instalar angular
+sudo npm -v install -g angular/cli
 
-# 3️⃣ Crie um frontend Angular 16 limpo
-npx @angular/cli@16 new frontend --routing --style=scss --skip-install
+# 4️⃣  Criar aplicacao
+npx @angular/cli@19 new frontend --routing --style=scss
 
-# 4️⃣ Entre na pasta do frontend
+# 5️⃣  Rodar o servidor local e abrir no navegador
 cd frontend
-
-# 5️⃣ Instale dependências e bibliotecas compatíveis
-npm install --legacy-peer-deps
-npm install bootstrap ngx-bootstrap@10.2.0 --legacy-peer-deps
-
-# 6️⃣ Rodar servidor Angular e abrir no navegador
 npx ng serve --open
+
+# 6️⃣  Criar novos módulos, organiza e agrupa componentes, serviços e rotas. 
+npx ng generate module nome-modulo --routing 
+
+# onstrói a interface visual do app.
+npx ng generate component nome-componente
 ```
 </details>
 
