@@ -210,31 +210,32 @@ npx ng generate component nome-componente
 </details>
 
 <details>
-<summary>📝 Bootstrap 4.1.3, jQuery e Popper</summary>
+<summary>🖌️ Bootstrap 4.1.3, jQuery e Popper</summary>
 
 ```bash
-# Entre na pasta do frontend:
+# 1️⃣ Entre na pasta do frontend:
 cd ~/Documentos/Projetos/WS-Manager/frontend
 
-# Instale a versão correta do zone.js:
+# 2️⃣ Instale a versão correta do zone.js:
 npm install zone.js@~0.15.0 --save
 
-# Instale o Bootstrap 4.1.3, .js 1.14.3 usando --legacy-peer-deps 
+# 3️⃣ Instale o Bootstrap 4.1.3, .js 1.14.3 usando --legacy-peer-deps 
 npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --legacy-peer-deps
 npm audit fix --force
 
 # Agora no arquivo angular.json você adiciona os arquivos do Bootstrap nos nós styles e scripts que ficam no caminho architect.build.options conforme abaixo. Você precisa colocar os arquivos na mesma ordem abaixo.
 
 angular.json
- "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.scss"
-            ],
-            "scripts": [
-                "node_modules/jquery/dist/jquery.js",
-                "node_modules/popper.js/dist/umd/popper.js",
-                "node_modules/bootstrap/dist/js/bootstrap.js"
-            ],
+   |
+   └─ "styles": [
+                  "node_modules/bootstrap/dist/css/bootstrap.css",
+                  "src/styles.scss"
+                ],
+                  "scripts": [
+                    "node_modules/jquery/dist/jquery.js",
+                    "node_modules/popper.js/dist/umd/popper.js",
+                    "node_modules/bootstrap/dist/js/bootstrap.js"
+                ],
 ```
 </details>
 
