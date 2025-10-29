@@ -31,7 +31,7 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ```bash
 WS-Manager/
-├── 🟦 backend/                        ← Node.js + SQLite
+├── 💡 backend/                        ← Node.js + SQLite
 │   ├─ src/
 │   │   ├─ controllers/                ← Lógica de negócio (CRUD) por tabela
 │   │   │   ├─ authController.js
@@ -83,7 +83,7 @@ WS-Manager/
 │   ├─ server.js                         ← Servidor Express
 │   └─ package.json
 │
-├── 🟩 frontend/                        ← Angular 19 (LTS)
+├── 🌍 frontend/                        ← Angular 19 (LTS)
 │   ├── .angular/                 # Configurações internas do Angular
 │   ├── .editorconfig             # Configuração de formatação do editor
 │   ├── .gitignore                # Arquivos ignorados pelo Git
