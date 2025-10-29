@@ -31,72 +31,36 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ```bash
 WS-Manager/
-├─ frontend/
-│    ├─ .angular/
-│    ├─ node_modules/
-│    ├─ src/
-│    │   ├─ app/
-│    │   │   ├─ components/
-│    │   │   │   ├─ login/
-│    │   │   │   │   ├─ login.component.html
-│    │   │   │   │   ├─ login.component.ts
-│    │   │   │   │   └─ login.component.scss
-│    │   │   │   ├─ dashboard/
-│    │   │   │   │   ├─ dashboard.component.html
-│    │   │   │   │   ├─ dashboard.component.ts
-│    │   │   │   │   └─ dashboard.component.scss
-│    │   │   │   ├─ contrato/
-│    │   │   │   │   ├─ contrato.component.html
-│    │   │   │   │   ├─ contrato.component.ts
-│    │   │   │   │   ├─ contrato.component.scss
-│    │   │   │   │   └─ modals/
-│    │   │   │   │       ├─ contrato-detalhe.modal.html
-│    │   │   │   │       └─ contrato-detalhe.modal.ts
-│    │   │   │   ├─ conta/
-│    │   │   │   │   ├─ conta.component.html
-│    │   │   │   │   ├─ conta.component.ts
-│    │   │   │   │   ├─ conta.component.scss
-│    │   │   │   │   └─ modals/
-│    │   │   │   │       ├─ lancamento.modal.html
-│    │   │   │   │       ├─ investimento.modal.html
-│    │   │   │   │       └─ emprestimo.modal.html
-│    │   │   │   ├─ dispositivo/
-│    │   │   │   │   ├─ dispositivo.component.html
-│    │   │   │   │   ├─ dispositivo.component.ts
-│    │   │   │   │   ├─ dispositivo.component.scss
-│    │   │   │   │   └─ modals/
-│    │   │   │   │       ├─ manutencao.modal.html
-│    │   │   │   │       └─ emprestimo.modal.html
-│    │   │   │   └─ modals/                   ← modais globais ou reutilizáveis
-│    │   │   │       ├─ confirmacao.modal.html
-│    │   │   │       └─ filtro.modal.html
-│    │   │   ├─ services/
-│    │   │   │   ├─ auth.service.ts
-│    │   │   │   ├─ auth.guard.ts
-│    │   │   │   └─ auth.interceptor.ts
-│    │   │   ├─ app.module.ts
-│    │   │   └─ app-routing.module.ts
-│    │   ├─ assets/
-│    │   │   ├─ img/
-│    │   │   └─ styles/
-│    │   │       └─ main.scss
-│    │   ├─ environments/
-│    │   │   ├─ environment.ts
-│    │   │   └─ environment.prod.ts
-│    │   ├─ index.html
-│    │   ├─ main.ts
-│    │   ├─ polyfills.ts
-│    │   └─ tsconfig.app.json
-│    ├─ .editorconfig
-│    ├─ .gitignore
-│    ├─ angular.json
-│    ├─ package.json
-│    ├─ package-lock.json
-│    ├─ README.md
-│    ├─ tsconfig.json
-│    ├─ tsconfig.spec.json
-│    └─ .vscode/
-│
+frontend/
+├── .angular/                 # Configurações internas do Angular
+├── .editorconfig             # Configuração de formatação do editor
+├── .gitignore                # Arquivos ignorados pelo Git
+├── node_modules/             # Dependências instaladas via npm
+├── public/                   # Arquivos públicos (ex.: favicon)
+│   └── favicon.ico
+├── src/                      # Código-fonte da aplicação
+│   ├── app/                  # Componentes, módulos e lógica do Angular
+│   │   ├── app.component.ts
+│   │   ├── app.component.html
+│   │   ├── app.component.scss
+│   │   ├── app.component.spec.ts
+│   │   ├── app.config.ts
+│   │   ├── app.config.server.ts
+│   │   ├── app.routes.ts
+│   │   └── app.routes.server.ts
+│   ├── index.html            # HTML principal
+│   ├── main.ts               # Entry point do Angular
+│   └── main.server.ts        # Entry point para server-side rendering
+├── angular.json              # Configuração do Angular CLI
+├── package.json              # Dependências e scripts npm
+├── package-lock.json         # Lock das versões das dependências
+├── README.md                 # Documentação do projeto
+├── tsconfig.json             # Configuração TypeScript global
+├── tsconfig.app.json         # Configuração TypeScript do app
+├── tsconfig.spec.json        # Configuração TypeScript para testes
+└── .vscode/                  # Configurações do VSCode
+
+
 ├─ backend/                             ← Node.js + SQLite
 │   ├─ src/
 │   │   ├─ controllers/                 ← Lógica de negócio (CRUD) por tabela
