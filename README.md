@@ -87,34 +87,35 @@ WS-Manager/
    ├─ .gitignore
    ├─ README.md
    │
-   frontend/
-   ├── .angular/                 # Configurações internas do Angular
-   ├── .editorconfig             # Configuração de formatação do editor
-   ├── .gitignore                # Arquivos ignorados pelo Git
-   ├── node_modules/             # Dependências instaladas via npm
-   ├── public/                   # Arquivos públicos (ex.: favicon)
-   │   └── favicon.ico
-   ├── src/                      # Código-fonte da aplicação
-   │   ├── app/                  # Componentes, módulos e lógica do Angular
-   │   │   ├── app.component.ts
-   │   │   ├── app.component.html
-   │   │   ├── app.component.scss
-   │   │   ├── app.component.spec.ts
-   │   │   ├── app.config.ts
-   │   │   ├── app.config.server.ts
-   │   │   ├── app.routes.ts
-   │   │   └── app.routes.server.ts
-   │   ├── index.html            # HTML principal
-   │   ├── main.ts               # Entry point do Angular
-   │   └── main.server.ts        # Entry point para server-side rendering
-   ├── angular.json              # Configuração do Angular CLI
-   ├── package.json              # Dependências e scripts npm
-   ├── package-lock.json         # Lock das versões das dependências
-   ├── README.md                 # Documentação do projeto
-   ├── tsconfig.json             # Configuração TypeScript global
-   ├── tsconfig.app.json         # Configuração TypeScript do app
-   ├── tsconfig.spec.json        # Configuração TypeScript para testes
-   └── .vscode/                  # Configurações do VSCode
+   └── frontend/
+   │      ├── .angular/                 # Configurações internas do Angular
+   │      ├── .editorconfig             # Configuração de formatação do editor
+   │      ├── .gitignore                # Arquivos ignorados pelo Git
+   │      ├── node_modules/             # Dependências instaladas via npm
+   │      ├── public/                   # Arquivos públicos (ex.: favicon)
+   │      │   └── favicon.ico
+   │      ├── src/                      # Código-fonte da aplicação
+   │      │   ├── app/                  # Componentes, módulos e lógica do Angular
+   │      │   │   ├── app.component.ts
+   │      │   │   ├── app.component.html
+   │      │   │   ├── app.component.scss
+   │      │   │   ├── app.component.spec.ts
+   │      │   │   ├── app.config.ts
+   │      │   │   ├── app.config.server.ts
+   │      │   │   ├── app.routes.ts
+   │      │   │   └── app.routes.server.ts
+   │      │   ├── index.html            # HTML principal
+   │      │   ├── main.ts               # Entry point do Angular
+   │      │   └── main.server.ts        # Entry point para server-side rendering
+   │      ├── angular.json              # Configuração do Angular CLI
+   │      ├── package.json              # Dependências e scripts npm
+   │      ├── package-lock.json         # Lock das versões das dependências
+   │      ├── README.md                 # Documentação do projeto
+   │      ├── tsconfig.json             # Configuração TypeScript global
+   │      ├── tsconfig.app.json         # Configuração TypeScript do app
+   │      ├── tsconfig.spec.json        # Configuração TypeScript para testes
+   │      └── .vscode/                  # Configurações do VSCode
+   └──
 ```
 </details>
 
