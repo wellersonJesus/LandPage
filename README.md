@@ -299,11 +299,12 @@ angular.json
 ```
 </details>
 
+<details>
+<summary>📝 Frontend Angular CLI: 19.2.x</summary>
 
 # 🌍 Build WS-Manager
 
-
-<details> <summary>📝 Frontend Angular CLI: 19.2.x</summary>
+Os comandos acima preparam e constroem o **frontend do WS-Manager**, gerando arquivos otimizados de produção na pasta **dist/frontend**. Esses arquivos estão prontos para testes locais ou deploy em servidores como GitLab Pages, Render ou Vercel.
 
 ```bash
 # 1️⃣ Acessar o diretório do frontend
