@@ -14,11 +14,11 @@ build:
   stage: build
   script:
     - cd frontend
-    - npm ci                       # Instala dependências limpas
-    - npm run build -- --output-path=dist --base-href="/"  # Build de produção
+    - npm ci
+    - npm run build -- --output-path=dist --base-href="/ws-manager-309387/"  # ✅ Corrigido
   artifacts:
     paths:
-      - frontend/dist              # Mantém o dist como artefato
+      - frontend/dist
     expire_in: 1 week
 
 # Etapa de deploy para GitLab Pages
