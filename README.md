@@ -304,7 +304,7 @@ angular.json
 
 # 🌍 Build WS-Manager
 
-Os comandos acima preparam e constroem o **frontend do WS-Manager**, gerando arquivos otimizados de produção na pasta **dist/frontend**. Esses arquivos estão prontos para testes locais ou deploy em servidores como GitLab Pages, Render ou Vercel.
+Logo abaixo segue a preparação e construção do **frontend do WS-Manager**, gerando arquivos otimizados de produção na pasta **dist/frontend**. Prontos para testes locais ou deploy em servidores como GitLab Pages, Render ou Vercel.
 
 ```bash
 # 1️⃣ Acessar o diretório do frontend
