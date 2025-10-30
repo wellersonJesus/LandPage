@@ -100,6 +100,9 @@ WS-Manager/
 │   │   │   ├── app.config.server.ts
 │   │   │   ├── app.routes.ts
 │   │   │   └── app.routes.server.ts
+│   │   ├── assets/
+│   │   │   ├── logo.png
+│   │   │   └── fundo.png
 │   │   ├── index.html            # HTML principal
 │   │   ├── main.ts               # Entry point do Angular
 │   │   └── main.server.ts        # Entry point para server-side rendering
