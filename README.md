@@ -24,6 +24,14 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ---
 
+# 🎨 Paleta de cores HEX	RGB	HSL
+- Vinho	#a93d5d	rgb(169,61,93)	hsl(338°, 45%, 45%)
+- Cinza-azulado	#93a0b7	rgb(147,160,183)	hsl(218°, 26%, 64%)
+- Branco	#FFFFFF	rgb(255,255,255)	hsl(0°, 0%, 100%)
+- Preto	#000000	rgb(0,0,0)	hsl(0°, 0%, 0%)
+
+---
+
 ## Estrutura 
 
 <details>

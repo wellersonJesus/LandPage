@@ -1,134 +1,73 @@
-/* NAVBAR */
-.navbar {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.85);
-  z-index: 1000; /* garante que fique sobre a hero section */
+/* Fonte global para as seções de hero */
+.hero-section .hero-content {
   position: relative;
+  z-index: 2;
+  font-family: 'Citrina', Helvetica, sans-serif;
 }
 
-.nav-link {
+.hero-section {
   position: relative;
-  transition: color 0.3s ease;
+  height: 100vh;
+  background: url('/assets/fundo01.jpg') center center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.nav-link:hover {
+.hero-section.second-bg {
+  background: url('/assets/fundo02.jpg') center center/cover no-repeat;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 🔹 Sem película — primeira seção */
+.no-overlay .overlay {
+  display: none !important;
+}
+
+/* 🔹 Película clara — segunda seção */
+.second-bg .overlay.light-overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* Botão para primeira seção (texto preto) */
+.btn-outline-dark {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  color: #000;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-outline-dark:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Efeito hover nos menus da navbar */
+.navbar-nav .nav-link {
+  position: relative;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
   color: #007bff !important;
+  transform: translateY(-2px);
+  font-weight: 600;
 }
 
-.navbar-nav .nav-item {
-  margin: 0 20px;
-}
-
-/* Botão Glass Effect */
+/* Botão Business transparente */
 .glass-btn {
-  background: rgba(0, 123, 255, 0.1);
+  background: rgba(0, 123, 255, 0.08); /* quase transparente */
   border: 1px solid rgba(0, 123, 255, 0.4);
   color: #007bff;
   transition: all 0.3s ease;
 }
 
 .glass-btn:hover {
-  background: rgba(0, 123, 255, 0.2);
-  transform: scale(1.05);
-}
-
-/* Botão Business com quase transparência */
-.business-btn {
-  background: rgba(0, 123, 255, 0.05); /* quase transparente */
-  border: 1px solid rgba(0, 123, 255, 0.3);
-  color: #007bff;
-}
-
-.business-btn:hover {
-  background: rgba(0, 123, 255, 0.15); /* sutil aumento no hover */
-  transform: scale(1.05);
-}
-
-/* DROPDOWN */
-.dropdown-menu.custom-dropdown {
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  min-width: 160px;
-  margin-top: 15px;
-  top: auto !important;
-  z-index: 1050; /* sobre a hero section */
-  position: absolute;
-  background: rgba(241, 239, 239, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.dropdown-menu .dropdown-item {
-  color: #2c3e50;
-  font-weight: 500;
-}
-
-.dropdown-menu .dropdown-item:hover {
-  background-color: rgba(0, 0, 0, 0.08);
-  color: #edf0f3;
-}
-
-.dropdown-menu.custom-dropdown.show {
-  animation: slideDown 0.2s ease-out forwards;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* HERO SECTION */
-.hero-section {
-  position: relative;
-  height: 80vh;
-  width: 100%;
-  background-image: url('/assets/fundo02.jpg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
-.hero-section .overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.hero-section .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 20px;
-}
-
-.hero-section h1, .hero-section p {
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-.hero-section .btn-outline-light {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.hero-section .btn-outline-light:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-/* FOOTER */
-footer {
-  background: #f8f9fa;
-  text-align: center;
-  padding: 20px 0;
+  background: rgba(0, 123, 255, 0.25);
+  transform: scale(1.03);
 }

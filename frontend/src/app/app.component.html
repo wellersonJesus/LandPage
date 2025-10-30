@@ -51,19 +51,29 @@
   </div>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="hero-section text-center d-flex justify-content-center align-items-center">
-  <div class="overlay"></div>
-  <div class="hero-content">
-    <h1 class="display-4 fw-bold text-white">Bem-vindo ao WS-Manager</h1>
-    <p class="lead mt-3 text-light">
+<!-- HERO SECTION 1 (sem película, texto preto) -->
+<section class="hero-section text-center d-flex justify-content-center align-items-center no-overlay">
+  <div class="hero-content text-dark">
+    <h1 class="display-4 fw-bold">Bem-vindo ao WS-Manager</h1>
+    <p class="lead mt-3">
       Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.
     </p>
-    <button class="btn btn-outline-light mt-4" (click)="goToDashboard()">Acessar Dashboard</button>
+    <!-- <button class="btn btn-outline-dark mt-4" (click)="goToDashboard()">Acessar Dashboard</button> -->
+  </div>
+</section>
+
+<!-- HERO SECTION 2 (com película mais clara, texto branco) -->
+<section class="hero-section second-bg text-center d-flex justify-content-center align-items-center">
+  <div class="overlay light-overlay"></div>
+  <div class="hero-content text-white">
+    <h1 class="display-5 fw-bold">Simplify your financial life!</h1>
+    <p class="lead mt-3">
+      Uma abordagem moderna e intuitiva para otimizar a sua rotina financeira com eficiência.
+    </p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="bg-light text-center text-dark py-4 mt-auto">
-  <small>&copy; 2025 WS-Manager. Todos os direitos reservados.</small>
+  <small>&copy; 2025 InfoWell-DAST WS-Manager. Todos os direitos reservados.</small>
 </footer>
