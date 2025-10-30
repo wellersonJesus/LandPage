@@ -1,5 +1,5 @@
 # =========================
-# GitLab CI para Angular + Pages
+# GitLab CI/CD para Angular + Pages
 # =========================
 image: node:20
 
@@ -25,10 +25,10 @@ build:
 pages:
   stage: deploy
   script:
-    - mkdir .public
-    - cp -r frontend/dist/* .public/
+    - mkdir -p public
+    - cp -r frontend/dist/frontend/* public/
   artifacts:
     paths:
-      - .public
+      - public
   only:
     - master
