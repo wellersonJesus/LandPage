@@ -302,7 +302,7 @@ angular.json
 ## Build  
 
 <details>
-<summary>📝 Frontend Angular CLI: 19.2.x</summary>
+<summary>📝 Build Site/APP WS-Manager</summary>
 
 # 🌍 Build WS-Manager
 
