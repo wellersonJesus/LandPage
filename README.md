@@ -1,4 +1,4 @@
-# [🌏 WS Manager](https://ws-gestao-d10f13.gitlab.io/) 
+# [🌏 WS Manager](https://ws-manager-309387.gitlab.io/)
 
 ## 💡 Observações Importantes
 
@@ -298,6 +298,47 @@ angular.json
                 ],
 ```
 </details>
+
+
+# 🌍 Build WS-Manager
+
+
+<details> <summary>📝 Frontend Angular CLI: 19.2.x</summary>
+
+```bash
+# 1️⃣ Acessar o diretório do frontend
+cd ~/Documentos/Projetos/WS-Manager/frontend
+
+# 2️⃣ Remover builds antigos (limpar dist) para garantir um build limpo
+rm -rf dist
+
+# 3️⃣ Instalar dependências do projeto
+npm install
+
+# 4️⃣ Rodar a aplicação em modo de desenvolvimento (hot reload)
+npm start
+# ou
+ng serve --open
+
+# 5️⃣ Build de produção (geração de bundles otimizados para deploy)
+npm run build:prod
+# Isso executa:
+# ng build --configuration production --base-href=/
+# - Cria arquivos minificados JS, CSS e polyfills
+# - Gera bundles separados para browser e SSR
+# - Copia assets (imagens, fontes, favicon)
+# - Pre-render de rotas estáticas, se configuradas
+# - Output final em: dist/frontend
+
+# 6️⃣ Visualizar o resultado do build
+# Os arquivos prontos para deploy estarão em:
+ls dist/frontend
+
+# 7️⃣ Deploy
+# Agora a pasta dist/frontend pode ser hospedada em qualquer servidor ou serviço (ex: GitLab Pages, Render, Vercel)
+```
+</details>
+
 
 <details>
 
