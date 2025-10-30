@@ -25,35 +25,10 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 ---
 
 # 🎨 Paleta de cores HEX	RGB	HSL
-
-<div style="display:flex; gap:10px; align-items:center;">
-
-  <div style="background:#d6b4a4; width:100px; height:50px; text-align:center; line-height:50px; color:black; border:1px solid #ccc;">
-    Vinho Claro<br>#d6b4a4
-  </div>
-
-  <div style="background:#93a0b7; width:100px; height:50px; text-align:center; line-height:50px; color:white;">
-    Cinza-azulado<br>#93a0b7
-  </div>
-
-  <div style="background:#FFFFFF; width:100px; height:50px; text-align:center; line-height:50px; color:black; border:1px solid #ccc;">
-    Branco<br>#FFFFFF
-  </div>
-
-  <div style="background:#000000; width:100px; height:50px; text-align:center; line-height:50px; color:white;">
-    Preto<br>#000000
-  </div>
-
-</div>
-
----
-
-## Visual com badges (Markdown puro)
-
-![Vinho Claro](https://img.shields.io/badge/Vinho%20Claro-#d6b4a4?style=for-the-badge&logoColor=black)
-![Cinza-azulado](https://img.shields.io/badge/Cinza--azulado-#93a0b7?style=for-the-badge&logoColor=white)
-![Branco](https://img.shields.io/badge/Branco-#FFFFFF?style=for-the-badge&logoColor=black)
-![Preto](https://img.shields.io/badge/Preto-#000000?style=for-the-badge&logoColor=white)
+- Vinho claro HEX: #d6b4a4 RGB: rgb(214,180,164) HSL: hsl(20°, 42%, 74%)
+- Cinza-azulado	#93a0b7	rgb(147,160,183)	hsl(218°, 26%, 64%)
+- Branco	#FFFFFF	rgb(255,255,255)	hsl(0°, 0%, 100%)
+- Preto	#000000	rgb(0,0,0)	hsl(0°, 0%, 0%)
 
 ---
 
