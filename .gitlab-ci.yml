@@ -1,6 +1,3 @@
-# =========================
-# GitLab CI/CD para Angular + Pages
-# =========================
 image: node:20
 
 stages:
@@ -31,10 +28,10 @@ pages:
   dependencies:
     - build
   script:
-    - mkdir -p public                # Pasta obrigatória para GitLab Pages
-    - cp -r frontend/dist/* public/  # Copia todos os arquivos do build
+    - mkdir -p public                # Pasta obrigatória para Pages
+    - cp -r frontend/dist/* public/ # Copia todo o build, incluindo index.html
   artifacts:
     paths:
-      - public                        # Pasta publicada pelo Pages
+      - public                        # GitLab Pages serve a partir de public/
   only:
-    - master                          # Executa somente no branch master
+    - master

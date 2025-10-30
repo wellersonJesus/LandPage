@@ -302,9 +302,9 @@ angular.json
 ## Build  
 
 <details>
-<summary>📝 Build Site/APP WS-Manager</summary>
+<summary>Site/APP WS-Manager</summary>
 
-# 🌍 Build WS-Manager
+# 📝 Build WS-Manager
 
 Logo abaixo segue a preparação e construção do **frontend do WS-Manager**, gerando arquivos otimizados de produção na pasta **dist/frontend**. Prontos para testes locais ou deploy em servidores como GitLab Pages, Render ou Vercel.
 
