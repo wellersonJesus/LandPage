@@ -103,6 +103,8 @@ WS-Manager/
 │   │   ├── assets/
 │   │   │   ├── logo.png
 │   │   │   └── fundo.png
+│   │   ├── environments/
+│   │   │   └──environment.prod.ts
 │   │   ├── index.html            # HTML principal
 │   │   ├── main.ts               # Entry point do Angular
 │   │   └── main.server.ts        # Entry point para server-side rendering
@@ -116,6 +118,7 @@ WS-Manager/
 │   └── .vscode/                  # Configurações do VSCode
 ├── .env
 ├── .gitignore
+├── .gitlab-ci.yml
 └── README.md
 ```
 </details>

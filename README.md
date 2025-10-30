@@ -101,11 +101,20 @@ WS-Manager/
 │   │   │   ├── app.routes.ts
 │   │   │   └── app.routes.server.ts
 │   │   ├── assets/
-│   │   │   ├── logo.png
-│   │   │   └── fundo.png
+│   │   │    ├── fonts/
+│   │   │    │    ├── bootstrap-icons.woff
+│   │   │    │    └── bootstrap-icons.woff2
+│   │   │    ├── logo.png
+│   │   │    └── fundo.png
+│   │   ├── environments/
+│   │   │   └── environment.prod.ts
+│   │   ├── styles/
+│   │   │   └── _bootstrap-icons.scss
 │   │   ├── index.html            # HTML principal
+│   │   ├── main.server.ts        # Entry point para server-side rendering
 │   │   ├── main.ts               # Entry point do Angular
-│   │   └── main.server.ts        # Entry point para server-side rendering
+│   │   ├── server.ts             # Entry point para server-side rendering
+│   │   └── styles.scss
 │   ├── angular.json              # Configuração do Angular CLI
 │   ├── package.json              # Dependências e scripts npm
 │   ├── package-lock.json         # Lock das versões das dependências

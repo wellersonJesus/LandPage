@@ -25,12 +25,13 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
+                "input": "node_modules/bootstrap-icons/font/fonts",
+                "output": "assets/fonts/"
               },
               {
                 "glob": "**/*",
@@ -39,9 +40,7 @@
               },
               "src/favicon.ico"
             ],
-
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.scss"
             ],
 
@@ -123,8 +122,7 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
