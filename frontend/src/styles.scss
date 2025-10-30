@@ -1,8 +1,13 @@
+// Sass functions
 @use "sass:math";
-@use "bootstrap" as *;
-@use "styles/bootstrap-icons" as *;
 
-/* Seus estilos customizados */
+// Bootstrap
+@use "bootstrap" as *;
+
+// Bootstrap Icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+// Seus estilos customizados
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f9f9f9;

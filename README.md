@@ -245,8 +245,9 @@ npm install zone.js@~0.15.0 --save
 npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --legacy-peer-deps
 npm audit fix --force
 
-# 4️⃣ Instale os icones
-npm install bootstrap-icons
+# 4️⃣ Bootstrap + Bootstrap Icons
+cd ~/Documentos/Projetos/WS-Manager/frontend
+npm install bootstrap bootstrap-icons
 
 # Agora no arquivo angular.json você adiciona os arquivos 
 # do Bootstrap nos nós styles e scripts que ficam no caminho 
@@ -256,14 +257,13 @@ npm install bootstrap-icons
 angular.json
    |
    └─ "styles": [
-                  "node_modules/bootstrap/dist/css/bootstrap.css",
+                  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
                   "src/styles.scss"
                 ],
-                  "scripts": [
-                    "node_modules/jquery/dist/jquery.js",
-                    "node_modules/popper.js/dist/umd/popper.js",
-                    "node_modules/bootstrap/dist/js/bootstrap.js"
-                ],
+                "scripts": [
+                  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+                ]
 
 # Ajuste também o trecho logo abaixo para instalar os icones
 # do bootstrap
@@ -299,7 +299,7 @@ angular.json
 
 ---
 
-## Build app 
+## Build  
 
 <details>
 <summary>📝 Frontend Angular CLI: 19.2.x</summary>
