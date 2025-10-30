@@ -24,20 +24,6 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ---
 
-<details>
-<summary>🎨 Paleta de cores HEX | RGB | HSL</summary>
-
-| Cor | HEX | RGB | HSL |
-|-----|-----|-----|-----|
-| Vinho Claro | #9c0d2f | rgba(156,13,47,1) | hsl(345°, 86%, 33%) |
-| Cinza-azulado | #93a0b7 | rgb(147,160,183) | hsl(218°, 26%, 64%) |
-| Branco | #FFFFFF | rgb(255,255,255) | hsl(0°, 0%, 100%) |
-| Preto | #000000 | rgb(0,0,0) | hsl(0°, 0%, 0%) |
-
-</details>
-
----
-
 ## Estrutura 
 
 <details>
@@ -132,6 +118,18 @@ WS-Manager/
 ├── .gitignore
 └── README.md
 ```
+</details>
+
+<details>
+<summary>🎨 Paleta de cores HEX | RGB | HSL</summary>
+
+| Cor | HEX | RGB | HSL |
+|-----|-----|-----|-----|
+| Vinho Claro | #9c0d2f | rgba(156,13,47,1) | hsl(345°, 86%, 33%) |
+| Cinza-azulado | #93a0b7 | rgb(147,160,183) | hsl(218°, 26%, 64%) |
+| Branco | #FFFFFF | rgb(255,255,255) | hsl(0°, 0%, 100%) |
+| Preto | #000000 | rgb(0,0,0) | hsl(0°, 0%, 0%) |
+
 </details>
 
 ---
