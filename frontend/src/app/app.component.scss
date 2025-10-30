@@ -1,4 +1,4 @@
-/* Fonte global para as seções de hero */
+/* Fonte global */
 .hero-section .hero-content {
   position: relative;
   z-index: 2;
@@ -26,12 +26,12 @@
   height: 100%;
 }
 
-/* 🔹 Sem película — primeira seção */
+/* Sem película */
 .no-overlay .overlay {
   display: none !important;
 }
 
-/* 🔹 Película clara — segunda seção */
+/* Película clara */
 .second-bg .overlay.light-overlay {
   background-color: rgba(0, 0, 0, 0.25);
 }
@@ -39,7 +39,7 @@
 /* Botão para primeira seção (texto preto) */
 .btn-outline-dark {
   border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
+  color: #000000;
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -54,20 +54,25 @@
 }
 
 .navbar-nav .nav-link:hover {
-  color: #007bff !important;
+  color: #9c0d2f !important; /* Hover: vermelho escuro */
   transform: translateY(-2px);
   font-weight: 600;
 }
 
 /* Botão Business transparente */
 .glass-btn {
-  background: rgba(0, 123, 255, 0.08); /* quase transparente */
-  border: 1px solid rgba(0, 123, 255, 0.4);
-  color: #007bff;
+  background: rgba(214, 180, 164, 0.08); /* Vinho Claro quase transparente */
+  border: 1px solid rgba(214, 180, 164, 0.4);
+  color: #9c0d2f; 
   transition: all 0.3s ease;
 }
 
 .glass-btn:hover {
-  background: rgba(0, 123, 255, 0.25);
+  background: rgba(214, 180, 164, 0.25);
   transform: scale(1.03);
+}
+
+/* Ícone do dropdown */
+.dropdown svg path {
+  stroke: #9c0d2f; /* seta vermelho escuro */
 }
