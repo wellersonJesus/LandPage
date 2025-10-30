@@ -100,9 +100,9 @@ WS-Manager/
 │   │   │   ├── app.config.server.ts
 │   │   │   ├── app.routes.ts
 │   │   │   └── app.routes.server.ts
-│   │   │
 │   │   ├── assets/
-│   │   │   └── logo.svg
+│   │   │   ├── logo.png
+│   │   │   └── fundo.png
 │   │   ├── index.html            # HTML principal
 │   │   ├── main.ts               # Entry point do Angular
 │   │   └── main.server.ts        # Entry point para server-side rendering
@@ -118,6 +118,18 @@ WS-Manager/
 ├── .gitignore
 └── README.md
 ```
+</details>
+
+<details>
+<summary>🎨 Paleta de cores HEX | RGB | HSL</summary>
+
+| Cor | HEX | RGB | HSL |
+|-----|-----|-----|-----|
+| Vinho Claro | #9c0d2f | rgba(156,13,47,1) | hsl(345°, 86%, 33%) |
+| Cinza-azulado | #93a0b7 | rgb(147,160,183) | hsl(218°, 26%, 64%) |
+| Branco | #FFFFFF | rgb(255,255,255) | hsl(0°, 0%, 100%) |
+| Preto | #000000 | rgb(0,0,0) | hsl(0°, 0%, 0%) |
+
 </details>
 
 ---
@@ -226,6 +238,9 @@ npm install zone.js@~0.15.0 --save
 npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --legacy-peer-deps
 npm audit fix --force
 
+# 4️⃣ Instale os icones
+npm install bootstrap-icons
+
 # Agora no arquivo angular.json você adiciona os arquivos 
 # do Bootstrap nos nós styles e scripts que ficam no caminho 
 # architect.build.options conforme abaixo. 
@@ -241,6 +256,36 @@ angular.json
                     "node_modules/jquery/dist/jquery.js",
                     "node_modules/popper.js/dist/umd/popper.js",
                     "node_modules/bootstrap/dist/js/bootstrap.js"
+                ],
+
+# Ajuste o trecho logo abaixo 
+# para instalar icones do bootstrap
+
+angular.json
+   |
+   └─ "test": 
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ],
+
+# Ajuste também o trecho logo abaixo para que as imagens 
+# sejam devidamente exibidas no projeto com Angular
+
+angular.json
+   |
+   └─ "assets": [
+                  {
+                    "glob": "**/*",
+                    "input": "src/assets",
+                    "output": "assets"
+                  },
+                  {
+                    "glob": "**/*",
+                    "input": "public",
+                    "output": "public"
+                  },
+                  "src/favicon.ico"
                 ],
 ```
 </details>
