@@ -3,7 +3,7 @@
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center me-4" href="#">
-      <img src="assets/logo.png" alt="WS-Manager Logo" width="48" height="48" style="margin-right: 10px;">
+      <img src="assets/ws-manager.png" alt="WS-Manager Logo" width="48" height="48" style="margin-right: 10px;">
       <span class="fw-bold text-dark fs-5">WS-Manager</span>
     </a>
 
@@ -18,7 +18,7 @@
     <!-- DropDown e Botão -->
     <div class="d-flex align-items-center gap-4">
       <!-- Dropdown -->
-      <div class="dropdown dropdown-left-adjust" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+      <div class="dropdown" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
         <a href="#" class="nav-link p-0">
           <svg xmlns="http://www.w3.org/2000/svg" width="74" height="24" fill="currentColor"
             class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
@@ -27,7 +27,7 @@
           </svg>
         </a>
 
-        <ul class="dropdown-menu shadow-sm custom-dropdown" [class.show]="dropdownOpen">
+        <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
           <li><a class="dropdown-item" href="#">Opção A</a></li>
           <li><a class="dropdown-item" href="#">Opção B</a></li>
           <li><a class="dropdown-item" href="#">Opção C</a></li>
@@ -36,7 +36,8 @@
       </div>
 
       <!-- Botão Business Sign-In -->
-      <button class="btn btn-primary glass-btn glass-hover d-flex align-items-center gap-2" (click)="goToDashboard()">
+      <button class="btn btn-primary glass-btn glass-hover d-flex align-items-center gap-2 business-btn"
+        (click)="goToDashboard()">
         Business Sign-In
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
           color="#007bff" class="">
@@ -66,7 +67,3 @@
 <footer class="bg-light text-center text-dark py-4 mt-auto">
   <small>&copy; 2025 WS-Manager. Todos os direitos reservados.</small>
 </footer>
-
-
-
-
