@@ -4,30 +4,33 @@ stages:
   - build
   - deploy
 
+# Cache para acelerar builds
 cache:
   paths:
     - frontend/node_modules/
 
+# Etapa de build Angular
 build:
   stage: build
   script:
     - cd frontend
-    - npm ci
-    - npm run build -- --output-path=dist --base-href="/"
+    - npm ci                       # Instala dependências limpas
+    - npm run build -- --output-path=dist --base-href="/"  # Build de produção
   artifacts:
     paths:
-      - frontend/dist
+      - frontend/dist              # Mantém o dist como artefato
     expire_in: 1 week
 
+# Etapa de deploy para GitLab Pages
 pages:
   stage: deploy
   dependencies:
-    - build
+    - build                       # Depende do build
   script:
-    - mkdir -p public
-    - cp -r frontend/dist/frontend/* public/
+    - mkdir -p public             # Cria a pasta obrigatória para Pages
+    - cp -r frontend/dist/frontend/* public/  # Copia arquivos do build
   artifacts:
     paths:
-      - public
+      - public                     # Pasta publicada pelo Pages
   only:
-    - master
+    - master                        # Executa somente no branch master

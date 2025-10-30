@@ -1,6 +1,6 @@
 # [🌏 WS Manager](https://ws-manager-309387.gitlab.io/)
 
-## 💡 Observações Importantes
+#### 💡 Observações Importantes
 
 Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e back-end em **Node.js + SQLite** no **Render**. Permite **CRUD completo**, histórico incremental em JSON e fácil manutenção.
 
@@ -298,6 +298,8 @@ angular.json
                 ],
 ```
 </details>
+
+## Build app 
 
 <details>
 <summary>📝 Frontend Angular CLI: 19.2.x</summary>
