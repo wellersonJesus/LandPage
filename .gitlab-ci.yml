@@ -29,14 +29,12 @@ build:
 pages:
   stage: deploy
   dependencies:
-    - build                       # Depende do build
+    - build
   script:
-    - mkdir -p public             # Cria a pasta obrigatória para Pages
-    # Copia todos os arquivos do build para a pasta public
-    - cp -r frontend/dist/* public/ # ✅ Corrigido: remove 'frontend' extra
-
+    - mkdir -p public                # Pasta obrigatória para GitLab Pages
+    - cp -r frontend/dist/* public/  # Copia todos os arquivos do build
   artifacts:
     paths:
-      - public                     # Pasta publicada pelo Pages
+      - public                        # Pasta publicada pelo Pages
   only:
-    - master                        # Executa somente no branch master
+    - master                          # Executa somente no branch master
