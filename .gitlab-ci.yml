@@ -1,3 +1,6 @@
+# =========================
+# GitLab CI/CD para Angular + Pages
+# =========================
 image: node:20
 
 stages:
@@ -15,7 +18,8 @@ build:
   script:
     - cd frontend
     - npm ci
-    - npm run build -- --output-path=dist --base-href="/ws-manager-309387/"  # ✅ Corrigido
+    # Build de produção com base-href correto para GitLab Pages
+    - npm run build -- --output-path=dist --base-href="/ws-manager-309387/"
   artifacts:
     paths:
       - frontend/dist
@@ -28,7 +32,8 @@ pages:
     - build                       # Depende do build
   script:
     - mkdir -p public             # Cria a pasta obrigatória para Pages
-    - cp -r frontend/dist/* public/   # ✅ Copia arquivos do build
+    # Copia todos os arquivos do build para a pasta public
+    - cp -r frontend/dist/frontend/* public/
   artifacts:
     paths:
       - public                     # Pasta publicada pelo Pages
