@@ -24,7 +24,8 @@ Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e b
 
 ---
 
-# 🎨 Paleta de cores HEX	RGB	HSL
+<details>
+<summary>🎨 Paleta de cores HEX	RGB	HSL</summary>
 
 ```bash
 - Vinho claro HEX: 
@@ -47,6 +48,8 @@ hsl(0°, 0%, 100%)
 rgb(0,0,0)	
 hsl(0°, 0%, 0%)
 ```
+</details>
+
 ---
 
 ## Estrutura 
