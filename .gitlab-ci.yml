@@ -33,7 +33,8 @@ pages:
   script:
     - mkdir -p public             # Cria a pasta obrigatória para Pages
     # Copia todos os arquivos do build para a pasta public
-    - cp -r frontend/dist/frontend/* public/
+    - cp -r frontend/dist/* public/ # ✅ Corrigido: remove 'frontend' extra
+
   artifacts:
     paths:
       - public                     # Pasta publicada pelo Pages
