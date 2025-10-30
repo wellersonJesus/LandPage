@@ -239,6 +239,25 @@ angular.json
                     "node_modules/popper.js/dist/umd/popper.js",
                     "node_modules/bootstrap/dist/js/bootstrap.js"
                 ],
+
+# Ajuste também o trecho logo abaixo para que as imagens 
+# sejam devidamente exibidas no projeto com Angular
+
+angular.json
+   |
+   └─ "assets": [
+                  {
+                    "glob": "**/*",
+                    "input": "src/assets",
+                    "output": "assets"
+                  },
+                  {
+                    "glob": "**/*",
+                    "input": "public",
+                    "output": "public"
+                  },
+                  "src/favicon.ico"
+                ],
 ```
 </details>
 

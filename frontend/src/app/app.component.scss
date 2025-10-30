@@ -28,30 +28,40 @@
   transform: scale(1.05);
 }
 
+
 .dropdown-menu {
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(241, 239, 239, 0.95);
   border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Cor da fonte dos links dentro do dropdown */
+.dropdown-menu .dropdown-item {
+  color: #2c3e50; /* 💡 Altere aqui — exemplo: azul escuro elegante */
+  font-weight: 500;
+}
+
+/* Cor ao passar o mouse */
+.dropdown-menu .dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #edf0f3; /* Azul Bootstrap padrão */
 }
 
 .dropdown-item:hover {
   background-color: #e9ecef;
 }
 
-/* Ajuste do dropdown para abrir mais abaixo */
 .dropdown-menu.custom-dropdown {
-  margin-top: 15px; /* Espaço entre o botão e o menu */
-  top: auto !important; /* Garante que o top não seja sobrescrito pelo Bootstrap */
+  margin-top: 15px; 
+  top: auto !important; 
 }
 
-/* Se quiser também adicionar uma leve sombra e borda arredondada */
 .dropdown-menu.custom-dropdown {
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  min-width: 160px; /* largura mínima do menu */
+  min-width: 160px; 
 }
 
-/* Opcional: animação suave ao abrir */
 .dropdown-menu.custom-dropdown.show {
   animation: slideDown 0.2s ease-out forwards;
 }
@@ -68,9 +78,49 @@
 }
 
 .hero-section {
-  background-image: url('/assets/logo.png');
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  background-image: url('/assets/manager.png'); 
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+
+    h1, p {
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-outline-light {
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-light:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+  }
 }
 
+footer {
+  background: #f8f9fa;
+  text-align: center;
+  padding: 20px 0;
+}
 

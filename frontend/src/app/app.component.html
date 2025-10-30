@@ -1,10 +1,9 @@
-
 <!-- HEADER -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 py-3">
   <div class="container-fluid d-flex align-items-center justify-content-center">
     <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center me-4" href="#">
-      <img src="assets/logo.png" alt="WS-Manager Logo" width="48" height="48" class="me-2 d-none">
+      <img src="assets/manager.png" alt="WS-Manager Logo" width="48" height="48" class="me-2">
       <span class="fw-bold text-dark fs-5">WS-Manager</span>
     </a>
 
@@ -37,7 +36,7 @@
       </div>
 
       <!-- Botão Business Sign-In -->
-      <button class="btn btn-primary glass-btn d-flex align-items-center gap-2" (click)="goToDashboard()">
+      <button class="btn btn-primary glass-btn glass-hover d-flex align-items-center gap-2" (click)="goToDashboard()">
         Business Sign-In
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
           color="#007bff" class="">
@@ -51,19 +50,23 @@
   </div>
 </nav>
 
-<!-- BODY -->
-<main class="container text-center my-5">
-  <h1 class="display-4 fw-bold text-dark">Bem-vindo ao WS-Manager</h1>
-  <p class="lead mt-3 text-secondary">
-    Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.
-  </p>
-  <button class="btn btn-outline-primary mt-4" (click)="goToDashboard()">Acessar Dashboard</button>
-</main>
+<!-- HERO SECTION -->
+<section class="hero-section text-center d-flex justify-content-center align-items-center">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1 class="display-4 fw-bold text-white">Bem-vindo ao WS-Manager</h1>
+    <p class="lead mt-3 text-light">
+      Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.
+    </p>
+    <button class="btn btn-outline-light mt-4" (click)="goToDashboard()">Acessar Dashboard</button>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer class="bg-light text-center text-dark py-4 mt-auto">
   <small>&copy; 2025 WS-Manager. Todos os direitos reservados.</small>
 </footer>
+
 
 
 

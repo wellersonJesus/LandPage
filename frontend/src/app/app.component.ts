@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +8,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   dropdownOpen = false;
 
-  constructor(private router: Router) {}
-
-  toggleDropdown(open: boolean) {
-    this.dropdownOpen = open;
+  toggleDropdown(state: boolean) {
+    this.dropdownOpen = state;
   }
 
   goToDashboard() {
-    this.router.navigate(['/dashboard']);
+    alert('Redirecionando para o Dashboard...');
   }
 }
