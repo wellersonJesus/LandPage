@@ -72,7 +72,15 @@
   transform: scale(1.03);
 }
 
-/* Ícone do dropdown */
 .dropdown svg path {
   stroke: #9c0d2f; /* seta vermelho escuro */
+}
+
+.dropdown-menu.custom-dropdown {
+  margin-top: 15px; /* distancia do botão acima */
+  min-width: 150px; /* opcional, mantém bom tamanho */
+}
+
+.dropdown-menu.custom-dropdown {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
