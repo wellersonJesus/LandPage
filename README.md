@@ -238,6 +238,9 @@ npm install zone.js@~0.15.0 --save
 npm install bootstrap@4.1.3 jquery@3.3.1 popper.js@1.14.3 --legacy-peer-deps
 npm audit fix --force
 
+# 4️⃣ Instale os icones
+npm install bootstrap-icons
+
 # Agora no arquivo angular.json você adiciona os arquivos 
 # do Bootstrap nos nós styles e scripts que ficam no caminho 
 # architect.build.options conforme abaixo. 
@@ -254,6 +257,17 @@ angular.json
                     "node_modules/popper.js/dist/umd/popper.js",
                     "node_modules/bootstrap/dist/js/bootstrap.js"
                 ],
+
+# Ajuste também o trecho logo abaixo para instalar os icones
+# do bootstrap
+
+angular.json
+   |
+   └─ "test": 
+            "styles": [
+              "src/styles.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ],
 
 # Ajuste também o trecho logo abaixo para que as imagens 
 # sejam devidamente exibidas no projeto com Angular

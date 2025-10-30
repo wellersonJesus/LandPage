@@ -73,14 +73,39 @@
 }
 
 .dropdown svg path {
-  stroke: #9c0d2f; /* seta vermelho escuro */
+  stroke: #9c0d2f; 
 }
 
 .dropdown-menu.custom-dropdown {
-  margin-top: 15px; /* distancia do botão acima */
-  min-width: 150px; /* opcional, mantém bom tamanho */
+  margin-top: 15px; 
+  min-width: 150px; 
 }
 
 .dropdown-menu.custom-dropdown {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+footer h6 {
+  color: #9c0d2f; /* Vinho Claro */
+  margin-bottom: 10px;
+}
+
+footer a {
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #9c0d2f;
+  text-decoration: underline;
+}
+
+/* Ícones das redes sociais */
+footer .fab {
+  font-size: 1.2rem;
+}
+
+/* Gap entre os ícones */
+footer .d-flex.gap-3 a {
+  margin-right: 8px;
 }
