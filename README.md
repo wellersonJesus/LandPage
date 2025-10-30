@@ -365,6 +365,8 @@ JWT_SECRET      • • • • • • • • • • • •
 ```
 </details>
 
+---
+
 <div align="center">
   <a href=# target="_blank">© JesusWellerson |Development Innovation</a>
 </div>
