@@ -28,7 +28,7 @@ pages:
     - build                       # Depende do build
   script:
     - mkdir -p public             # Cria a pasta obrigatória para Pages
-    - cp -r frontend/dist/frontend/* public/  # Copia arquivos do build
+    - cp -r frontend/dist/* public/   # ✅ Copia arquivos do build
   artifacts:
     paths:
       - public                     # Pasta publicada pelo Pages
