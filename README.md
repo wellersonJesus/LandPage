@@ -1,4 +1,4 @@
-# [🌏 WS Manager](https://ws-manager-309387.gitlab.io/)
+# [🌏 WS Manager](https://wellersonJesus.gitlab.io/ws-manager/)
 
 Aplicação web **full-stack** responsiva, com front-end no **GitLab Pages** e back-end em **Node.js + SQLite** no **Render**. Permite **CRUD completo**, histórico incremental em JSON e fácil manutenção.
 
