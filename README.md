@@ -380,3 +380,4 @@ JWT_SECRET      • • • • • • • • • • • •
 
 
 
+ng build --configuration production

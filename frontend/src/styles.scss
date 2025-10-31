@@ -4,8 +4,17 @@
 // Bootstrap SCSS
 @use "bootstrap/scss/bootstrap" as *;
 
-// Bootstrap Icons
-@import "assets/bootstrap-icons/bootstrap-icons.css";
+// Bootstrap Icons via SCSS (fonte relativa ao dist/assets)
+@font-face {
+  font-family: "Bootstrap Icons";
+  src: url("assets/fonts/bootstrap-icons.woff2") format("woff2"),
+       url("assets/fonts/bootstrap-icons.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+// Import oficial dos ícones (para classes .bi)
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 // Seus estilos customizados
 body {
@@ -14,10 +23,3 @@ body {
   color: #333;
   margin: 0;
 }
-
-
-
-
-
-
-
