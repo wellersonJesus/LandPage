@@ -1,25 +1,131 @@
-// Sass functions
+// ==========================================
+// 🔹 Bootstrap e Bootstrap Icons
+// ==========================================
 @use "sass:math";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
-// Bootstrap SCSS
-@use "bootstrap/scss/bootstrap" as *;
-
-// Bootstrap Icons via SCSS (fonte relativa ao dist/assets)
-@font-face {
-  font-family: "Bootstrap Icons";
-  src: url("assets/fonts/bootstrap-icons.woff2") format("woff2"),
-       url("assets/fonts/bootstrap-icons.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-// Import oficial dos ícones (para classes .bi)
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-
-// Seus estilos customizados
+// ==========================================
+// 🔹 Fonte, Layout e Cores Globais
+// ==========================================
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #f8f9fa;
+  color: #212529;
   margin: 0;
+  padding: 0;
+}
+
+// ==========================================
+// 🔹 Navbar responsiva
+// ==========================================
+.navbar {
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link {
+  color: #212529 !important;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #a93d5d !important;
+  transform: translateY(-2px);
+}
+
+// ==========================================
+// 🔹 Botão glass (transparente moderno)
+// ==========================================
+.glass-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(169, 61, 93, 0.4);
+  color: #a93d5d;
+  border-radius: 50px;
+  padding: 8px 18px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(169, 61, 93, 0.15);
+  transform: translateY(-2px);
+  color: #9c0d2f;
+}
+
+// ==========================================
+// 🔹 Dropdown personalizado
+// ==========================================
+.dropdown-menu {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #f8d7da;
+  color: #9c0d2f;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// 🔹 Seções hero
+// ==========================================
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-section.second-bg {
+  background: linear-gradient(135deg, #a93d5d, #93a0b7);
+  color: white;
+  position: relative;
+}
+
+.hero-section.second-bg .light-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+// ==========================================
+// 🔹 Footer
+// ==========================================
+footer {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+// ==========================================
+// 🔹 Responsividade (mobile first)
+// ==========================================
+@media (max-width: 991px) {
+  .navbar .container-fluid {
+    flex-direction: column;
+  }
+
+  .navbar-nav {
+    margin-top: 1rem;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
 }
