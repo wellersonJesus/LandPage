@@ -1,14 +1,36 @@
 image: node:20
 
-# Instala dependências e gera o build
+stages:
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+build:
+  stage: build
+  script:
+    - cd frontend
+    - npm ci --legacy-peer-deps
+    - npm run build:pages
+  artifacts:
+    paths:
+      - frontend/dist
+    expire_in: 1 week
+
 pages:
   stage: deploy
+  dependencies:
+    - build
   script:
-    - npm ci
-    - npm run build -- --configuration production
-    - mv dist/frontend public
+    - rm -rf public
+    - mkdir -p public
+    - cp -r frontend/dist/browser/* public/
+    - cp public/index.html public/404.html
   artifacts:
     paths:
       - public
   only:
-    - main
+    - master
