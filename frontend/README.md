@@ -101,8 +101,18 @@ WS-Manager/
 │   │   │   ├── app.routes.ts
 │   │   │   └── app.routes.server.ts
 │   │   ├── assets/
+│   │   │   ├── bootstrap-icons/
+│   │   │   │   ├── bootstrap-icons.css
+│   │   │   │   └── fonts/
+│   │   │   │       ├── bootstrap-icons.woff
+│   │   │   │       └── bootstrap-icons.woff2
+│   │   │   ├── favicon.ico
+│   │   │   ├── ws-manager.png
+│   │   │   ├── logo01.png
 │   │   │   ├── logo.png
-│   │   │   └── fundo.png
+│   │   │   ├── fundo01.jpg
+│   │   │   ├── fundo02.jpg
+│   │   │   └── brasil.jpeg
 │   │   ├── environments/
 │   │   │   └──environment.prod.ts
 │   │   ├── index.html            # HTML principal
@@ -320,3 +330,24 @@ JWT_SECRET      • • • • • • • • • • • •
 <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" target="_blank">LinkedIn</a> - 
 <a href="https://github.com/wellersonJesus" target="_blank">GitHub</a>
 </div>
+
+
+```bash
+# 🧠 Como usar na prática
+# Ambiente	Comando	URL Final	Observação
+# 💻 Local (dev)	
+npm run start	http://localhost:4200/
+
+# Serve com baseHref /
+# 🧱 Build local	
+npm run build:dev	dist/ws-manager-frontend	
+
+#Para testar com npx http-server
+# 🌍 Produção (servidor próprio)	
+npm run build:prod	dist/ws-manager-frontend	
+
+# Usa /
+# 📄 GitLab Pages	
+npm run build:pages	dist/ws-manager-frontend	
+Usa /ws-manager-309387/
+```

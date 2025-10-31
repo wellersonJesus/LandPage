@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "build:pages": "ng build --configuration production --output-path=dist --base-href=/ws-manager-309387/",
-    "build:prod": "ng build --configuration production --base-href=/",
+    "start": "ng serve --open --base-href /",
+    "build:dev": "ng build --configuration development --base-href /",
+    "build:prod": "ng build --configuration production --base-href /",
+    "build:pages": "ng build --configuration production --base-href /ws-manager-309387/",
+    "serve:dist": "npx http-server dist/ws-manager-frontend -p 8080",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "serve:dist": "npx serve dist"
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "^19.2.15",
