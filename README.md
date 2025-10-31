@@ -325,6 +325,7 @@ ng serve --open
 
 # 5️⃣ Build de produção (geração de bundles otimizados para deploy)
 npm run build:prod
+npm run build:pages
 # Isso executa:
 # ng build --configuration production --base-href=/
 # - Cria arquivos minificados JS, CSS e polyfills
