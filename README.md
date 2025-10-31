@@ -340,6 +340,11 @@ ls dist/frontend
 
 # 7️⃣ Deploy
 # Agora a pasta dist/frontend pode ser hospedada em qualquer servidor ou serviço (ex: GitLab Pages, Render, Vercel)
+
+
+# Testar localmente
+npx serve dist/browser
+Acesse http://localhost:5000/ws-manager-309387/
 ```
 </details>
 
