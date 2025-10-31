@@ -1,14 +1,27 @@
 image: node:20
 
-# Instala dependências e gera o build
-pages:
-  stage: deploy
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
   script:
     - npm ci
     - npm run build -- --configuration production
+  artifacts:
+    paths:
+      - dist/frontend
+    expire_in: 1 hour
+
+pages:
+  stage: deploy
+  dependencies:
+    - build
+  script:
     - mv dist/frontend public
   artifacts:
     paths:
       - public
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
