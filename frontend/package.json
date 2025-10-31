@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "ng serve --open --configuration development",
+    "start": "ng serve --configuration development",
     "build": "ng build",
     "build:dev": "ng build --configuration development --base-href /",
     "build:prod": "ng build --configuration production --base-href /",
     "build:pages": "ng build --configuration production --base-href /ws-manager-309387/",
-    "serve:dist": "npx http-server dist/ws-manager-frontend -p 8080 -c-1",
+    "serve:dist": "npx http-server dist/ws-manager-frontend -p 8080",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "clean": "rimraf dist"
+    "clean": "rm -rf node_modules package-lock.json dist"
   },
   "dependencies": {
     "@angular/animations": "^19.2.15",
@@ -38,7 +38,6 @@
     "@angular/compiler-cli": "^19.2.15",
     "@types/jasmine": "^5.1.0",
     "http-server": "^14.1.1",
-    "rimraf": "^5.0.0",
     "typescript": "~5.6.3"
   }
 }

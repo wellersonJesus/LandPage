@@ -341,6 +341,7 @@ JWT_SECRET      • • • • • • • • • • • •
 | 📄 GitLab Pages                | `npm run build:pages` | dist/ws-manager-frontend                         | Usa `/ws-manager-309387/`         |
 ```
 
+npm run clean
 ng serve → rodar localmente (base href="/");
 ng build --configuration production → gerar versão de produção;
 ng build --configuration production --base-href /ws-manager-309387/ → GitLab Pages.

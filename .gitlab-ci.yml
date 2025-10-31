@@ -4,27 +4,22 @@ stages:
   - build
   - deploy
 
-# Cache para acelerar builds
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - frontend/node_modules/
 
-# Job de build
 build:
   stage: build
   script:
     - cd frontend
-    # Instala dependências usando CI (lockfile precisa estar atualizado!)
-    - npm ci --legacy-peer-deps
-    # Build para produção com base href correto
+    - npm install --legacy-peer-deps
     - npm run build:pages
   artifacts:
     paths:
-      - frontend/dist/frontend
+      - frontend/dist
     expire_in: 1 week
 
-# Job de deploy para GitLab Pages
 pages:
   stage: deploy
   dependencies:
@@ -32,9 +27,7 @@ pages:
   script:
     - rm -rf public
     - mkdir -p public
-    # Copia todos os arquivos de build para a pasta public
-    - cp -r frontend/dist/frontend/* public/
-    # Cria um fallback 404 igual ao index
+    - cp -r frontend/dist/ws-manager-frontend/* public/
     - cp public/index.html public/404.html
   artifacts:
     paths:
