@@ -9,31 +9,25 @@ cache:
   paths:
     - frontend/node_modules/
 
-# Etapa de build Angular
 build:
   stage: build
   script:
     - cd frontend
-    - npm ci
-    # Build de produção, ajustando o base-href para o nome do repositório
+    - npm ci --legacy-peer-deps
     - npm run build:pages
   artifacts:
     paths:
       - frontend/dist
     expire_in: 1 week
 
-# Deploy para GitLab Pages
 pages:
   stage: deploy
   dependencies:
     - build
   script:
-    # Limpa e cria pasta public
     - rm -rf public
     - mkdir -p public
-    # Copia apenas os arquivos do build estático (browser) para public
     - cp -r frontend/dist/browser/* public/
-    # Copia index.html como 404.html (para Angular SPA)
     - cp public/index.html public/404.html
   artifacts:
     paths:
