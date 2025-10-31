@@ -324,7 +324,7 @@ npm start
 ng serve --open
 
 # 5️⃣ Build de produção (geração de bundles otimizados para deploy)
-npm run build:prod
+npm run build:prod -- --base-href=/ws-manager-309387/
 npm run build:pages
 # Isso executa:
 # ng build --configuration production --base-href=/
@@ -371,3 +371,7 @@ JWT_SECRET      • • • • • • • • • • • •
 <div align="center">
   <a href=# target="_blank">© JesusWellerson |Development Innovation</a>
 </div>
+
+
+
+
