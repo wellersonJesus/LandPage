@@ -4,8 +4,8 @@ stages:
   - build
   - deploy
 
-# Cache para acelerar builds
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - frontend/node_modules/
 
@@ -15,23 +15,28 @@ build:
   script:
     - cd frontend
     - npm ci
-    # Build de produção com base-href correto para GitLab Pages
-    - npm run build -- --output-path=dist --base-href="/ws-manager-309387/"
+    # Build de produção, ajustando o base-href para o nome do repositório
+    - npm run build:pages
   artifacts:
     paths:
       - frontend/dist
     expire_in: 1 week
 
-# Etapa de deploy para GitLab Pages
+# Deploy para GitLab Pages
 pages:
   stage: deploy
   dependencies:
     - build
   script:
-    - mkdir -p public                # Pasta obrigatória para Pages
-    - cp -r frontend/dist/* public/ # Copia todo o build, incluindo index.html
+    # Limpa e cria pasta public
+    - rm -rf public
+    - mkdir -p public
+    # Copia apenas os arquivos do build estático (browser) para public
+    - cp -r frontend/dist/browser/* public/
+    # Copia index.html como 404.html (para Angular SPA)
+    - cp public/index.html public/404.html
   artifacts:
     paths:
-      - public                        # GitLab Pages serve a partir de public/
+      - public
   only:
     - master
