@@ -1,11 +1,10 @@
 // Sass functions
 @use "sass:math";
 
-// Bootstrap SCSS (apenas uma vez, usando @use)
+// Bootstrap SCSS
 @use "bootstrap/scss/bootstrap" as *;
 
-// Bootstrap Icons (CSS puro)
-@import "bootstrap-icons/font/bootstrap-icons.css";
+// Bootstrap Icons
 @import "assets/bootstrap-icons/bootstrap-icons.css";
 
 // Seus estilos customizados
