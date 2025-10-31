@@ -44,8 +44,7 @@
               "optimization": true,
               "sourceMap": false,
               "extractLicenses": true,
-              "baseHref": "/"
-
+              "baseHref": "/ws-manager-309387/"
             },
             "development": {
               "optimization": false,
