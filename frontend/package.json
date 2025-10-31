@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --open --base-href /",
+    "start": "ng serve --open --configuration development",
+    "build": "ng build",
     "build:dev": "ng build --configuration development --base-href /",
     "build:prod": "ng build --configuration production --base-href /",
     "build:pages": "ng build --configuration production --base-href /ws-manager-309387/",
@@ -36,6 +36,7 @@
     "@angular/cli": "^19.2.15",
     "@angular/compiler-cli": "^19.2.15",
     "@types/jasmine": "^5.1.0",
+    "http-server": "^14.1.1",
     "typescript": "~5.6.3"
   }
 }

@@ -333,21 +333,14 @@ JWT_SECRET      • • • • • • • • • • • •
 
 
 ```bash
-# 🧠 Como usar na prática
-# Ambiente	Comando	URL Final	Observação
-# 💻 Local (dev)	
-npm run start	http://localhost:4200/
-
-# Serve com baseHref /
-# 🧱 Build local	
-npm run build:dev	dist/ws-manager-frontend	
-
-#Para testar com npx http-server
-# 🌍 Produção (servidor próprio)	
-npm run build:prod	dist/ws-manager-frontend	
-
-# Usa /
-# 📄 GitLab Pages	
-npm run build:pages	dist/ws-manager-frontend	
-Usa /ws-manager-309387/
+| Ambiente                       | Comando               | URL Final                                        | Observação                        |
+| ------------------------------ | --------------------- | ------------------------------------------------ | --------------------------------- |
+| 💻 Local (dev)                 | `npm run start`       | [http://localhost:4200/](http://localhost:4200/) | Serve com baseHref `/`            |
+| 🧱 Build local                 | `npm run build:dev`   | dist/ws-manager-frontend                         | Para testar com `npx http-server` |
+| 🌍 Produção (servidor próprio) | `npm run build:prod`  | dist/ws-manager-frontend                         | Usa `/`                           |
+| 📄 GitLab Pages                | `npm run build:pages` | dist/ws-manager-frontend                         | Usa `/ws-manager-309387/`         |
 ```
+
+ng serve → rodar localmente (base href="/");
+ng build --configuration production → gerar versão de produção;
+ng build --configuration production --base-href /ws-manager-309387/ → GitLab Pages.
