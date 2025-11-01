@@ -1,50 +1,70 @@
+/* Hero Section */
+.hero-section {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 .hero-section .hero-content {
   max-width: 90%;
-  position: relative;
+  text-align: center;
   z-index: 2;
-  font-family: 'Citrina', Helvetica, sans-serif;
 }
 
-/* Sem película */
-.no-overlay .overlay {
-  display: none !important;
-}
-
-/* Película clara */
 .second-bg .overlay.light-overlay {
-  background-color: rgba(0, 0, 0, 0.25);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .hero-section .display-4 { font-size: 2rem; }
-  .hero-section .display-5 { font-size: 1.75rem; }
-  .navbar-nav { gap: 1rem !important; }
-  .business-btn { width: 100%; justify-content: center; }
+/* Navbar links centralizados */
+.navbar-nav.mx-auto {
+  justify-content: center;
 }
 
-/* Hover nos menus */
-.navbar-nav .nav-link {
-  position: relative;
-  transition: color 0.3s ease, transform 0.2s ease;
+/* Gap entre os links */
+.navbar-nav .nav-item {
+  margin: 0 0.5rem;
+}
+--- 
+/* Dropdown responsivo */
+.dropdown-menu.custom-dropdown {
+  min-width: 150px;
+  margin-top: 0.5rem; /* Distância do botão / ícone */
+  transition: all 0.2s ease-in-out;
 }
 
+/* Desktop: manter hover bonito */
+@media (min-width: 992px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0.5rem; /* distância extra */
+  }
+}
+
+/* Mobile: já usa margin-top ao abrir com clique */
+.dropdown.show .dropdown-menu {
+  display: block;
+  margin-top: 0.9rem;
+}
+
+/* Hover menu */
 .navbar-nav .nav-link:hover {
   color: #9c0d2f !important;
-  transform: translateY(-2px);
   font-weight: 600;
 }
 
-/* Botão Business transparente */
+/* Botão Business */
 .glass-btn {
   background: rgba(214, 180, 164, 0.08);
   border: 1px solid rgba(214, 180, 164, 0.4);
-  color: #9c0d2f; 
+  color: #9c0d2f;
   transition: all 0.3s ease;
 }
 
@@ -53,17 +73,14 @@
   transform: scale(1.03);
 }
 
-/* Dropdown customizado */
-.dropdown-menu.custom-dropdown {
-  margin-top: 15px; 
-  min-width: 150px; 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-footer h6 { color: #9c0d2f; margin-bottom: 10px; }
+/* Footer */
+footer h6 { color: #9c0d2f; }
 footer a { color: #000; transition: color 0.3s ease; }
 footer a:hover { color: #9c0d2f; text-decoration: underline; }
 
-/* Ícones das redes sociais */
-footer .fab { font-size: 1.2rem; }
-footer .d-flex.gap-3 a { margin-right: 8px; }
+@media (max-width: 768px) {
+  .hero-section .display-4 { font-size: 2rem; }
+  .hero-section .display-5 { font-size: 1.75rem; }
+  .navbar-nav { gap: 1rem !important; flex-wrap: wrap; }
+  .business-btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
+}
