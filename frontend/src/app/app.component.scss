@@ -14,6 +14,12 @@
   z-index: 2;
 }
 
+/* Cor da fonte da primeira seção */
+.hero-first h1, .hero-first p {
+  color: #383738;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+}
+
 .no-overlay .overlay {
   display: none !important;
 }
@@ -49,7 +55,7 @@
 
 /* Dropdown */
 .dropdown-menu.custom-dropdown {
-  margin-top: 16px; /* afasta do Sign-In */
+  margin-top: 16px;
   min-width: 160px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -65,7 +71,7 @@ footer a:hover { color: #9c0d2f; text-decoration: underline; }
 /* Responsividade */
 @media (max-width: 992px) {
   .navbar-nav { gap: 1rem !important; }
-  .business-btn { width: 100%; justify-content: center; }
+  .business-btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
   .hero-section { min-height: 50vh; padding: 1rem; }
   .hero-section .display-4 { font-size: 2rem; }
   .hero-section .display-5 { font-size: 1.5rem; }
@@ -74,4 +80,8 @@ footer a:hover { color: #9c0d2f; text-decoration: underline; }
 @media (max-width: 576px) {
   .navbar-nav { flex-direction: column; gap: 0.75rem !important; }
   .dropdown-menu.custom-dropdown { position: static; float: none; width: 100%; margin-top: 0.5rem; }
+  .hero-section { min-height: 40vh; padding: 0.5rem; }
+  .hero-section .display-4 { font-size: 1.5rem; }
+  .hero-section .display-5 { font-size: 1.25rem; }
+  .business-btn { font-size: 0.9rem; padding: 0.5rem 1rem; }
 }
