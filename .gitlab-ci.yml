@@ -27,10 +27,10 @@ pages:
   script:
     - rm -rf public
     - mkdir -p public
-    - cp -r frontend/dist/ws-manager-frontend/* public/
+    - cp -r frontend/dist/* public/
     - cp public/index.html public/404.html
   artifacts:
     paths:
       - public
   only:
-    - main
+    - master
