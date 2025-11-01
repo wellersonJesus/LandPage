@@ -1,6 +1,6 @@
 <!-- HEADER -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 py-3">
-  <div class="container-fluid d-flex align-items-center justify-content-center">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3 py-2">
+  <div class="container-fluid d-flex flex-wrap align-items-center justify-content-center">
 
     <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center me-4" href="#">
@@ -9,7 +9,7 @@
     </a>
 
     <!-- Links de navegação centralizados -->
-    <ul class="navbar-nav mx-auto d-flex align-items-center gap-4">
+    <ul class="navbar-nav mx-auto d-flex flex-column flex-lg-row align-items-center gap-2 gap-lg-4 mb-2 mb-lg-0">
       <li class="nav-item"><a class="nav-link text-black fw-semibold" href="#">Contrato</a></li>
       <li class="nav-item"><a class="nav-link text-black fw-semibold" href="#">Gestão</a></li>
       <li class="nav-item"><a class="nav-link text-black fw-semibold" href="#">Conta</a></li>
@@ -17,20 +17,18 @@
     </ul>
 
     <!-- DropDown e Botão -->
-    <div class="d-flex align-items-center gap-4">
+    <div class="d-flex align-items-center gap-3 gap-lg-4 mt-2 mt-lg-0">
 
       <!-- Dropdown -->
       <div class="dropdown" [class.show]="dropdownOpen"
            (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
-        <a href="#" class="nav-link p-0 d-flex align-items-center"
-           (click)="toggleDropdown(!dropdownOpen); $event.preventDefault()">
+        <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
                   d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
           </svg>
         </a>
-
         <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
           <li><a class="dropdown-item" href="#">Opção A</a></li>
           <li><a class="dropdown-item" href="#">Opção B</a></li>
@@ -40,11 +38,10 @@
       </div>
 
       <!-- Botão Business Sign-In -->
-      <button class="btn glass-btn glass-hover d-flex align-items-center gap-2 business-btn"
+      <button class="btn glass-btn glass-hover d-flex align-items-center justify-content-center gap-2 business-btn"
               (click)="goToDashboard()">
         Business Sign-In
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
-             color="#9c0d2f">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="22" height="22" color="#9c0d2f">
           <path stroke="#9c0d2f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"></path>
           <path stroke="#d6b4a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -52,13 +49,14 @@
         </svg>
       </button>
     </div>
+
   </div>
 </nav>
 
 <!-- HERO SECTION 1 -->
 <section class="hero-section no-overlay text-center d-flex justify-content-center align-items-center"
          style="background: url('assets/fundo01.jpg') center center/cover no-repeat;">
-  <div class="hero-content text-black px-3">
+  <div class="hero-content text-black">
     <h1 class="display-4 fw-bold">Bem-vindo ao WS-Manager</h1>
     <p class="lead mt-3">
       Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.
@@ -70,7 +68,7 @@
 <section class="hero-section second-bg text-center d-flex justify-content-center align-items-center"
          style="background: url('assets/fundo02.jpg') center center/cover no-repeat;">
   <div class="overlay light-overlay"></div>
-  <div class="hero-content text-white px-3">
+  <div class="hero-content text-white">
     <h1 class="display-5 fw-bold">Simplify your financial life!</h1>
     <p class="lead mt-3">
       Uma abordagem moderna e intuitiva para otimizar a sua rotina financeira com eficiência.
@@ -83,41 +81,37 @@
   <div class="container">
 
     <div class="row">
-      <!-- Coluna esquerda -->
-      <div class="col-lg-6 mb-4">
+
+      <!-- Coluna esquerda: Sobre + Redes -->
+      <div class="col-12 col-md-6 mb-4">
         <h6 class="fw-bold">Sobre a Aplicação</h6>
-        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas, dispositivos e muito mais. Interface moderna e intuitiva para simplificar suas tarefas diárias.</p>
+        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas, dispositivos e muito mais.</p>
 
         <h6 class="fw-bold mt-3">Siga as Redes</h6>
-        <div class="d-flex align-items-center gap-3 mt-2">
+        <div class="d-flex gap-3 mt-2">
           <a href="https://x.com/wellersonjsilva" class="text-black fs-5"><i class="bi bi-twitter"></i></a>
           <a href="https://www.linkedin.com/in/wellerson-jesus-37831540/" class="text-black fs-5"><i class="bi bi-linkedin"></i></a>
           <a href="https://www.instagram.com/wellerson.jesus/" class="text-black fs-5"><i class="bi bi-instagram"></i></a>
         </div>
       </div>
 
-      <!-- Coluna direita -->
-      <div class="col-lg-6 mb-4">
+      <!-- Coluna direita: Documentos + Tecnologias -->
+      <div class="col-12 col-md-6 mb-4">
         <h6 class="fw-bold">Documentos e Tecnologias</h6>
         <ul class="list-unstyled mt-2">
-          <li><a href="https://docs.gitlab.com/ee/user/project/pages/" target="_blank" class="text-black text-decoration-none">GitLab Pages</a></li>
-          <li><a href="https://render.com/docs" target="_blank" class="text-black text-decoration-none">Render</a></li>
-          <li><a href="https://www.sqlite.org/docs.html" target="_blank" class="text-black text-decoration-none">SQLite</a></li>
-          <li><a href="https://angular.io/docs" target="_blank" class="text-black text-decoration-none">Angular</a></li>
-          <li><a href="https://getbootstrap.com/docs/4.1/getting-started/introduction/" target="_blank" class="text-black text-decoration-none">Bootstrap</a></li>
-          <li>
-            <a href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" class="text-black text-decoration-none">HTML</a>, 
-            <a href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" class="text-black text-decoration-none">CSS</a>, 
-            <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" class="text-black text-decoration-none">JavaScript</a>, 
-            <a href="https://www.typescriptlang.org/docs/" target="_blank" class="text-black text-decoration-none">TypeScript</a>
-          </li>
+          <li><a href="#" class="text-black text-decoration-none">GitLab Pages</a></li>
+          <li><a href="#" class="text-black text-decoration-none">Render</a></li>
+          <li><a href="#" class="text-black text-decoration-none">SQLite</a></li>
+          <li><a href="#" class="text-black text-decoration-none">Angular</a></li>
+          <li><a href="#" class="text-black text-decoration-none">Bootstrap</a></li>
         </ul>
       </div>
+
     </div>
 
     <hr style="border-color: rgba(0,0,0,0.1);">
     <div class="text-center mt-3">
-      <small>&copy; 2025 <a href="#" target="_blank" class="text-black text-decoration-none">InfoWell-DAST</a>. Todos os direitos reservados.</small>
+      <small>&copy; 2025 InfoWell-DAST. Todos os direitos reservados.</small>
     </div>
   </div>
 </footer>
