@@ -1,3 +1,25 @@
+image: node:20
+
+stages:
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+build:
+  stage: build
+  script:
+    - cd frontend
+    - npm install --legacy-peer-deps
+    - npm run build:pages
+  artifacts:
+    paths:
+      - frontend/dist
+    expire_in: 1 week
+
 pages:
   stage: deploy
   dependencies:
@@ -11,4 +33,4 @@ pages:
     paths:
       - public
   only:
-    - master
+    - main
