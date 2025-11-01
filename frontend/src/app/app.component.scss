@@ -1,3 +1,6 @@
+/* Importar fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@500;700&family=Inter:wght@400;600;700&display=swap');
+
 /* Hero Section */
 .hero-section {
   width: 100%;
@@ -8,31 +11,42 @@
   position: relative;
 }
 
-.hero-content {
-  max-width: 90%;
-  text-align: center;
-  z-index: 2;
-}
-
-/* Cor da fonte da primeira seção */
-.hero-first h1, .hero-first p {
-  color: #080808;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
-}
-
-.no-overlay .overlay {
-  display: none !important;
-}
-
-.second-bg .overlay.light-overlay {
+/* Overlay padrão */
+.overlay {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.25);
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* atrás do conteúdo */
+}
+
+.dark-overlay { background-color: rgba(0, 0, 0, 0.45); } /* Hero 1 */
+.light-overlay { background-color: rgba(0, 0, 0, 0.25); } /* Hero 2 */
+
+/* Conteúdo das seções */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 90%;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Fonte Hero 1 */
+.hero-section:first-of-type .hero-content h1,
+.hero-section:first-of-type .hero-content p {
+  font-family: 'Merriweather', serif;
+}
+
+/* Fonte Hero 2 */
+.hero-section:nth-of-type(2) .hero-content h1,
+.hero-section:nth-of-type(2) .hero-content p {
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Navbar Links */
 .navbar-nav .nav-link {
+  font-family: 'Inter', sans-serif;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 .navbar-nav .nav-link:hover {
@@ -46,6 +60,7 @@
   background: rgba(214,180,164,0.08);
   border: 1px solid rgba(214,180,164,0.4);
   color: #9c0d2f;
+  font-family: 'Inter', sans-serif;
   transition: all 0.3s ease;
 }
 .glass-btn:hover {
@@ -58,20 +73,24 @@
   margin-top: 16px;
   min-width: 160px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: 'Inter', sans-serif;
 }
 .dropdown.show .dropdown-menu {
   display: block;
 }
 
 /* Footer */
-footer h6 { color: #9c0d2f; }
+footer {
+  font-family: 'Inter', sans-serif;
+}
+footer h6 { color: #9c0d2f; font-weight: 700; }
 footer a { color: #000; transition: color 0.3s ease; }
 footer a:hover { color: #9c0d2f; text-decoration: underline; }
 
 /* Responsividade */
 @media (max-width: 992px) {
   .navbar-nav { gap: 1rem !important; }
-  .business-btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
+  .business-btn { width: 100%; justify-content: center; }
   .hero-section { min-height: 50vh; padding: 1rem; }
   .hero-section .display-4 { font-size: 2rem; }
   .hero-section .display-5 { font-size: 1.5rem; }
@@ -80,8 +99,4 @@ footer a:hover { color: #9c0d2f; text-decoration: underline; }
 @media (max-width: 576px) {
   .navbar-nav { flex-direction: column; gap: 0.75rem !important; }
   .dropdown-menu.custom-dropdown { position: static; float: none; width: 100%; margin-top: 0.5rem; }
-  .hero-section { min-height: 40vh; padding: 0.5rem; }
-  .hero-section .display-4 { font-size: 1.5rem; }
-  .hero-section .display-5 { font-size: 1.25rem; }
-  .business-btn { font-size: 0.9rem; padding: 0.5rem 1rem; }
 }

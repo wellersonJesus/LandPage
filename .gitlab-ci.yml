@@ -4,11 +4,13 @@ stages:
   - build
   - deploy
 
+# Cache do node_modules para acelerar builds
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - frontend/node_modules/
 
+# Build do Angular
 build:
   stage: build
   script:
@@ -20,15 +22,22 @@ build:
       - frontend/dist
     expire_in: 1 week
 
+# Deploy para GitLab Pages
 pages:
   stage: deploy
   dependencies:
     - build
   script:
+    # Remove qualquer pasta pública antiga
     - rm -rf public
     - mkdir -p public
+
+    # Copia todo o conteúdo do build Angular para a pasta 'public'
     - cp -r frontend/dist/ws-manager-frontend/* public/
+
+    # Cria 404.html para GitLab Pages
     - cp public/index.html public/404.html
+
   artifacts:
     paths:
       - public
