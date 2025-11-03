@@ -6,38 +6,43 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isCollapsed: boolean = false;
-  dropdownOpen: boolean = false;
+  isCollapsed: boolean = false;       // Mobile menu toggle
+  dropdownOpen: boolean = false;      // Dropdown toggle
   innerWidth: number = window.innerWidth;
 
+  // Detecta resize da tela
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
     if (this.innerWidth >= 992) {
-      this.isCollapsed = false; // menu sempre aberto no desktop
-      this.dropdownOpen = false; // reset dropdown no resize
+      this.isCollapsed = false;       // Menu sempre aberto no desktop
+      this.dropdownOpen = false;      // Reset dropdown
     }
   }
 
+  // Mobile menu toggle
   toggleMenu() {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  // Dropdown hover desktop
   openDropdown() {
     if (this.innerWidth >= 992) {
-      this.dropdownOpen = true; // hover desktop
+      this.dropdownOpen = true;
     }
   }
 
   closeDropdown() {
     if (this.innerWidth >= 992) {
-      this.dropdownOpen = false; // hover desktop
+      this.dropdownOpen = false;
     }
   }
 
-  toggleDropdown() {
+  // Dropdown click mobile
+  toggleDropdown(event: MouseEvent) {
     if (this.innerWidth < 992) {
-      this.dropdownOpen = !this.dropdownOpen; // click mobile
+      event.preventDefault();
+      this.dropdownOpen = !this.dropdownOpen;
     }
   }
 }

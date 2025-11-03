@@ -39,15 +39,16 @@
     <div class="d-flex align-items-center gap-2">
       <!-- Dropdown -->
       <div class="dropdown"
-           [class.show]="dropdownOpen"
            (mouseenter)="openDropdown()"
-           (mouseleave)="closeDropdown()">
-        <a href="#" class="nav-link p-0" (click)="toggleDropdown(); $event.preventDefault()">
+           (mouseleave)="closeDropdown()"
+           [class.show]="dropdownOpen">
+        <a href="#" class="nav-link p-0" (click)="toggleDropdown($event)">
           <i class="bi bi-chevron-compact-down fs-5"></i>
         </a>
         <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
           <li><a class="dropdown-item" href="#">Opção A</a></li>
           <li><a class="dropdown-item" href="#">Opção B</a></li>
+          <li><a class="dropdown-item" href="#">Opção C</a></li>
         </ul>
       </div>
 
