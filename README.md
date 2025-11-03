@@ -371,10 +371,8 @@ JWT_SECRET      • • • • • • • • • • • •
 ```
 </details>
 
-## 🛫 Prefixos usado para commits 
-
 <details>
-<summary>Prefixos ...</summary>
+<summary>🛫 Prefixos usado para commits</summary>
 
 Modelo de identificação para commits.
 
