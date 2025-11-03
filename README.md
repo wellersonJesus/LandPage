@@ -399,6 +399,3 @@ revert:	Reverte um commit anterior	revert.
 </div>
 
 
-
-
-ng build --configuration production
