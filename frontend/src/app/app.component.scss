@@ -12,7 +12,12 @@
 
 /* Espaçamento ícone/texto */
 .navbar-nav .nav-link i {
-  margin-right: 0.4rem;
+  margin-right: 0.5rem;
+}
+
+/* Espaçamento entre os links do menu */
+.navbar-nav {
+  gap: 2rem; // aumenta o espaço entre Home, Sobre, Serviços
 }
 
 /* Logo + texto Manager cor igual ao botão */
@@ -54,7 +59,7 @@
 
   .navbar-nav {
     flex-nowrap: nowrap;
-    gap: 0.5rem;
+    gap: 1.5rem; // aumenta o espaço entre links no mobile
   }
 
   /* Mostrar apenas ícones se quiser compactar */
@@ -75,4 +80,11 @@
   .navbar-nav .nav-link span {
     display: inline;
   }
+}
+
+/* Efeito hover para redes sociais */
+.social-icon:hover {
+  color: #9c0d2f;
+  transform: translateY(-1px);
+  transition: color 0.3s ease, transform 0.2s ease;
 }
