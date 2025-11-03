@@ -4,7 +4,7 @@
     <!-- Logo + Manager -->
     <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="assets/ws-manager.png" alt="Logo WS Manager" width="42" height="42">
-      <span class="ms-2">Manager</span>
+      <span class="ms-2 fw-bold">Manager</span>
     </a>
 
     <!-- Menu Links (Home, Sobre, Serviços) -->
@@ -32,9 +32,7 @@
     <!-- Dropdown + Business -->
     <div class="d-flex align-items-center gap-2">
       <!-- Dropdown -->
-      <div class="dropdown dropdown-hover" 
-           (mouseenter)="openDropdown()" 
-           (mouseleave)="closeDropdown()">
+      <div class="dropdown dropdown-hover" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
         <a href="#" class="nav-link p-0" (click)="toggleDropdown($event)">
           <i class="bi bi-chevron-compact-down fs-5"></i>
         </a>
@@ -51,7 +49,7 @@
         <span>Business</span>
       </button>
     </div>
-    
+
   </div>
 </nav>
 

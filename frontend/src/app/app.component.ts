@@ -6,7 +6,6 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isCollapsed: boolean = false;
   dropdownOpen: boolean = false;
   innerWidth: number = window.innerWidth;
   private hoverTimeout: any;
@@ -15,16 +14,11 @@ export class AppComponent {
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
     if (this.innerWidth >= 992) {
-      this.isCollapsed = false;
       this.dropdownOpen = false;
     }
   }
 
-  toggleMenu() {
-    this.isCollapsed = !this.isCollapsed;
-  }
-
-  // Abre ao hover (desktop) com leve delay para facilitar seleção
+  // Abre dropdown com delay ao hover (desktop)
   openDropdown() {
     clearTimeout(this.hoverTimeout);
     if (this.innerWidth >= 992) {
@@ -32,12 +26,12 @@ export class AppComponent {
     }
   }
 
-  // Fecha ao sair com leve delay
+  // Fecha dropdown com delay para dar tempo de clicar nas opções
   closeDropdown() {
     if (this.innerWidth >= 992) {
       this.hoverTimeout = setTimeout(() => {
         this.dropdownOpen = false;
-      }, 300); // 300ms de atraso antes de fechar
+      }, 400); // 400ms de atraso antes de fechar
     }
   }
 

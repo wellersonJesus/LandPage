@@ -8,7 +8,7 @@
   transform: translateY(-1px);
 }
 
-/* Espaçamento entre ícone e texto */
+/* Espaçamento ícone/texto */
 .navbar-nav .nav-link i {
   margin-right: 0.5rem;
 }
@@ -28,28 +28,28 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-5px);
-  pointer-events: none; /* bloqueia clique quando invisível */
 }
-
 .dropdown-hover:hover .dropdown-menu,
 .dropdown-hover .dropdown-menu:hover {
   display: block !important;
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  pointer-events: auto; /* permite clique */
 }
 
 /* Responsividade Mobile */
 @media (max-width: 992px) {
+  /* Mostrar apenas ícones no mobile */
   .navbar-nav .nav-link span {
-    display: none; /* só ícones no mobile */
+    display: none;
   }
 
+  /* Forçar navbar em uma linha com scroll horizontal se necessário */
   .container-fluid {
     flex-wrap: nowrap !important;
-    gap: 0.8rem;
+    gap: 1rem;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .dropdown-menu.custom-dropdown {
