@@ -1,28 +1,30 @@
 /* ---------- BASE NAVBAR ---------- */
 .navbar {
   font-family: 'Inter', sans-serif;
+
   .nav-link {
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 500;
     color: #000 !important;
-    padding: 0.6rem 1.1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     white-space: nowrap;
   }
 
   .nav-btn {
     background-color: #f8f9fa;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     min-width: 110px;
     height: 40px;
   }
 
-  .nav-btn:hover {
+  .nav-btn:hover,
+  .nav-link:hover {
     color: #fff !important;
     background-color: #9c0d2f;
     border-color: #9c0d2f;
@@ -56,7 +58,7 @@
 .dropdown-menu.custom-dropdown {
   min-width: 160px;
   margin-top: 0.4rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-5px);
@@ -99,9 +101,19 @@
 
 /* ---------- SOCIAL ICONS ---------- */
 .social-icon {
-  transition: color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0.25rem;
+  transition: all 0.3s ease;
 }
-.social-icon:hover {
-  color: #9c0d2f;
-  transform: translateY(-1px);
+
+.social-icon:hover,
+.social-icon:focus {
+  color: #fff !important;
+  background-color: #9c0d2f !important;
+  transform: translateY(-2px);
+  text-decoration: none;
+  outline: none;
 }
