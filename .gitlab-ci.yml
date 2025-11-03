@@ -14,12 +14,11 @@ cache:
 build:
   stage: build
   before_script:
-    # Limpa cache local do Angular
     - rm -rf frontend/node_modules/.cache
   script:
     - cd frontend
     - npm install --legacy-peer-deps
-    - npm run build:pages
+    - npm run build:pages -- --base-href /ws-manager-309387/
   artifacts:
     paths:
       - frontend/dist
