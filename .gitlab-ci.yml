@@ -1,30 +1,3 @@
-image: node:20
-
-stages:
-  - build
-  - deploy
-
-# Cache do node_modules para acelerar builds
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - frontend/node_modules/
-
-# Etapa de build do Angular
-build:
-  stage: build
-  before_script:
-    # Limpa cache local do Angular
-    - rm -rf frontend/node_modules/.cache
-  script:
-    - cd frontend
-    - npm install --legacy-peer-deps
-    - npm run build:pages
-  artifacts:
-    paths:
-      - frontend/dist
-    expire_in: 1 week
-
 # Etapa de deploy para GitLab Pages
 pages:
   stage: deploy
@@ -35,10 +8,14 @@ pages:
     - rm -rf public
     - mkdir -p public
 
-    # ✅ Copia tudo de dist diretamente (sua estrutura atual)
-    - cp -r frontend/dist/* public/
+    # Detecta automaticamente a pasta gerada dentro de frontend/dist/
+    - DIST_DIR=$(find frontend/dist -mindepth 1 -maxdepth 1 -type d | head -n 1)
+    - echo "📁 Pasta detectada de build: $DIST_DIR"
 
-    # Cria 404.html para Single Page Applications
+    # Copia todos os arquivos do build Angular para public/
+    - cp -r $DIST_DIR/* public/
+
+    # Cria 404.html (necessário para Angular SPA)
     - cp public/index.html public/404.html
 
   artifacts:
