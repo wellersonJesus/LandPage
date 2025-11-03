@@ -1,34 +1,28 @@
 <nav class="navbar navbar-light bg-white shadow-sm">
   <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
-    <!-- Hamburger (apenas mobile) -->
-    <button class="navbar-toggler d-lg-none me-2" type="button" (click)="toggleMenu()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <!-- Logo + Manager -->
-    <a class="navbar-brand d-flex align-items-center me-2" href="#">
+    <a class="navbar-brand d-flex align-items-center me-3" href="#">
       <img src="assets/ws-manager.png" alt="Logo WS Manager" width="42" height="42">
       <span class="ms-2 fw-bold">Manager</span>
     </a>
 
-    <!-- Menu Links -->
-    <ul class="navbar-nav d-flex flex-row align-items-center gap-3 mb-0"
-        [class.show]="isCollapsed || innerWidth >= 992">
+    <!-- Menu Links (Home, Sobre, Serviços) -->
+    <ul class="navbar-nav d-flex flex-row align-items-center gap-3 mb-0">
       <li class="nav-item">
-        <a class="nav-link d-flex align-items-center gap-1" href="#">
+        <a class="nav-link d-flex flex-column align-items-center" href="#">
           <i class="bi bi-house-fill fs-5"></i>
           <span class="d-none d-lg-inline">Home</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link d-flex align-items-center gap-1" href="#">
+        <a class="nav-link d-flex flex-column align-items-center" href="#">
           <i class="bi bi-info-circle-fill fs-5"></i>
           <span class="d-none d-lg-inline">Sobre</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link d-flex align-items-center gap-1" href="#">
+        <a class="nav-link d-flex flex-column align-items-center" href="#">
           <i class="bi bi-briefcase-fill fs-5"></i>
           <span class="d-none d-lg-inline">Serviços</span>
         </a>
@@ -52,8 +46,8 @@
 
       <!-- Business -->
       <button class="btn glass-btn business-btn d-flex align-items-center">
+        <i class="bi bi-box-arrow-in-right me-1"></i>
         <span>Business</span>
-        <i class="bi bi-box-arrow-in-right ms-1"></i>
       </button>
     </div>
 
