@@ -1,37 +1,49 @@
 <nav class="navbar navbar-light bg-white shadow-sm">
   <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
-    <!-- Hamburger -->
-    <button class="navbar-toggler me-2" type="button" (click)="isCollapsed = !isCollapsed">
+    <!-- Hamburger (mobile) -->
+    <button class="navbar-toggler d-lg-none me-2" type="button" (click)="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Logo + Texto -->
-    <a class="navbar-brand d-flex align-items-center me-3" href="#">
+    <!-- Logo + Manager -->
+    <a class="navbar-brand d-flex align-items-center me-2" href="#">
       <img src="assets/ws-manager.png" alt="Logo WS Manager" width="42" height="42">
-      <span class="ms-2 fw-bold d-none d-md-inline">Manager</span>
+      <span class="ms-2 fw-bold">Manager</span>
     </a>
 
-    <!-- Links Home/Sobre/Serviços -->
-    <ul class="navbar-nav d-flex flex-row align-items-center mx-auto d-none d-md-flex">
-      <li class="nav-item d-flex align-items-center gap-1">
-        <i class="bi bi-house-door-fill"></i> <a class="nav-link" href="#">Home</a>
+    <!-- Menu Links -->
+    <ul class="navbar-nav d-flex flex-row align-items-center gap-2 mb-0"
+        [class.show]="isCollapsed || innerWidth >= 992">
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-1" href="#">
+          <i class="bi bi-house-fill fs-5"></i>
+          <span class="d-none d-lg-inline">Home</span>
+        </a>
       </li>
-      <li class="nav-item d-flex align-items-center gap-1">
-        <i class="bi bi-info-circle-fill"></i> <a class="nav-link" href="#">Sobre</a>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-1" href="#">
+          <i class="bi bi-info-circle-fill fs-5"></i>
+          <span class="d-none d-lg-inline">Sobre</span>
+        </a>
       </li>
-      <li class="nav-item d-flex align-items-center gap-1">
-        <i class="bi bi-briefcase-fill"></i> <a class="nav-link" href="#">Serviços</a>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-1" href="#">
+          <i class="bi bi-briefcase-fill fs-5"></i>
+          <span class="d-none d-lg-inline">Serviços</span>
+        </a>
       </li>
     </ul>
 
     <!-- Dropdown + Business -->
     <div class="d-flex align-items-center gap-2">
-      <div class="dropdown" [class.show]="dropdownOpen"
-           (mouseenter)="toggleDropdown(true)"
-           (mouseleave)="toggleDropdown(false)">
-        <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
-          <i class="bi bi-chevron-compact-down"></i>
+      <!-- Dropdown -->
+      <div class="dropdown"
+           [class.show]="dropdownOpen"
+           (mouseenter)="openDropdown()"
+           (mouseleave)="closeDropdown()">
+        <a href="#" class="nav-link p-0" (click)="toggleDropdown(); $event.preventDefault()">
+          <i class="bi bi-chevron-compact-down fs-5"></i>
         </a>
         <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
           <li><a class="dropdown-item" href="#">Opção A</a></li>
@@ -39,6 +51,7 @@
         </ul>
       </div>
 
+      <!-- Business -->
       <button class="btn glass-btn business-btn d-flex align-items-center">
         <span>Business</span>
         <i class="bi bi-box-arrow-in-right ms-1"></i>

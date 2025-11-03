@@ -6,36 +6,38 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isCollapsed = false; // controla colapso do menu
-  dropdownOpen = false; // controla dropdown
-  innerWidth: number; // largura da tela
+  isCollapsed: boolean = false;
+  dropdownOpen: boolean = false;
+  innerWidth: number = window.innerWidth;
 
-  constructor() {
-    this.innerWidth = window.innerWidth; // captura largura inicial
-  }
-
-  // Atualiza largura da tela e ajusta menu
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
     if (this.innerWidth >= 992) {
-      this.isCollapsed = false; // garante que menu esteja aberto no desktop
+      this.isCollapsed = false; // menu sempre aberto no desktop
+      this.dropdownOpen = false; // reset dropdown no resize
     }
   }
 
-  // Alterna dropdown
-  toggleDropdown(state: boolean) {
-    this.dropdownOpen = state;
+  toggleMenu() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
-  // Controle de visibilidade do menu
-  get isMenuVisible(): boolean {
-    return this.isCollapsed || this.innerWidth >= 992;
+  openDropdown() {
+    if (this.innerWidth >= 992) {
+      this.dropdownOpen = true; // hover desktop
+    }
   }
 
-  // Ação do botão Business Sign-In
-  goToDashboard(): void {
-    console.log('Botão Business clicado');
-    // Exemplo de redirecionamento: this.router.navigate(['/dashboard']);
+  closeDropdown() {
+    if (this.innerWidth >= 992) {
+      this.dropdownOpen = false; // hover desktop
+    }
+  }
+
+  toggleDropdown() {
+    if (this.innerWidth < 992) {
+      this.dropdownOpen = !this.dropdownOpen; // click mobile
+    }
   }
 }
