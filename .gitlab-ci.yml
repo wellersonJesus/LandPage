@@ -10,11 +10,11 @@ cache:
   paths:
     - frontend/node_modules/
 
-# Build do Angular
+# Etapa de build do Angular
 build:
   stage: build
   before_script:
-    # Limpa cache local do Angular e dependências antigas
+    # Limpa cache local do Angular
     - rm -rf frontend/node_modules/.cache
   script:
     - cd frontend
@@ -25,24 +25,24 @@ build:
       - frontend/dist
     expire_in: 1 week
 
-# Deploy para GitLab Pages
+# Etapa de deploy para GitLab Pages
 pages:
   stage: deploy
   dependencies:
     - build
   script:
-    # Remove qualquer pasta pública antiga
+    # Remove qualquer build anterior
     - rm -rf public
     - mkdir -p public
 
-    # Copia todo o conteúdo do build Angular para a pasta 'public'
-    - cp -r frontend/dist/ws-manager-frontend/* public/
+    # ✅ Copia tudo de dist diretamente (sua estrutura atual)
+    - cp -r frontend/dist/* public/
 
-    # Cria 404.html para GitLab Pages (necessário para SPAs)
+    # Cria 404.html para Single Page Applications
     - cp public/index.html public/404.html
 
   artifacts:
     paths:
       - public
   only:
-    - main
+    - master
