@@ -35,52 +35,24 @@
 
 /* ---------- BUSINESS BUTTON ---------- */
 .business-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   background-color: rgba(156, 13, 47, 0.1) !important;
   color: #9c0d2f !important;
   border: 1px solid rgba(156, 13, 47, 0.15) !important;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
 }
+
 .business-btn:hover {
   background-color: rgba(255, 255, 255, 0.35) !important;
   color: #9c0d2f !important;
   box-shadow: 0 2px 6px rgba(156, 13, 47, 0.1);
   transform: translateY(-2px);
-}
-
-/* ---------- DROPDOWN ---------- */
-.dropdown-menu.custom-dropdown {
-  min-width: 160px;
-  margin-top: 0.4rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-5px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-.dropdown-menu.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* ---------- SOCIAL ICONS ---------- */
-.social-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  padding: 0.25rem;
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.15);
-}
-.social-icon:hover,
-.social-icon:focus {
-  color: #9c0d2f !important;
-  background-color: rgba(255, 255, 255, 0.35) !important;
-  transform: translateY(-2px);
-  text-decoration: none;
-  outline: none;
 }
 
 /* ---------- RESPONSIVO ---------- */
@@ -99,20 +71,34 @@
 
   /* Ícones apenas no mobile */
   .navbar-nav .nav-link span {
-    display: none;
+    display: none !important;
   }
 
-  /* BUSINESS BTN — só o ícone no mobile */
+  /* BUSINESS BTN — igual aos outros (só ícone, sem fundo nem borda) */
+  .business-btn {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0.4rem !important;
+  }
+
   .business-btn .business-text {
     display: none !important;
   }
 
-  .business-btn {
-    width: 42px;
-    height: 42px;
-    padding: 0.5rem;
-    justify-content: center;
-    background-color: rgba(156, 13, 47, 0.1) !important;
-    border-radius: 8px;
+  .business-btn i {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #000 !important;
+    transition: all 0.3s ease;
+  }
+
+  .business-btn:hover i {
+    color: #9c0d2f !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
+    border-radius: 6px;
+    transform: translateY(-2px);
   }
 }
