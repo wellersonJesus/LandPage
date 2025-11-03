@@ -66,3 +66,16 @@
     display: inline;
   }
 }
+
+@media (max-width: 992px) {
+  .container-fluid {
+    flex-wrap: nowrap !important;  /* força tudo em uma linha */
+    gap: 0.8rem;
+    overflow-x: auto;               /* adiciona scroll horizontal se precisar */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar-nav .nav-link span {
+    display: none; /* apenas ícones no mobile */
+  }
+}
