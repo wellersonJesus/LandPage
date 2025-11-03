@@ -97,6 +97,11 @@ footer a:hover { color: #9c0d2f; text-decoration: underline; }
 }
 
 @media (max-width: 576px) {
+  .navbar .container-fluid { flex-wrap: nowrap; }
+  .navbar-brand { display: flex; align-items: center; margin-left: 0.5rem; }
+  .navbar-toggler { order: 0; }
+  .navbar-brand { order: 1; }
+  .navbar-collapse { order: 2; }
   .navbar-nav { flex-direction: column; gap: 0.75rem !important; }
   .dropdown-menu.custom-dropdown { position: static; float: none; width: 100%; margin-top: 0.5rem; }
 }
