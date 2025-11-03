@@ -1,104 +1,52 @@
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container-fluid">
+<nav class="navbar navbar-light bg-white shadow-sm">
+  <div class="container-fluid d-flex align-items-center justify-content-start flex-wrap">
 
-    <!-- Botão Hamburger -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+    <!-- Hamburger -->
+    <button class="navbar-toggler me-2" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Logo + Texto WS Manager -->
-    <a class="navbar-brand" href="#">
-      <img src="assets/ws-manager.png" alt="Logo WS Manager">
-      <span>WS Manager</span>
+    <!-- Logo + WS Manager -->
+    <a class="navbar-brand me-3 d-flex align-items-center" href="#">
+      <img src="assets/ws-manager.png" alt="Logo WS Manager" width="48" height="48">
+      <span class="ms-2">WS Manager</span>
     </a>
 
-    <!-- Menu links + Dropdown + Business -->
-    <div class="collapse navbar-collapse" id="navbarMenu">
-      
-      <!-- Links (Desktop) -->
-      <ul class="navbar-nav mx-auto d-none d-lg-flex">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Serviços</a></li>
-      </ul>
+    <!-- Links sempre visíveis -->
+    <ul class="navbar-nav d-flex flex-row gap-3 me-3">
+      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Serviços</a></li>
+    </ul>
 
-      <!-- Dropdown + Business Button -->
-      <div class="navbar-buttons d-flex align-items-center ms-auto">
-        <!-- Dropdown -->
-        <div class="dropdown" [class.show]="dropdownOpen" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
-          <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                 class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
-            </svg>
-          </a>
-          <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
-            <li><a class="dropdown-item" href="#">Opção A</a></li>
-            <li><a class="dropdown-item" href="#">Opção B</a></li>
-            <li><a class="dropdown-item" href="#">Opção C</a></li>
-          </ul>
-        </div>
-
-        <!-- Business Sign-In -->
-        <button class="btn glass-btn business-btn" (click)="goToDashboard()">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="22" height="22" color="#9c0d2f">
-            <path stroke="#9c0d2f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"></path>
-            <path stroke="#d6b4a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="m13 8 4 4-4 4"></path>
+    <!-- Dropdown + Business -->
+    <div class="navbar-buttons d-flex align-items-center ms-auto gap-2">
+      <!-- Dropdown -->
+      <div class="dropdown" [class.show]="dropdownOpen" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+        <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+               class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
           </svg>
-          <span>Business Sign-In</span>
-        </button>
+        </a>
+        <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
+          <li><a class="dropdown-item" href="#">Opção A</a></li>
+          <li><a class="dropdown-item" href="#">Opção B</a></li>
+        </ul>
       </div>
+
+      <!-- Business Sign-In -->
+      <button class="btn glass-btn business-btn d-flex align-items-center">
+        <span>Business Sign-In</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="22" height="22" color="#9c0d2f">
+          <path stroke="#9c0d2f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"></path>
+          <path stroke="#d6b4a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m13 8 4 4-4 4"></path>
+        </svg>
+      </button>
     </div>
 
   </div>
 </nav>
-
-<!-- HERO SECTION 1 -->
-<section class="hero-section text-center d-flex justify-content-center align-items-center"
-         style="background: url('assets/fundo01.jpg') center center/cover no-repeat; position: relative;">
-  <div class="overlay dark-overlay"></div>
-  <div class="hero-content text-white">
-    <h1 class="display-4 fw-bold">Bem-vindo ao WS-Manager</h1>
-    <p class="lead mt-3">Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.</p>
-  </div>
-</section>
-
-<!-- HERO SECTION 2 -->
-<section class="hero-section second-bg text-center d-flex justify-content-center align-items-center"
-         style="background: url('assets/fundo02.jpg') center center/cover no-repeat;">
-  <div class="overlay light-overlay"></div>
-  <div class="hero-content text-white">
-    <h1 class="display-5 fw-bold">Simplify your financial life!</h1>
-    <p class="lead mt-3">Uma abordagem moderna e intuitiva para otimizar a sua rotina financeira com eficiência.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-light text-black pt-5 pb-4 mt-auto">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6 mb-4">
-        <h6 class="fw-bold">Sobre a Aplicação</h6>
-        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas, dispositivos e muito mais, de forma prática e intuitiva.</p>
-        <h6 class="fw-bold mt-3">Siga as Redes</h6>
-        <div class="d-flex gap-3 mt-2">
-          <a href="#" class="text-black fs-5"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="text-black fs-5"><i class="bi bi-linkedin"></i></a>
-          <a href="#" class="text-black fs-5"><i class="bi bi-instagram"></i></a>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 mb-4">
-        <h6 class="fw-bold">Documentos e Tecnologias</h6>
-        <p class="mt-2 text-black">Plataformas e ferramentas utilizadas: GitLab Pages, Render, SQLite, Angular, Bootstrap.</p>
-      </div>
-    </div>
-    <hr style="border-color: rgba(0,0,0,0.1);">
-    <div class="text-center mt-3">
-      <small>&copy; 2025 InfoWell-DAST. Todos os direitos reservados.</small>
-    </div>
-  </div>
-</footer>
