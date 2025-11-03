@@ -6,13 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'ws-manager';
   dropdownOpen = false;
 
-  toggleDropdown(state: boolean) {
-    this.dropdownOpen = state;
-  }
-
-  goToDashboard() {
-    alert('Redirecionando para o Dashboard...');
+  toggleDropdown(state?: boolean) {
+    this.dropdownOpen = state !== undefined ? state : !this.dropdownOpen;
   }
 }

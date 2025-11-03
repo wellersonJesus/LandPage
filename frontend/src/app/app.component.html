@@ -1,43 +1,45 @@
-<nav class="navbar navbar-light bg-white shadow-sm">
+<!-- HEADER -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3 py-2">
   <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
 
-    <!-- Hamburger -->
-    <button class="navbar-toggler me-2" type="button">
+    <!-- Botão Hamburger -->
+    <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Logo + Manager -->
-    <a class="navbar-brand me-3 d-flex align-items-center" href="#">
-      <img src="assets/ws-manager.png" alt="Logo Manager" width="48" height="48">
-      <span class="ms-2">Manager</span>
+    <!-- Logo + WS Manager -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/ws-manager.png" alt="Logo WS Manager" width="42" height="42">
+      <span class="ms-2 fw-bold">Manager</span>
     </a>
 
-    <!-- Links principais -->
-    <ul class="navbar-nav d-flex flex-row gap-3 mx-auto main-links">
-      <li class="nav-item">
-        <a class="nav-link d-flex align-items-center" href="#">
-          <i class="bi bi-house-door-fill"></i> <span>Home</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link d-flex align-items-center" href="#">
-          <i class="bi bi-info-circle-fill"></i> <span>Sobre</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link d-flex align-items-center" href="#">
-          <i class="bi bi-gear-fill"></i> <span>Serviços</span>
-        </a>
-      </li>
-    </ul>
+    <!-- Menu Central -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarMenu">
+      <ul class="navbar-nav d-flex flex-row align-items-center gap-3">
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-house-door me-1"></i>
+          <a class="nav-link menu-text" href="#">Home</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-info-circle me-1"></i>
+          <a class="nav-link menu-text" href="#">Sobre</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-gear me-1"></i>
+          <a class="nav-link menu-text" href="#">Serviços</a>
+        </li>
+      </ul>
+    </div>
 
     <!-- Dropdown + Business -->
     <div class="navbar-buttons d-flex align-items-center gap-2">
       <!-- Dropdown -->
-      <div class="dropdown" [class.show]="dropdownOpen" 
-           (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+      <div class="dropdown"
+           [class.show]="dropdownOpen"
+           (mouseenter)="toggleDropdown(true)"
+           (mouseleave)="toggleDropdown(false)">
         <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
                   d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
@@ -51,35 +53,37 @@
 
       <!-- Business Sign-In -->
       <button class="btn glass-btn business-btn d-flex align-items-center">
-        <span>Business Sign-In</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="22" height="22" color="#9c0d2f">
+        <span>Business</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+             viewBox="0 0 24 24" width="20" height="20" color="#9c0d2f">
           <path stroke="#9c0d2f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"></path>
+                d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"/>
           <path stroke="#d6b4a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m13 8 4 4-4 4"></path>
+                d="m13 8 4 4-4 4"/>
         </svg>
       </button>
     </div>
+
   </div>
 </nav>
 
 <!-- HERO SECTION 1 -->
 <section class="hero-section text-center d-flex justify-content-center align-items-center"
-         style="background: url('assets/fundo01.jpg') center center/cover no-repeat; position: relative;">
+         style="background: url('assets/fundo01.jpg') center center/cover no-repeat;">
   <div class="overlay dark-overlay"></div>
   <div class="hero-content text-white">
     <h1 class="display-4 fw-bold">Bem-vindo ao WS-Manager</h1>
-    <p class="lead mt-3">Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.</p>
+    <p class="lead mt-3">Sua plataforma completa para gestão de contratos, contas e dispositivos.</p>
   </div>
 </section>
 
 <!-- HERO SECTION 2 -->
-<section class="hero-section second-bg text-center d-flex justify-content-center align-items-center"
+<section class="hero-section text-center d-flex justify-content-center align-items-center"
          style="background: url('assets/fundo02.jpg') center center/cover no-repeat;">
   <div class="overlay light-overlay"></div>
   <div class="hero-content text-white">
     <h1 class="display-5 fw-bold">Simplify your financial life!</h1>
-    <p class="lead mt-3">Uma abordagem moderna e intuitiva para otimizar a sua rotina financeira com eficiência.</p>
+    <p class="lead mt-3">Modernize sua rotina com uma gestão eficiente e intuitiva.</p>
   </div>
 </section>
 
@@ -89,7 +93,7 @@
     <div class="row">
       <div class="col-12 col-md-6 mb-4">
         <h6 class="fw-bold">Sobre a Aplicação</h6>
-        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas, dispositivos e muito mais, de forma prática e intuitiva.</p>
+        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas e dispositivos de forma prática.</p>
         <h6 class="fw-bold mt-3">Siga as Redes</h6>
         <div class="d-flex gap-3 mt-2">
           <a href="#" class="text-black fs-5"><i class="bi bi-twitter"></i></a>
@@ -99,7 +103,7 @@
       </div>
       <div class="col-12 col-md-6 mb-4">
         <h6 class="fw-bold">Documentos e Tecnologias</h6>
-        <p class="mt-2 text-black">Plataformas e ferramentas utilizadas: GitLab Pages, Render, SQLite, Angular, Bootstrap.</p>
+        <p class="mt-2 text-black">GitLab Pages, Render, SQLite, Angular, Bootstrap.</p>
       </div>
     </div>
     <hr style="border-color: rgba(0,0,0,0.1);">
