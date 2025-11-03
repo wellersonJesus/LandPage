@@ -16,22 +16,20 @@
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 0.92rem;
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: transparent !important;
+    border: none !important;
   }
 
-  /* === Hover idêntico ao social-icon === */
-  .nav-link:hover,
-  .nav-btn:hover {
+  .nav-link:hover {
     color: #9c0d2f !important;
     background-color: rgba(255, 255, 255, 0.35) !important;
     transform: translateY(-2px);
     text-decoration: none;
-    border-color: rgba(156, 13, 47, 0.15);
   }
 
   .nav-link i {
     font-size: 1.1rem;
+    margin-right: 0.15rem;
   }
 }
 
@@ -44,10 +42,26 @@
   backdrop-filter: blur(4px);
 }
 .business-btn:hover {
-  background-color: rgba(255, 255, 255, 0.35) !important; /* mesmo hover claro */
+  background-color: rgba(255, 255, 255, 0.35) !important;
   color: #9c0d2f !important;
   box-shadow: 0 2px 6px rgba(156, 13, 47, 0.1);
   transform: translateY(-2px);
+}
+
+/* ---------- DROPDOWN ---------- */
+.dropdown-menu.custom-dropdown {
+  min-width: 160px;
+  margin-top: 0.4rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* ---------- SOCIAL ICONS ---------- */
@@ -67,4 +81,38 @@
   transform: translateY(-2px);
   text-decoration: none;
   outline: none;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 992px) {
+  .container-fluid > .d-flex {
+    flex-wrap: nowrap !important;
+    gap: 0.4rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar-nav {
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+  }
+
+  /* Ícones apenas no mobile */
+  .navbar-nav .nav-link span {
+    display: none;
+  }
+
+  /* BUSINESS BTN — só o ícone no mobile */
+  .business-btn .business-text {
+    display: none !important;
+  }
+
+  .business-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0.5rem;
+    justify-content: center;
+    background-color: rgba(156, 13, 47, 0.1) !important;
+    border-radius: 8px;
+  }
 }
