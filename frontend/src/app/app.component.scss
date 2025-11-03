@@ -20,7 +20,7 @@
   gap: 2rem; // aumenta o espaço entre Home, Sobre, Serviços
 }
 
-/* Logo + texto Manager cor igual ao botão */
+/* Logo + texto Manager */
 .navbar-brand span {
   color: #9c0d2f;
   font-weight: bold;
@@ -47,6 +47,11 @@
   transform: translateY(0);
 }
 
+/* Business Button */
+.business-btn .business-text {
+  display: inline; // texto visível no desktop
+}
+
 /* Responsividade Mobile */
 @media (max-width: 992px) {
   /* Navbar horizontal com scroll, sem quebra */
@@ -62,8 +67,13 @@
     gap: 1.5rem; // aumenta o espaço entre links no mobile
   }
 
-  /* Mostrar apenas ícones se quiser compactar */
+  /* Mostrar apenas ícones nos links do menu */
   .navbar-nav .nav-link span {
+    display: none;
+  }
+
+  /* Mostrar apenas ícone no botão Business */
+  .business-btn .business-text {
     display: none;
   }
 
@@ -80,9 +90,12 @@
   .navbar-nav .nav-link span {
     display: inline;
   }
+  .business-btn .business-text {
+    display: inline;
+  }
 }
 
-/* Efeito hover para redes sociais */
+/* Hover redes sociais */
 .social-icon:hover {
   color: #9c0d2f;
   transform: translateY(-1px);
