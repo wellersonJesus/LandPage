@@ -371,26 +371,26 @@ JWT_SECRET      • • • • • • • • • • • •
 ```
 </details>
 
+## 🛫 Prefixos usado para commits 
 
-# 🛫 Prefixos usado para commits 
+<details>
+<summary>Prefixos ...</summary>
 
 Modelo de identificação para commits.
 
-<summary>Prefixos ...</summary>
-
 ```bash
 # 1️⃣ Prefixos mais comuns
-feat:	Nova funcionalidade (feature)	feat: adicionar navbar responsiva
-fix:	Correção de bug	fix: corrigir erro no build do GitLab Pages
-chore:	Alterações de manutenção / config / build / scripts	chore: atualizar .gitlab-ci.yml para deploy automático
-docs:	Apenas documentação	docs: atualizar README com instruções de build
-style:	Formatação, ajustes de CSS, sem mudança de lógica	style: padronizar espaçamento do header
-refactor:	Refatoração de código, sem adicionar feature nem corrigir bug	refactor: simplificar lógica de carregamento de assets
-test:	Adição ou correção de testes	test: adicionar testes unitários para service
-perf:	Melhorias de performance	perf: otimizar carregamento de imagens
-build:	Mudanças relacionadas a build ou CI/CD	build: ajustar pipeline GitLab Pages
-ci:	Mudanças nos scripts de integração contínua (CI/CD)	ci: atualizar runner do GitLab CI
-revert:	Reverte um commit anterior	revert: desfazer alterações na navbar responsiva
+feat:	Nova funcionalidade.
+fix:	Correção de bug	fix.
+chore:	Alterações de manutenção.
+docs:	Apenas documentação	docs.
+style:	Formatação, ajustes de CSS.
+refactor:	Refatoração de código.
+test:	Adição ou correção de testes	test.
+perf:	Melhorias de performance	perf.
+build:	Mudanças relacionadas a build ou CI/CD	build.
+ci:	Mudanças nos scripts de integração contínua (CI/CD)	ci.
+revert:	Reverte um commit anterior	revert.
 ```
 </details>
 
