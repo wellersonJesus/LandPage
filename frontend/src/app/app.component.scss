@@ -1,6 +1,9 @@
 /* ---------- BASE NAVBAR ---------- */
 .navbar {
   font-family: 'Inter', sans-serif;
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   .nav-link {
     display: flex;
@@ -13,106 +16,38 @@
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 0.92rem;
-    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
-  .nav-btn {
-    background-color: #f8f9fa;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    min-width: 110px;
-    height: 40px;
-  }
-
-  .nav-btn:hover,
-  .nav-link:hover {
-    color: #fff !important;
-    background-color: #9c0d2f;
-    border-color: #9c0d2f;
+  /* === Hover idêntico ao social-icon === */
+  .nav-link:hover,
+  .nav-btn:hover {
+    color: #9c0d2f !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
     transform: translateY(-2px);
+    text-decoration: none;
+    border-color: rgba(156, 13, 47, 0.15);
   }
 
   .nav-link i {
     font-size: 1.1rem;
   }
-
-  .navbar-brand img {
-    transition: transform 0.3s ease;
-  }
-
-  .navbar-brand img:hover {
-    transform: scale(1.05);
-  }
-}
-
-.custom-navbar {
-  gap: 0.05rem; /* mínimo possível */
-}
-
-.navbar-nav {
-  gap: 0.1rem; /* diminui espaço entre os links */
-}
-
-.nav-link i {
-  margin-right: 0.15rem; /* ícones mais próximos do texto */
-}
-
-.business-btn {
-  margin-left: 0.1rem; /* diminui espaço entre dropdown e botão */
 }
 
 /* ---------- BUSINESS BUTTON ---------- */
 .business-btn {
-  background-color: #9c0d2f !important;
-  color: #fff !important;
-  border: 1px solid #9c0d2f !important;
+  background-color: rgba(156, 13, 47, 0.1) !important;
+  color: #9c0d2f !important;
+  border: 1px solid rgba(156, 13, 47, 0.15) !important;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
 }
 .business-btn:hover {
-  background-color: #b6143a !important;
-}
-
-/* ---------- DROPDOWN ---------- */
-.dropdown-menu.custom-dropdown {
-  min-width: 160px;
-  margin-top: 0.4rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-5px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-.dropdown-menu.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* ---------- RESPONSIVO ---------- */
-@media (max-width: 992px) {
-  .container-fluid > .d-flex {
-    flex-wrap: nowrap !important;
-    gap: 0.4rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .navbar-nav {
-    flex-wrap: nowrap;
-    gap: 1rem;
-  }
-
-  /* Ícones apenas no mobile */
-  .navbar-nav .nav-link span,
-  .business-btn .business-text {
-    display: none;
-  }
-
-  .nav-btn {
-    min-width: auto;
-    width: 42px;
-    height: 42px;
-    padding: 0.6rem;
-    justify-content: center;
-  }
+  background-color: rgba(255, 255, 255, 0.35) !important; /* mesmo hover claro */
+  color: #9c0d2f !important;
+  box-shadow: 0 2px 6px rgba(156, 13, 47, 0.1);
+  transform: translateY(-2px);
 }
 
 /* ---------- SOCIAL ICONS ---------- */
@@ -123,12 +58,12 @@
   border-radius: 6px;
   padding: 0.25rem;
   transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.15);
 }
-
 .social-icon:hover,
 .social-icon:focus {
-  color: #fff !important;
-  background-color: #9c0d2f !important;
+  color: #9c0d2f !important;
+  background-color: rgba(255, 255, 255, 0.35) !important;
   transform: translateY(-2px);
   text-decoration: none;
   outline: none;
