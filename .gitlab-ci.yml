@@ -37,10 +37,10 @@ pages:
 
     # Detecta automaticamente a pasta gerada dentro de frontend/dist/
     - DIST_DIR=$(find frontend/dist -mindepth 1 -maxdepth 1 -type d | head -n 1)
-    - echo "📁 Pasta detectada de build: $DIST_DIR"
+    - echo "Pasta detectada de build: $DIST_DIR"
 
     # Copia todos os arquivos do build Angular para public/
-    - cp -r $DIST_DIR/* public/
+    - cp -r "$DIST_DIR"/* public/
 
     # Cria 404.html (necessário para Angular SPA)
     - cp public/index.html public/404.html
