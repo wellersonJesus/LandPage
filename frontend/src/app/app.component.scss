@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@500;700&family=Inter:wght@400;600;700&display=swap');
 
 .navbar { 
-  display:flex; align-items:center; justify-content:flex-start; font-family:'Inter', sans-serif; flex-wrap:wrap; gap:0.5rem;
-  
+  display:flex; align-items:center; justify-content:space-between; font-family:'Inter', sans-serif; flex-wrap:wrap; gap:0.5rem;
+
   .navbar-brand { display:flex; align-items:center; gap:0.25rem; img{width:48px;height:48px;} span{font-weight:bold;} }
-  
+
   .navbar-nav { 
-    display:flex; flex-direction:row; gap:1rem; 
-    .nav-link { transition:0.3s; &:hover{color:#9c0d2f; font-weight:600;} }
+    display:flex; flex-direction:row; gap:1rem; margin:0 auto; 
+    .nav-link { display:flex; align-items:center; gap:0.25rem; transition:0.3s; &:hover{color:#9c0d2f; font-weight:600;} i{font-size:1rem;} }
   }
+
+  .main-links { display:flex; }   // links principais visíveis
 
   .navbar-buttons { display:flex; align-items:center; gap:0.5rem; }
   .glass-btn { display:flex; align-items:center; justify-content:center; gap:0.25rem; padding:0.25rem 0.5rem; font-size:0.75rem; background:rgba(214,180,164,0.08); border:1px solid rgba(214,180,164,0.4); &:hover{background:rgba(214,180,164,0.25); transform:scale(1.03);} }
@@ -18,10 +20,12 @@
 /* Mobile */
 @media(max-width:576px){
   .navbar { flex-wrap:nowrap; gap:0.5rem; align-items:center; }
+
+  .main-links { font-size:0.75rem; gap:0.5rem; flex-wrap:nowrap; .nav-link span{display:none;} } // exibir só ícones no mobile
   .navbar-toggler { order:0; }
   .navbar-brand { order:1; }
-  .navbar-nav { order:2; gap:0.5rem; flex-wrap:nowrap; font-size:0.8rem; }
-  .navbar-buttons { order:3; }
-  .glass-btn span { display:none; } /* opcional: reduzir tamanho no mobile */
+  .navbar-buttons { order:2; }
+
+  .glass-btn span { font-size:0.7rem; } 
   .dropdown-menu.custom-dropdown { position:absolute; top:100%; right:0; min-width:120px; }
 }

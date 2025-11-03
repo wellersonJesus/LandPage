@@ -1,26 +1,38 @@
 <nav class="navbar navbar-light bg-white shadow-sm">
-  <div class="container-fluid d-flex align-items-center justify-content-start flex-wrap">
+  <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
 
     <!-- Hamburger -->
     <button class="navbar-toggler me-2" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Logo + WS Manager -->
+    <!-- Logo + Manager -->
     <a class="navbar-brand me-3 d-flex align-items-center" href="#">
-      <img src="assets/ws-manager.png" alt="Logo WS Manager" width="48" height="48">
-      <span class="ms-2">WS Manager</span>
+      <img src="assets/ws-manager.png" alt="Logo Manager" width="48" height="48">
+      <span class="ms-2">Manager</span>
     </a>
 
-    <!-- Links sempre visíveis -->
-    <ul class="navbar-nav d-flex flex-row gap-3 me-3">
-      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Serviços</a></li>
+    <!-- Links (Home, Sobre, Serviços) -->
+    <ul class="navbar-nav d-flex flex-row gap-3 mx-auto main-links">
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center" href="#">
+          <i class="bi bi-house-door-fill me-1"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center" href="#">
+          <i class="bi bi-info-circle-fill me-1"></i> Sobre
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center" href="#">
+          <i class="bi bi-gear-fill me-1"></i> Serviços
+        </a>
+      </li>
     </ul>
 
     <!-- Dropdown + Business -->
-    <div class="navbar-buttons d-flex align-items-center ms-auto gap-2">
+    <div class="navbar-buttons d-flex align-items-center gap-2">
       <!-- Dropdown -->
       <div class="dropdown" [class.show]="dropdownOpen" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
         <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
@@ -50,3 +62,49 @@
 
   </div>
 </nav>
+
+<!-- HERO SECTION 1 -->
+<section class="hero-section text-center d-flex justify-content-center align-items-center"
+         style="background: url('assets/fundo01.jpg') center center/cover no-repeat; position: relative;">
+  <div class="overlay dark-overlay"></div>
+  <div class="hero-content text-white">
+    <h1 class="display-4 fw-bold">Bem-vindo ao WS-Manager</h1>
+    <p class="lead mt-3">Sua plataforma completa para gestão de contratos, contas, dispositivos e muito mais.</p>
+  </div>
+</section>
+
+<!-- HERO SECTION 2 -->
+<section class="hero-section second-bg text-center d-flex justify-content-center align-items-center"
+         style="background: url('assets/fundo02.jpg') center center/cover no-repeat;">
+  <div class="overlay light-overlay"></div>
+  <div class="hero-content text-white">
+    <h1 class="display-5 fw-bold">Simplify your financial life!</h1>
+    <p class="lead mt-3">Uma abordagem moderna e intuitiva para otimizar a sua rotina financeira com eficiência.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-light text-black pt-5 pb-4 mt-auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 mb-4">
+        <h6 class="fw-bold">Sobre a Aplicação</h6>
+        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas, dispositivos e muito mais, de forma prática e intuitiva.</p>
+        <h6 class="fw-bold mt-3">Siga as Redes</h6>
+        <div class="d-flex gap-3 mt-2">
+          <a href="#" class="text-black fs-5"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-black fs-5"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-black fs-5"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4">
+        <h6 class="fw-bold">Documentos e Tecnologias</h6>
+        <p class="mt-2 text-black">Plataformas e ferramentas utilizadas: GitLab Pages, Render, SQLite, Angular, Bootstrap.</p>
+      </div>
+    </div>
+    <hr style="border-color: rgba(0,0,0,0.1);">
+    <div class="text-center mt-3">
+      <small>&copy; 2025 InfoWell-DAST. Todos os direitos reservados.</small>
+    </div>
+  </div>
+</footer>
