@@ -2,12 +2,12 @@
   <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
     <!-- Logo + Manager -->
-    <a class="navbar-brand d-flex align-items-center me-3" href="#">
+    <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="assets/ws-manager.png" alt="Logo WS Manager" width="42" height="42">
-      <span class="ms-2 fw-bold">Manager</span>
+      <span class="ms-2">Manager</span>
     </a>
 
-    <!-- Menu Links: Home, Sobre, Serviços -->
+    <!-- Menu Links (Home, Sobre, Serviços) -->
     <ul class="navbar-nav d-flex flex-row align-items-center gap-3 mb-0">
       <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
@@ -32,10 +32,9 @@
     <!-- Dropdown + Business -->
     <div class="d-flex align-items-center gap-2">
       <!-- Dropdown -->
-      <div class="dropdown dropdown-hover"
-           (mouseenter)="openDropdown()"
-           (mouseleave)="closeDropdown()"
-           [class.show]="dropdownOpen">
+      <div class="dropdown dropdown-hover" 
+           (mouseenter)="openDropdown()" 
+           (mouseleave)="closeDropdown()">
         <a href="#" class="nav-link p-0" (click)="toggleDropdown($event)">
           <i class="bi bi-chevron-compact-down fs-5"></i>
         </a>
@@ -52,7 +51,7 @@
         <span>Business</span>
       </button>
     </div>
-
+    
   </div>
 </nav>
 

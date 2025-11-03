@@ -28,6 +28,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-5px);
+  pointer-events: none; /* bloqueia clique quando invisível */
 }
 
 .dropdown-hover:hover .dropdown-menu,
@@ -36,6 +37,7 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto; /* permite clique */
 }
 
 /* Responsividade Mobile */
@@ -43,11 +45,13 @@
   .navbar-nav .nav-link span {
     display: none; /* só ícones no mobile */
   }
+
   .container-fluid {
     flex-wrap: nowrap !important;
     gap: 0.8rem;
     overflow-x: auto;
   }
+
   .dropdown-menu.custom-dropdown {
     position: absolute;
     top: 100%;
