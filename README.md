@@ -387,7 +387,7 @@ refactor:	Refatoração de código.
 test:	Adição ou correção de testes	test.
 perf:	Melhorias de performance	perf.
 build:	Mudanças relacionadas a build ou CI/CD	build.
-ci:	Mudanças nos scripts de integração contínua (CI/CD)	ci.
+ci:	Mudanças nos scripts de integração contínua (CI/CD).
 revert:	Reverte um commit anterior	revert.
 ```
 </details>
