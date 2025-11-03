@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3 py-2">
-  <div class="container-fluid d-flex align-items-center justify-content-start flex-nowrap">
+  <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
-    <!-- Botão hambúrguer -->
+    <!-- Botão hambúrguer (mobile) -->
     <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,16 +12,18 @@
       <span class="ms-1 fs-6 fw-bold">WS Manager</span>
     </a>
 
-    <!-- Navbar Links (ocultos no mobile) -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto d-none d-lg-flex">
+    <!-- Links centralizados (apenas desktop) -->
+    <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex" id="navbarNav">
+      <ul class="navbar-nav text-center">
         <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Serviços</a></li>
+        <li class="nav-item position-relative">
+          <a class="nav-link" href="#">Serviços</a>
+        </li>
       </ul>
     </div>
 
-    <!-- Dropdown + Botão Business -->
+    <!-- Botões à direita -->
     <div class="d-flex align-items-center gap-2 ms-auto">
       <!-- Dropdown -->
       <div class="dropdown" [class.show]="dropdownOpen"
@@ -37,11 +39,10 @@
           <li><a class="dropdown-item" href="#">Opção A</a></li>
           <li><a class="dropdown-item" href="#">Opção B</a></li>
           <li><a class="dropdown-item" href="#">Opção C</a></li>
-          <li><a class="dropdown-item" href="#">Opção D</a></li>
         </ul>
       </div>
 
-      <!-- Botão Business Sign-In -->
+      <!-- Botão Business -->
       <button class="btn glass-btn d-flex align-items-center justify-content-center gap-1 business-btn"
               (click)="goToDashboard()">
         <span class="fs-6 d-none d-md-inline">Business</span>
