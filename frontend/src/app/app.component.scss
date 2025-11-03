@@ -10,10 +10,10 @@
 
 /* Espaçamento entre ícone e texto */
 .navbar-nav .nav-link i {
-  margin-right: 0.5rem;  /* espessado como solicitado */
+  margin-right: 0.5rem;
 }
 
-/* Logo + escrita Manager com cor do botão Business */
+/* Logo + texto Manager cor igual ao botão */
 .navbar-brand span {
   color: #9c0d2f;
   font-weight: bold;
@@ -30,7 +30,6 @@
   transform: translateY(-5px);
 }
 
-/* Hover desktop — exibição suave do dropdown */
 .dropdown-hover:hover .dropdown-menu,
 .dropdown-hover .dropdown-menu:hover {
   display: block !important;
@@ -41,19 +40,14 @@
 
 /* Responsividade Mobile */
 @media (max-width: 992px) {
-  /* Ocultar textos no mobile, manter só os ícones dos links */
   .navbar-nav .nav-link span {
-    display: none;
+    display: none; /* só ícones no mobile */
   }
-
-  /* Forçar navbar toda em uma linha */
   .container-fluid {
     flex-wrap: nowrap !important;
     gap: 0.8rem;
-    overflow-x: auto;     /* permite scroll se estiver muito apertado */
+    overflow-x: auto;
   }
-
-  /* Dropdown no mobile ajustado */
   .dropdown-menu.custom-dropdown {
     position: absolute;
     top: 100%;
