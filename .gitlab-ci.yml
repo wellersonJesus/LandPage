@@ -1,3 +1,30 @@
+image: node:20
+
+stages:
+  - build
+  - deploy
+
+# Cache do node_modules para acelerar builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+# Etapa de build do Angular
+build:
+  stage: build
+  before_script:
+    # Limpa cache local do Angular
+    - rm -rf frontend/node_modules/.cache
+  script:
+    - cd frontend
+    - npm install --legacy-peer-deps
+    - npm run build:pages
+  artifacts:
+    paths:
+      - frontend/dist
+    expire_in: 1 week
+
 # Etapa de deploy para GitLab Pages
 pages:
   stage: deploy
