@@ -44,6 +44,22 @@
   }
 }
 
+.custom-navbar {
+  gap: 0.05rem; /* mínimo possível */
+}
+
+.navbar-nav {
+  gap: 0.1rem; /* diminui espaço entre os links */
+}
+
+.nav-link i {
+  margin-right: 0.15rem; /* ícones mais próximos do texto */
+}
+
+.business-btn {
+  margin-left: 0.1rem; /* diminui espaço entre dropdown e botão */
+}
+
 /* ---------- BUSINESS BUTTON ---------- */
 .business-btn {
   background-color: #9c0d2f !important;

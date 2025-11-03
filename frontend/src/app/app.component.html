@@ -3,60 +3,57 @@
   <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
     <!-- Todos os elementos em uma única div -->
-    <div class="d-flex align-items-center gap-1 flex-nowrap w-100 justify-content-between">
+    <div class="d-flex align-items-center custom-navbar flex-nowrap w-100 justify-content-between">
+  <!-- Logo -->
+  <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="assets/ws-manager.png" alt="Logo WS Manager" width="36" height="36">
+  </a>
 
-      <!-- Logo + Manager -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="assets/ws-manager.png" alt="Logo WS Manager" width="36" height="36">
-        <!-- <span class="ms-2 fw-bold">Manager</span> -->
+  <!-- Menu Links -->
+  <ul class="navbar-nav d-flex flex-row align-items-center mb-0 flex-nowrap">
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center" href="#">
+        <i class="bi bi-house-fill fs-5 me-1"></i>
+        <span>Home</span>
       </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center" href="#">
+        <i class="bi bi-info-circle-fill fs-5 me-1"></i>
+        <span>Sobre</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link d-flex align-items-center" href="#">
+        <i class="bi bi-briefcase-fill fs-5 me-1"></i>
+        <span>Serviços</span>
+      </a>
+    </li>
+  </ul>
 
-      <!-- Menu Links (Home, Sobre, Serviços) -->
-      <ul class="navbar-nav d-flex flex-row align-items-center gap-4 mb-0 flex-nowrap">
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-house-fill fs-5 me-1"></i>
-            <span>Home</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-info-circle-fill fs-5 me-1"></i>
-            <span>Sobre</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-briefcase-fill fs-5 me-1"></i>
-            <span>Serviços</span>
-          </a>
-        </li>
+  <!-- Dropdown + Business -->
+  <div class="d-flex align-items-center flex-nowrap">
+    <!-- Dropdown -->
+    <div class="dropdown position-relative"
+         (mouseenter)="openDropdown()"
+         (mouseleave)="closeDropdown()">
+      <a href="javascript:void(0)" class="nav-link p-1" (click)="toggleDropdown($event)">
+        <i class="bi bi-chevron-compact-down fs-5"></i>
+      </a>
+      <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
+        <li><a class="dropdown-item" href="#">Opção A</a></li>
+        <li><a class="dropdown-item" href="#">Opção B</a></li>
+        <li><a class="dropdown-item" href="#">Opção C</a></li>
       </ul>
-
-      <!-- Dropdown + Business -->
-      <div class="d-flex align-items-center gap-3 flex-nowrap">
-        <!-- Dropdown -->
-        <div class="dropdown dropdown-hover position-relative"
-             (mouseenter)="openDropdown()"
-             (mouseleave)="closeDropdown()">
-          <a href="#" class="nav-link p-1" (click)="toggleDropdown($event)">
-            <i class="bi bi-chevron-compact-down fs-5"></i>
-          </a>
-          <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
-            <li><a class="dropdown-item" href="#">Opção A</a></li>
-            <li><a class="dropdown-item" href="#">Opção B</a></li>
-            <li><a class="dropdown-item" href="#">Opção C</a></li>
-          </ul>
-        </div>
-
-        <!-- Business -->
-        <button class="btn glass-btn business-btn d-flex align-items-center">
-          <i class="bi bi-box-arrow-in-right me-1"></i>
-          <span class="business-text">Business</span>
-        </button>
-      </div>
-
     </div>
+
+    <!-- Business -->
+    <button class="btn glass-btn business-btn d-flex align-items-center ms-1">
+      <i class="bi bi-box-arrow-in-right me-1"></i>
+      <span class="business-text">Business</span>
+    </button>
+  </div>
+</div>
 
   </div>
 </nav>
