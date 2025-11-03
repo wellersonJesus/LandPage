@@ -31,20 +31,14 @@ pages:
   dependencies:
     - build
   script:
-    # Remove qualquer build anterior
-    - rm -rf public
-    - mkdir -p public
-
-    # Detecta automaticamente a pasta gerada dentro de frontend/dist/
-    - DIST_DIR=$(find frontend/dist -mindepth 1 -maxdepth 1 -type d | head -n 1)
-    - echo "Pasta detectada de build: $DIST_DIR"
-
-    # Copia todos os arquivos do build Angular para public/
-    - cp -r "$DIST_DIR"/* public/
-
-    # Cria 404.html (necessário para Angular SPA)
-    - cp public/index.html public/404.html
-
+    - bash -c '
+      rm -rf public
+      mkdir -p public
+      DIST_DIR=$(find frontend/dist -mindepth 1 -maxdepth 1 -type d | head -n 1)
+      echo "Pasta detectada de build: $DIST_DIR"
+      cp -r "$DIST_DIR"/* public/
+      cp public/index.html public/404.html
+      '
   artifacts:
     paths:
       - public
