@@ -61,3 +61,47 @@ footer a:hover { color:#9c0d2f; text-decoration: underline; }
 
   .glass-btn { font-size:0.75rem; padding:0.25rem 0.5rem; }
 }
+
+.navbar .container-fluid {
+  display: flex;
+  flex-wrap: nowrap; /* evita que elementos quebrem linha */
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
+
+/* Mobile: esconder texto e mostrar apenas ícones */
+@media (max-width: 768px) {
+  .navbar-brand span {
+    display: none; /* esconde "Manager" */
+  }
+
+  .navbar-nav {
+    display: none; /* esconde links no mobile para ganhar espaço */
+  }
+
+  .dropdown,
+  .business-btn,
+  .navbar-toggler,
+  .navbar-brand img {
+    flex-shrink: 0; /* garante que não encolham */
+  }
+}

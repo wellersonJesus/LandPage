@@ -1,6 +1,5 @@
-<!-- HEADER / NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
+<nav class="navbar navbar-light bg-white shadow-sm">
+  <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
     <!-- Hamburger -->
     <button class="navbar-toggler me-2" type="button" (click)="isCollapsed = !isCollapsed">
@@ -10,39 +9,29 @@
     <!-- Logo + Texto -->
     <a class="navbar-brand d-flex align-items-center me-3" href="#">
       <img src="assets/ws-manager.png" alt="Logo WS Manager" width="42" height="42">
-      <span class="ms-2 fw-bold">Manager</span>
+      <span class="ms-2 fw-bold d-none d-md-inline">Manager</span>
     </a>
 
-    <!-- Menu Central (Home, Sobre, Serviços) -->
-    <ul class="navbar-nav mx-auto d-flex flex-row align-items-center"
-        [class.show]="isMenuVisible">
-      <li class="nav-item d-flex align-items-center">
-        <i class="bi bi-house-door-fill me-1"></i>
-        <a class="nav-link" href="#">Home</a>
+    <!-- Links Home/Sobre/Serviços -->
+    <ul class="navbar-nav d-flex flex-row align-items-center mx-auto d-none d-md-flex">
+      <li class="nav-item d-flex align-items-center gap-1">
+        <i class="bi bi-house-door-fill"></i> <a class="nav-link" href="#">Home</a>
       </li>
-      <li class="nav-item d-flex align-items-center">
-        <i class="bi bi-info-circle-fill me-1"></i>
-        <a class="nav-link" href="#">Sobre</a>
+      <li class="nav-item d-flex align-items-center gap-1">
+        <i class="bi bi-info-circle-fill"></i> <a class="nav-link" href="#">Sobre</a>
       </li>
-      <li class="nav-item d-flex align-items-center">
-        <i class="bi bi-briefcase-fill me-1"></i>
-        <a class="nav-link" href="#">Serviços</a>
+      <li class="nav-item d-flex align-items-center gap-1">
+        <i class="bi bi-briefcase-fill"></i> <a class="nav-link" href="#">Serviços</a>
       </li>
     </ul>
 
     <!-- Dropdown + Business -->
-    <div class="navbar-buttons d-flex align-items-center gap-2">
-      <!-- Dropdown -->
-      <div class="dropdown"
-           [class.show]="dropdownOpen"
+    <div class="d-flex align-items-center gap-2">
+      <div class="dropdown" [class.show]="dropdownOpen"
            (mouseenter)="toggleDropdown(true)"
            (mouseleave)="toggleDropdown(false)">
         <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-               class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
-          </svg>
+          <i class="bi bi-chevron-compact-down"></i>
         </a>
         <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
           <li><a class="dropdown-item" href="#">Opção A</a></li>
@@ -50,16 +39,9 @@
         </ul>
       </div>
 
-      <!-- Business Sign-In -->
-      <button class="btn glass-btn business-btn d-flex align-items-center" (click)="goToDashboard()">
+      <button class="btn glass-btn business-btn d-flex align-items-center">
         <span>Business</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-             viewBox="0 0 24 24" width="20" height="20" color="#9c0d2f">
-          <path stroke="#9c0d2f" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M6 3h13a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6M17 12H3"/>
-          <path stroke="#d6b4a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m13 8 4 4-4 4"/>
-        </svg>
+        <i class="bi bi-box-arrow-in-right ms-1"></i>
       </button>
     </div>
 
