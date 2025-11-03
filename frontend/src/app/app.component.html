@@ -12,21 +12,21 @@
       <span class="ms-2">Manager</span>
     </a>
 
-    <!-- Links (Home, Sobre, Serviços) -->
+    <!-- Links principais -->
     <ul class="navbar-nav d-flex flex-row gap-3 mx-auto main-links">
       <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
-          <i class="bi bi-house-door-fill me-1"></i> Home
+          <i class="bi bi-house-door-fill"></i> <span>Home</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
-          <i class="bi bi-info-circle-fill me-1"></i> Sobre
+          <i class="bi bi-info-circle-fill"></i> <span>Sobre</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link d-flex align-items-center" href="#">
-          <i class="bi bi-gear-fill me-1"></i> Serviços
+          <i class="bi bi-gear-fill"></i> <span>Serviços</span>
         </a>
       </li>
     </ul>
@@ -34,7 +34,8 @@
     <!-- Dropdown + Business -->
     <div class="navbar-buttons d-flex align-items-center gap-2">
       <!-- Dropdown -->
-      <div class="dropdown" [class.show]="dropdownOpen" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+      <div class="dropdown" [class.show]="dropdownOpen" 
+           (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
         <a href="#" class="nav-link p-0" (click)="$event.preventDefault()">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
@@ -59,7 +60,6 @@
         </svg>
       </button>
     </div>
-
   </div>
 </nav>
 
