@@ -1,64 +1,70 @@
-<!-- Nav bar -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-light bg-white shadow-sm">
   <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
-    <!-- Todos os elementos em uma única div -->
     <div class="d-flex align-items-center custom-navbar flex-nowrap w-100 justify-content-between">
-  <!-- Logo -->
-  <a class="navbar-brand d-flex align-items-center" href="#">
-    <img src="assets/ws-manager.png" alt="Logo WS Manager" width="36" height="36">
-  </a>
 
-  <!-- Menu Links -->
-  <ul class="navbar-nav d-flex flex-row align-items-center mb-0 flex-nowrap">
-    <li class="nav-item">
-      <a class="nav-link d-flex align-items-center" href="#">
-        <i class="bi bi-house-fill fs-5 me-1"></i>
-        <span>Home</span>
+      <!-- LOGO -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="assets/ws-manager.png" alt="WS Manager" width="36" height="36">
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link d-flex align-items-center" href="#">
-        <i class="bi bi-info-circle-fill fs-5 me-1"></i>
-        <span>Sobre</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link d-flex align-items-center" href="#">
-        <i class="bi bi-briefcase-fill fs-5 me-1"></i>
-        <span>Serviços</span>
-      </a>
-    </li>
-  </ul>
 
-  <!-- Dropdown + Business -->
-  <div class="d-flex align-items-center flex-nowrap">
-    <!-- Dropdown -->
-    <div class="dropdown position-relative"
-         (mouseenter)="openDropdown()"
-         (mouseleave)="closeDropdown()">
-      <a href="javascript:void(0)" class="nav-link p-1" (click)="toggleDropdown($event)">
-        <i class="bi bi-chevron-compact-down fs-5"></i>
-      </a>
-      <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
-        <li><a class="dropdown-item" href="#">Opção A</a></li>
-        <li><a class="dropdown-item" href="#">Opção B</a></li>
-        <li><a class="dropdown-item" href="#">Opção C</a></li>
+      <!-- MENU LINKS -->
+      <ul class="navbar-nav d-flex flex-row align-items-center mb-0 flex-nowrap">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#">
+            <i class="bi bi-house-fill fs-5 me-1"></i>
+            <span>Home</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#">
+            <i class="bi bi-info-circle-fill fs-5 me-1"></i>
+            <span>Sobre</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#">
+            <i class="bi bi-briefcase-fill fs-5 me-1"></i>
+            <span>Serviços</span>
+          </a>
+        </li>
       </ul>
-    </div>
 
-    <!-- Business -->
-    <button class="btn glass-btn business-btn d-flex align-items-center ms-1">
-      <i class="bi bi-box-arrow-in-right me-1"></i>
-      <span class="business-text">Business</span>
-    </button>
-  </div>
-</div>
+      <!-- DROPDOWN + BUSINESS -->
+      <div class="d-flex align-items-center flex-nowrap">
 
-  </div>
+        <!-- DROPDOWN -->
+        <div class="dropdown position-relative dropdown-trigger"
+             (click)="toggleDropdown($event)">
+          <a href="javascript:void(0)" class="nav-link p-1">
+            <i class="bi bi-chevron-compact-down fs-5"></i>
+          </a>
+
+          <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
+            <li><a class="dropdown-item" href="#">Opção A</a></li>
+            <li><a class="dropdown-item" href="#">Opção B</a></li>
+            <li><a class="dropdown-item" href="#">Opção C</a></li>
+          </ul>
+        </div>
+
+        <!-- BUSINESS BUTTON -->
+        <button class="btn business-btn d-flex align-items-center ms-1">
+          <i class="bi bi-box-arrow-in-right me-1"></i>
+          <span class="business-text">Business</span>
+        </button>
+
+      </div>
+
+    </div><!-- FIM custom-navbar -->
+
+  </div><!-- FIM container-fluid -->
 </nav>
 
-<!-- HERO SECTION 1 -->
+
+<!-- HERO 1 -->
 <section class="hero-section text-center d-flex justify-content-center align-items-center"
          style="background: url('assets/fundo01.jpg') center center/cover no-repeat;">
   <div class="overlay dark-overlay"></div>
@@ -68,7 +74,7 @@
   </div>
 </section>
 
-<!-- HERO SECTION 2 -->
+<!-- HERO 2 -->
 <section class="hero-section text-center d-flex justify-content-center align-items-center"
          style="background: url('assets/fundo02.jpg') center center/cover no-repeat;">
   <div class="overlay light-overlay"></div>
@@ -84,7 +90,8 @@
     <div class="row">
       <div class="col-12 col-md-6 mb-4">
         <h6 class="fw-bold">Sobre a Aplicação</h6>
-        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas e dispositivos de forma prática.</p>
+        <p>WS-Manager é uma plataforma completa para gerenciar contratos, contas e dispositivos.</p>
+
         <h6 class="fw-bold mt-3">Siga as Redes</h6>
         <div class="d-flex gap-3 mt-2">
           <a href="#" class="text-black fs-5 social-icon"><i class="bi bi-twitter"></i></a>
@@ -92,12 +99,15 @@
           <a href="#" class="text-black fs-5 social-icon"><i class="bi bi-instagram"></i></a>
         </div>
       </div>
+
       <div class="col-12 col-md-6 mb-4">
         <h6 class="fw-bold">Documentos e Tecnologias</h6>
         <p class="mt-2 text-black">GitLab Pages, Render, SQLite, Angular, Bootstrap.</p>
       </div>
     </div>
+
     <hr style="border-color: rgba(0,0,0,0.1);">
+
     <div class="text-center mt-3">
       <small>&copy; 2025 InfoWell-DAST. Todos os direitos reservados.</small>
     </div>

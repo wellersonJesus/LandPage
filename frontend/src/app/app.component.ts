@@ -6,40 +6,29 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  dropdownOpen: boolean = false;
-  innerWidth: number = window.innerWidth;
-  private hoverTimeout: any;
+  dropdownOpen = false;
+  innerWidth = window.innerWidth;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
+
     if (this.innerWidth >= 992) {
       this.dropdownOpen = false;
     }
   }
 
-  // Abre dropdown com delay ao hover (desktop)
-  openDropdown() {
-    clearTimeout(this.hoverTimeout);
-    if (this.innerWidth >= 992) {
-      this.dropdownOpen = true;
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: any) {
+    const clickedInside = event.target.closest('.dropdown-trigger');
+
+    if (!clickedInside) {
+      this.dropdownOpen = false;
     }
   }
 
-  // Fecha dropdown com delay para dar tempo de clicar nas opções
-  closeDropdown() {
-    if (this.innerWidth >= 992) {
-      this.hoverTimeout = setTimeout(() => {
-        this.dropdownOpen = false;
-      }, 400); // 400ms de atraso antes de fechar
-    }
-  }
-
-  // Alterna no clique (mobile)
   toggleDropdown(event: MouseEvent) {
-    if (this.innerWidth < 992) {
-      event.preventDefault();
-      this.dropdownOpen = !this.dropdownOpen;
-    }
+    event.stopPropagation();
+    this.dropdownOpen = !this.dropdownOpen;
   }
 }

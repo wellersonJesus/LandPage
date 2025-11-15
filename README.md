@@ -323,8 +323,9 @@ npm start
 # ou
 ng serve --open
 
-# 5️⃣ Build de produção (geração de bundles otimizados para deploy)
+# ✅ Build de produção (geração de bundles otimizados para deploy)
 npm run build:prod -- --base-href=/ws-manager-309387/
+# ✅ Gerar o build de produção (Angular)
 npm run build:pages
 # Isso executa:
 # ng build --configuration production --base-href=/

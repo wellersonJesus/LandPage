@@ -1,9 +1,10 @@
 /* ---------- BASE NAVBAR ---------- */
 .navbar {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: rgba(255, 255, 255, 0.6) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  z-index: 999;
 
   .nav-link {
     display: flex;
@@ -13,92 +14,82 @@
     color: #000 !important;
     padding: 0.4rem 0.8rem;
     border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
     font-size: 0.92rem;
-    background-color: transparent !important;
-    border: none !important;
+    transition: 0.3s ease;
   }
 
   .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
     color: #9c0d2f !important;
-    background-color: rgba(255, 255, 255, 0.35) !important;
     transform: translateY(-2px);
-    text-decoration: none;
   }
+}
 
-  .nav-link i {
-    font-size: 1.1rem;
-    margin-right: 0.15rem;
-  }
+/* ---------- DROPDOWN CUSTOM ---------- */
+.custom-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  padding: 0.4rem 0;
+  background: white;
+  border-radius: 10px;
+  min-width: 160px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 9999;
+}
+
+.custom-dropdown.show {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: auto;
 }
 
 /* ---------- BUSINESS BUTTON ---------- */
 .business-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  background-color: rgba(156, 13, 47, 0.1) !important;
-  color: #9c0d2f !important;
-  border: 1px solid rgba(156, 13, 47, 0.15) !important;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
+  background-color: rgba(156, 13, 47, 0.1);
+  border: 1px solid rgba(156, 13, 47, 0.2);
   padding: 0.45rem 0.9rem;
   border-radius: 8px;
-}
-
-.business-btn:hover {
-  background-color: rgba(255, 255, 255, 0.35) !important;
   color: #9c0d2f !important;
-  box-shadow: 0 2px 6px rgba(156, 13, 47, 0.1);
-  transform: translateY(-2px);
+  transition: 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px);
+  }
 }
 
-/* ---------- RESPONSIVO ---------- */
+/* ---------- MOBILE ( < 992px ) ---------- */
 @media (max-width: 992px) {
-  .container-fluid > .d-flex {
-    flex-wrap: nowrap !important;
-    gap: 0.4rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .navbar-nav {
-    flex-wrap: nowrap;
-    gap: 0.6rem;
-  }
-
-  /* Ícones apenas no mobile */
+  /* Apenas ícones nos links */
   .navbar-nav .nav-link span {
     display: none !important;
   }
 
-  /* BUSINESS BTN — igual aos outros (só ícone, sem fundo nem borda) */
+  /* Business vira ícone */
   .business-btn {
-    background-color: transparent !important;
+    background: transparent !important;
     border: none !important;
-    box-shadow: none !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 0.4rem !important;
+    padding: 0 !important;
   }
 
-  .business-btn .business-text {
+  .business-text {
     display: none !important;
   }
 
   .business-btn i {
-    font-size: 1.2rem;
-    margin: 0;
-    color: #000 !important;
-    transition: all 0.3s ease;
+    font-size: 1.3rem;
+    color: #000;
   }
 
-  .business-btn:hover i {
-    color: #9c0d2f !important;
-    background-color: rgba(255, 255, 255, 0.35) !important;
-    border-radius: 6px;
-    transform: translateY(-2px);
+  .dropdown-trigger {
+    display: flex;
+    align-items: center;
   }
 }
