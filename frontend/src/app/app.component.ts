@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,29 +6,17 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  dropdownOpen = false;
-  innerWidth = window.innerWidth;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.innerWidth = event.target.innerWidth;
+  dropdownOpen: boolean = false;
 
-    if (this.innerWidth >= 992) {
-      this.dropdownOpen = false;
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  clickOutside(event: any) {
-    const clickedInside = event.target.closest('.dropdown-trigger');
-
-    if (!clickedInside) {
-      this.dropdownOpen = false;
-    }
-  }
-
-  toggleDropdown(event: MouseEvent) {
+  toggleDropdown(event: Event) {
     event.stopPropagation();
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  constructor() {
+    document.addEventListener('click', () => {
+      this.dropdownOpen = false;
+    });
   }
 }

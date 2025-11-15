@@ -1,31 +1,65 @@
-/* ---------- BASE NAVBAR ---------- */
+/* ================================
+   NAVBAR BASE
+=================================== */
+
+/* COR DE FUNDO DO MENU */
 .navbar {
   font-family: "Inter", sans-serif;
-  background-color: rgba(255, 255, 255, 0.6) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: #1B7F6B !important; /* <<< COR PRINCIPAL */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 999;
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    color: #000 !important;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    font-size: 0.92rem;
-    transition: 0.3s ease;
-  }
-
-  .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.4) !important;
-    color: #9c0d2f !important;
-    transform: translateY(-2px);
-  }
 }
 
-/* ---------- DROPDOWN CUSTOM ---------- */
+/* ================================
+   TÍTULO — MANAGER COM CHONBURI
+=================================== */
+
+.title-brand {
+  text-decoration: none !important;
+}
+
+.brand-title {
+  font-family: "Chonburi", serif; /* <<< FONTE NOVA */
+  font-size: 2.1rem; /* <<< MAIOR E MAIS ENCORPADO */
+  font-weight: 400; /* Chonburi já é bold naturalmente */
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  transition: 0.25s ease;
+}
+
+/* HOVER — USANDO TOM VERDE CLARO */
+.title-brand:hover .brand-title {
+  color: #C2E9DF;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   LINKS DO MENU
+=================================== */
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #ffffff !important;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  transition: 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #C2E9DF !important;
+  color: #1B7F6B !important;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   DROPDOWN CUSTOM
+=================================== */
+
 .custom-dropdown {
   position: absolute;
   top: 110%;
@@ -38,7 +72,7 @@
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
-  transition: all 0.25s ease;
+  transition: 0.25s ease;
   z-index: 9999;
 }
 
@@ -48,31 +82,46 @@
   pointer-events: auto;
 }
 
-/* ---------- BUSINESS BUTTON ---------- */
+.custom-dropdown .dropdown-item:hover {
+  background-color: #C2E9DF !important;
+  color: #1B7F6B !important;
+}
+
+/* ================================
+   BUSINESS BUTTON
+=================================== */
+
 .business-btn {
   display: flex;
   align-items: center;
-  background-color: rgba(156, 13, 47, 0.1);
-  border: 1px solid rgba(156, 13, 47, 0.2);
+  background-color: #C2E9DF;
+  border: 1px solid #A7D9CC;
   padding: 0.45rem 0.9rem;
   border-radius: 8px;
-  color: #9c0d2f !important;
+  color: #1B7F6B !important;
   transition: 0.3s ease;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.4) !important;
-    transform: translateY(-2px);
-  }
 }
 
-/* ---------- MOBILE ( < 992px ) ---------- */
+.business-btn:hover {
+  background-color: #A7D9CC !important;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   MOBILE
+=================================== */
+
 @media (max-width: 992px) {
-  /* Apenas ícones nos links */
-  .navbar-nav .nav-link span {
+
+  .navbar-nav {
     display: none !important;
   }
 
-  /* Business vira ícone */
+  .brand-title {
+    font-size: 2.3rem; /* <<< AINDA MAIS IMPACTANTE NO MOBILE */
+    color: #ffffff !important;
+  }
+
   .business-btn {
     background: transparent !important;
     border: none !important;
@@ -85,7 +134,7 @@
 
   .business-btn i {
     font-size: 1.3rem;
-    color: #000;
+    color: #ffffff;
   }
 
   .dropdown-trigger {
