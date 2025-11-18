@@ -10,16 +10,18 @@
   border: none;
 }
 
-/* Espaçamento original entre HOME / SOBRE / SERVIÇOS */
+/* Alinhar HOME / SOBRE / SERVIÇOS mais à esquerda no desktop */
+.navbar-nav {
+  margin-left: 20px !important;
+}
+
 .navbar-nav .nav-item {
   margin: 0 18px;
 }
 
 /* =============================
-   MANAGER — sem hover + fonte arredondada e maior
+   MANAGER — sem hover, fonte arredondada e maior
 ============================= */
-
-/* título base */
 .title-brand.nav-link,
 .title-brand.nav-link .brand-title {
   background: none !important;
@@ -27,82 +29,75 @@
   transform: none !important;
   transition: none !important;
   font-family: "Poppins", "Nunito", Arial, sans-serif !important;
-  font-size: 2.1rem !important; /* maior e mais imponente */
+  font-size: 2rem !important;
   font-weight: 800 !important;
-  letter-spacing: 0.5px; /* mais elegante */
+  letter-spacing: 0.5px;
+  padding: 0 !important;
 }
 
-/* remove qualquer hover herdado */
+/* Remover hover do Manager */
 .title-brand.nav-link:hover,
 .title-brand.nav-link:focus,
-.title-brand.nav-link:active {
+.title-brand.nav-link:active,
+.title-brand.nav-link:hover .brand-title {
   background: none !important;
   color: #ffffff !important;
   transform: none !important;
   box-shadow: none !important;
 }
 
-/* remove hover no span */
-.title-brand.nav-link:hover .brand-title,
-.title-brand.nav-link:focus .brand-title,
-.title-brand.nav-link:active .brand-title {
-  background: none !important;
-  color: #ffffff !important;
-  transform: none !important;
-}
-
-/* ajuste para mobile */
-@media (max-width: 992px) {
-  .title-brand.nav-link .brand-title {
-    font-size: 2.8rem !important; /* maior no mobile */
-  }
-}
-
-
 /* =============================
-   ÍCONE HAMBÚRGUER / X
+   BOTÃO HAMBÚRGUER / X — hover cor preta
 ============================= */
 
-/* Remove qualquer fundo ou sombra */
+/* Reset completo para o botão */
+.dropdown-toggle-icon,
+.dropdown-toggle-icon i,
 .no-bg-icon,
 .no-bg-icon i {
   background: none !important;
   box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  transform: none !important;
+  transition: color 0.25s ease !important;
+  color: #ffffff !important;
+}
+
+/* Hover — apenas muda a cor para preto, sem fundo */
+.dropdown-toggle-icon:hover i,
+.dropdown-toggle-icon:focus i,
+.dropdown-toggle-icon:active i,
+.no-bg-icon:hover i,
+.no-bg-icon:focus i,
+.no-bg-icon:active i {
+  color: #000000 !important;
+  background: none !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 /* Ícone hambúrguer */
 .icon-hamb {
   font-size: 2rem !important;
-  color: #ffffff !important;
   font-weight: 700 !important;
 }
 
-/* Ícone X reforçado e menor */
+/* Ícone X */
 .icon-x {
   font-size: 1.7rem !important;
   font-weight: 1000 !important;
-  color: #ffffff !important;
-  background: none !important;
-  box-shadow: none !important;
-}
-
-/* Remover hover do ícone do menu */
-.dropdown-toggle-icon:hover,
-.dropdown-toggle-icon i:hover {
-  background: none !important;
-  color: inherit !important;
-  transform: none !important;
 }
 
 /* =============================
-   LINKS DO MENU (DESKTOP)
+   LINKS MENU (DESKTOP)
 ============================= */
 .nav-link {
   color: #ffffff !important;
   font-weight: 500;
   display: flex;
   align-items: center;
-  transition: 0.3s ease;
+  transition: 0.25s ease;
   padding: 0.4rem 0.8rem;
 }
 
@@ -153,10 +148,7 @@
 }
 
 .custom-dropdown a:hover,
-.custom-dropdown .dropdown-item:hover,
-.custom-dropdown a:active,
-.custom-dropdown .dropdown-item:active,
-.custom-dropdown a:focus {
+.custom-dropdown .dropdown-item:hover {
   background: #ced3d1 !important;
   color: #0f0f0f !important;
   transform: translateY(-2px) !important;
@@ -166,7 +158,6 @@
    MOBILE
 ============================= */
 @media (max-width: 992px) {
-
   .navbar-nav {
     display: none !important;
   }
@@ -191,8 +182,9 @@
     font-size: 1.25rem;
   }
 
-  .brand-title {
-    font-size: 2.2rem;
+  /* Manager maior no mobile */
+  .title-brand.nav-link .brand-title {
+    font-size: 2.8rem !important;
   }
 }
 
