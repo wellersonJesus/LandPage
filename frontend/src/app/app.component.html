@@ -36,10 +36,11 @@
       <div class="dropdown position-relative dropdown-trigger"
            (click)="toggleDropdown($event)">
 
-        <!-- Ícone hamburguer / X -->
-        <a href="javascript:void(0)" class="nav-link p-1 dropdown-toggle-icon no-bg-icon">
+        <!-- Ícone hambúrguer / X -->
+        <a href="javascript:void(0)" class="nav-link p-1 dropdown-toggle-icon no-bg-icon"
+          (click)="toggleDropdown($event)">
           <i class="bi no-bg-icon"
-             [ngClass]="dropdownOpen ? 'bi-x-lg icon-x' : 'bi-list icon-hamb'"></i>
+            [ngClass]="dropdownOpen ? 'bi-x-lg icon-x' : 'bi-list icon-hamb'"></i>
         </a>
 
         <!-- Menu interno -->

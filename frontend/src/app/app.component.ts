@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,8 +11,17 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   dropdownOpen = false;
 
-  toggleDropdown(event: Event) {
-    event.stopPropagation();
+  // Alterna entre hambúrguer e X
+  toggleDropdown(event: Event): void {
+    event.stopPropagation(); // Evita que cliques no documento fechem o dropdown
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  // Fecha o dropdown ao clicar fora
+  @HostListener('document:click', ['$event'])
+  closeDropdown(event: Event): void {
+    if (this.dropdownOpen) {
+      this.dropdownOpen = false;
+    }
   }
 }

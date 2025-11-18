@@ -10,15 +10,6 @@
   border: none;
 }
 
-/* Alinhar HOME / SOBRE / SERVIÇOS mais à esquerda no desktop */
-.navbar-nav {
-  margin-left: 20px !important;
-}
-
-.navbar-nav .nav-item {
-  margin: 0 18px;
-}
-
 /* =============================
    MANAGER — sem hover, fonte arredondada e maior
 ============================= */
@@ -36,65 +27,26 @@
 }
 
 .title-brand.nav-link:hover,
-.title-brand.nav-link:active,
 .title-brand.nav-link:focus,
+.title-brand.nav-link:active,
 .title-brand.nav-link:hover .brand-title {
   background: none !important;
   color: #ffffff !important;
+  box-shadow: none !important;
   transform: none !important;
-  box-shadow: none !important;
 }
 
 /* =============================
-   BOTÃO HAMBÚRGUER E X — SEM BACKGROUND
+   NAV LINKS DESKTOP
 ============================= */
-
-/* Reset completo do botão e ícone */
-.dropdown-toggle-icon {
-  background: none !important;  /* remove fundo */
-  box-shadow: none !important;
-  border: none !important;
-  padding: 0 !important;
+.navbar-nav {
+  margin-left: 20px !important;
 }
 
-.dropdown-toggle-icon i {
-  color: #ffffff !important;      /* cor inicial branca */
-  font-weight: 900 !important;    /* hambúrguer bold */
-  font-size: 2rem !important;     /* tamanho do ícone */
-  transition: color 0.2s ease !important; /* apenas cor muda */
+.navbar-nav .nav-item {
+  margin: 0 18px;
 }
 
-/* Hover / focus / active — muda apenas a cor do ícone para preto, sem fundo */
-.dropdown-toggle-icon:hover,
-.dropdown-toggle-icon:focus,
-.dropdown-toggle-icon:active {
-  background: none !important;  /* garante fundo invisível */
-}
-
-.dropdown-toggle-icon:hover i,
-.dropdown-toggle-icon:focus i,
-.dropdown-toggle-icon:active i {
-  color: #000000 !important;   /* ícone preto ao interagir */
-  background: none !important;
-  box-shadow: none !important;
-}
-
-/* Ícones individuais */
-.icon-hamb {
-  font-size: 2rem !important;
-  font-weight: 900 !important;  /* grosso */
-  color: #ffffff !important;
-}
-
-.icon-x {
-  font-size: 1.8rem !important;
-  font-weight: 1000 !important; /* ainda mais grosso que hambúrguer */
-  color: #ffffff !important;
-}
-
-/* =============================
-   LINKS MENU (DESKTOP)
-============================= */
 .nav-link {
   color: #ffffff !important;
   font-weight: 500;
@@ -109,6 +61,54 @@
   color: #0f0f0f !important;
   border-radius: 8px;
   transform: translateY(-2px);
+}
+
+/* =============================
+   BOTÃO HAMBÚRGUER E X — SEM HOVER / SEM FUNDO
+============================= */
+.dropdown-toggle-icon,
+.dropdown-toggle-icon i,
+.dropdown-toggle-icon:focus,
+.dropdown-toggle-icon:hover,
+.dropdown-toggle-icon:active,
+.dropdown-toggle-icon i:focus,
+.dropdown-toggle-icon i:hover,
+.dropdown-toggle-icon i:active {
+  background: none !important;   /* remove fundo */
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Ícones: branco por padrão */
+.dropdown-toggle-icon i {
+  color: #ffffff !important;
+  font-weight: 900 !important;    /* hambúrguer */
+  font-size: 2rem !important;
+  transition: color 0.2s ease !important; /* muda só cor */
+}
+
+/* Hover / focus / active: muda apenas cor do ícone */
+.dropdown-toggle-icon:hover i,
+.dropdown-toggle-icon:focus i,
+.dropdown-toggle-icon:active i {
+  color: #000000 !important;      /* preto ao interagir */
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Ícones individuais */
+.icon-hamb {
+  font-size: 2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+}
+
+.icon-x {
+  font-size: 1.2rem !important;
+  font-weight: 800 !important;   /* mais bold que hambúrguer */
+  color: #ffffff !important;
 }
 
 /* =============================
