@@ -35,10 +35,9 @@
   padding: 0 !important;
 }
 
-/* Remover hover do Manager */
 .title-brand.nav-link:hover,
-.title-brand.nav-link:focus,
 .title-brand.nav-link:active,
+.title-brand.nav-link:focus,
 .title-brand.nav-link:hover .brand-title {
   background: none !important;
   color: #ffffff !important;
@@ -47,46 +46,50 @@
 }
 
 /* =============================
-   BOTÃO HAMBÚRGUER / X — hover cor preta
+   BOTÃO HAMBÚRGUER E X — SEM BACKGROUND
 ============================= */
 
-/* Reset completo para o botão */
-.dropdown-toggle-icon,
-.dropdown-toggle-icon i,
-.no-bg-icon,
-.no-bg-icon i {
-  background: none !important;
+/* Reset completo do botão e ícone */
+.dropdown-toggle-icon {
+  background: none !important;  /* remove fundo */
   box-shadow: none !important;
   border: none !important;
-  outline: none !important;
-  transform: none !important;
-  transition: color 0.25s ease !important;
+  padding: 0 !important;
+}
+
+.dropdown-toggle-icon i {
+  color: #ffffff !important;      /* cor inicial branca */
+  font-weight: 900 !important;    /* hambúrguer bold */
+  font-size: 2rem !important;     /* tamanho do ícone */
+  transition: color 0.2s ease !important; /* apenas cor muda */
+}
+
+/* Hover / focus / active — muda apenas a cor do ícone para preto, sem fundo */
+.dropdown-toggle-icon:hover,
+.dropdown-toggle-icon:focus,
+.dropdown-toggle-icon:active {
+  background: none !important;  /* garante fundo invisível */
+}
+
+.dropdown-toggle-icon:hover i,
+.dropdown-toggle-icon:focus i,
+.dropdown-toggle-icon:active i {
+  color: #000000 !important;   /* ícone preto ao interagir */
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Ícones individuais */
+.icon-hamb {
+  font-size: 2rem !important;
+  font-weight: 900 !important;  /* grosso */
   color: #ffffff !important;
 }
 
-/* Hover — apenas muda a cor para preto, sem fundo */
-.dropdown-toggle-icon:hover i,
-.dropdown-toggle-icon:focus i,
-.dropdown-toggle-icon:active i,
-.no-bg-icon:hover i,
-.no-bg-icon:focus i,
-.no-bg-icon:active i {
-  color: #000000 !important;
-  background: none !important;
-  box-shadow: none !important;
-  transform: none !important;
-}
-
-/* Ícone hambúrguer */
-.icon-hamb {
-  font-size: 2rem !important;
-  font-weight: 700 !important;
-}
-
-/* Ícone X */
 .icon-x {
-  font-size: 1.7rem !important;
-  font-weight: 1000 !important;
+  font-size: 1.8rem !important;
+  font-weight: 1000 !important; /* ainda mais grosso que hambúrguer */
+  color: #ffffff !important;
 }
 
 /* =============================
