@@ -11,7 +11,7 @@
         <span class="brand-title">MANAGER</span>
       </a>
 
-      <!-- MENU DESKTOP (igual estava, nada modificado) -->
+      <!-- MENU DESKTOP (não alterado) -->
       <ul class="navbar-nav d-none d-lg-flex flex-row align-items-center mb-0 flex-nowrap">
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center" href="#">
@@ -32,13 +32,14 @@
         </li>
       </ul>
 
-      <!-- DROPDOWN (único lugar onde o Business existe) -->
+      <!-- DROPDOWN (onde está o ícone X e o hambúrguer) -->
       <div class="dropdown position-relative dropdown-trigger"
            (click)="toggleDropdown($event)">
 
-        <!-- Ícone hamburguer -->
-        <a href="javascript:void(0)" class="nav-link p-1 dropdown-toggle-icon">
-          <i class="bi fs-4" [ngClass]="dropdownOpen ? 'bi-x-lg' : 'bi-list'"></i>
+        <!-- Ícone hamburguer / X -->
+        <a href="javascript:void(0)" class="nav-link p-1 dropdown-toggle-icon no-bg-icon">
+          <i class="bi no-bg-icon"
+             [ngClass]="dropdownOpen ? 'bi-x-lg icon-x' : 'bi-list icon-hamb'"></i>
         </a>
 
         <!-- Menu interno -->
@@ -47,7 +48,7 @@
           <li><a class="dropdown-item" href="#">Sobre</a></li>
           <li><a class="dropdown-item" href="#">Serviços</a></li>
 
-          <!-- BUSINESS — ÍCONE ORIGINAL MANTIDO -->
+          <!-- BUSINESS — ÍCONE ORIGINAL mantido -->
           <li class="mt-2">
             <a class="dropdown-item d-flex align-items-center business-mobile-link" href="#">
               <i class="bi bi-box-arrow-in-right me-2 fs-5"></i>

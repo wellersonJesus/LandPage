@@ -3,36 +3,95 @@
 ============================= */
 .navbar {
   font-family: "Inter", sans-serif;
-  background-color: #8e9190 !important; /* cor correta */
+  background-color: #8e9190 !important;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 999;
   border: none;
 }
 
-/* Espaçamento entre HOME / SOBRE / SERVIÇOS — mantendo o seu anterior */
+/* Espaçamento original entre HOME / SOBRE / SERVIÇOS */
 .navbar-nav .nav-item {
   margin: 0 18px;
 }
 
 /* =============================
-   TÍTULO MANAGER
+   MANAGER — sem hover + fonte arredondada e maior
 ============================= */
-.title-brand {
-  text-decoration: none !important;
-}
 
-.brand-title {
-  font-family: "Georgia", Helvetica;
-  font-size: 2.1rem;
-  font-weight: 900;
+/* título base */
+.title-brand.nav-link,
+.title-brand.nav-link .brand-title {
+  background: none !important;
   color: #ffffff !important;
-  transition: 0.25s ease;
+  transform: none !important;
+  transition: none !important;
+  font-family: "Poppins", "Nunito", Arial, sans-serif !important;
+  font-size: 2.1rem !important; /* maior e mais imponente */
+  font-weight: 800 !important;
+  letter-spacing: 0.5px; /* mais elegante */
 }
 
-.title-brand:hover .brand-title {
-  color: #0f0f0f !important;
-  transform: translateY(-2px);
+/* remove qualquer hover herdado */
+.title-brand.nav-link:hover,
+.title-brand.nav-link:focus,
+.title-brand.nav-link:active {
+  background: none !important;
+  color: #ffffff !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* remove hover no span */
+.title-brand.nav-link:hover .brand-title,
+.title-brand.nav-link:focus .brand-title,
+.title-brand.nav-link:active .brand-title {
+  background: none !important;
+  color: #ffffff !important;
+  transform: none !important;
+}
+
+/* ajuste para mobile */
+@media (max-width: 992px) {
+  .title-brand.nav-link .brand-title {
+    font-size: 2.8rem !important; /* maior no mobile */
+  }
+}
+
+
+/* =============================
+   ÍCONE HAMBÚRGUER / X
+============================= */
+
+/* Remove qualquer fundo ou sombra */
+.no-bg-icon,
+.no-bg-icon i {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Ícone hambúrguer */
+.icon-hamb {
+  font-size: 2rem !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Ícone X reforçado e menor */
+.icon-x {
+  font-size: 1.7rem !important;
+  font-weight: 1000 !important;
+  color: #ffffff !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Remover hover do ícone do menu */
+.dropdown-toggle-icon:hover,
+.dropdown-toggle-icon i:hover {
+  background: none !important;
+  color: inherit !important;
+  transform: none !important;
 }
 
 /* =============================
@@ -75,13 +134,12 @@
 
 .custom-dropdown.show {
   opacity: 1;
-  transform: translateY(0px);
+  transform: translateY(0);
   pointer-events: auto;
 }
 
 /* =============================
-   DROPDOWN — HOVER COM MESMO
-   EFEITO DO DESKTOP
+   DROPDOWN — ITENS
 ============================= */
 .custom-dropdown a,
 .custom-dropdown .dropdown-item {
@@ -94,26 +152,14 @@
   background: transparent !important;
 }
 
-/* --- Hover Desktop + Toque Mobile --- */
 .custom-dropdown a:hover,
 .custom-dropdown .dropdown-item:hover,
 .custom-dropdown a:active,
 .custom-dropdown .dropdown-item:active,
-.custom-dropdown a:focus,
-.custom-dropdown .dropdown-item:focus,
-.custom-dropdown a:focus-visible,
-.custom-dropdown .dropdown-item:focus-visible {
-  background: #ced3d1 !important;  /* mesma cor do desktop */
+.custom-dropdown a:focus {
+  background: #ced3d1 !important;
   color: #0f0f0f !important;
-  border-radius: 8px !important;
   transform: translateY(-2px) !important;
-}
-
-/* =============================
-   BUSINESS — DESKTOP (não exibido)
-============================= */
-.business-btn-desktop {
-  display: none !important;
 }
 
 /* =============================
@@ -121,30 +167,26 @@
 ============================= */
 @media (max-width: 992px) {
 
-  /* esconde itens do desktop */
   .navbar-nav {
     display: none !important;
   }
 
-  /* Business aparece inteiro no mobile */
   .business-mobile-link {
     display: flex !important;
     align-items: center;
     padding: 0.45rem 0.9rem;
     border-radius: 8px;
     font-weight: 600;
-    color: #ffffff !important;
     gap: 8px;
     transition: 0.3s ease;
   }
 
   .business-mobile-link:hover {
-    background: #ced3d1 !important; 
+    background: #ced3d1 !important;
     color: #0f0f0f !important;
     transform: translateY(-2px);
   }
 
-  /* Ícone original mantido */
   .business-mobile-link i {
     font-size: 1.25rem;
   }
@@ -154,12 +196,8 @@
   }
 }
 
-/* Ajuste de margem vertical em telas pequenas */
 @media (max-width: 991px) {
   .navbar-nav .nav-item {
     margin: 12px 0;
   }
 }
-
-
-
