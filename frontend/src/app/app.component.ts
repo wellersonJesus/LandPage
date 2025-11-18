@@ -1,22 +1,18 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  dropdownOpen: boolean = false;
+  dropdownOpen = false;
 
   toggleDropdown(event: Event) {
     event.stopPropagation();
     this.dropdownOpen = !this.dropdownOpen;
-  }
-
-  constructor() {
-    document.addEventListener('click', () => {
-      this.dropdownOpen = false;
-    });
   }
 }

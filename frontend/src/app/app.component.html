@@ -1,18 +1,17 @@
 <!-- NAVBAR -->
 <link href="https://fonts.googleapis.com/css2?family=Chonburi&display=swap" rel="stylesheet">
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-light shadow-sm fixed-top">
   <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
 
     <div class="d-flex align-items-center custom-navbar flex-nowrap w-100 justify-content-between">
 
-      <!-- TÍTULO AO INVÉS DA LOGO -->
+      <!-- TÍTULO MANAGER -->
       <a class="navbar-brand title-brand nav-link d-flex align-items-center" href="#">
         <span class="brand-title">MANAGER</span>
       </a>
 
-      <!-- MENU (DESKTOP) -->
+      <!-- MENU DESKTOP (igual estava, nada modificado) -->
       <ul class="navbar-nav d-none d-lg-flex flex-row align-items-center mb-0 flex-nowrap">
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center" href="#">
@@ -33,34 +32,35 @@
         </li>
       </ul>
 
-      <!-- DROPDOWN + BUSINESS -->
-      <div class="d-flex align-items-center flex-nowrap">
+      <!-- DROPDOWN (único lugar onde o Business existe) -->
+      <div class="dropdown position-relative dropdown-trigger"
+           (click)="toggleDropdown($event)">
 
-        <!-- DROPDOWN -->
-        <div class="dropdown position-relative dropdown-trigger"
-             (click)="toggleDropdown($event)">
-          <a href="javascript:void(0)" class="nav-link p-1">
-            <i class="bi bi-chevron-compact-down fs-5"></i>
-          </a>
+        <!-- Ícone hamburguer -->
+        <a href="javascript:void(0)" class="nav-link p-1 dropdown-toggle-icon">
+          <i class="bi fs-4" [ngClass]="dropdownOpen ? 'bi-x-lg' : 'bi-list'"></i>
+        </a>
 
-          <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
-            <li><a class="dropdown-item" href="#">Opção A</a></li>
-            <li><a class="dropdown-item" href="#">Opção B</a></li>
-            <li><a class="dropdown-item" href="#">Opção C</a></li>
-          </ul>
-        </div>
+        <!-- Menu interno -->
+        <ul class="dropdown-menu custom-dropdown" [class.show]="dropdownOpen">
+          <li><a class="dropdown-item" href="#">Home</a></li>
+          <li><a class="dropdown-item" href="#">Sobre</a></li>
+          <li><a class="dropdown-item" href="#">Serviços</a></li>
 
-        <!-- BUSINESS BUTTON -->
-        <button class="btn business-btn d-flex align-items-center ms-1">
-          <i class="bi bi-box-arrow-in-right me-1"></i>
-          <span class="business-text">Business</span>
-        </button>
+          <!-- BUSINESS — ÍCONE ORIGINAL MANTIDO -->
+          <li class="mt-2">
+            <a class="dropdown-item d-flex align-items-center business-mobile-link" href="#">
+              <i class="bi bi-box-arrow-in-right me-2 fs-5"></i>
+              <span>Business</span>
+            </a>
+          </li>
+        </ul>
 
       </div>
 
-    </div><!-- custom-navbar -->
+    </div>
 
-  </div><!-- container-fluid -->
+  </div>
 </nav>
 
 <!-- HERO 1 -->

@@ -1,71 +1,68 @@
-/* ================================
+/* =============================
    NAVBAR BASE
-=================================== */
-
-/* COR DE FUNDO DO MENU */
+============================= */
 .navbar {
   font-family: "Inter", sans-serif;
-  background-color: #8e9190 !important; /* <<< COR PRINCIPAL */
+  background-color: #8e9190 !important; /* cor correta */
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 999;
+  border: none;
 }
 
-/* ================================
-   TÍTULO — MANAGER COM CHONBURI
-=================================== */
+/* Espaçamento entre HOME / SOBRE / SERVIÇOS — mantendo o seu anterior */
+.navbar-nav .nav-item {
+  margin: 0 18px;
+}
 
+/* =============================
+   TÍTULO MANAGER
+============================= */
 .title-brand {
   text-decoration: none !important;
 }
 
 .brand-title {
-  font-family: "Chonburi", serif; /* <<< FONTE NOVA */
-  font-size: 2.1rem; /* <<< MAIOR E MAIS ENCORPADO */
-  font-weight: 400; /* Chonburi já é bold naturalmente */
-  letter-spacing: 0.5px;
-  color: #ffffff;
+  font-family: "Georgia", Helvetica;
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #ffffff !important;
   transition: 0.25s ease;
 }
 
-/* HOVER — USANDO TOM VERDE CLARO */
 .title-brand:hover .brand-title {
-  color: #C2E9DF;
+  color: #0f0f0f !important;
   transform: translateY(-2px);
 }
 
-/* ================================
-   LINKS DO MENU
-=================================== */
-
+/* =============================
+   LINKS DO MENU (DESKTOP)
+============================= */
 .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  color: #ffffff !important;
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  font-size: 0.92rem;
   transition: 0.3s ease;
+  padding: 0.4rem 0.8rem;
 }
 
 .nav-link:hover {
-  background-color: #C2E9DF !important;
-  color: #1B7F6B !important;
+  background: #ced3d1 !important;
+  color: #0f0f0f !important;
+  border-radius: 8px;
   transform: translateY(-2px);
 }
 
-/* ================================
-   DROPDOWN CUSTOM
-=================================== */
-
+/* =============================
+   DROPDOWN BASE
+============================= */
 .custom-dropdown {
   position: absolute;
   top: 110%;
   right: 0;
   padding: 0.4rem 0;
-  background: white;
+  background: #ffffff;
   border-radius: 10px;
   min-width: 160px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
@@ -82,63 +79,87 @@
   pointer-events: auto;
 }
 
-.custom-dropdown .dropdown-item:hover {
-  background-color: #C2E9DF !important;
-  color: #1B7F6B !important;
+/* =============================
+   DROPDOWN — HOVER COM MESMO
+   EFEITO DO DESKTOP
+============================= */
+.custom-dropdown a,
+.custom-dropdown .dropdown-item {
+  padding: 0.45rem 0.9rem !important;
+  border-radius: 8px !important;
+  color: #0f0f0f !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: 0.25s ease !important;
+  background: transparent !important;
 }
 
-/* ================================
-   BUSINESS BUTTON
-=================================== */
-
-.business-btn {
-  display: flex;
-  align-items: center;
-  background-color: #C2E9DF;
-  border: 1px solid #A7D9CC;
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px;
-  color: #1B7F6B !important;
-  transition: 0.3s ease;
+/* --- Hover Desktop + Toque Mobile --- */
+.custom-dropdown a:hover,
+.custom-dropdown .dropdown-item:hover,
+.custom-dropdown a:active,
+.custom-dropdown .dropdown-item:active,
+.custom-dropdown a:focus,
+.custom-dropdown .dropdown-item:focus,
+.custom-dropdown a:focus-visible,
+.custom-dropdown .dropdown-item:focus-visible {
+  background: #ced3d1 !important;  /* mesma cor do desktop */
+  color: #0f0f0f !important;
+  border-radius: 8px !important;
+  transform: translateY(-2px) !important;
 }
 
-.business-btn:hover {
-  background-color: #A7D9CC !important;
-  transform: translateY(-2px);
+/* =============================
+   BUSINESS — DESKTOP (não exibido)
+============================= */
+.business-btn-desktop {
+  display: none !important;
 }
 
-/* ================================
+/* =============================
    MOBILE
-=================================== */
-
+============================= */
 @media (max-width: 992px) {
 
+  /* esconde itens do desktop */
   .navbar-nav {
     display: none !important;
   }
 
-  .brand-title {
-    font-size: 2.3rem; /* <<< AINDA MAIS IMPACTANTE NO MOBILE */
-    color: #ffffff !important;
-  }
-
-  .business-btn {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-  }
-
-  .business-text {
-    display: none !important;
-  }
-
-  .business-btn i {
-    font-size: 1.3rem;
-    color: #ffffff;
-  }
-
-  .dropdown-trigger {
-    display: flex;
+  /* Business aparece inteiro no mobile */
+  .business-mobile-link {
+    display: flex !important;
     align-items: center;
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #ffffff !important;
+    gap: 8px;
+    transition: 0.3s ease;
+  }
+
+  .business-mobile-link:hover {
+    background: #ced3d1 !important; 
+    color: #0f0f0f !important;
+    transform: translateY(-2px);
+  }
+
+  /* Ícone original mantido */
+  .business-mobile-link i {
+    font-size: 1.25rem;
+  }
+
+  .brand-title {
+    font-size: 2.2rem;
   }
 }
+
+/* Ajuste de margem vertical em telas pequenas */
+@media (max-width: 991px) {
+  .navbar-nav .nav-item {
+    margin: 12px 0;
+  }
+}
+
+
+
