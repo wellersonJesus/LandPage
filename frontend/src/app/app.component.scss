@@ -64,51 +64,119 @@
 }
 
 /* =============================
-   BOTÃO HAMBÚRGUER E X — SEM HOVER / SEM FUNDO
+  BOTÃO HAMBÚRGUER / X Comportamento
 ============================= */
 .dropdown-toggle-icon,
+.dropdown-toggle-icon.no-bg-icon,
+.dropdown-toggle-icon a,
 .dropdown-toggle-icon i,
-.dropdown-toggle-icon:focus,
-.dropdown-toggle-icon:hover,
-.dropdown-toggle-icon:active,
-.dropdown-toggle-icon i:focus,
-.dropdown-toggle-icon i:hover,
-.dropdown-toggle-icon i:active {
-  background: none !important;   /* remove fundo */
+.navbar-toggler,
+.navbar-toggler i {
+  background: none !important;
+  border: none !important;
   box-shadow: none !important;
   outline: none !important;
-  border: none !important;
   padding: 0 !important;
 }
 
-/* Ícones: branco por padrão */
-.dropdown-toggle-icon i {
-  color: #ffffff !important;
-  font-weight: 900 !important;    /* hambúrguer */
-  font-size: 2rem !important;
-  transition: color 0.2s ease !important; /* muda só cor */
+/* containers dos ícones dentro do botão */
+.dropdown-toggle-icon .icon-hamb,
+.dropdown-toggle-icon .icon-x,
+.navbar-toggler .icon-hamb,
+.navbar-toggler .icon-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.16s ease, transform 0.16s ease, color 0.18s ease;
+  line-height: 1;
 }
 
-/* Hover / focus / active: muda apenas cor do ícone */
-.dropdown-toggle-icon:hover i,
-.dropdown-toggle-icon:focus i,
-.dropdown-toggle-icon:active i {
-  color: #000000 !important;      /* preto ao interagir */
-  background: none !important;
+/* estado fechado (padrão): mostrar hambúrguer branco */
+.dropdown-toggle-icon .icon-hamb,
+.navbar-toggler .icon-hamb {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: translateY(6px); /* desceu 6px */
+  font-size: 2.8rem;           /* maior */
+  font-weight: 1800;
+}
+
+/* X oculto quando fechado */
+.dropdown-toggle-icon .icon-x,
+.navbar-toggler .icon-x {
+  color: #000000 !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(6px); /* mantém mesma linha vertical do hambúrguer */
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+/* quando o dropdown estiver aberto -> esconder hambúrguer, mostrar X preto */
+.dropdown-trigger .dropdown-menu.show ~ .dropdown-trigger,
+.dropdown-toggle-icon[aria-expanded="true"],
+.navbar-toggler[aria-expanded="true"],
+.dropdown-toggle-icon:not(.collapsed),
+.navbar-toggler:not(.collapsed),
+.dropdown-trigger .dropdown-menu.show,
+.dropdown-trigger .dropdown-menu.show + .dropdown-toggle-icon {}
+
+/* regra principal baseada em atributo aria-expanded (compatível com Bootstrap e Angular toggle) */
+.dropdown-toggle-icon[aria-expanded="true"] .icon-hamb,
+.navbar-toggler[aria-expanded="true"] .icon-hamb,
+.dropdown-toggle-icon:not(.collapsed) .icon-hamb,
+.navbar-toggler:not(.collapsed) .icon-hamb {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(-3px);
+}
+
+/* X visível quando aberto */
+.dropdown-toggle-icon[aria-expanded="true"] .icon-x,
+.navbar-toggler[aria-expanded="true"] .icon-x,
+.dropdown-toggle-icon:not(.collapsed) .icon-x,
+.navbar-toggler:not(.collapsed) .icon-x {
+  opacity: 1 !important;
+  pointer-events: auto;
+  color: #000000 !important;
+  transform: translateY(0);
+}
+
+/* compatibilidade: se usar classe .collapsed (fechado) força hambúrguer branco */
+.dropdown-toggle-icon.collapsed .icon-hamb,
+.navbar-toggler.collapsed .icon-hamb,
+.dropdown-toggle-icon[aria-expanded="false"] .icon-hamb,
+.navbar-toggler[aria-expanded="false"] .icon-hamb {
+  opacity: 1 !important;
+  pointer-events: auto;
+  color: #ffffff !important;
+}
+
+/* garantir que X fique oculto ao fechar */
+.dropdown-toggle-icon.collapsed .icon-x,
+.navbar-toggler.collapsed .icon-x,
+.dropdown-toggle-icon[aria-expanded="false"] .icon-x,
+.navbar-toggler[aria-expanded="false"] .icon-x {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* remover outline/foco visual padrão */
+.dropdown-toggle-icon:focus,
+.navbar-toggler:focus {
+  outline: none !important;
   box-shadow: none !important;
 }
 
-/* Ícones individuais */
-.icon-hamb {
-  font-size: 2rem !important;
-  font-weight: 900 !important;
-  color: #ffffff !important;
-}
-
-.icon-x {
-  font-size: 1.2rem !important;
-  font-weight: 800 !important;   /* mais bold que hambúrguer */
-  color: #ffffff !important;
+/* pequeno ajuste do hit-area no mobile */
+@media (max-width: 992px) {
+  .dropdown-toggle-icon .icon-hamb,
+  .dropdown-toggle-icon .icon-x,
+  .navbar-toggler .icon-hamb,
+  .navbar-toggler .icon-x {
+    font-size: 3.0rem;
+  }
 }
 
 /* =============================
@@ -137,11 +205,12 @@
 }
 
 /* =============================
-   DROPDOWN — ITENS
+   DROPDOWN — ITENS (ajustado para deslocar links para a direita)
 ============================= */
 .custom-dropdown a,
 .custom-dropdown .dropdown-item {
-  padding: 0.45rem 0.9rem !important;
+  /* top right bottom left -> aumentar padding-left para "empurrar" links à direita */
+  padding: 0.45rem 0.9rem 0.45rem 1.6rem !important;
   border-radius: 8px !important;
   color: #0f0f0f !important;
   display: flex !important;
@@ -150,11 +219,12 @@
   background: transparent !important;
 }
 
-.custom-dropdown a:hover,
-.custom-dropdown .dropdown-item:hover {
-  background: #ced3d1 !important;
-  color: #0f0f0f !important;
-  transform: translateY(-2px) !important;
+/* versão móvel: reduzir um pouco o padding-left para melhor encaixe */
+@media (max-width: 992px) {
+  .custom-dropdown a,
+  .custom-dropdown .dropdown-item {
+    padding-left: 1.2rem !important;
+  }
 }
 
 /* =============================
@@ -195,4 +265,57 @@
   .navbar-nav .nav-item {
     margin: 12px 0;
   }
+}
+
+/* =============================
+   AJUSTE: subir um pouco o ícone hamburger/X e aumentar tamanho
+   Regras abaixo sobrescrevem as transforms anteriores para "subir" os ícones.
+============================= */
+
+/* aplica deslocamento vertical padrão (agora descendo os ícones) */
+.dropdown-toggle-icon .icon-hamb,
+.dropdown-toggle-icon .icon-x,
+.navbar-toggler .icon-hamb,
+.navbar-toggler .icon-x {
+  /* descer os ícones 6px para ficar abaixo do centro */
+  transform: translateY(4px) !important;
+}
+
+/* quando abrir: mover o hambúrguer levemente para cima ao sumir (efeito) */
+.dropdown-toggle-icon[aria-expanded="true"] .icon-hamb,
+.navbar-toggler[aria-expanded="true"] .icon-hamb,
+.dropdown-toggle-icon:not(.collapsed) .icon-hamb,
+.navbar-toggler:not(.collapsed) .icon-hamb {
+  transform: translateY(-4px) !important; /* sobe ao desaparecer */
+}
+
+/* quando abrir: garantir X está na posição central esperada (levemente abaixo) */
+.dropdown-toggle-icon[aria-expanded="true"] .icon-x,
+.navbar-toggler[aria-expanded="true"] .icon-x,
+.dropdown-toggle-icon:not(.collapsed) .icon-x,
+.navbar-toggler:not(.collapsed) .icon-x {
+  transform: translateY(2px) !important; /* X permanece alinhado abaixo */
+}
+
+/* manter compatibilidade com estados explicitamente fechados */
+.dropdown-toggle-icon.collapsed .icon-hamb,
+.navbar-toggler.collapsed .icon-hamb,
+.dropdown-toggle-icon[aria-expanded="false"] .icon-hamb,
+.navbar-toggler[aria-expanded="false"] .icon-hamb {
+  transform: translateY(2px) !important;
+}
+
+.dropdown-toggle-icon.collapsed .icon-x,
+.navbar-toggler.collapsed .icon-x,
+.dropdown-toggle-icon[aria-expanded="false"] .icon-x,
+.navbar-toggler[aria-expanded="false"] .icon-x {
+  transform: translateY(2px) !important;
+}
+
+/* Aumentar peso (bold) do ícone X — regra com !important para sobrescrever */
+.dropdown-toggle-icon .icon-x i,
+.navbar-toggler .icon-x i {
+  font-weight: 900 !important; /* mais bold */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

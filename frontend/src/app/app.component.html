@@ -33,14 +33,19 @@
       </ul>
 
       <!-- DROPDOWN (onde está o ícone X e o hambúrguer) -->
-      <div class="dropdown position-relative dropdown-trigger"
-           (click)="toggleDropdown($event)">
-
+      <div class="dropdown position-relative dropdown-trigger">
         <!-- Ícone hambúrguer / X -->
-        <a href="javascript:void(0)" class="nav-link p-1 dropdown-toggle-icon no-bg-icon"
-          (click)="toggleDropdown($event)">
-          <i class="bi no-bg-icon"
-            [ngClass]="dropdownOpen ? 'bi-x-lg icon-x' : 'bi-list icon-hamb'"></i>
+        <a href="javascript:void(0)"
+           class="nav-link p-1 dropdown-toggle-icon no-bg-icon"
+           (click)="toggleDropdown($event)"
+           [attr.aria-expanded]="dropdownOpen">
+          <!-- mostra apenas um dos ícones para evitar conflitos -->
+          <span *ngIf="!dropdownOpen" class="icon-hamb">
+            <i class="bi bi-list" aria-hidden="true"></i>
+          </span>
+          <span *ngIf="dropdownOpen" class="icon-x">
+            <i class="bi bi-x-lg" aria-hidden="true"></i>
+          </span>
         </a>
 
         <!-- Menu interno -->
@@ -57,7 +62,6 @@
             </a>
           </li>
         </ul>
-
       </div>
 
     </div>
