@@ -2,7 +2,7 @@
 
 O **WS Manager** é uma aplicação desenvolvida para centralizar e organizar informações de **finanças, contratos, investimentos, dispositivos, habilidades, cursos, acessos e muito mais** — tudo em um único ambiente intuitivo e responsivo.
 
-O projeto utiliza **Angular no front-end** e **Node.js + SQLite no back-end**, **PHP**, CRUD completo, integrações simples, backup incremental e implantação automatizada.
+O projeto utiliza **Angular, javascript + Bootsrap** para o front-end e **PHP + SQLite** no back-end, CRUD completo, integrações simples, backup incremental e implantação automatizada.
 
 ---
 
@@ -17,29 +17,6 @@ O projeto utiliza **Angular no front-end** e **Node.js + SQLite no back-end**, *
 - ✔️ **Backup automático**  
 - ✔️ Interface **100% responsiva** e de alta performance  
 
----
-
-#### 🗃️ Tecnologias Utilizadas
-
-```bash
-#Frontend
-Angular 19 (LTS)  
-Bootstrap 4.1.3 + Bootstrap Icons  
-javaScript  
-HTML
-CSS  
-
-#Backend
-PHP
-SQLite  
-JWT + Bcrypt  
-Backup incremental (JSON)  
-Middleware de autenticação próprio  
-
-#Servidores
-. GitLab Pages  
-. Render 
-```
 ---
 
 #### 📦 Estrutura do Projeto
