@@ -14,8 +14,23 @@ function getDB() {
     static $db = null;
 
     if ($db === null) {
-        $dbPath = $_ENV['SQLITE_PATH_LOCAL'] ?? __DIR__ . '/wsmanager_local.db';
-        $dbPath = realpath(dirname($dbPath)) . '/' . basename($dbPath);
+
+        // Caminho vindo do .env ou fallback local
+        $dbPath = $_ENV['SQLITE_PATH_LOCAL'] 
+            ?? __DIR__ . '/wsmanager_local.db';
+
+        $dir = dirname($dbPath);
+
+        // 🔧 Garante que o diretório existe
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        // 🔧 Garante permissão para criar e escrever no arquivo
+        if (!file_exists($dbPath)) {
+            touch($dbPath);
+            chmod($dbPath, 0666);
+        }
 
         try {
             $db = new PDO("sqlite:" . $dbPath);

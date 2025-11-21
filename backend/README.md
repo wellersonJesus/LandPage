@@ -84,7 +84,15 @@ backend/
 <details>
 <summary>🛠️ Migrations e Seeds</summary>
 
-- **Migrations**: cada tabela tem um arquivo 001_create_<tabela>.php na pasta src/db/migrations/
+- **Migrations**: cada tabela tem um arquivo.
+```bash
+#Como rodar as migrations
+cd backend/src/databases
+  -> php run-migrations.php
+
+#Na pasta src/db/migrations/ 
+001_create_<tabela>.php 
+```
 ---
 - **Seeds**: seed-db.php insere dados iniciais (usuários, empresas, contas etc.)
 ---
