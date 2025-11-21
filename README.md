@@ -1,4 +1,4 @@
-# [🌏 Backend - WS Manager ](https://ws-gestao-d10f13.gitlab.io/) — Plataforma para gestão. 
+# [🌏 WS Manager ](https://ws-gestao-d10f13.gitlab.io/) — Plataforma para gestão. 
 
 O **WS Manager** é uma aplicação desenvolvida para centralizar e organizar informações de **finanças, contratos, investimentos, dispositivos, habilidades, cursos, acessos e muito mais** — tudo em um único ambiente intuitivo e responsivo.
 
