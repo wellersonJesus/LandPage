@@ -44,9 +44,25 @@ Middleware de autenticação próprio
 
 #### 📦 Estrutura do Projeto
 
+```bash
+#### 📦 Estrutura do Projeto
+
+```bash
 WS-Manager/
-  ├── backend/ ← _API PHP + SQLite_
-  └── frontend/ ← _Angular JavaScript + Bootstrap_
+  ├── backend/          ← API PHP + SQLite (lógica, controllers, migrations, seeds)
+  ├── frontend/         ← Angular + Bootstrap (SPA responsiva)
+  ├── sql/              ← Scripts SQL auxiliares e consultas
+  ├── src/              ← Scripts gerais, ferramentas e utilidades do projeto
+  ├── node_modules/     ← Dependências globais
+  ├── .git/             ← Repositório Git
+  ├── .gitignore        ← Regras de ignorados
+  ├── .gitlab-ci.yml    ← Pipeline CI/CD GitLab Pages + Build
+  ├── package.json      ← Dependências npm e scripts
+  ├── package-lock.json ← Lock de versões
+  ├── README.md         ← Documentação principal
+  ├── version           ← Versão atual da aplicação
+  └── .vscode/          ← Configurações 
+```
 
 ---
 
