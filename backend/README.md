@@ -95,6 +95,11 @@ cd backend/src/databases
 ```
 ---
 - **Seeds**: seed-db.php insere dados iniciais (usuários, empresas, contas etc.)
+
+```bash
+#cd backend/src/databases
+    -> php seed-db.php
+```
 ---
 - **Execução automática**: script dev-setup.php roda todas migrations + seeds de uma vez.
 
