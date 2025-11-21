@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "ng serve --configuration development --open --port 4200",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "build:dev": "ng build --configuration development --base-href /",
     "build:prod": "ng build --configuration production --base-href /",
@@ -25,7 +25,6 @@
     "@angular/router": "^19.2.15",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.13.1",
-    "jquery": "^3.7.1",
     "ngx-bootstrap": "^19.0.2",
     "popper.js": "^1.16.1",
     "rxjs": "^7.8.1",

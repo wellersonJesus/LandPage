@@ -399,4 +399,23 @@ revert:	Reverte um commit anterior	revert.
   <a href=# target="_blank">© JesusWellerson |Development Innovation</a>
 </div>
 
+---
+
+## Execução Rápida (PHP Dev Server)
+
+1) Backend + frontend em um servidor PHP (dev)
+   cd backend
+   # opcional: export BUSINESS_USER=seu_usuario; export BUSINESS_PASS=sua_senha
+   php -S localhost:8000 -t public
+
+   Abra http://localhost:8000
+
+2) Test login:
+   - Clique Business → insira credenciais definidas (por padrão business / business123)
+   - Ao logar com sucesso será redirecionado para /dashboard.html
+
+3) Notas:
+   - Em produção substitua token simples por JWT, use HTTPS e armazene senhas com hashing.
+   - Se preferir manter frontend separado, sirva backend/api/login.php e rode frontend com um servidor estático.
+
 

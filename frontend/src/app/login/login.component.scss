@@ -1,0 +1,15 @@
+.login-page {
+  min-height: calc(100vh - 80px);
+  padding-top: 60px;
+  .login-card {
+    width: 360px;
+    padding: 1.4rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    h3 { margin-bottom: 0.8rem; font-weight: 700; }
+  }
+  @media (max-width: 480px) {
+    .login-card { width: 92%; padding: 1rem; }
+  }
+}
