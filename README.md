@@ -45,8 +45,7 @@ Middleware de autenticação próprio
 #### 📦 Estrutura do Projeto
 
 ```bash
-#### 📦 Estrutura do Projeto
-
+#📦 Estrutura ws-manager 
 ```bash
 WS-Manager/
   ├── backend/          ← API PHP + SQLite (lógica, controllers, migrations, seeds)
