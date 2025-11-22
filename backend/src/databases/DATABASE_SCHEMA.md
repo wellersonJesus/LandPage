@@ -1,6 +1,6 @@
-# Banco de Dados — WS Manager
+# Schema databases <br>Manager
 
-```mermaid
+```bash
 erDiagram
     EMPRESA {
         INTEGER id PK
@@ -164,3 +164,45 @@ erDiagram
     EMPRESA ||--o{ CONTRATO : "possui"
     DISPOSITIVO ||--o{ CONTA : "acesso_a"
     SERVIDOR ||--o{ PLATAFORMA : "administra"
+```
+##### Sequência de <br>migrations recomendada
+```bash 
+1 001_create_usuario.php      # Cria a tabela USUARIO
+2 002_create_empresa.php      # Cria a tabela EMPRESA
+3 003_create_conta.php        # Cria a tabela CONTA
+4 004_create_servidor.php     # Cria a tabela SERVIDOR
+5 005_create_dispositivo.php  # Cria a tabela DISPOSITIVO (acesso a CONTA)
+6 006_create_plataforma.php   # Cria a tabela PLATAFORMA (administração por SERVIDOR)
+7 007_create_contrato.php     # Cria a tabela CONTRATO (relaciona EMPRESA + CONTA + INVESTIMENTO)
+8 008_create_investimento.php # Cria a tabela INVESTIMENTO (relacionada a CONTRATO)
+9 009_create_gestao.php       # Cria a tabela GESTAO
+10 010_create_lancamento.php  # Cria a tabela LANCAMENTO (contabiliza GESTAO)
+11 011_create_calendario.php  # Cria a tabela CALENDARIO (independente)
+12 012_create_emprestimo.php  # Cria a tabela EMPRESTIMO (opcionalmente vincula EMPRESA)
+13 013_create_manutencao.php  # Cria a tabela MANUTENCAO
+14 014_create_skill.php        # Cria a tabela SKILL
+15 015_create_curso.php        # Cria a tabela CURSO
+16 016_create_rede.php         # Cria a tabela REDE
+```
+
+##### 💡 Resumo:
+
+_Sempre crie tabelas “pais” primeiro, depois as que dependem delas. Ordem mínima crítica, considerando suas relações:_
+
+```bash
+EMPRESA → CONTA → CONTRATO → INVESTIMENTO
+SERVIDOR → PLATAFORMA
+GESTAO → LANCAMENTO
+DISPOSITIVO → CONTA
+```
+
+_As outras podem ser criadas antes ou depois, sem quebrar dependências._
+
+```bash
+CALENDARIO 
+EMPRESTIMO 
+MANUTENCAO 
+SKILL 
+CURSO 
+REDE 
+```

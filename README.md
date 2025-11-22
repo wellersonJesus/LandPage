@@ -131,8 +131,8 @@ Criar/Atualizar o banco (migrations)
 
 ```bash
 rm ./wsmanager_local.db   # ou o caminho correto
-php run-migrations.php    #cd backend/src/databases/:
-php seed-db.php           #Popular o banco (seeds)
+php run-migrations.php    # cd backend/src/databases/:
+php seed-db.php           # Popular o banco (seeds)
 
 ```
 ##### 🌐 Frontend
