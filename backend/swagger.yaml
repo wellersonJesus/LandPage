@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  title: WS Manager API
+  version: 1.0.0
+  description: API do WS Manager baseada no modelo de banco fornecido.
+servers:
+  - url: http://localhost:8000
+    description: Servidor local
+paths:
+  /empresa:
+    get:
+      summary: Lista todas as empresas
+      responses:
+        '200':
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria uma nova empresa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+      responses:
+        '201':
+          description: Empresa criada
+  /empresa/{id}:
+    get:
+      summary: Retorna dados de uma empresa
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Empresa encontrada
+    put:
+      summary: Atualiza uma empresa
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+      responses:
+        '200':
+          description: Atualizada com sucesso
+    delete:
+      summary: Remove uma empresa
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Removida com sucesso
+components:
+  schemas:
+    Empresa:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        slogan:
+          type: string
+        descricao:
+          type: string
+        cnpj:
+          type: string
+        atividade:
+          type: string
+        localizacao:
+          type: string
+        missao:
+          type: string
+        servicos:
+          type: string
+        projetos_destaque:
+          type: string

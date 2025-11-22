@@ -14,7 +14,9 @@
     "monolog/monolog": "^3.6",
     "firebase/php-jwt": "^6.10",
     "ext-pdo": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "swagger-api/swagger-ui": "^5.30",
+    "symfony/yaml": "^6.4"
   },
   "autoload": {
     "psr-4": {
