@@ -8,7 +8,7 @@
 
 #### 1️⃣ Visão Geral do Projeto
 
-Aplicação completa com:
+Aplicação:
 
 * **Frontend (SPA)**: Angular + Bootstrap
 * **Backend**: PHP + SQLite
@@ -32,72 +32,68 @@ WS-Manager/
  └── README.md         # Este arquivo
 ```
 
-> _**Backend:** controla API, banco SQLite, autenticação e seeds.
+> _**Backend:** controla API, banco SQLite, autenticação e seeds.<br>
 **Frontend:** interface responsiva consumindo os endpoints REST._
 
 ---
 
 #### 3️⃣ Variáveis de Ambiente
 ##### 3.1️⃣ Documentação Swagger da API
+<details> <summary>📂 Arquivos necessários para rodar o Swagger com PHP</summary>
 
-✅ Arquivos necessários para rodar o Swagger com PHP
-
+###### Estrutura recomendada no backend:
 ```bash
-#A estrutura recomendada no seu backend:
 backend/
  ├── public/
  │    ├── index.php
  │    ├── swagger/
  │    │      ├── swagger.json
  │    │      ├── index.html
- │    │      └── swagger-ui.css / .js  (auto)
+ │    │      └── swagger-ui.css / .js  (gerados pelo pacote)
  ├── src/
  │    └── ...
- ├── swagger.yaml   ← seu arquivo atual
+ ├── swagger.yaml      ← arquivo principal da documentação
+ ├── generate-swagger.php
  ├── composer.json
  └── ...
 ```
-📌 1. Instalar dependência para converter YAML → JSON
+📌 1. Instalar dependência YAML → JSON
+
 Dentro da pasta backend/:
 > composer require symfony/yaml
 
-📌 2. Converter automaticamente o swagger.yaml para swagger.json
+📌 2. Converter automaticamente swagger.yaml → swagger.json
 
 ```bash
-#Crie o arquivo:
+#Criar o arquivo:
 backend/generate-swagger.php
 
-#Rodar:
+#Rodar a conversão:
 php generate-swagger.php
 ```
+
 📌 3. Adicionar Swagger UI no backend
 
-> Entre na pasta: **_backend/public/swagger/_**
+> Entre na pasta: _[backend/public/swagger/]()_
 
 ```bash
-#Baixe o Swagger UI:
+#Baixar o Swagger UI:
 curl -L https://github.com/swagger-api/swagger-ui/archive/refs/heads/master.zip -o swagger.zip
 unzip swagger.zip
 mv swagger-ui-master/dist/* .
 rm -rf swagger-ui-master swagger.zip
 ```
+📌 4. Testar no navegador
 
-📌 4. Editar o index.html do Swagger
+> Local: _[http://localhost:8000/swagger/]()_
+Produção (Render): _[https://seu-backend.onrender.com/swagger/]()_
 
-> Arquivo: **_backend/public/swagger/index.html_**
-Procure por: **_url: "https://petstore.swagger.io/v2/swagger.json"_**
+📌 6. Atualizar a documentação após alterar o YAML
+```bash
+php generate-swagger.php
+```
 
-
-Troque por:
-> url: **_"./swagger.json"_**
-
-📌 5. Testar no navegador
-
-> Local: http://localhost:8000/swagger/
-Produção (Render): https://seu-backend.onrender.com/swagger/
-
-📌 6. Atualizar Swagger sempre que editar o YAML
-> php generate-swagger.php
+</details>
 
 ##### 3.2️⃣ .env 
 _Crie um arquivo .env com as configurações necessárias:_
@@ -130,7 +126,7 @@ cd backend
 npm install            # Dependências PHP
 php -S localhost:8000 -t public # Inicia servidor
 ```
-> Acesse: [http://localhost:3000]()
+> Acesse: [http://localhost:8000]()
 
 ##### Banco local:
 ```bash
@@ -148,7 +144,6 @@ ng serve --open
 ---
 
 #### 5️⃣ Deploy (GitLab Pages + Render)
-
 ##### 🌍 GitLab Pages (Frontend)
 
 ```bash
