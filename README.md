@@ -125,7 +125,7 @@ php -S localhost:8000 -t public # Inicia servidor
 ```
 > Acesse: [http://localhost:8000]()
 
-##### Banco local:
+[📂 Acessar schema do banco](./backend/src/databases/DATABASE_SCHEMA.md)
 
 Criar/Atualizar o banco (migrations)
 
