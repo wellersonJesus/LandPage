@@ -65,11 +65,8 @@ Dentro da pasta backend/:
 📌 2. Converter automaticamente swagger.yaml → swagger.json
 
 ```bash
-#Criar o arquivo:
-backend/generate-swagger.php
-
-#Rodar a conversão:
-php generate-swagger.php
+backend/generate-swagger.php #Criar o arquivo
+php generate-swagger.php     #Rodar a conversão 
 ```
 
 📌 3. Adicionar Swagger UI no backend
@@ -129,9 +126,14 @@ php -S localhost:8000 -t public # Inicia servidor
 > Acesse: [http://localhost:8000]()
 
 ##### Banco local:
+
+Criar/Atualizar o banco (migrations)
+
 ```bash
-node src/db/init-db.js
-node src/db/seed-db.js
+rm ./wsmanager_local.db   # ou o caminho correto
+php run-migrations.php    #cd backend/src/databases/:
+php seed-db.php           #Popular o banco (seeds)
+
 ```
 ##### 🌐 Frontend
 ```bash
@@ -161,14 +163,9 @@ Faça commit → o pipeline envia para o GitLab Pages automaticamente.
 #### 🚀 Render (Backend)
 
 ```bash
-#Aponte para diretorio backend 
-- Root Directory: `backend`
-
-#Start app no Render
-- Start Command: `npm start`
-
-#Variaveis de ambiente usadas
-- Environment Variables: (as do .env)
+Root Directory: `backend`           #Aponte para diretorio backend 
+Start Command: `npm start`          #Start app no Render
+Environment Variables: (as do .env) #Variaveis de ambiente usadas
 ```
 _Backend ficará acessível por URL pública, usada no frontend:_
 
