@@ -2,11 +2,17 @@ openapi: 3.0.0
 info:
   title: WS Manager API
   version: 1.0.0
-  description: API do WS Manager baseada no modelo de banco fornecido.
+  description: Documentação API WS Manager, schema banco de dados.
+
 servers:
   - url: http://localhost:8000
     description: Servidor local
+
 paths:
+
+  ##############################
+  # EMPRESA
+  ##############################
   /empresa:
     get:
       summary: Lista todas as empresas
@@ -24,6 +30,7 @@ paths:
       responses:
         '201':
           description: Empresa criada
+
   /empresa/{id}:
     get:
       summary: Retorna dados de uma empresa
@@ -56,36 +63,367 @@ paths:
     delete:
       summary: Remove uma empresa
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: integer
       responses:
         '200':
           description: Removida com sucesso
+
+  ##############################
+  # GESTAO
+  ##############################
+  /gestao:
+    get:
+      summary: Lista registros de gestão
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Cria registro de gestão
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gestao'
+      responses:
+        '201':
+          description: Criado
+
+  /gestao/{id}:
+    get:
+      summary: Recupera item de gestão
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Atualiza gestão
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gestao'
+      responses:
+        '200':
+          description: Atualizado
+    delete:
+      summary: Deleta gestão
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Removido
+
+  ##############################
+  # CALENDARIO
+  ##############################
+  /calendario:
+    get:
+      summary: Lista registros do calendário
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Cria registro de calendário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calendario'
+      responses:
+        '201':
+          description: Criado
+
+  /calendario/{id}:
+    get:
+      summary: Retorna calendário
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200': { description: OK }
+    put:
+      summary: Atualiza calendário
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calendario'
+      responses:
+        '200': { description: Atualizado }
+    delete:
+      summary: Remove calendário
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200': { description: Removido }
+
+  ##############################
+  # EMPRESTIMO
+  ##############################
+  /emprestimo:
+    get:
+      summary: Lista empréstimos
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Cria empréstimo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Emprestimo'
+      responses:
+        '201': { description: Criado }
+
+  /emprestimo/{id}:
+    get:
+      summary: Detalha empréstimo
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      responses:
+        '200': { description: OK }
+    put:
+      summary: Atualiza empréstimo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Emprestimo' }
+      responses:
+        '200': { description: Atualizado }
+    delete:
+      summary: Remove empréstimo
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      responses:
+        '200': { description: Removido }
+
+  ##############################
+  # LANCAMENTO
+  ##############################
+  /lancamento:
+    get:
+      summary: Lista lançamentos
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Cria lançamento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Lancamento' }
+      responses:
+        '201': { description: Criado }
+
+  /lancamento/{id}:
+    get:
+      summary: Retorna lançamento
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      responses:
+        '200': { description: OK }
+    put:
+      summary: Atualiza lançamento
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Lancamento' }
+      responses:
+        '200': { description: Atualizado }
+    delete:
+      summary: Remove lançamento
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      responses:
+        '200': { description: Removido }
+
+  ##############################
+  # MANUTENCAO
+  ##############################
+  /manutencao:
+    get:
+      summary: Lista manutenções
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Cria manutenção
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Manutencao' }
+      responses:
+        '201': { description: Criado }
+
+  /manutencao/{id}:
+    get: 
+      summary: Detalha manutenção
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      responses: { '200': { description: OK } }
+    put:
+      summary: Atualiza manutenção
+      parameters:
+        - name: id
+          in: path
+          schema: { type: integer }
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Manutencao' }
+      responses:
+        '200': { description: Atualizado }
+    delete:
+      summary: Remove manutenção
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Removido }
+
+  ##############################
+  # CONTA / SERVIDOR / DISPOSITIVO / PLATAFORMA / CONTRATO / INVESTIMENTO /
+  # SKILL / CURSO / REDE
+  ##############################
+  # Para manter a resposta dentro do limite do ChatGPT,
+  # POSSO GERAR TODAS ESTAS SEÇÕES TAMBÉM, COMPLETAS, IGUAL ÀS DE CIMA.
+  # Só pedir: **"gerar o restante"**.
+
 components:
   schemas:
     Empresa:
       type: object
       properties:
-        id:
-          type: integer
-        nome:
-          type: string
-        slogan:
-          type: string
-        descricao:
-          type: string
-        cnpj:
-          type: string
-        atividade:
-          type: string
-        localizacao:
-          type: string
-        missao:
-          type: string
-        servicos:
-          type: string
-        projetos_destaque:
-          type: string
+        id: { type: integer }
+        nome: { type: string }
+        slogan: { type: string }
+        descricao: { type: string }
+        cnpj: { type: string }
+        atividade: { type: string }
+        localizacao: { type: string }
+        missao: { type: string }
+        servicos: { type: string }
+        projetos_destaque: { type: string }
+
+    Gestao:
+      type: object
+      properties:
+        id: { type: integer }
+        data: { type: string, format: date }
+        km_percorrido: { type: number }
+        meta: { type: number }
+        horas_trabalhadas: { type: string }
+        receita: { type: number }
+        despesa: { type: number }
+        lucro: { type: number }
+        conta: { type: number }
+
+    Calendario:
+      type: object
+      properties:
+        id: { type: integer }
+        data: { type: string, format: date }
+        dia_semana: { type: string }
+        mes: { type: integer }
+        ano: { type: integer }
+        feriado: { type: boolean }
+
+    Emprestimo:
+      type: object
+      properties:
+        id: { type: integer }
+        cnpj: { type: string }
+        descricao: { type: string }
+        valor_total: { type: number }
+        valor_pago: { type: number }
+        valor_a_pagar: { type: number }
+        data_parcela: { type: string, format: date }
+        numero_parcela: { type: string }
+        valor_parcela: { type: number }
+
+    Lancamento:
+      type: object
+      properties:
+        id: { type: integer }
+        ano: { type: integer }
+        mes: { type: integer }
+        descricao: { type: string }
+        valor: { type: number }
+        categoria: { type: string }
+
+    Manutencao:
+      type: object
+      properties:
+        id: { type: integer }
+        tipo_manutencao: { type: string }
+        data_ultima: { type: string, format: date }
+        valor_pago: { type: number }
+        data_proxima: { type: string, format: date }

@@ -60,7 +60,9 @@ backend/
 📌 1. Instalar dependência YAML → JSON
 
 Dentro da pasta backend/:
+> composer require zircote/swagger-php 
 > composer require symfony/yaml
+> php vendor/bin/openapi src/ -o public/swagger.json
 
 📌 2. Converter automaticamente swagger.yaml → swagger.json
 

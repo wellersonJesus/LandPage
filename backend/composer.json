@@ -16,7 +16,8 @@
     "ext-pdo": "*",
     "ext-json": "*",
     "swagger-api/swagger-ui": "^5.30",
-    "symfony/yaml": "^6.4"
+    "symfony/yaml": "^6.4",
+    "zircote/swagger-php": "^5.7"
   },
   "autoload": {
     "psr-4": {
