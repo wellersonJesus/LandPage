@@ -180,9 +180,9 @@ erDiagram
 11 011_create_calendario.php  # Cria a tabela CALENDARIO (independente)
 12 012_create_emprestimo.php  # Cria a tabela EMPRESTIMO (opcionalmente vincula EMPRESA)
 13 013_create_manutencao.php  # Cria a tabela MANUTENCAO
-14 014_create_skill.php        # Cria a tabela SKILL
-15 015_create_curso.php        # Cria a tabela CURSO
-16 016_create_rede.php         # Cria a tabela REDE
+14 014_create_skill.php       # Cria a tabela SKILL
+15 015_create_curso.php       # Cria a tabela CURSO
+16 016_create_rede.php        # Cria a tabela REDE
 ```
 
 ##### 💡 Resumo:
