@@ -12,7 +12,7 @@ pages:
   stage: deploy
   script:
     - mkdir -p public
-    - cp backend/swagger.yaml public/swagger.yaml
+    - cp -r backend/public/* public/
   artifacts:
     paths:
       - public
