@@ -1,4 +1,5 @@
 ## [📘 Manager ](https://wellersonJesus.gitlab.io/ws-manager/)
+## [📘 Doc ws manager](https://ws-manager-309387.gitlab.io/swagger.yaml)
 
 > *Para visualizar este README em modo preview no VS Code: **Ctrl + Shift + V***
 

@@ -8,6 +8,15 @@ servers:
   - url: http://localhost:8000
     description: Servidor local
 
+pages:
+  stage: deploy
+  script:
+    - mkdir -p backend/public
+    - cp backend/swagger.yaml backend/public/swagger.yaml
+  artifacts:
+    paths:
+      - backend/public
+
 paths:
 
   ##############################

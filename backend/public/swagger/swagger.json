@@ -3,7 +3,7 @@
   "info": {
     "title": "WS Manager API",
     "version": "1.0.0",
-    "description": "Documentação da API WS Manager organizada por domínio:\n\n- Empresa\n- Financeiro\n- Gestão\n- Agenda\n- Manutenção"
+    "description": "Documentação API WS Manager organizada por domínio"
   },
   "servers": [
     {
