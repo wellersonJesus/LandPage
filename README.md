@@ -1,5 +1,4 @@
 ## [📘 Manager ](https://wellersonJesus.gitlab.io/ws-manager/)
-## [📘 Doc ws manager](https://ws-manager-309387.gitlab.io/swagger.yaml)
 
 > *Para visualizar este README em modo preview no VS Code: **Ctrl + Shift + V***
 
@@ -39,7 +38,8 @@ WS-Manager/
 ---
 
 #### 3️⃣ Variáveis de Ambiente
-##### 3.1️⃣ Documentação Swagger da API
+##### [📘 3.1️⃣ Documentação Swagger da API](https://ws-manager-309387.gitlab.io/swagger.yaml)
+
 <details> <summary>📂 Arquivos necessários para rodar o Swagger com PHP</summary>
 
 ###### Estrutura recomendada no backend:
