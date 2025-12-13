@@ -11,8 +11,12 @@ servers:
 pages:
   stage: deploy
   script:
+    - echo "Listing backend/public"
+    - ls -la backend/public
     - mkdir -p public
     - cp -r backend/public/* public/
+    - echo "Listing public"
+    - ls -la public
   artifacts:
     paths:
       - public
