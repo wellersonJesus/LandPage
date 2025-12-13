@@ -4,13 +4,11 @@ stages:
   - build
   - deploy
 
-# Cache do node_modules para acelerar builds
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - frontend/node_modules/
 
-# Build Angular
 build:
   stage: build
   before_script:
@@ -24,7 +22,6 @@ build:
       - frontend/dist
     expire_in: 1 week
 
-# Deploy GitLab Pages
 pages:
   stage: deploy
   dependencies:
@@ -32,8 +29,22 @@ pages:
   script:
     - rm -rf public
     - mkdir -p public
+
+    # Frontend Angular
     - cp -r frontend/dist/ws-manager-frontend/* public/
+
+    # Swagger (backend/public)
+    - cp backend/public/swagger.yaml public/swagger.yaml
+    - cp backend/public/swagger.json public/swagger.json
+    - cp -r backend/public/swagger public/swagger
+
+    # Fallback GitLab Pages
     - cp public/index.html public/404.html
+
+    # Debug
+    - echo "===== PUBLIC CONTENT ====="
+    - ls -la public
+
   artifacts:
     paths:
       - public
