@@ -1,21 +1,72 @@
+image: node:20
+
+stages:
+  - build
+  - deploy
+
+# Cache para acelerar builds do Angular
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+# =========================
+# BUILD FRONTEND (ANGULAR)
+# =========================
+build:
+  stage: build
+  before_script:
+    - rm -rf frontend/node_modules/.cache
+  script:
+    - cd frontend
+    - npm install --legacy-peer-deps
+    - npm run build:pages -- --base-href /
+  artifacts:
+    paths:
+      - frontend/dist
+    expire_in: 1 week
+
+# =========================
+# DEPLOY GITLAB PAGES
+# =========================
 pages:
   stage: deploy
   dependencies:
     - build
   script:
+    # Limpa publicação anterior
     - rm -rf public
     - mkdir -p public
 
-    # Angular
+    # -------------------------
+    # FRONTEND (SPA Angular)
+    # -------------------------
     - cp -r frontend/dist/ws-manager-frontend/* public/
 
-    # Swagger isolado (NÃO interceptado pelo Angular)
+    # -------------------------
+    # SWAGGER (fora do SPA)
+    # -------------------------
     - mkdir -p public/docs
     - cp backend/public/swagger.yaml public/docs/swagger.yaml
     - cp backend/public/swagger.json public/docs/swagger.json
     - cp -r backend/public/swagger public/docs
 
-    # SPA fallback
+    # -------------------------
+    # FALLBACK SPA (Angular)
+    # -------------------------
     - cp public/index.html public/404.html
 
+    # -------------------------
+    # DEBUG
+    # -------------------------
+    - echo "===== PUBLIC CONTENT ====="
     - ls -la public
+    - echo "===== DOCS CONTENT ====="
+    - ls -la public/docs
+
+  artifacts:
+    paths:
+      - public
+
+  only:
+    - master

@@ -38,7 +38,7 @@ WS-Manager/
 ---
 
 #### 3️⃣ Variáveis de Ambiente
-##### [📘 3.1️⃣  Doc. Swagger API](https://ws-manager-309387.gitlab.io/swagger.yaml)
+##### [🌐 Swagger UI](https://ws-manager-309387.gitlab.io/docs/swagger/)
 
 <details> <summary>📂 Arquivos necessários para rodar o Swagger com PHP</summary>
 
