@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: WS Manager API
   version: 1.0.0
-  description: Documentação API WS Manager, schema banco de dados.
+  description: Documentação API WS Manager, schema databases.
 
 servers:
   - url: http://localhost:8000
