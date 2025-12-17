@@ -47,8 +47,7 @@ pages:
     # SWAGGER (fora do SPA)
     # -------------------------
     - mkdir -p public/docs
-    - cp backend/public/swagger.yaml public/docs/swagger.yaml
-    - cp backend/public/swagger/ public/docs
+    - cp -r backend/public/swagger public/docs/swagger
 
     # -------------------------
     # FALLBACK SPA (Angular)
