@@ -48,8 +48,7 @@ pages:
     # -------------------------
     - mkdir -p public/docs
     - cp backend/public/swagger.yaml public/docs/swagger.yaml
-    - cp backend/public/swagger.json public/docs/swagger.json
-    - cp -r backend/public/swagger public/docs
+    - cp backend/public/swagger/* public/docs
 
     # -------------------------
     # FALLBACK SPA (Angular)
