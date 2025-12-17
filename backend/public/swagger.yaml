@@ -13,481 +13,128 @@ servers:
 
 paths:
 
-  /empresas:
+  /usuarios:
     get:
-      summary: Lista empresas
+      tags: [Auth]
+      summary: Lista todos os usuários
       responses:
-        '200': { description: OK }
+        '200':
+          description: Lista de usuários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+        '500':
+          description: Erro no servidor
+
     post:
-      summary: Cria empresa
+      tags: [Auth]
+      summary: Cria um novo usuário
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/Empresa' }
+            schema:
+              $ref: '#/components/schemas/UsuarioCreate'
       responses:
-        '201': { description: Criada }
+        '201':
+          description: Usuário criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro no servidor
 
-  /empresas/{id}:
-    get:
-      summary: Detalha empresa
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      responses:
-        '200': { description: OK }
-    put:
-      summary: Atualiza empresa
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Empresa' }
-      responses:
-        '200': { description: Atualizada }
-    delete:
-      summary: Remove empresa
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      responses:
-        '204': { description: Removida }
-
-  /gestoes:
-    get:
-      summary: Lista gestões
-      responses:
-        '200': { description: OK }
+  /login:
     post:
-      summary: Cria gestão
+      tags: [Auth]
+      summary: Realiza login e retorna token JWT
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/Gestao' }
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
       responses:
-        '201': { description: Criada }
-
-  /calendarios:
-    get:
-      summary: Lista calendário
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria data no calendário
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Calendario' }
-      responses:
-        '201': { description: Criado }
-
-  /contas:
-    get:
-      summary: Lista contas
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria conta
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Conta' }
-      responses:
-        '201': { description: Criada }
-
-  /contas/{id}:
-    get:
-      summary: Detalha conta
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      responses:
-        '200': { description: OK }
-    put:
-      summary: Atualiza conta
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Conta' }
-      responses:
-        '200': { description: Atualizada }
-    delete:
-      summary: Remove conta
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      responses:
-        '204': { description: Removida }
-
-  /contratos:
-    get:
-      summary: Lista contratos
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria contrato
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Contrato' }
-      responses:
-        '201': { description: Criado }
-
-  /contratos/{id}:
-    get:
-      summary: Detalha contrato
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      responses:
-        '200': { description: OK }
-    put:
-      summary: Atualiza contrato
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Contrato' }
-      responses:
-        '200': { description: Atualizado }
-    delete:
-      summary: Remove contrato
-      parameters: [ { $ref: '#/components/parameters/Id' } ]
-      responses:
-        '204': { description: Removido }
-
-  /investimentos:
-    get:
-      summary: Lista investimentos
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria investimento
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Investimento' }
-      responses:
-        '201': { description: Criado }
-
-  /lancamentos:
-    get:
-      summary: Lista lançamentos
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria lançamento
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Lancamento' }
-      responses:
-        '201': { description: Criado }
-
-  /emprestimos:
-    get:
-      summary: Lista empréstimos
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria empréstimo
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Emprestimo' }
-      responses:
-        '201': { description: Criado }
-
-  /manutencoes:
-    get:
-      summary: Lista manutenções
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria manutenção
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Manutencao' }
-      responses:
-        '201': { description: Criada }
-
-  /servidores:
-    get:
-      summary: Lista servidores
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria servidor
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Servidor' }
-      responses:
-        '201': { description: Criado }
-
-  /dispositivos:
-    get:
-      summary: Lista dispositivos
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria dispositivo
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Dispositivo' }
-      responses:
-        '201': { description: Criado }
-
-  /redes:
-    get:
-      summary: Lista redes
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria rede
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Rede' }
-      responses:
-        '201': { description: Criada }
-
-  /skills:
-    get:
-      summary: Lista skills
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria skill
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Skill' }
-      responses:
-        '201': { description: Criada }
-
-  /cursos:
-    get:
-      summary: Lista cursos
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria curso
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Curso' }
-      responses:
-        '201': { description: Criado }
-
-  /plataformas:
-    get:
-      summary: Lista plataformas
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Cria plataforma
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/Plataforma' }
-      responses:
-        '201': { description: Criada }
+        '200':
+          description: Login realizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Dados inválidos
+        '401':
+          description: Credenciais inválidas
+        '500':
+          description: Erro no servidor
 
 components:
 
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-
   schemas:
 
-    Empresa:
+    Usuario:
       type: object
       properties:
-        id: { type: integer }
-        nome: { type: string }
-        slogan: { type: string }
-        descricao: { type: string }
-        cnpj: { type: string }
-        atividade: { type: string }
-        localizacao: { type: string }
-        missao: { type: string }
-        servicos: { type: string }
-        projetos_destaque: { type: string }
+        id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: João Silva
+        email:
+          type: string
+          example: joao@email.com
+        role:
+          type: string
+          example: admin
 
-    Gestao:
+    UsuarioCreate:
       type: object
+      required: [nome, email, role]
       properties:
-        id: { type: integer }
-        data: { type: string, format: date }
-        km_percorrido: { type: number }
-        meta: { type: number }
-        horas_trabalhadas: { type: string }
-        receita: { type: number }
-        despesa: { type: number }
-        lucro: { type: number }
-        conta: { type: number }
+        nome:
+          type: string
+          example: João Silva
+        email:
+          type: string
+          example: joao@email.com
+        senha:
+          type: string
+          example: 123456
+          nullable: true
+        role:
+          type: string
+          example: admin
 
-    Calendario:
+    LoginRequest:
       type: object
+      required: [email, password]
       properties:
-        id: { type: integer }
-        data: { type: string, format: date }
-        dia_semana: { type: string }
-        mes: { type: integer }
-        ano: { type: integer }
-        feriado: { type: boolean }
+        email:
+          type: string
+          example: admin@email.com
+        password:
+          type: string
+          example: 123456
 
-    Conta:
+    LoginResponse:
       type: object
       properties:
-        id: { type: integer }
-        titular: { type: string }
-        tipo_conta: { type: string }
-        identificador: { type: string }
+        message:
+          type: string
+          example: Login realizado com sucesso
+        token:
+          type: string
+          example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
-    Contrato:
-      type: object
-      properties:
-        id: { type: integer }
-        empresa_id: { type: integer }
-        conta_id: { type: integer }
-        tipo_contrato: { type: string }
-        data_inicio: { type: string, format: date }
-        data_vigencia: { type: string, format: date }
-        duracao: { type: string }
-        descricao: { type: string }
-        remuneracao: { type: string }
-        aparelho: { type: string }
-        chip: { type: string }
-        email_contato: { type: string }
-        telefone_contato: { type: string }
-        login: { type: string }
-        banco: { type: string }
-        pix: { type: string }
-        recebimentos: { type: string }
-        mei: { type: string }
-        gestao_financeira: { type: string }
-        parceria_empresarial: { type: string }
-
-    Investimento:
-      type: object
-      properties:
-        id: { type: integer }
-        contrato_id: { type: integer }
-        tipo: { type: string }
-        descricao: { type: string }
-        valor_investido: { type: number }
-        valor_atual: { type: number }
-        data_inicio: { type: string, format: date }
-        data_vencimento: { type: string, format: date }
-
-    Lancamento:
-      type: object
-      properties:
-        id: { type: integer }
-        gestao_id: { type: integer }
-        ano: { type: integer }
-        mes: { type: integer }
-        descricao: { type: string }
-        valor: { type: number }
-        categoria: { type: string }
-
-    Emprestimo:
-      type: object
-      properties:
-        id: { type: integer }
-        cnpj: { type: string }
-        descricao: { type: string }
-        valor_total: { type: number }
-        valor_pago: { type: number }
-        valor_a_pagar: { type: number }
-        data_parcela: { type: string, format: date }
-        numero_parcela: { type: string }
-        valor_parcela: { type: number }
-
-    Manutencao:
-      type: object
-      properties:
-        id: { type: integer }
-        tipo_manutencao: { type: string }
-        data_ultima: { type: string, format: date }
-        valor_pago: { type: number }
-        data_proxima: { type: string, format: date }
-
-    Servidor:
-      type: object
-      properties:
-        id: { type: integer }
-        servico: { type: string }
-        email: { type: string }
-        usuario: { type: string }
-        senha: { type: string }
-        tokens: { type: string }
-        frase: { type: string }
-
-    Dispositivo:
-      type: object
-      properties:
-        id: { type: integer }
-        conta_id: { type: integer }
-        dispositivo: { type: string }
-        email: { type: string }
-        usuario: { type: string }
-        senha: { type: string }
-        tokens: { type: string }
-
-    Rede:
-      type: object
-      properties:
-        id: { type: integer }
-        categoria: { type: string }
-        descricao: { type: string }
-        email: { type: string }
-        usuario: { type: string }
-        senha: { type: string }
-        tokens: { type: string }
-
-    Skill:
-      type: object
-      properties:
-        id: { type: integer }
-        nome: { type: string }
-        categoria: { type: string }
-        nivel: { type: string }
-
-    Curso:
-      type: object
-      properties:
-        id: { type: integer }
-        nome: { type: string }
-        email: { type: string }
-        usuario: { type: string }
-        senha: { type: string }
-        tokens: { type: string }
-
-    Plataforma:
-      type: object
-      properties:
-        id: { type: integer }
-        servidor_id: { type: integer }
-        nome: { type: string }
-        email: { type: string }
-        usuario: { type: string }
-        senha: { type: string }
-        tokens: { type: string }
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
