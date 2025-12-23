@@ -49,10 +49,11 @@ paths:
   # AUTH
   # =========================
 
-  /usuarios:
+  /auth/usuarios:
     get:
       tags: [Auth]
       summary: Lista todos os usuários
+      description: Retorna a lista de usuários cadastrados (id, nome, email e role).
       responses:
         '200':
           description: Lista de usuários
@@ -63,11 +64,12 @@ paths:
                 items:
                   $ref: '#/components/schemas/AuthUsuario'
         '500':
-          description: Erro no servidor
+          description: Erro ao listar usuários
 
     post:
       tags: [Auth]
       summary: Cria um novo usuário
+      description: Cria um usuário informando nome, email e role. A senha pode ser enviada ou será definida automaticamente conforme o tipo de usuário.
       requestBody:
         required: true
         content:
@@ -82,14 +84,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthUsuario'
         '400':
-          description: Dados inválidos
+          description: Campos obrigatórios ausentes
         '500':
-          description: Erro no servidor
+          description: Erro ao criar usuário
 
-  /login:
+  /auth/login:
     post:
       tags: [Auth]
-      summary: Realiza login e retorna token JWT
+      summary: Realiza login e gera token JWT
+      description: Autentica o usuário e retorna um token JWT válido por 8 horas.
       requestBody:
         required: true
         content:
@@ -103,10 +106,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthLoginResponse'
+        '400':
+          description: Email e senha obrigatórios
         '401':
           description: Credenciais inválidas
         '500':
-          description: Erro no servidor
+          description: Erro no login
 
   # =========================
   # CALENDARIO
@@ -2027,10 +2032,10 @@ components:
           example: 1
         nome:
           type: string
-          example: João Silva
+          example: Admin
         email:
           type: string
-          example: joao@email.com
+          example: admin@email.com
         role:
           type: string
           example: admin
@@ -2041,12 +2046,16 @@ components:
       properties:
         nome:
           type: string
+          example: João Silva
         email:
           type: string
+          example: joao@email.com
         senha:
           type: string
+          example: senha123
         role:
           type: string
+          example: user
 
     AuthLoginRequest:
       type: object
@@ -2054,16 +2063,20 @@ components:
       properties:
         email:
           type: string
+          example: admin@email.com
         password:
           type: string
+          example: senha123
 
     AuthLoginResponse:
       type: object
       properties:
         message:
           type: string
+          example: Login realizado com sucesso
         token:
           type: string
+          example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
     # =========================
     # CALENDARIO
