@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Database\Database;
 use OpenApi\Annotations as OA;
 use PDO;
 use PDOException;
 use Firebase\JWT\JWT;
-
-require_once __DIR__ . '/../databases/dbConnection.php';
+use Dotenv\Dotenv;
 
 /**
  * @OA\Tag(
@@ -19,14 +19,14 @@ class AuthController
 {
     private PDO $db;
 
-    public function __construct()
+    public function __construct(PDO $db)
     {
-        $this->db = getDB();
+        $this->db = $db;
 
-        // Carrega variáveis do .env caso não estejam definidas
+        // Carrega .env apenas uma vez (caso ainda não esteja carregado)
         if (!isset($_ENV['JWT_SECRET'])) {
-            $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
-            $dotenv->load();
+            $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2));
+            $dotenv->safeLoad();
         }
 
         $this->createAdminIfNotExists();
@@ -53,16 +53,16 @@ class AuthController
             if (!$stmt->fetch()) {
                 $hashed = password_hash($senha, PASSWORD_DEFAULT);
 
-                $stmt = $this->db->prepare("
-                    INSERT INTO usuario (nome, email, senha, role)
-                    VALUES (?, ?, ?, ?)
-                ");
+                $stmt = $this->db->prepare(
+                    "INSERT INTO usuario (nome, email, senha, role)
+                     VALUES (?, ?, ?, ?)"
+                );
 
                 $stmt->execute(['Admin', $email, $hashed, 'admin']);
             }
 
         } catch (PDOException $e) {
-            error_log("Erro ao criar usuário admin: " . $e->getMessage());
+            error_log('Erro ao criar admin: ' . $e->getMessage());
         }
     }
 
@@ -70,35 +70,11 @@ class AuthController
      * =========================================================
      * Criar usuário
      * =========================================================
-     */
-
-    /**
+     *
      * @OA\Post(
-     *     path="/usuarios",
+     *     path="/auth/usuarios",
      *     summary="Cria um novo usuário",
-     *     tags={"Auth"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"nome","email","role"},
-     *             @OA\Property(property="nome", type="string", example="João Silva"),
-     *             @OA\Property(property="email", type="string", example="joao@email.com"),
-     *             @OA\Property(property="senha", type="string", example="123456", nullable=true),
-     *             @OA\Property(property="role", type="string", example="admin")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Usuário criado com sucesso",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="id", type="integer"),
-     *             @OA\Property(property="nome", type="string"),
-     *             @OA\Property(property="email", type="string"),
-     *             @OA\Property(property="role", type="string")
-     *         )
-     *     ),
-     *     @OA\Response(response=400, description="Dados inválidos"),
-     *     @OA\Response(response=500, description="Erro no servidor")
+     *     tags={"Auth"}
      * )
      */
     public function createUsuario(): void
@@ -112,7 +88,6 @@ class AuthController
         $senha = $body['senha'] ?? null;
         $role  = $body['role']  ?? null;
 
-        // Senha padrão
         $finalSenha = $senha ?: (
             $role === 'admin'
                 ? ($_ENV['ADMIN_PASSWORD'] ?? null)
@@ -121,18 +96,22 @@ class AuthController
 
         if (!$nome || !$email || !$role || !$finalSenha) {
             http_response_code(400);
-            echo json_encode(['error' => 'Todos os campos são obrigatórios']);
+            echo json_encode(['error' => 'Campos obrigatórios ausentes']);
             return;
         }
 
-        $hashed = password_hash($finalSenha, PASSWORD_DEFAULT);
-
         try {
-            $stmt = $this->db->prepare("
-                INSERT INTO usuario (nome, email, senha, role)
-                VALUES (?, ?, ?, ?)
-            ");
-            $stmt->execute([$nome, $email, $hashed, $role]);
+            $stmt = $this->db->prepare(
+                "INSERT INTO usuario (nome, email, senha, role)
+                 VALUES (?, ?, ?, ?)"
+            );
+
+            $stmt->execute([
+                $nome,
+                $email,
+                password_hash($finalSenha, PASSWORD_DEFAULT),
+                $role
+            ]);
 
             http_response_code(201);
             echo json_encode([
@@ -144,7 +123,7 @@ class AuthController
 
         } catch (PDOException $e) {
             http_response_code(500);
-            echo json_encode(['error' => $e->getMessage()]);
+            echo json_encode(['error' => 'Erro ao criar usuário']);
         }
     }
 
@@ -152,27 +131,11 @@ class AuthController
      * =========================================================
      * Listar usuários
      * =========================================================
-     */
-
-    /**
+     *
      * @OA\Get(
-     *     path="/usuarios",
-     *     summary="Lista todos os usuários",
-     *     tags={"Auth"},
-     *     @OA\Response(
-     *         response=200,
-     *         description="Lista de usuários",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(
-     *                 @OA\Property(property="id", type="integer"),
-     *                 @OA\Property(property="nome", type="string"),
-     *                 @OA\Property(property="email", type="string"),
-     *                 @OA\Property(property="role", type="string")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(response=500, description="Erro no servidor")
+     *     path="/auth/usuarios",
+     *     summary="Lista usuários",
+     *     tags={"Auth"}
      * )
      */
     public function listUsuarios(): void
@@ -180,12 +143,15 @@ class AuthController
         $this->sendJsonHeaders();
 
         try {
-            $stmt = $this->db->query("SELECT id, nome, email, role FROM usuario");
+            $stmt = $this->db->query(
+                "SELECT id, nome, email, role FROM usuario"
+            );
+
             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 
         } catch (PDOException $e) {
             http_response_code(500);
-            echo json_encode(['error' => $e->getMessage()]);
+            echo json_encode(['error' => 'Erro ao listar usuários']);
         }
     }
 
@@ -193,32 +159,11 @@ class AuthController
      * =========================================================
      * Login
      * =========================================================
-     */
-
-    /**
+     *
      * @OA\Post(
-     *     path="/login",
-     *     summary="Realiza login e retorna token JWT",
-     *     tags={"Auth"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"email","password"},
-     *             @OA\Property(property="email", type="string", example="admin@email.com"),
-     *             @OA\Property(property="password", type="string", example="123456")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Login bem-sucedido",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string"),
-     *             @OA\Property(property="token", type="string")
-     *         )
-     *     ),
-     *     @OA\Response(response=400, description="Dados inválidos"),
-     *     @OA\Response(response=401, description="Credenciais inválidas"),
-     *     @OA\Response(response=500, description="Erro no servidor")
+     *     path="/auth/login",
+     *     summary="Login e geração de JWT",
+     *     tags={"Auth"}
      * )
      */
     public function login(): void
@@ -237,7 +182,9 @@ class AuthController
         }
 
         try {
-            $stmt = $this->db->prepare("SELECT * FROM usuario WHERE email = ?");
+            $stmt = $this->db->prepare(
+                "SELECT * FROM usuario WHERE email = ?"
+            );
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -247,18 +194,12 @@ class AuthController
                 return;
             }
 
-            if (!isset($_ENV['JWT_SECRET'])) {
-                http_response_code(500);
-                echo json_encode(['error' => 'JWT_SECRET não definido']);
-                return;
-            }
-
             $payload = [
                 'id'    => $user['id'],
                 'nome'  => $user['nome'],
                 'email' => $user['email'],
                 'role'  => $user['role'],
-                'exp'   => time() + 60 * 60 * 8 // 8 horas
+                'exp'   => time() + 60 * 60 * 8
             ];
 
             $token = JWT::encode($payload, $_ENV['JWT_SECRET'], 'HS256');
@@ -270,18 +211,18 @@ class AuthController
 
         } catch (PDOException $e) {
             http_response_code(500);
-            echo json_encode(['error' => $e->getMessage()]);
+            echo json_encode(['error' => 'Erro no login']);
         }
     }
 
     /**
-     * Envia headers padrão para JSON + CORS
+     * Headers padrão
      */
     private function sendJsonHeaders(): void
     {
-        header("Content-Type: application/json; charset=utf-8");
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header('Content-Type: application/json; charset=utf-8');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
     }
 }
