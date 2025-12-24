@@ -1,38 +1,52 @@
 <?php
-require_once __DIR__ . '/../db/connection.php';
-require_once __DIR__ . '/../utils/jsonResponse.php';
 
-class CalendarioController {
+namespace App\Controllers;
 
-    // Listar todas
-    public static function getAll() {
-        $db = getDB();
-        $stmt = $db->query("SELECT * FROM Calendario");
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        jsonResponse($rows);
+use PDO;
+use App\Http\Response;
+
+class CalendarioController
+{
+    public function __construct(private PDO $db) {}
+
+    // ========================
+    // GET ALL
+    // ========================
+    public function getAll(): void
+    {
+        $stmt = $this->db->query("SELECT * FROM Calendario");
+        Response::json($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    // Buscar por ID
-    public static function getById($id) {
-        $db = getDB();
-        $stmt = $db->prepare("SELECT * FROM Calendario WHERE id = ?");
+    // ========================
+    // GET BY ID
+    // ========================
+    public function getById(int $id): void
+    {
+        $stmt = $this->db->prepare("SELECT * FROM Calendario WHERE id = ?");
         $stmt->execute([$id]);
+
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$row) {
-            jsonResponse(["error" => "Calendario não encontrado"], 404);
+            Response::error('Calendário não encontrado', 404);
         }
 
-        jsonResponse($row);
+        Response::json($row);
     }
 
-    // Criar novo
-    public static function create($data) {
-        $db = getDB();
-        $sql = "INSERT INTO Calendario (data, dia_semana, mes, ano, feriado)
-                VALUES (?, ?, ?, ?, ?)";
+    // ========================
+    // CREATE
+    // ========================
+    public function create(): void
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $stmt = $db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "INSERT INTO Calendario (data, dia_semana, mes, ano, feriado)
+             VALUES (?, ?, ?, ?, ?)"
+        );
+
         $stmt->execute([
             $data['data'],
             $data['dia_semana'],
@@ -41,20 +55,24 @@ class CalendarioController {
             $data['feriado']
         ]);
 
-        jsonResponse([
-            "id" => $db->lastInsertId(),
-            ...$data
+        Response::json([
+            'id' => $this->db->lastInsertId()
         ], 201);
     }
 
-    // Atualizar
-    public static function update($id, $data) {
-        $db = getDB();
-        $sql = "UPDATE Calendario 
-                SET data=?, dia_semana=?, mes=?, ano=?, feriado=?
-                WHERE id=?";
+    // ========================
+    // UPDATE
+    // ========================
+    public function update(int $id): void
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $stmt = $db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "UPDATE Calendario
+             SET data=?, dia_semana=?, mes=?, ano=?, feriado=?
+             WHERE id=?"
+        );
+
         $stmt->execute([
             $data['data'],
             $data['dia_semana'],
@@ -65,22 +83,24 @@ class CalendarioController {
         ]);
 
         if ($stmt->rowCount() === 0) {
-            jsonResponse(["error" => "Calendario não encontrado"], 404);
+            Response::error('Calendário não encontrado', 404);
         }
 
-        jsonResponse(["id" => $id, ...$data]);
+        Response::success('Calendário atualizado');
     }
 
-    // Deletar
-    public static function delete($id) {
-        $db = getDB();
-        $stmt = $db->prepare("DELETE FROM Calendario WHERE id = ?");
+    // ========================
+    // DELETE
+    // ========================
+    public function delete(int $id): void
+    {
+        $stmt = $this->db->prepare("DELETE FROM Calendario WHERE id = ?");
         $stmt->execute([$id]);
 
         if ($stmt->rowCount() === 0) {
-            jsonResponse(["error" => "Calendario não encontrado"], 404);
+            Response::error('Calendário não encontrado', 404);
         }
 
-        jsonResponse(["message" => "Calendario deletado com sucesso"]);
+        Response::success('Calendário removido');
     }
 }

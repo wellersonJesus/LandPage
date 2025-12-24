@@ -2,43 +2,62 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Controllers\AuthController;
-use App\Controllers\EmpresaController;
 use App\Database\Database;
+use App\Route\Router;
+use App\Http\Response;
 
 header('Content-Type: application/json; charset=utf-8');
 
+// ============================
+// CONEXÃO COM BANCO
+// ============================
+$db = Database::getConnection();
+
+// ============================
+// INSTÂNCIA DO ROUTER
+// ============================
+$router = new Router();
+
+// ============================
+// URI E MÉTODO
+// ============================
 $uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
-$db = Database::getConnection();
-
-$authController    = new AuthController($db);
-$empresaController = new EmpresaController($db);
-
-switch (true) {
-
-    case $uri === '/auth/login' && $method === 'POST':
-        $authController->login();
-        break;
-
-    case $uri === '/auth/usuarios' && $method === 'POST':
-        $authController->createUsuario();
-        break;
-
-    case $uri === '/auth/usuarios' && $method === 'GET':
-        $authController->listUsuarios();
-        break;
-
-    case $uri === '/empresas' && $method === 'GET':
-        $empresaController->getAllEmpresas();
-        break;
-
-    case $method === 'OPTIONS':
-        http_response_code(200);
-        break;
-
-    default:
-        http_response_code(404);
-        echo json_encode(['error' => 'Rota não encontrada']);
+// ============================
+// CORS PREFLIGHT
+// ============================
+if ($method === 'OPTIONS') {
+    Response::noContent();
+    exit;
 }
+
+// ============================
+// CARREGAMENTO AUTOMÁTICO DAS ROTAS
+// ============================
+$routesPath = __DIR__ . '/../routes';
+
+foreach (scandir($routesPath) as $file) {
+
+    if (
+        $file === '.' ||
+        $file === '..' ||
+        $file === 'index.php' ||
+        !str_ends_with($file, 'Routes.php')
+    ) {
+        continue;
+    }
+
+    $routeFile = $routesPath . '/' . $file;
+
+    $register = require $routeFile;
+
+    if (is_callable($register)) {
+        $register($router, $db);
+    }
+}
+
+// ============================
+// DISPATCH FINAL
+// ============================
+$router->dispatch($uri, $method);

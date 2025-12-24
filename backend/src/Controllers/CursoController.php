@@ -1,29 +1,27 @@
 <?php
 
-class CursoController {
+namespace App\Controllers;
 
-    private $db;
+use PDO;
 
-    public function __construct($pdo)
+class CursoController
+{
+    private PDO $db;
+
+    public function __construct(PDO $pdo)
     {
         $this->db = $pdo;
     }
 
-    /* ============================================================
-        LISTAR TODOS OS CURSOS
-    ============================================================ */
-    public function getAllCursos()
+    public function index()
     {
-        $stmt = $this->db->query("SELECT * FROM Curso");
+        $stmt = $this->db->query("SELECT * FROM curso");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    /* ============================================================
-        BUSCAR CURSO POR ID
-    ============================================================ */
-    public function getCursoById($id)
+    public function show($id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM Curso WHERE id = ?");
+        $stmt = $this->db->prepare("SELECT * FROM curso WHERE id = ?");
         $stmt->execute([$id]);
 
         $curso = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -37,26 +35,19 @@ class CursoController {
         echo json_encode($curso);
     }
 
-    /* ============================================================
-        CRIAR NOVO CURSO
-    ============================================================ */
-    public function createCurso($data)
+    public function store($data)
     {
-        $sql = "INSERT INTO Curso (nome, plataforma_id, carga_horaria, progresso)
-                VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare(
+            "INSERT INTO curso (nome, plataforma_id, carga_horaria, progresso)
+             VALUES (?, ?, ?, ?)"
+        );
 
-        $stmt = $this->db->prepare($sql);
-
-        if (!$stmt->execute([
-            $data["nome"],
-            $data["plataforma_id"],
-            $data["carga_horaria"],
-            $data["progresso"]
-        ])) {
-            http_response_code(500);
-            echo json_encode(["error" => "Erro ao criar curso"]);
-            return;
-        }
+        $stmt->execute([
+            $data['nome'],
+            $data['plataforma_id'],
+            $data['carga_horaria'],
+            $data['progresso'] ?? 0
+        ]);
 
         echo json_encode([
             "id" => $this->db->lastInsertId(),
@@ -64,28 +55,21 @@ class CursoController {
         ]);
     }
 
-    /* ============================================================
-        ATUALIZAR CURSO
-    ============================================================ */
-    public function updateCurso($id, $data)
+    public function update($id, $data)
     {
-        $sql = "UPDATE Curso 
-                SET nome=?, plataforma_id=?, carga_horaria=?, progresso=?
-                WHERE id=?";
+        $stmt = $this->db->prepare(
+            "UPDATE curso 
+             SET nome=?, plataforma_id=?, carga_horaria=?, progresso=?
+             WHERE id=?"
+        );
 
-        $stmt = $this->db->prepare($sql);
-
-        if (!$stmt->execute([
-            $data["nome"],
-            $data["plataforma_id"],
-            $data["carga_horaria"],
-            $data["progresso"],
+        $stmt->execute([
+            $data['nome'],
+            $data['plataforma_id'],
+            $data['carga_horaria'],
+            $data['progresso'],
             $id
-        ])) {
-            http_response_code(500);
-            echo json_encode(["error" => "Erro ao atualizar curso"]);
-            return;
-        }
+        ]);
 
         if ($stmt->rowCount() === 0) {
             http_response_code(404);
@@ -96,12 +80,9 @@ class CursoController {
         echo json_encode(["id" => $id, ...$data]);
     }
 
-    /* ============================================================
-        DELETAR CURSO
-    ============================================================ */
-    public function deleteCurso($id)
+    public function destroy($id)
     {
-        $stmt = $this->db->prepare("DELETE FROM Curso WHERE id = ?");
+        $stmt = $this->db->prepare("DELETE FROM curso WHERE id = ?");
         $stmt->execute([$id]);
 
         if ($stmt->rowCount() === 0) {

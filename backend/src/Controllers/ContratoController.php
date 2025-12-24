@@ -1,27 +1,27 @@
 <?php
 
-class ContratoController {
+namespace App\Controllers;
 
-    private $db;
+use PDO;
+use App\Http\Response;
 
-    public function __construct($pdo)
-    {
-        $this->db = $pdo;
-    }
+class ContratoController
+{
+    public function __construct(private PDO $db) {}
 
-    /* ============================================================
-        LISTAR TODOS OS CONTRATOS
-    ============================================================ */
-    public function getAllContratos()
+    // ========================
+    // LISTAR CONTRATOS
+    // ========================
+    public function getAll(): void
     {
         $stmt = $this->db->query("SELECT * FROM Contrato");
-        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        Response::json($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    /* ============================================================
-        BUSCAR CONTRATO POR ID
-    ============================================================ */
-    public function getContratoById($id)
+    // ========================
+    // BUSCAR POR ID
+    // ========================
+    public function getById(int $id): void
     {
         $stmt = $this->db->prepare("SELECT * FROM Contrato WHERE id = ?");
         $stmt->execute([$id]);
@@ -29,180 +29,153 @@ class ContratoController {
         $contrato = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$contrato) {
-            http_response_code(404);
-            echo json_encode(["error" => "Contrato não encontrado"]);
-            return;
+            Response::error('Contrato não encontrado', 404);
         }
 
-        echo json_encode($contrato);
+        Response::json($contrato);
     }
 
-    /* ============================================================
-        CRIAR CONTRATO
-    ============================================================ */
-    public function createContrato($data)
+    // ========================
+    // CRIAR CONTRATO
+    // ========================
+    public function create(): void
     {
-        $sql = "INSERT INTO Contrato (empresa_id, descricao, valor, data_inicio, data_fim, status)
-                VALUES (?, ?, ?, ?, ?, ?)";
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "INSERT INTO Contrato 
+             (empresa_id, descricao, valor, data_inicio, data_fim, status)
+             VALUES (?, ?, ?, ?, ?, ?)"
+        );
 
-        if (!$stmt->execute([
-            $data["empresa_id"],
-            $data["descricao"],
-            $data["valor"],
-            $data["data_inicio"],
-            $data["data_fim"],
-            $data["status"]
-        ])) {
-            http_response_code(500);
-            echo json_encode(["error" => "Erro ao criar contrato"]);
-            return;
-        }
-
-        echo json_encode([
-            "id" => $this->db->lastInsertId(),
-            ...$data
+        $stmt->execute([
+            $data['empresa_id'],
+            $data['descricao'],
+            $data['valor'],
+            $data['data_inicio'],
+            $data['data_fim'],
+            $data['status']
         ]);
+
+        Response::json(['id' => $this->db->lastInsertId()], 201);
     }
 
-    /* ============================================================
-        ATUALIZAR CONTRATO
-    ============================================================ */
-    public function updateContrato($id, $data)
+    // ========================
+    // ATUALIZAR CONTRATO
+    // ========================
+    public function update(int $id): void
     {
-        $sql = "UPDATE Contrato SET 
-                    empresa_id=?, 
-                    descricao=?, 
-                    valor=?, 
-                    data_inicio=?, 
-                    data_fim=?, 
-                    status=?
-                WHERE id=?";
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "UPDATE Contrato SET
+                empresa_id = ?,
+                descricao  = ?,
+                valor      = ?,
+                data_inicio= ?,
+                data_fim   = ?,
+                status     = ?
+             WHERE id = ?"
+        );
 
-        if (!$stmt->execute([
-            $data["empresa_id"],
-            $data["descricao"],
-            $data["valor"],
-            $data["data_inicio"],
-            $data["data_fim"],
-            $data["status"],
+        $stmt->execute([
+            $data['empresa_id'],
+            $data['descricao'],
+            $data['valor'],
+            $data['data_inicio'],
+            $data['data_fim'],
+            $data['status'],
             $id
-        ])) {
-            http_response_code(500);
-            echo json_encode(["error" => "Erro ao atualizar contrato"]);
-            return;
-        }
+        ]);
 
         if ($stmt->rowCount() === 0) {
-            http_response_code(404);
-            echo json_encode(["error" => "Contrato não encontrado"]);
-            return;
+            Response::error('Contrato não encontrado', 404);
         }
 
-        echo json_encode(["id" => $id, ...$data]);
+        Response::success('Contrato atualizado');
     }
 
-    /* ============================================================
-        DELETAR CONTRATO
-    ============================================================ */
-    public function deleteContrato($id)
+    // ========================
+    // DELETAR CONTRATO
+    // ========================
+    public function delete(int $id): void
     {
         $stmt = $this->db->prepare("DELETE FROM Contrato WHERE id = ?");
         $stmt->execute([$id]);
 
         if ($stmt->rowCount() === 0) {
-            http_response_code(404);
-            echo json_encode(["error" => "Contrato não encontrado"]);
-            return;
+            Response::error('Contrato não encontrado', 404);
         }
 
-        echo json_encode(["message" => "Contrato deletado com sucesso"]);
+        Response::success('Contrato removido');
     }
 
-    /* ============================================================
-        LISTAR CONTAS VINCULADAS AO CONTRATO
-    ============================================================ */
-    public function getContasByContrato($id)
+    // ========================
+    // CONTAS
+    // ========================
+    public function getContas(int $id): void
     {
-        $sql = "SELECT * FROM conta WHERE contrato_id = ?";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "SELECT * FROM conta WHERE contrato_id = ?"
+        );
         $stmt->execute([$id]);
 
-        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        Response::json($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    /* ============================================================
-        CRIAR CONTA VINCULADA AO CONTRATO
-    ============================================================ */
-    public function createContaByContrato($id, $data)
+    public function createConta(int $id): void
     {
-        $sql = "INSERT INTO conta (contrato_id, tipo, numero_conta, agencia, saldo)
-                VALUES (?, ?, ?, ?, ?)";
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "INSERT INTO conta
+             (contrato_id, tipo, numero_conta, agencia, saldo)
+             VALUES (?, ?, ?, ?, ?)"
+        );
 
-        if (!$stmt->execute([
+        $stmt->execute([
             $id,
-            $data["tipo"],
-            $data["numero_conta"],
-            $data["agencia"],
-            $data["saldo"]
-        ])) {
-            http_response_code(500);
-            echo json_encode(["error" => "Erro ao criar conta vinculada"]);
-            return;
-        }
-
-        echo json_encode([
-            "id" => $this->db->lastInsertId(),
-            "contrato_id" => $id,
-            ...$data
+            $data['tipo'],
+            $data['numero_conta'],
+            $data['agencia'],
+            $data['saldo']
         ]);
+
+        Response::json(['id' => $this->db->lastInsertId()], 201);
     }
 
-    /* ============================================================
-        LISTAR INVESTIMENTOS DO CONTRATO
-    ============================================================ */
-    public function getInvestimentosByContrato($id)
+    // ========================
+    // INVESTIMENTOS
+    // ========================
+    public function getInvestimentos(int $id): void
     {
-        $sql = "SELECT * FROM investimento WHERE contrato_id = ?";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "SELECT * FROM investimento WHERE contrato_id = ?"
+        );
         $stmt->execute([$id]);
 
-        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        Response::json($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    /* ============================================================
-        CRIAR INVESTIMENTO VINCULADO AO CONTRATO
-    ============================================================ */
-    public function createInvestimentoByContrato($id, $data)
+    public function createInvestimento(int $id): void
     {
-        $sql = "INSERT INTO investimento 
-                    (contrato_id, tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
-                VALUES (?, ?, ?, ?, ?, ?)";
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare(
+            "INSERT INTO investimento
+             (contrato_id, tipo, descricao, valor_aplicado, rendimento, data_aplicacao)
+             VALUES (?, ?, ?, ?, ?, ?)"
+        );
 
-        if (!$stmt->execute([
+        $stmt->execute([
             $id,
-            $data["tipo"],
-            $data["descricao"],
-            $data["valor_aplicado"],
-            $data["rendimento"],
-            $data["data_aplicacao"]
-        ])) {
-            http_response_code(500);
-            echo json_encode(["error" => "Erro ao criar investimento"]);
-            return;
-        }
-
-        echo json_encode([
-            "id" => $this->db->lastInsertId(),
-            "contrato_id" => $id,
-            ...$data
+            $data['tipo'],
+            $data['descricao'],
+            $data['valor_aplicado'],
+            $data['rendimento'],
+            $data['data_aplicacao']
         ]);
+
+        Response::json(['id' => $this->db->lastInsertId()], 201);
     }
 }
