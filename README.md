@@ -1,4 +1,4 @@
-## [📘 Manager ](https://wellersonJesus.gitlab.io/ws-manager/)
+## [📘 Manager ](https://ws-manager-309387.gitlab.io/login)
 
 > *Para visualizar este README em modo preview no VS Code: **Ctrl + Shift + V***
 
@@ -22,16 +22,10 @@ Aplicação:
 #### 2️⃣ Estrutura Principal do Repositório
 
 ```bash
-WS-Manager/
- ├── backend/          # API (PHP), controllers, seeds, config
- ├── frontend/         # Angular + Bootstrap (SPA)
- ├── sql/              # Scripts SQL auxiliares
- ├── src/              # Scripts gerais e tools
- ├── package.json      # Dependências globais
- ├── version           # Versão atual do app
- └── README.md         # Este arquivo
+WS-Manager/  
+ ├── backend/    # Exibe estrutura: Projetos/WS-Manager/backend$ tree -L 3 
+ └── frontend/   # Exibe estrutura: Projetos/WS-Manager/frontend$ tree -L 3
 ```
-
 > _**Backend:** controla API, banco SQLite, autenticação e seeds.<br>
 **Frontend:** interface responsiva consumindo os endpoints REST._
 
