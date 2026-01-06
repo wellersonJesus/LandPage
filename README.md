@@ -1,8 +1,8 @@
-## [📘 Manager ](https://ws-manager-309387.gitlab.io/login)
+## [📘 InfoWell-Manager](https://ws-manager-309387.gitlab.io/login)
 
 > *Para visualizar este README em modo preview no VS Code: **Ctrl + Shift + V***
 
-**Manager** plataforma de gestão de operações; Organização objetiva, documentação, API estruturada e histórico incremental.
+**InfoWell-Manager** plataforma de gestão de operações; Organização objetiva, documentação, API estruturada e histórico incremental.
 
 ---
 
