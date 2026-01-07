@@ -2,6 +2,15 @@
 
 ```bash
 erDiagram
+    USUARIO {
+        INTEGER  id PK	
+        TEXT     nome	
+        TEXT     UNIQUE email	
+        TEXT     senha	
+        TEXT     role	
+        DATETIME created_at	
+    }
+
     EMPRESA {
         INTEGER id PK
         TEXT nome
@@ -163,7 +172,7 @@ erDiagram
     GESTAO ||--o{ LANCAMENTO : "contabiliza"
     EMPRESA ||--o{ CONTRATO : "possui"
     DISPOSITIVO ||--o{ CONTA : "acesso_a"
-    SERVIDOR ||--o{ PLATAFORMA : "administra"
+    SERVIDOR ||--o{ PLATAFORMA : "administra"    
 ```
 ##### Sequência de <br>migrations recomendada
 ```bash 

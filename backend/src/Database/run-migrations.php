@@ -1,38 +1,73 @@
 <?php
+// backend/src/Database/run-migrations.php
 
-echo "🔧 Iniciando execução das migrations...\n";
+declare(strict_types=1);
 
-// Carrega autoload e função getDB()
+echo PHP_EOL . "🔧 Iniciando execução das migrations..." . PHP_EOL;
+
+// ================================
+// BOOTSTRAP
+// ================================
 require_once __DIR__ . '/dbConnection.php';
 
-// Carrega todas as migrations
-$migrationFiles = glob(__DIR__ . '/migrations/*.php');
+use PDO;
+use PDOException;
 
-if (empty($migrationFiles)) {
-    echo "⚠ Nenhuma migration encontrada.\n";
-    exit;
+// ================================
+// PATHS
+// ================================
+$migrationsDir = __DIR__ . '/migrations';
+
+// ================================
+// VALIDATIONS
+// ================================
+if (!is_dir($migrationsDir)) {
+    fwrite(STDERR, "❌ Diretório de migrations não encontrado: {$migrationsDir}" . PHP_EOL);
+    exit(1);
 }
 
-$db = getDB(); // ← usa a função correta
+// Busca e ordena migrations
+$migrationFiles = glob($migrationsDir . '/*.php');
+sort($migrationFiles);
 
+if (empty($migrationFiles)) {
+    echo "⚠ Nenhuma migration encontrada." . PHP_EOL;
+    exit(0);
+}
+
+// ================================
+// DATABASE
+// ================================
+$db = getDB();
+
+// ================================
+// EXECUTION
+// ================================
 foreach ($migrationFiles as $file) {
-    echo "▶ Executando: " . basename($file) . "\n";
+    $migration = null;
 
-    require $file; // cada arquivo deve retornar SQL
+    echo PHP_EOL . "▶ Executando migration: " . basename($file) . PHP_EOL;
 
-    if (!isset($migration) || empty(trim($migration))) {
-        echo "⚠ Migration vazia em " . basename($file) . "\n";
+    require $file;
+
+    if (!isset($migration) || !is_string($migration) || trim($migration) === '') {
+        echo "⚠ Migration inválida ou vazia. Ignorada." . PHP_EOL;
         continue;
     }
 
     try {
         $db->exec($migration);
-        echo "✔ Migration aplicada com sucesso.\n";
+        echo "✔ Migration aplicada com sucesso." . PHP_EOL;
     } catch (PDOException $e) {
-        echo "❌ Erro ao aplicar migration " . basename($file) . ": " . $e->getMessage() . "\n";
+        fwrite(
+            STDERR,
+            "❌ Erro ao aplicar migration " . basename($file) . PHP_EOL .
+            "➡ " . $e->getMessage() . PHP_EOL
+        );
+        exit(1); // Para tudo para evitar banco inconsistente
     }
 
-    unset($migration); // limpa variável entre migrations
+    unset($migration);
 }
 
-echo "🎉 Todas as migrations foram executadas.\n";
+echo PHP_EOL . "🎉 Todas as migrations foram executadas com sucesso!" . PHP_EOL;

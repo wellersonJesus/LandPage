@@ -13,11 +13,10 @@ function logMsg($msg) { echo "✔ $msg\n"; }
 // =========================
 //  USUÁRIO
 // =========================
-$usuarios = [
-    ['Administrador', 'admin@ws.com', password_hash('admin123', PASSWORD_DEFAULT), 'admin'],
-    ['Usuário Padrão', 'user@ws.com', password_hash('user123', PASSWORD_DEFAULT), 'user'],
-    ['Gerente', 'gerente@ws.com', password_hash('gerente123', PASSWORD_DEFAULT), 'manager']
-];
+// ❌ Seed de usuários removido intencionalmente
+// Usuários devem ser criados exclusivamente via API (/auth/register)
+// para manter segurança e controle de acesso.
+$usuario = [];
 
 foreach ($usuarios as $u) {
     $stmt = $db->prepare("INSERT INTO usuario (nome, email, senha, role) VALUES (?, ?, ?, ?)");
@@ -31,17 +30,19 @@ logMsg("Usuários inseridos");
 $empresas = [
     ['WS Manager Ltda', 'Gerenciando o futuro', 'Sistema completo de gestão', '12.345.678/0001-91', 'Tecnologia', 'Brasil', 'Organizar processos', 'Sistemas Web', 'WS Platform'],
     ['Alpha Tech', 'Inovação sem limites', 'Consultoria e serviços', '98.765.432/0001-22', 'TI', 'São Paulo', 'Criar soluções inteligentes', 'Consultoria', 'Alpha Cloud'],
-    ['Beta Corp', 'Excelência em resultados', 'Gestão empresarial', '22.333.444/0001-55', 'Serviços', 'Rio de Janeiro', 'Automatizar processos', 'Gestão', 'Beta CRM']
+    ['Betaaa Corp', 'Excelência em resultados', 'Gestão empresarial', '22.333.444/0001-55', 'Serviços', 'Rio de Janeiro', 'Automatizar processos', 'Gestão', 'Beta CRM']
 ];
 
+$stmt = $db->prepare("
+    INSERT OR IGNORE INTO empresa
+    (nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+");
+
 foreach ($empresas as $e) {
-    $stmt = $db->prepare("
-        INSERT INTO empresa (nome, slogan, descricao, cnpj, atividade, localizacao, missao, servicos, projetos_destaque)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ");
     $stmt->execute($e);
 }
-logMsg("Empresas inseridas");
+logMsg("Empresas ok");
 
 // =========================
 //  GESTAO

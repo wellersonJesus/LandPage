@@ -124,13 +124,12 @@ php -S localhost:8000 -t public # Inicia servidor
 
 [📂 Acessar schema do banco](./backend/src/databases/DATABASE_SCHEMA.md)
 
-Criar/Atualizar o banco (migrations)
+Remover/Criar/Atualizar o banco (migrations)
 
 ```bash
-rm ./wsmanager_local.db   # ou o caminho correto
+rm ./wsmanager_local.db   # remover banco atual
 php run-migrations.php    # cd backend/src/databases/:
 php seed-db.php           # Popular o banco (seeds)
-
 ```
 ##### 🌐 Frontend
 ```bash
