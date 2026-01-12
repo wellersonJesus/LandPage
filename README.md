@@ -6,7 +6,7 @@
 
 ---
 
-#### 1️⃣ Visão Geral do Projeto
+#### 1️⃣ Visão Geral do ProjetoOllama
 
 Aplicação:
 
@@ -140,6 +140,42 @@ ng serve --open
 > Acesse: [http://localhost:4200]()
 
 ---
+
+## Exemplos de API
+
+1) Autenticação — obter token JWT
+
+```bash
+curl -X POST "http://localhost:8000/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@example.com","password":"sua_senha"}'
+```
+
+Resposta esperada (exemplo):
+
+```json
+{"token":"eyJhbGciOi...","user":{"id":1,"email":"admin@example.com"}}
+```
+
+2) Listar empresas (requiere JWT)
+
+```bash
+curl -X GET "http://localhost:8000/empresas" \
+  -H "Authorization: Bearer SEU_TOKEN_AQUI" \
+  -H "Accept: application/json"
+```
+
+3) Criar empresa (exemplo com role admin)
+
+```bash
+curl -X POST "http://localhost:8000/empresas" \
+  -H "Authorization: Bearer SEU_TOKEN_AQUI" \
+  -H "Content-Type: application/json" \
+  -d '{"nome":"Empresa Exemplo","cnpj":"00.000.000/0000-00"}'
+```
+
+Observação: ajuste as rotas conforme a configuração do seu servidor (host/porta) e verifique as permissões (JWT/roles).
+
 
 #### 5️⃣ Deploy (GitLab Pages + Render)
 ##### 🌍 GitLab Pages (Frontend)
