@@ -770,7 +770,7 @@ class Inline
 
         // Is followed by a scalar and is a built-in tag
         if ('' !== $tag && (!isset($value[$nextOffset]) || !\in_array($value[$nextOffset], ['[', '{'], true)) && ('!' === $tag[0] || \in_array($tag, ['str', 'php/const', 'php/enum', 'php/object'], true))) {
-            // Manage in {@link self::evaluateScalar()}
+            // landpage in {@link self::evaluateScalar()}
             return null;
         }
 

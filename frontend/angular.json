@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ws-manager-frontend",
+            "outputPath": "dist/landpage-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,7 +63,7 @@
               "optimization": true,
               "sourceMap": false,
               "extractLicenses": true,
-              "baseHref": "/ws-manager-309387/",
+              "baseHref": "/landpage-309387/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

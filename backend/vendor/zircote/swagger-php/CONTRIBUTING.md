@@ -34,7 +34,7 @@ This process involves converting the existing markdown (`.md`) files into static
 
 Some reference content is based on the existing code, so changes to annotations, attributes and processors will require to re-generate those markdown files: `composer docs:gen`.
 
-The actual published content is managed in the [gh-pages](https://github.com/zircote/swagger-php/tree/gh-pages)  branch and driven by a [publish action](https://github.com/zircote/swagger-php/actions/workflows/gh-pages.yml).
+The actual published content is landpaged in the [gh-pages](https://github.com/zircote/swagger-php/tree/gh-pages)  branch and driven by a [publish action](https://github.com/zircote/swagger-php/actions/workflows/gh-pages.yml).
 
 
 ## Useful commands

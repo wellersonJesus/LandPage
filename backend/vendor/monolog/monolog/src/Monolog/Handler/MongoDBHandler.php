@@ -12,7 +12,7 @@
 namespace Monolog\Handler;
 
 use MongoDB\Driver\BulkWrite;
-use MongoDB\Driver\Manager;
+use MongoDB\Driver\landpager;
 use MongoDB\Client;
 use Monolog\Level;
 use Monolog\Formatter\FormatterInterface;
@@ -30,29 +30,29 @@ use Monolog\LogRecord;
  *   $log->pushHandler($mongodb);
  *
  * The above examples uses the MongoDB PHP library's client class; however, the
- * MongoDB\Driver\Manager class from ext-mongodb is also supported.
+ * MongoDB\Driver\landpager class from ext-mongodb is also supported.
  */
 class MongoDBHandler extends AbstractProcessingHandler
 {
     private \MongoDB\Collection $collection;
 
-    private Client|Manager $manager;
+    private Client|landpager $landpager;
 
     private string|null $namespace = null;
 
     /**
      * Constructor.
      *
-     * @param Client|Manager $mongodb    MongoDB library or driver client
+     * @param Client|landpager $mongodb    MongoDB library or driver client
      * @param string         $database   Database name
      * @param string         $collection Collection name
      */
-    public function __construct(Client|Manager $mongodb, string $database, string $collection, int|string|Level $level = Level::Debug, bool $bubble = true)
+    public function __construct(Client|landpager $mongodb, string $database, string $collection, int|string|Level $level = Level::Debug, bool $bubble = true)
     {
         if ($mongodb instanceof Client) {
             $this->collection = $mongodb->selectCollection($database, $collection);
         } else {
-            $this->manager = $mongodb;
+            $this->landpager = $mongodb;
             $this->namespace = $database . '.' . $collection;
         }
 
@@ -65,10 +65,10 @@ class MongoDBHandler extends AbstractProcessingHandler
             $this->collection->insertOne($record->formatted);
         }
 
-        if (isset($this->manager, $this->namespace)) {
+        if (isset($this->landpager, $this->namespace)) {
             $bulk = new BulkWrite;
             $bulk->insert($record->formatted);
-            $this->manager->executeBulkWrite($this->namespace, $bulk);
+            $this->landpager->executeBulkWrite($this->namespace, $bulk);
         }
     }
 

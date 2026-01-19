@@ -706,7 +706,7 @@ class Logger implements LoggerInterface, ResettableInterface
     }
 
     /**
-     * Delegates exception management to the custom exception handler,
+     * Delegates exception landpagement to the custom exception handler,
      * or throws the exception if no custom handler is set.
      */
     protected function handleException(Throwable $e, LogRecord $record): void

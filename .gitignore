@@ -16,7 +16,7 @@ logs/
 
 # SQLite
 backend/src/db/*.sqlite
-backend/src/db/wsmanager_local.db
+backend/src/db/landpage_local.db
 backend/src/db/DATABASE_SCHEMA.md
 
 # Arquivos de build e chaves internas

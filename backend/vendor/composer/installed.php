@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'wellerson/ws-manager-backend',
+        'name' => 'wellerson/landpage-backend',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '528320047a00134019473045c676e2be09ab8d9e',
+        'reference' => 'b5f7ee18efc505aa7fe81d4300c73b5c0015434e',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -253,10 +253,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'wellerson/ws-manager-backend' => array(
+        'wellerson/landpage-backend' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '528320047a00134019473045c676e2be09ab8d9e',
+            'reference' => 'b5f7ee18efc505aa7fe81d4300c73b5c0015434e',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,207 +1,104 @@
-## [📘 InfoWell-Manager](https://ws-manager-309387.gitlab.io/login)
+----
+----
+----
+----
+----
+----
+# 📘 Landpage Project
 
-> *Para visualizar este README em modo preview no VS Code: **Ctrl + Shift + V***
-
-**InfoWell-Manager** plataforma de gestão de operações; Organização objetiva, documentação, API estruturada e histórico incremental.
-
----
-
-#### 1️⃣ Visão Geral do ProjetoOllama
-
-Aplicação:
-
-* **Frontend (SPA)**: Angular + Bootstrap
-* **Backend**: PHP + SQLite
-* **API RESTful** para CRUD para entidades
-* **Autenticação**, backup incremental, histórico JSON e ambiente para deploy
-* **Hospedagem**:
-  * GitLab Pages → Frontend
-  * Render → Backend
----
-
-#### 2️⃣ Estrutura Principal do Repositório
-
-```bash
-WS-Manager/  
- ├── backend/    # Exibe estrutura: Projetos/WS-Manager/backend$ tree -L 3 
- └── frontend/   # Exibe estrutura: Projetos/WS-Manager/frontend$ tree -L 3
-```
-> _**Backend:** controla API, banco SQLite, autenticação e seeds.<br>
-**Frontend:** interface responsiva consumindo os endpoints REST._
+Plataforma de gestão de operações com arquitetura desacoplada (SPA + API RESTful).
 
 ---
 
-#### 3️⃣ Variáveis de Ambiente
-##### [🌐 Swagger UI](https://ws-manager-309387.gitlab.io/docs/swagger/)
+## 🚀 Tech Stack
 
-<details> <summary>📂 Arquivos necessários para rodar o Swagger com PHP</summary>
-
-###### Estrutura recomendada no backend:
-```bash
-backend/
- ├── public/
- │    ├── index.php
- │    ├── swagger/
- │    │      ├── swagger.json
- │    │      ├── index.html
- │    │      └── swagger-ui.css / .js  (gerados pelo pacote)
- ├── src/
- │    └── ...
- ├── swagger.yaml      ← arquivo principal da documentação
- ├── generate-swagger.php
- ├── composer.json
- └── ...
-```
-📌 1. Instalar dependência YAML → JSON
-
-Dentro da pasta backend/:
-> composer require zircote/swagger-php 
-> composer require symfony/yaml
-> php vendor/bin/openapi src/ -o public/swagger.json
-
-📌 2. Converter automaticamente swagger.yaml → swagger.json
-
-```bash
-backend/generate-swagger.php #Criar o arquivo
-php generate-swagger.php     #Rodar a conversão 
-```
-
-📌 3. Adicionar Swagger UI no backend
-
-> Entre na pasta: _[backend/public/swagger/]()_
-
-```bash
-#Baixar o Swagger UI:
-curl -L https://github.com/swagger-api/swagger-ui/archive/refs/heads/master.zip -o swagger.zip
-unzip swagger.zip
-mv swagger-ui-master/dist/* .
-rm -rf swagger-ui-master swagger.zip
-```
-📌 4. Testar no navegador
-
-> Local: _[http://localhost:8000/swagger/]()_
-Produção (Render): _[https://seu-backend.onrender.com/swagger/]()_
-
-📌 6. Atualizar a documentação após alterar o YAML
-```bash
-php generate-swagger.php
-```
-
-</details>
-
-##### 3.2️⃣ .env 
-_Crie um arquivo .env com as configurações necessárias:_
-
-```bash
-#Banco de Dados
-SQLITE_PATH_LOCAL=./src/databases/wsmanager_local.db
-SQLITE_PATH_PROD=./src/databases/wsmanager_producao.db
-
-#Usuários Iniciais
-ADMIN_EMAIL=...
-ADMIN_PASSWORD=...
-USER_PASSWORD=...
-
-#JWT
-JWT_SECRET=chave-secreta
-JWT_EXPIRES_IN=8h
-JWT_COOKIE_NAME=ws_token
-```
-
-> _As chaves são essenciais para autenticação e integração com o frontend._
+| Camada | Linguagem | Tecnologias |
+| :--- | :--- | :--- |
+| **Frontend** | JavaScript | Angular, Bootstrap |
+| **Backend** | PHP | Slim Framework, SQLite |
+| **Auth** | - | JWT (JSON Web Tokens) |
 
 ---
 
-##### 4️⃣ Execução Rápida (Dev)
+## 🛠 Gerenciamento Simplificado
 
-##### 🔧 Backend
-```bash
-cd backend
-npm install            # Dependências PHP
-php -S localhost:8000 -t public # Inicia servidor
-```
-> Acesse: [http://localhost:8000]()
+Para facilitar a configuração e execução, utilize o script `landpage.sh` na raiz do projeto.
 
-[📂 Acessar schema do banco](./backend/src/Database/DATABASE_SCHEMA.md) 
+### 1. Configuração Inicial
 
-Remover/Criar/Atualizar o banco (migrations)
+Dê permissão de execução ao script e configure o ambiente:
 
 ```bash
-rm ./wsmanager_local.db   # remover banco atual
-php run-migrations.php    # cd backend/src/databases/:
-php seed-db.php           # Popular o banco (seeds)
+chmod +x landpage.sh
+cp backend/.env.example backend/.env
 ```
-##### 🌐 Frontend
+
+> **Nota:** Edite o arquivo `backend/.env` se necessário (ex: definir `JWT_SECRET`).
+
+### 2. Instalação e Banco de Dados
+
 ```bash
-cd frontend
-npm install
-ng serve --open
+# Instala dependências (Backend + Frontend)
+./landpage.sh install
+
+# Reseta o banco de dados (Cria tabelas + Popula dados iniciais)
+./landpage.sh db:reset
 ```
-> Acesse: [http://localhost:4200]()
+
+### 3. Executando o Projeto
+
+Abra **dois terminais** na raiz do projeto:
+
+**Terminal 1 (Backend API):**
+```bash
+./landpage.sh start:back
+```
+> API disponível em: http://localhost:8000
+
+**Terminal 2 (Frontend SPA):**
+```bash
+./landpage.sh start:front
+```
+> Aplicação disponível em: http://localhost:4200
 
 ---
 
-## Exemplos de API
-
-1) Autenticação — obter token JWT
-
-```bash
-curl -X POST "http://localhost:8000/auth/login" \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@example.com","password":"sua_senha"}'
-```
-
-Resposta esperada (exemplo):
-
-```json
-{"token":"eyJhbGciOi...","user":{"id":1,"email":"admin@example.com"}}
-```
-
-2) Listar empresas (requiere JWT)
-
-```bash
-curl -X GET "http://localhost:8000/empresas" \
-  -H "Authorization: Bearer SEU_TOKEN_AQUI" \
-  -H "Accept: application/json"
-```
-
-3) Criar empresa (exemplo com role admin)
-
-```bash
-curl -X POST "http://localhost:8000/empresas" \
-  -H "Authorization: Bearer SEU_TOKEN_AQUI" \
-  -H "Content-Type: application/json" \
-  -d '{"nome":"Empresa Exemplo","cnpj":"00.000.000/0000-00"}'
-```
-
-Observação: ajuste as rotas conforme a configuração do seu servidor (host/porta) e verifique as permissões (JWT/roles).
-
-
-#### 5️⃣ Deploy (GitLab Pages + Render)
-##### 🌍 GitLab Pages (Frontend)
-
-```bash
-ng build --configuration production --base-href=/ws-manager/
-```
-
-Resultado final em:
+## 📂 Estrutura do Projeto
 
 ```
-dist/frontend/
+landpage/
+ ├── backend/           # API RESTful (PHP Slim)
+ │    ├── src/          # Código fonte (Controllers, Models, Database)
+ │    ├── public/       # Entry point do servidor web
+ │    └── vendor/       # Dependências (Composer)
+ ├── frontend/          # Aplicação SPA (Angular)
+ │    ├── src/          # Componentes, Services, Pages
+ │    └── dist/         # Build de produção
+ └── landpage.sh          # Script de automação
 ```
 
-Faça commit → o pipeline envia para o GitLab Pages automaticamente.
+---
 
-#### 🚀 Render (Backend)
+## 🔌 Exemplos de API
 
-```bash
-Root Directory: `backend`           #Aponte para diretorio backend 
-Start Command: `npm start`          #Start app no Render
-Environment Variables: (as do .env) #Variaveis de ambiente usadas
-```
-_Backend ficará acessível por URL pública, usada no frontend:_
+| Método | Rota | Descrição |
+| :--- | :--- | :--- |
+| `GET` | `/` | Health Check |
+| `POST` | `/auth/login` | Autenticação (Retorna JWT) |
+| `GET` | `/empresas` | Listagem de empresas (Auth Required) |
 
-> API_BASE_URL_PROD: https://seu-backend.onrender.com
+---
+
+## ⚙️ Comandos do `landpage.sh`
+
+| Comando | Descrição |
+| :--- | :--- |
+| `./landpage.sh install` | Instala dependências (Composer + NPM) |
+| `./landpage.sh db:migrate` | Executa migrations pendentes |
+| `./landpage.sh db:seed` | Popula o banco com dados de teste |
+| `./landpage.sh db:reset` | Apaga o banco e recria do zero |
+| `./landpage.sh start:back` | Inicia servidor PHP (8000) |
+| `./landpage.sh start:front` | Inicia servidor Angular (4200) |
 
 ---
 

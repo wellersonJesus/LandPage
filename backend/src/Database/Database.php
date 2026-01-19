@@ -20,8 +20,15 @@ class Database
         $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2));
         $dotenv->safeLoad();
 
-        $dbPath = $_ENV['SQLITE_PATH_LOCAL']
-            ?? dirname(__DIR__, 2) . '/wsmanager_local.db';
+        $envPath = $_ENV['SQLITE_PATH'] ?? null;
+
+        // Se for caminho absoluto, usa. Se não, força na pasta atual (src/Database)
+        if ($envPath && (strpos($envPath, '/') === 0 || preg_match('/^[a-zA-Z]:\\\\/', $envPath))) {
+            $dbPath = $envPath;
+        } else {
+            $filename = $envPath ? basename($envPath) : 'landpage.db';
+            $dbPath = __DIR__ . '/' . $filename;
+        }
 
         $dir = dirname($dbPath);
 
@@ -40,11 +47,8 @@ class Database
             return self::$connection;
 
         } catch (PDOException $e) {
-            http_response_code(500);
-            echo json_encode([
-                'error' => 'Erro ao conectar no banco de dados'
-            ]);
-            exit;
+            // Lança a exceção para ser tratada pelo caller (Script ou Middleware da API)
+            throw $e;
         }
     }
 }

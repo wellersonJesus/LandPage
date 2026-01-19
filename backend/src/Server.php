@@ -2,18 +2,18 @@
 // server.php
 
 use Slim\Factory\AppFactory;
-use Slim\Exception\HttpInternalServerErrorException;
-use Slim\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Dotenv\Dotenv;
 
-require __DIR__ . '/vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 // --- Carrega variáveis do .env ---
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$dotenv = Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->safeLoad();
 
 if (!isset($_ENV['JWT_SECRET'])) {
     echo "❌ JWT_SECRET não definido no .env\n";
@@ -24,15 +24,19 @@ if (!isset($_ENV['JWT_SECRET'])) {
 $app = AppFactory::create();
 
 // --- Logger tipo morgan ---
+$logDir = dirname(__DIR__) . '/logs';
+if (!is_dir($logDir)) {
+    mkdir($logDir, 0777, true);
+}
 $logger = new Logger('api');
-$logger->pushHandler(new StreamHandler(__DIR__ . '/logs/api.log', Logger::DEBUG));
+$logger->pushHandler(new StreamHandler($logDir . '/api.log', Logger::DEBUG));
 
 // --- Middlewares básicos ---
 $app->addBodyParsingMiddleware(); // parse JSON como express.json()
 $app->addRoutingMiddleware();
 
 // --- CORS (equivalente ao cors() do Express) ---
-$app->add(function (ServerRequestInterface $request, $handler): ResponseInterface {
+$app->add(function (ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface {
     $response = $handler->handle($request);
     return $response
         ->withHeader('Access-Control-Allow-Origin', '*')
@@ -44,7 +48,7 @@ $app->add(function (ServerRequestInterface $request, $handler): ResponseInterfac
 $app->addErrorMiddleware(true, true, true);
 
 // --- Rotas (equivalente ao app.use('/api', apiRoutes)) ---
-require __DIR__ . '/src/routes/index.php';
+require __DIR__ . '/index.php';
 
 // --- Inicia o servidor ---
 $port = $_ENV['PORT'] ?? 3000;

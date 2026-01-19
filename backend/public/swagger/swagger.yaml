@@ -1,10 +1,10 @@
 openapi: 3.0.3
 
 info:
-  title: WS Manager API
+  title: WS landpager API
   version: 1.0.0
   description: |
-    Documentação completa da API WS Manager,
+    Documentação completa da API WS landpager,
     organizada por domínios e fiel ao schema real do banco.
 
 servers:
@@ -2479,7 +2479,7 @@ components:
           example: 1
         nome:
           type: string
-          example: WS Manager Tecnologia
+          example: WS landpager Tecnologia
         slogan:
           type: string
           example: Soluções inteligentes
@@ -2503,7 +2503,7 @@ components:
           example: Sistemas, APIs, Aplicações Web
         projetos_destaque:
           type: string
-          example: WS Manager, ERP Financeiro
+          example: WS landpager, ERP Financeiro
 
     EmpresaCreate:
       type: object

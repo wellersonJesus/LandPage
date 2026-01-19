@@ -1,5 +1,5 @@
 {
-  "name": "ws-manager-frontend",
+  "name": "landpage-frontend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,8 +7,8 @@
     "build": "ng build",
     "build:dev": "ng build --configuration development --base-href /",
     "build:prod": "ng build --configuration production --base-href /",
-    "build:pages": "ng build --configuration production --base-href /ws-manager-309387/",
-    "serve:dist": "npx http-server dist/ws-manager-frontend -p 8080",
+    "build:pages": "ng build --configuration production --base-href /landpage-309387/",
+    "serve:dist": "npx http-server dist/landpage-frontend -p 8080",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",

@@ -41,7 +41,7 @@ pages:
     # -------------------------
     # FRONTEND (SPA Angular)
     # -------------------------
-    - cp -r frontend/dist/ws-manager-frontend/* public/
+    - cp -r frontend/dist/landpage-frontend/* public/
 
     # -------------------------
     # SWAGGER (fora do SPA)

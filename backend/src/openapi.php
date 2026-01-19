@@ -2,7 +2,7 @@
 
 /**
  * @OA\Info(
- *     title="WS Manager API",
+ *     title="WS landpager API",
  *     version="1.0.0"
  * )
  */

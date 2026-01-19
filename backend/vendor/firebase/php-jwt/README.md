@@ -10,7 +10,7 @@ A simple library to encode and decode JSON Web Tokens (JWT) in PHP, conforming t
 Installation
 ------------
 
-Use composer to manage your dependencies and download PHP-JWT:
+Use composer to landpage your dependencies and download PHP-JWT:
 
 ```bash
 composer require firebase/php-jwt
@@ -318,7 +318,7 @@ $httpClient = new GuzzleHttp\Client();
 $httpFactory = new GuzzleHttp\Psr\HttpFactory();
 
 // Create a cache item pool (can be any PSR-6 compatible cache item pool)
-$cacheItemPool = Phpfastcache\CacheManager::getInstance('files');
+$cacheItemPool = Phpfastcache\Cachelandpager::getInstance('files');
 
 $keySet = new CachedKeySet(
     $jwksUri,

@@ -1,4 +1,4 @@
-# Schema databases <br>Manager
+# Schema databases <br>landpager
 
 ```bash
 erDiagram
@@ -166,7 +166,7 @@ erDiagram
         DATE data_vencimento
     }
 
-    %% Relações (WS Manager)
+    %% Relações (WS landpager)
     CONTRATO ||--o{ CONTA : "associado_a"
     CONTRATO ||--o{ INVESTIMENTO : "relacionado_a"
     GESTAO ||--o{ LANCAMENTO : "contabiliza"

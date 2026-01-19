@@ -6,7 +6,7 @@ $dotenv->load();
 
 // Caminhos
 $keysPath = __DIR__ . '/keys.php';
-$sqlitePath = realpath(__DIR__ . '/../db/wsmanager_local.db');
+$sqlitePath = realpath(__DIR__ . '/../db/landpage_local.db');
 
 // Função para pegar variável de ambiente com fallback
 function getEnvVar(string $key, $default = '') {
