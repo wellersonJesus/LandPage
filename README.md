@@ -52,7 +52,8 @@ run deploy
 ```
 
 ## 📚 Documentação Swagger
-A documentação da API é gerada via Swagger.
+Documentação da API é gerada via Swagger.
+[Ver Schema SQL](api/src/Database/schema.sql)
 
 ## 🎨 Paleta de Cores
 
