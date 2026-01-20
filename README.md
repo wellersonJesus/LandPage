@@ -58,7 +58,7 @@ A documentação da API é gerada via Swagger.
 
 ![#759e9e](https://placehold.co/80x80/759e9e/759e9e.png) ![#97b6b6](https://placehold.co/80x80/97b6b6/97b6b6.png) ![#bacece](https://placehold.co/80x80/bacece/bacece.png) ![#dce7e7](https://placehold.co/80x80/dce7e7/dce7e7.png) ![#ffffff](https://placehold.co/80x80/ffffff/ffffff.png)
 
-`#759e9e` `#97b6b6` `#bacece` `#dce7e7` `#ffffff`
+`#759e9e` - `#97b6b6` - `#bacece` - `#dce7e7` - `#ffffff`
 
 ---
 
