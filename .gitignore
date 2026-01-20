@@ -1,98 +1,35 @@
-##############################################
-# 🟢 NODE.JS / BACKEND
-##############################################
-node_modules/
-npm-debug.log*
-yarn-error.log*
-package-lock.json
-
-# Build e cache
-dist/
-out/
-.tmp/
-.cache/
-logs/
-*.log
-
-# SQLite
-backend/src/db/*.sqlite
-backend/src/db/landpage_local.db
-backend/src/db/DATABASE_SCHEMA.md
-
-# Arquivos de build e chaves internas
-backend/src/utils/keys.js
-
-##############################################
-# 🔵 ANGULAR / FRONTEND
-##############################################
-# Compilação e cache
-dist/
-out-tsc/
-.angular/
-coverage/
-*.log
-
-# Arquivos temporários de build
-frontend/dist/
-frontend/out-tsc/
-frontend/.angular/
-
-# Dependências
-frontend/node_modules/
-
-# Ambiente
-frontend/.env
-frontend/*.env
-
-##############################################
-# 🟣 VARIÁVEIS DE AMBIENTE
-##############################################
-.env
-*.env
-.env.local
-.env.production
-.env.development
-
-##############################################
-# 🟠 EDITORES / IDEs
-##############################################
-.vscode/
+# IDEs e Editores
 .idea/
-*.sublime-project
-*.sublime-workspace
+.vscode/
 *.swp
 *.swo
 
-##############################################
-# ⚪ SISTEMA OPERACIONAL
-##############################################
+# Sistema Operacional
 .DS_Store
 Thumbs.db
-desktop.ini
 
-##############################################
-# 🔴 OUTROS ARQUIVOS SENSÍVEIS
-##############################################
-# Tokens, certificados e segredos
-keys.js
-*.pem
-*.key
-*.crt
-*.p12
-*.keystore
+# Variáveis de Ambiente
+.env
+.env.local
+.env.backup
 
-# Backups / dumps
-*.bak
-*.sql
-*.tar
-*.zip
-*.gz
+# Dependências PHP (Backend)
+/vendor/
+/api/vendor/
+composer.lock
 
-##############################################
-# ⚙️ GITLAB / RENDER ESPECÍFICOS
-##############################################
-# GitLab CI cache
-.gitlab-ci.yml~
-.cache/
-tmp/
-render.yaml
+# Dependências Node/JS (Frontend)
+/node_modules/
+/app/node_modules/
+package-lock.json
+yarn.lock
+
+# Banco de Dados SQLite
+*.sqlite
+*.db
+/api/src/Database/db/*.db
+
+# Logs e Temporários
+*.log
+/tmp/
+/cache/

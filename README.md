@@ -1,105 +1,61 @@
-----
-----
-----
-----
-----
-----
-# 📘 Landpage Project
+# 🚀 Plataforma de gestão de operações
 
-Plataforma de gestão de operações com arquitetura desacoplada (SPA + API RESTful).
+Arquitetura desacoplada (SPA + API RESTful).
 
----
+## 🛠 Tecnologias
+- PHP 
+- Angular 
+- JavaScript 
+- Bootstrap 
+- HTML 
+- CSS
 
-## 🚀 Tech Stack
+## 📦 Instalação de Dependências
 
-| Camada | Linguagem | Tecnologias |
-| :--- | :--- | :--- |
-| **Frontend** | JavaScript | Angular, Bootstrap |
-| **Backend** | PHP | Slim Framework, SQLite |
-| **Auth** | - | JWT (JSON Web Tokens) |
-
----
-
-## 🛠 Gerenciamento Simplificado
-
-Para facilitar a configuração e execução, utilize o script `landpage.sh` na raiz do projeto.
-
-### 1. Configuração Inicial
-
-Dê permissão de execução ao script e configure o ambiente:
+Antes de executar qualquer comando de banco de dados ou iniciar a API, é obrigatório instalar as dependências do backend:
 
 ```bash
-chmod +x landpage.sh
-cp backend/.env.example backend/.env
+cd api && composer install && cd ..
 ```
 
-> **Nota:** Edite o arquivo `backend/.env` se necessário (ex: definir `JWT_SECRET`).
-
-### 2. Instalação e Banco de Dados
+### Database
 
 ```bash
-# Instala dependências (Backend + Frontend)
-./landpage.sh install
+# Criar/Rodar Migrates: 
+php api/src/Database/init_db.php
 
-# Reseta o banco de dados (Cria tabelas + Popula dados iniciais)
-./landpage.sh db:reset
+# Rodar Seeds: 
+php api/src/Database/seeds.php
+
+# Apagar Migrates (Reset) 
+rm api/database/database.sqlite && php api/src/Database/init_db.php
 ```
 
-### 3. Executando o Projeto
+### Run API - API - Deploy
 
-Abra **dois terminais** na raiz do projeto:
-
-**Terminal 1 (Backend API):**
 ```bash
-./landpage.sh start:back
-```
-> API disponível em: http://localhost:8000
+### run api backend
+php -S localhost:8000 -t api/public
 
-**Terminal 2 (Frontend SPA):**
+### Frontend
+run api frontend
+
+### Geral
+run start landpage
+run deploy
+```
+
+## 📚 Documentação Swagger
+A documentação da API é gerada via Swagger.
+
+## Paleta de Cores
+
 ```bash
-./landpage.sh start:front
-```
-> Aplicação disponível em: http://localhost:4200
-
----
-
-## 📂 Estrutura do Projeto
-
-```
-landpage/
- ├── backend/           # API RESTful (PHP Slim)
- │    ├── src/          # Código fonte (Controllers, Models, Database)
- │    ├── public/       # Entry point do servidor web
- │    └── vendor/       # Dependências (Composer)
- ├── frontend/          # Aplicação SPA (Angular)
- │    ├── src/          # Componentes, Services, Pages
- │    └── dist/         # Build de produção
- └── landpage.sh          # Script de automação
+#759e9e #97b6b6 #bacece  #dce7e7 #ffffff
 ```
 
 ---
 
-## 🔌 Exemplos de API
-
-| Método | Rota | Descrição |
-| :--- | :--- | :--- |
-| `GET` | `/` | Health Check |
-| `POST` | `/auth/login` | Autenticação (Retorna JWT) |
-| `GET` | `/empresas` | Listagem de empresas (Auth Required) |
-
----
-
-## ⚙️ Comandos do `landpage.sh`
-
-| Comando | Descrição |
-| :--- | :--- |
-| `./landpage.sh install` | Instala dependências (Composer + NPM) |
-| `./landpage.sh db:migrate` | Executa migrations pendentes |
-| `./landpage.sh db:seed` | Popula o banco com dados de teste |
-| `./landpage.sh db:reset` | Apaga o banco e recria do zero |
-| `./landpage.sh start:back` | Inicia servidor PHP (8000) |
-| `./landpage.sh start:front` | Inicia servidor Angular (4200) |
-
----
-
-<div align="center"><strong>© JesusWellerson | Development Innovation</strong></div>
+<div align="center">
+© JesusWellerson | Development | SRE | Software Architect | Software Engineer
+<br>
