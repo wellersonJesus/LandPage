@@ -33,6 +33,29 @@ php api/src/Database/seeds.php
 rm api/database/database.sqlite && php api/src/Database/init_db.php
 ```
 
+## Status dos Recursos
+
+Todos os recursos abaixo possuem Model, Controller e Rotas (CRUD) configurados.
+
+| Recurso | Endpoint | Status |
+|---|---|---|
+| Usuario | `/api/usuarios` | ✅ Implementado |
+| Empresa | `/api/empresas` | ✅ Implementado |
+| Servidor | `/api/servidores` | ✅ Implementado |
+| Gestao | `/api/gestao` | ✅ Implementado |
+| Dispositivo | `/api/dispositivos` | ✅ Implementado |
+| Calendario | `/api/calendario` | ✅ Implementado |
+| Emprestimo | `/api/emprestimos` | ✅ Implementado |
+| Manutencao | `/api/manutencao` | ✅ Implementado |
+| Skill | `/api/skills` | ✅ Implementado |
+| Curso | `/api/cursos` | ✅ Implementado |
+| Rede | `/api/redes` | ✅ Implementado |
+| Plataforma | `/api/plataformas` | ✅ Implementado |
+| Lancamento | `/api/lancamentos` | ✅ Implementado |
+| Contrato | `/api/contratos` | ✅ Implementado |
+| Conta | `/api/contas` | ✅ Implementado |
+| Investimento | `/api/investimentos` | ✅ Implementado |
+
 ## Run API - API
 
 ```bash
@@ -42,6 +65,22 @@ php -S localhost:8000 -t api/public
 ### Frontend
 run api frontend
 ```
+## Commits
+
+| Commit | Descrição |
+|---|---|
+| feat: | Nova funcionalidade.|
+| fix:  | Resolve um bug ou erro.|
+| refactor: | Alterações no código.| 
+| style: | Mudananças (espaços, formatação, ponto e vírgula, etc.).|
+| perf: | Alterações de melhorar desempenho/performance.| 
+| test: | Adição ou correção de testes existentes.|
+| build: | Mudanças que afetam o sistema de build ou dependências (ex: npm, composer, docker).|
+| ci: | Alterações em arquivos e scripts de configuração.| 
+| docs: | Mudanças apenas na documentação (README, comentários no código).|
+| chore: | Tarefas de manutenção que não modificam o código fonte ou os testes (ex: atualizar o .gitignore).|
+| revert: | Quando você desfaz (reverte) um commit anterior.|
+ 
 
 ## Deploy
 

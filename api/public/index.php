@@ -3,6 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Database\Database;
+use App\Router;
 use Dotenv\Dotenv;
 
 // Carrega variáveis de ambiente
@@ -37,8 +38,32 @@ if ($uri === '/api/install') {
     exit;
 }
 
-// Exemplo de resposta padrão
-echo json_encode([
-    "message" => "API Landpage rodando.",
-    "endpoint" => $uri
-]);
+// Inicializa o Router
+$router = new Router();
+
+// Define os recursos da API
+$resources = [
+    '/api/usuarios' => 'UsuarioController',
+    '/api/empresas' => 'EmpresaController',
+    '/api/servidores' => 'ServidorController',
+    '/api/gestao' => 'GestaoController',
+    '/api/dispositivos' => 'DispositivoController',
+    '/api/calendario' => 'CalendarioController',
+    '/api/emprestimos' => 'EmprestimoController',
+    '/api/manutencao' => 'ManutencaoController',
+    '/api/skills' => 'SkillController',
+    '/api/cursos' => 'CursoController',
+    '/api/redes' => 'RedeController',
+    '/api/plataformas' => 'PlataformaController',
+    '/api/lancamentos' => 'LancamentoController',
+    '/api/contratos' => 'ContratoController',
+    '/api/contas' => 'ContaController',
+    '/api/investimentos' => 'InvestimentoController',
+];
+
+foreach ($resources as $path => $controller) {
+    $router->resource($path, $controller);
+}
+
+// Despacha a rota
+$router->dispatch($_SERVER['REQUEST_METHOD'], $uri);
