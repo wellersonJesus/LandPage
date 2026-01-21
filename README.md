@@ -38,12 +38,14 @@ composer install
 composer dump-autoload
 cd ..
 ```
-## Documentação
+## Link e acesso
 
 
 | Documentação | Acesso | Status |
 |---|---|---|
-| Swagger | Clique aqui: [Landpage](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
+| API | [localhost:8000](http://localhost:8000/?) |  ✅ Implementado |
+| APP | [localhost:3000](http://localhost:3000/?) |  ✅ Implementado |
+| Swagger | [doc - Landpage](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
 
 
 ### 3. Frontend (APP)
