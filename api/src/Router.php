@@ -2,24 +2,27 @@
 
 namespace App;
 
+use App\Auth\AuthMiddleware;
+
 class Router {
     private $routes = [];
 
-    public function add($method, $path, $controller, $action) {
+    public function add($method, $path, $controller, $action, $middleware = []) {
         $this->routes[] = [
             'method' => $method,
             'path' => $path,
             'controller' => $controller,
-            'action' => $action
+            'action' => $action,
+            'middleware' => $middleware
         ];
     }
 
-    public function resource($path, $controller) {
-        $this->add('GET', $path, $controller, 'index');
-        $this->add('GET', $path . '/{id}', $controller, 'show');
-        $this->add('POST', $path, $controller, 'store');
-        $this->add('PUT', $path . '/{id}', $controller, 'update');
-        $this->add('DELETE', $path . '/{id}', $controller, 'delete');
+    public function resource($path, $controller, $middleware = []) {
+        $this->add('GET', $path, $controller, 'index', $middleware);
+        $this->add('GET', $path . '/{id}', $controller, 'show', $middleware);
+        $this->add('POST', $path, $controller, 'store', $middleware);
+        $this->add('PUT', $path . '/{id}', $controller, 'update', $middleware);
+        $this->add('DELETE', $path . '/{id}', $controller, 'delete', $middleware);
     }
 
     public function dispatch($method, $uri) {
@@ -33,7 +36,20 @@ class Router {
             if ($route['method'] === $method && preg_match($pattern, $uri, $matches)) {
                 array_shift($matches); // Remove o match completo
                 
-                $controllerName = "App\\Controllers\\" . $route['controller'];
+                // Executa Middleware se existir
+                if (!empty($route['middleware'])) {
+                    $auth = new AuthMiddleware();
+                    // Assume que o middleware é sempre de Auth por enquanto e passa as roles
+                    $roles = $route['middleware']['roles'] ?? [];
+                    $auth->handle($roles);
+                }
+
+                $controllerName = $route['controller'];
+                // Se não contiver namespace completo (barra invertida), assume que é um Controller padrão
+                if (strpos($controllerName, '\\') === false) {
+                    $controllerName = "App\\Controllers\\" . $controllerName;
+                }
+
                 if (class_exists($controllerName)) {
                     $controller = new $controllerName();
                     $action = $route['action'];

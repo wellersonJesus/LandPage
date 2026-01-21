@@ -8,7 +8,7 @@ if (!file_exists($autoloadPath)) {
 
 require $autoloadPath;
 
-use App\Database\Database;
+use App\Config\Database;
 use Dotenv\Dotenv;
 
 // Carrega variáveis de ambiente

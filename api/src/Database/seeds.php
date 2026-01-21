@@ -8,7 +8,7 @@ if (!file_exists($autoloadPath)) {
 
 require $autoloadPath;
 
-use App\Database\Database;
+use App\Config\Database;
 use Dotenv\Dotenv;
 
 // Carrega variáveis de ambiente
@@ -24,9 +24,14 @@ try {
     $pdo = Database::getConnection();
 
     // --- 1. USUARIO (Admin + Users) ---
+    if (empty($_ENV['ADMIN_EMAIL']) || empty($_ENV['ADMIN_PASSWORD'])) {
+        die("Erro: ADMIN_EMAIL e ADMIN_PASSWORD devem estar definidos no .env para rodar os seeds.\n");
+    }
+
     $adminName = $_ENV['ADMIN_NAME'] ?? 'Admin System';
-    $adminEmail = $_ENV['ADMIN_EMAIL'] ?? 'admin@landpage.com';
-    $adminPassword = $_ENV['ADMIN_PASSWORD'] ?? '123';
+    $adminEmail = $_ENV['ADMIN_EMAIL'];
+    $adminPassword = $_ENV['ADMIN_PASSWORD'];
+    
     $passwordHash = password_hash($adminPassword, PASSWORD_DEFAULT);
     $createdAt = date('Y-m-d H:i:s');
 
