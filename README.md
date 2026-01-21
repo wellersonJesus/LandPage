@@ -56,6 +56,10 @@ Todos os recursos abaixo possuem Model, Controller e Rotas (CRUD) configurados.
 | Conta | `/api/contas` | ✅ Implementado |
 | Investimento | `/api/investimentos` | ✅ Implementado |
 
+## Documentação
+
+Para acessar a documentação clique aqui: [Swagger/Doc](http://localhost:8000/docs/Swagger/)
+
 ## Run API - API
 
 ```bash
