@@ -19,36 +19,23 @@ Siga a ordem abaixo para configurar e rodar o projeto.
 ### 1. Database
 
 ```bash
-# Apagar Migrates (Reset) 
+# Comandos migrates  
 rm -f api/src/Database/db/landpage.db
-
-# Criar/Rodar Migrates: 
 php api/src/Database/init_db.php
-
-# Rodar Seeds: 
 php api/src/Database/seeds.php
 ```
 
-### 2. Backend (API)
+### 2. API
 
 ```bash
-# 1. Instalar dependências da API
+# Instalar dependências da API
 cd api
 composer install
 composer dump-autoload
 cd ..
 ```
-## Link e acesso
 
-
-| Documentação | Acesso | Status |
-|---|---|---|
-| API | [localhost:8000](http://localhost:8000/?) |  ✅ Implementado |
-| APP | [localhost:3000](http://localhost:3000/?) |  ✅ Implementado |
-| Swagger | [doc - Landpage](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
-
-
-### 3. Frontend (APP)
+### 3. APP
 
 ```bash
 # Instalar dependências do Frontend 
@@ -63,7 +50,17 @@ cd ..
 ```bash
 php -S localhost:8000 -t api/public
 ```
-## Commits
+
+### 5 Deploy
+
+```bash
+### Deploy api restfull
+cd landpage
+run start landpage
+run deploy
+```
+
+## Estrutura de commits
 
 | Commit | Descrição |
 |---|---|
@@ -79,17 +76,14 @@ php -S localhost:8000 -t api/public
 | chore: | Tarefas de manutenção que não modificam o código fonte ou os testes (ex: atualizar o .gitignore).|
 | revert: | Quando você desfaz (reverte) um commit anterior.| 
 
-### 5 Deploy
+## Link & acesso
 
-```bash
-### Deploy api restfull
-run start landpage
-run deploy
-```
+| Documentação | Acesso | Status |
+|---|---|---|
+| API | [localhost:8000](http://localhost:8000/?) |  ✅ Implementado |
+| APP | [localhost:3000](http://localhost:3000/?) |  ✅ Implementado |
+| Swagger | [doc - Landpage](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
 
-## 📚 Documentação Swagger
-Documentação da API é gerada via Swagger.
-[Ver Schema SQL](api/src/Database/schema.sql)
 
 ## 🎨 Paleta de Cores
 
