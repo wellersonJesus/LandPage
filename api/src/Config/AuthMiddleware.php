@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Auth;
+namespace App\Config;
+
+use App\Config\JwtService;
 
 class AuthMiddleware {
     

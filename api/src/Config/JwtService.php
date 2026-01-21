@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Auth;
+namespace App\Config;
 
 class JwtService {
     // Segredo deve vir do .env em produção

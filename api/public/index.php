@@ -25,10 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Rota simples de teste e inicialização do banco
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+// Log inicial para debug
+error_log("Index: Requisição recebida para $uri");
+
 if ($uri === '/api/install') {
     try {
         $pdo = Database::getConnection();
-        $sql = require __DIR__ . '/../src/Migrations/001_create_initial.php';
+        $sql = require __DIR__ . '/../src/Database/Migrations/001_create_initial.php';
         $pdo->exec($sql);
         echo json_encode(["message" => "Banco de dados instalado com sucesso."]);
     } catch (Exception $e) {

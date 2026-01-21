@@ -24,7 +24,7 @@ if (file_exists(__DIR__ . '/../../.env')) {
 try {
     $pdo = Database::getConnection();
     
-    $sql = require __DIR__ . '/../Migrations/001_create_initial.php';
+    $sql = require __DIR__ . '/Migrations/001_create_initial.php';
     $pdo->exec($sql);
     
     echo "Banco de dados inicializado e tabelas criadas com sucesso.\n";

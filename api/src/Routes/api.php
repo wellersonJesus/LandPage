@@ -1,7 +1,7 @@
 <?php
 
 // Rota de Login (Pública)
-$router->add('POST', '/api/login', 'App\Auth\AuthController', 'login');
+$router->add('POST', '/api/login', 'AuthController', 'login');
 
 // Define os recursos da API
 // Sintaxe: 'caminho' => ['Controller', ['roles_permitidas']]

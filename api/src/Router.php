@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Auth\AuthMiddleware;
+use App\Config\AuthMiddleware;
 
 class Router {
     private $routes = [];
@@ -27,6 +27,8 @@ class Router {
 
     public function dispatch($method, $uri) {
         $uri = parse_url($uri, PHP_URL_PATH);
+        // Log para debug no terminal
+        error_log("Router Dispatch: Recebido [$method] $uri");
         
         foreach ($this->routes as $route) {
             // Converte {id} para regex
@@ -51,14 +53,18 @@ class Router {
                 }
 
                 if (class_exists($controllerName)) {
+                    error_log("Router: Rota encontrada. Controller: $controllerName, Action: {$route['action']}");
                     $controller = new $controllerName();
                     $action = $route['action'];
                     call_user_func_array([$controller, $action], $matches);
                     return;
+                } else {
+                    error_log("Router Erro: Classe Controller '$controllerName' não encontrada. Verifique o namespace ou composer dump-autoload.");
                 }
             }
         }
 
+        error_log("Router Erro: Nenhuma rota encontrada para [$method] $uri");
         http_response_code(404);
         echo json_encode(["message" => "Rota não encontrada"]);
     }
