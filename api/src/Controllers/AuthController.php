@@ -37,6 +37,8 @@ class AuthController {
         $email = $data['email'] ?? '';
         $senha = $data['senha'] ?? '';
 
+        error_log("Login attempt for: " . $email);
+
         if (empty($email) || empty($senha)) {
             http_response_code(400);
             echo json_encode(["message" => "Email e senha são obrigatórios"]);
@@ -44,14 +46,14 @@ class AuthController {
         }
 
         // 1. Verifica Admin de Infraestrutura (via .ENV)
-        $envAdminEmail = $_ENV['ADMIN_EMAIL'] ?? null;
-        $envAdminPass = $_ENV['ADMIN_PASSWORD'] ?? null;
+        $envAdminEmail = $_ENV['ADMIN_EMAIL'] ?? getenv('ADMIN_EMAIL');
+        $envAdminPass = $_ENV['ADMIN_PASSWORD'] ?? getenv('ADMIN_PASSWORD');
 
         try {
             if ($envAdminEmail && $envAdminPass && $email === $envAdminEmail && $senha === $envAdminPass) {
                 $token = JwtService::create([
                     'id' => 0,
-                    'nome' => $_ENV['ADMIN_NAME'] ?? 'Admin',
+                    'nome' => $_ENV['ADMIN_NAME'] ?? getenv('ADMIN_NAME') ?: 'Admin',
                     'email' => $email,
                     'role' => 'infra_admin' // Role especial com acesso total
                 ]);
@@ -80,6 +82,7 @@ class AuthController {
                 }
             }
         } catch (\Exception $e) {
+            error_log("Login error: " . $e->getMessage());
             http_response_code(500);
             echo json_encode(["error" => "Erro interno no login: " . $e->getMessage()]);
             return;

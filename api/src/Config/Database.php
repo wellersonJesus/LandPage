@@ -10,7 +10,7 @@ class Database {
 
     public static function getConnection() {
         if (self::$instance === null) {
-            $envPath = $_ENV['SQLITE_PATH'] ?? 'src/Database/db/landpage.db';
+            $envPath = $_ENV['SQLITE_PATH'] ?? getenv('SQLITE_PATH') ?: 'src/Database/db/landpage.db';
             
             // Ajusta o caminho absoluto (baseado em api/src/Database)
             // dirname(__DIR__, 2) volta para a raiz da API (api/)
