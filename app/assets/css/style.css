@@ -1,0 +1,87 @@
+:root {
+    --color-primary: #759e9e;
+    --color-secondary: #97b6b6;
+    --color-accent: #bacece;
+    --color-light: #dce7e7;
+    --color-white: #ffffff;
+    --color-text: #2c3e50;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-white);
+    color: var(--color-text);
+}
+
+/* Navbar */
+.navbar-custom {
+    background-color: var(--color-primary) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Hero Section (Login) */
+.hero-section {
+    background: linear-gradient(135deg, var(--color-light) 0%, var(--color-white) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.hero-title {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Cards */
+.card-custom {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(117, 158, 158, 0.15);
+    background-color: var(--color-white);
+    overflow: hidden;
+}
+
+.card-header-custom {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: none;
+}
+
+/* Buttons */
+.btn-custom {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-white);
+    transform: translateY(-1px);
+}
+
+.form-control:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 0.25rem rgba(151, 182, 182, 0.25);
+}

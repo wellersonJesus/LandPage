@@ -12,62 +12,54 @@ Arquitetura desacoplada (SPA + API RESTful).
     <img align="center" alt="CSS3" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
 </div>
 
-## 📦 Instalação de Dependências
+##  Guia de Instalação e Execução
 
-Antes de executar qualquer comando de banco de dados ou iniciar a API, é obrigatório instalar as dependências do backend:
+Siga a ordem abaixo para configurar e rodar o projeto.
 
-```bash
-cd api && composer install && cd ..
-```
-
-## Database
+### 1. Database
 
 ```bash
+# Apagar Migrates (Reset) 
+rm -f api/src/Database/db/landpage.db
+
 # Criar/Rodar Migrates: 
 php api/src/Database/init_db.php
 
 # Rodar Seeds: 
 php api/src/Database/seeds.php
-
-# Apagar Migrates (Reset) 
-rm api/src/Database/db/landpage.db && php api/src/Database/init_db.php
 ```
 
-## Status dos Recursos
-
-Todos os recursos abaixo possuem Model, Controller e Rotas (CRUD) configurados.
-
-| Recurso | Endpoint | Status |
-|---|---|---|
-| Usuario | `/api/usuarios` | ✅ Implementado |
-| Empresa | `/api/empresas` | ✅ Implementado |
-| Servidor | `/api/servidores` | ✅ Implementado |
-| Gestao | `/api/gestao` | ✅ Implementado |
-| Dispositivo | `/api/dispositivos` | ✅ Implementado |
-| Calendario | `/api/calendario` | ✅ Implementado |
-| Emprestimo | `/api/emprestimos` | ✅ Implementado |
-| Manutencao | `/api/manutencao` | ✅ Implementado |
-| Skill | `/api/skills` | ✅ Implementado |
-| Curso | `/api/cursos` | ✅ Implementado |
-| Rede | `/api/redes` | ✅ Implementado |
-| Plataforma | `/api/plataformas` | ✅ Implementado |
-| Lancamento | `/api/lancamentos` | ✅ Implementado |
-| Contrato | `/api/contratos` | ✅ Implementado |
-| Conta | `/api/contas` | ✅ Implementado |
-| Investimento | `/api/investimentos` | ✅ Implementado |
-
-## Documentação
-
-Para acessar a documentação clique aqui: [Swagger/Doc](http://localhost:8000/docs/Swagger/)
-
-## Run API - API
+### 2. Backend (API)
 
 ```bash
-### run api backend
-php -S localhost:8000 -t api/public
+# 1. Instalar dependências da API
+cd api
+composer install
+composer dump-autoload
+cd ..
+```
+## Documentação
 
-### Frontend
-run api frontend
+
+| Documentação | Acesso | Status |
+|---|---|---|
+| Swagger | Clique aqui: [Landpage](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
+
+
+### 3. Frontend (APP)
+
+```bash
+# Instalar dependências do Frontend 
+cd app
+npm install
+npm start
+cd ..
+```
+
+### 4. Executar Aplicação (Em terminais separados)
+
+```bash
+php -S localhost:8000 -t api/public
 ```
 ## Commits
 
@@ -84,9 +76,8 @@ run api frontend
 | docs: | Mudanças apenas na documentação (README, comentários no código).|
 | chore: | Tarefas de manutenção que não modificam o código fonte ou os testes (ex: atualizar o .gitignore).|
 | revert: | Quando você desfaz (reverte) um commit anterior.| 
-```
 
-## Deploy
+### 5 Deploy
 
 ```bash
 ### Deploy api restfull

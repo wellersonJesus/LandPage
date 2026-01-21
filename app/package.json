@@ -1,0 +1,12 @@
+{
+  "name": "landpage-frontend",
+  "version": "1.0.0",
+  "description": "Frontend da aplicação Landpage",
+  "main": "js/app.js",
+  "scripts": {
+    "start": "php -S localhost:3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
