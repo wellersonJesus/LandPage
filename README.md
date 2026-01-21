@@ -20,6 +20,15 @@ Arquitetura desacoplada (SPA + API RESTful).
 
 ##  Guia de Instalação e Execução
 
+### ⚡ Quick Start (Automático)
+
+Para configurar e rodar tudo automaticamente (API + Banco + App):
+
+```bash
+chmod +x init.sh
+./init.sh
+```
+
 Siga a ordem abaixo para configurar e rodar o projeto.
 
 ### 1. Database
