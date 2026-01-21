@@ -28,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link text-white" href="#como-funciona">Como Funciona</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#faq">FAQ</a></li>
                     <li class="nav-item" id="nav-login-btn" style="display: none;">
-                        <a class="btn btn-light btn-sm ms-3 text-primary fw-bold" href="#login-section">Acessar</a>
+                        <button class="btn btn-light btn-sm ms-3 text-primary fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">Acessar</button>
                     </li>
                     <li class="nav-item" id="nav-logout-btn" style="display: none;">
                         <button class="btn btn-outline-light btn-sm ms-3" onclick="logout()">
@@ -44,7 +44,7 @@
     <div id="landing-page">
         
         <!-- 2. Hero Section (Dobra Principal) -->
-        <section id="login-section" class="hero-section pt-5 mt-5">
+        <section id="hero-section" class="hero-section pt-5 mt-5">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <!-- Headline e Subheadline -->
@@ -54,39 +54,16 @@
                             O sistema definitivo para empresas que buscam controle total de contratos, financeiro e infraestrutura em um só lugar.
                         </p>
                         <div class="d-flex gap-3 mt-4">
+                            <button class="btn btn-custom btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class="bi bi-person-circle me-2"></i>Área do Cliente
+                            </button>
                             <a href="#beneficios" class="btn btn-outline-secondary btn-lg">Saiba Mais</a>
                         </div>
                     </div>
 
-                    <!-- CTA de Alto Impacto (Login/Cadastro) -->
-                    <div class="col-lg-5 col-xl-4">
-                        <div class="card card-custom">
-                            <div class="card-header-custom">
-                                <i class="bi bi-lock-fill me-2"></i>Área do Cliente
-                            </div>
-                            <div class="card-body p-4">
-                                <form id="loginForm">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label text-muted small fw-bold">E-MAIL</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope"></i></span>
-                                            <input type="email" class="form-control border-start-0 ps-0" id="email" value="admin@landpage.com" placeholder="seu@email.com" required>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="senha" class="form-label text-muted small fw-bold">SENHA</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock"></i></span>
-                                            <input type="password" class="form-control border-start-0 ps-0" id="senha" value="123" placeholder="••••••" required>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-custom btn-lg">Acessar Sistema</button>
-                                    </div>
-                                    <div id="login-error" class="alert alert-danger mt-3 text-center small" style="display: none;"></div>
-                                </form>
-                            </div>
-                        </div>
+                    <!-- Imagem Hero -->
+                    <div class="col-lg-6 d-none d-lg-block text-end">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dashboard Preview" class="img-fluid rounded shadow-lg" style="width: 100%; max-width: 600px; height: auto;">
                     </div>
                 </div>
             </div>
@@ -109,8 +86,8 @@
         <section id="solucao">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <img src="https://placehold.co/600x400/dce7e7/759e9e?text=Dashboard+View" alt="Dashboard" class="img-fluid rounded shadow">
+                    <div class="col-lg-6 text-end">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Dashboard Analytics" class="img-fluid rounded shadow" style="width: 100%; max-width: 1000px; height: auto;">
                     </div>
                     <div class="col-lg-6 mt-4 mt-lg-0 ps-lg-5">
                         <h2 class="section-title text-start">Cansado de planilhas desconexas?</h2>
@@ -203,7 +180,7 @@
                         <div class="card border-0 bg-light p-4">
                             <p class="fst-italic">"A Landpage revolucionou a forma como gerenciamos nossos contratos de TI. Economizamos horas semanais."</p>
                             <div class="d-flex align-items-center mt-3">
-                                <img src="https://placehold.co/50x50/759e9e/ffffff?text=JS" class="rounded-circle me-3" alt="Cliente">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" alt="Cliente" style="width: 50px; height: 50px; object-fit: cover;">
                                 <div>
                                     <h6 class="mb-0">João Silva</h6>
                                     <small class="text-muted">CTO, Tech Solutions</small>
@@ -215,7 +192,7 @@
                         <div class="card border-0 bg-light p-4">
                             <p class="fst-italic">"Finalmente um sistema que integra o financeiro com a operação técnica. Indispensável para o Agro."</p>
                             <div class="d-flex align-items-center mt-3">
-                                <img src="https://placehold.co/50x50/97b6b6/ffffff?text=MO" class="rounded-circle me-3" alt="Cliente">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" alt="Cliente" style="width: 50px; height: 50px; object-fit: cover;">
                                 <div>
                                     <h6 class="mb-0">Maria Oliveira</h6>
                                     <small class="text-muted">Diretora, Agro Business</small>
@@ -261,7 +238,7 @@
             <div class="container">
                 <h2 class="fw-bold mb-3">Pronto para otimizar sua gestão?</h2>
                 <p class="lead mb-4">Junte-se a centenas de empresas que já transformaram suas operações.</p>
-                <a href="#login-section" class="btn btn-light btn-lg text-primary fw-bold px-5">Começar Agora</a>
+                <button class="btn btn-light btn-lg text-primary fw-bold px-5" data-bs-toggle="modal" data-bs-target="#loginModal">Começar Agora</button>
             </div>
         </section>
 
@@ -281,7 +258,7 @@
                         <ul class="list-unstyled">
                             <li><a href="#beneficios">Benefícios</a></li>
                             <li><a href="#como-funciona">Como Funciona</a></li>
-                            <li><a href="#login-section">Login</a></li>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -307,6 +284,40 @@
     <!-- Dashboard Section (Injetado via JS) -->
     <div id="dashboard-section" class="container mt-5 pt-5" style="display: none;">
         <!-- O conteúdo da tabela será carregado aqui pelo app.js -->
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-bottom-0 bg-light">
+                    <h5 class="modal-title fw-bold text-primary" id="loginModalLabel"><i class="bi bi-lock-fill me-2"></i>Área do Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-muted small fw-bold">E-MAIL</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control border-start-0 ps-0" id="email" value="admin@landpage.com" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="senha" class="form-label text-muted small fw-bold">SENHA</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control border-start-0 ps-0" id="senha" value="123" placeholder="••••••" required>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-custom btn-lg">Entrar no Sistema</button>
+                        </div>
+                        <div id="login-error" class="alert alert-danger mt-3 text-center small" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- WhatsApp Flutuante -->

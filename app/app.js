@@ -11,22 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function checkAuth() {
     const token = localStorage.getItem('token');
-    const landingPage = document.getElementById('landing-page');
+    const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
-    const navLoginBtn = document.getElementById('nav-login-btn');
-    const navLogoutBtn = document.getElementById('nav-logout-btn');
+    const navbar = document.getElementById('navbar');
 
     if (token) {
-        landingPage.style.display = 'none';
+        loginSection.style.display = 'none';
         dashboardSection.style.display = 'block';
-        navLoginBtn.style.display = 'none';
-        navLogoutBtn.style.display = 'block';
+        navbar.style.display = 'block';
         loadEmpresas();
     } else {
-        landingPage.style.display = 'block';
+        loginSection.style.display = 'flex';
         dashboardSection.style.display = 'none';
-        navLoginBtn.style.display = 'block';
-        navLogoutBtn.style.display = 'none';
+        navbar.style.display = 'none';
     }
 }
 
@@ -51,6 +48,14 @@ async function handleLogin(e) {
             localStorage.setItem('token', data.token);
             localStorage.setItem('role', data.role);
             errorDiv.style.display = 'none';
+            
+            // Fecha o modal de login
+            const loginModalEl = document.getElementById('loginModal');
+            const modal = bootstrap.Modal.getInstance(loginModalEl);
+            if (modal) {
+                modal.hide();
+            }
+            
             checkAuth();
         } else {
             throw new Error(data.message || 'Erro ao fazer login');
