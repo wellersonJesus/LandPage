@@ -2,6 +2,12 @@
 
 Arquitetura desacoplada (SPA + API RESTful).
 
+<div align="center">
+  <img src="app/assets/img/landpage.png" alt="Preview Landpage" width="30%">
+  <img src="app/assets/img/beneficios.png" alt="Preview Beneficios" width="34%">
+  <img src="app/assets/img/como-funciona.png" alt="Preview Comoo funciona" width="34%">
+</div>
+
 ## 🛠 Tecnologias
 <div style="display: inline-block">
     <img align="center" alt="PHP" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg">

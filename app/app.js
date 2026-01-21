@@ -11,19 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function checkAuth() {
     const token = localStorage.getItem('token');
-    const loginSection = document.getElementById('login-section');
+    const landingPage = document.getElementById('landing-page');
     const dashboardSection = document.getElementById('dashboard-section');
-    const navbar = document.getElementById('navbar');
+    const navLoginBtn = document.getElementById('nav-login-btn');
+    const navLogoutBtn = document.getElementById('nav-logout-btn');
 
     if (token) {
-        loginSection.style.display = 'none';
+        landingPage.style.display = 'none';
         dashboardSection.style.display = 'block';
-        navbar.style.display = 'block';
+        navLoginBtn.style.display = 'none';
+        navLogoutBtn.style.display = 'block';
         loadEmpresas();
     } else {
-        loginSection.style.display = 'flex';
+        landingPage.style.display = 'block';
         dashboardSection.style.display = 'none';
-        navbar.style.display = 'none';
+        navLoginBtn.style.display = 'block';
+        navLogoutBtn.style.display = 'none';
     }
 }
 

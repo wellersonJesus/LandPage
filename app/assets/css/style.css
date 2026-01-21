@@ -27,7 +27,6 @@ body {
 /* Hero Section (Login) */
 .hero-section {
     background: linear-gradient(135deg, var(--color-light) 0%, var(--color-white) 100%);
-    min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 40px 0;
@@ -84,4 +83,108 @@ body {
 .form-control:focus {
     border-color: var(--color-secondary);
     box-shadow: 0 0 0 0.25rem rgba(151, 182, 182, 0.25);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 991.98px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Seções Gerais */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Prova Social */
+.social-proof-section {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+
+.company-logo {
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.company-logo:hover {
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+/* Features / Benefícios */
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-text);
+    color: var(--color-white);
+    padding: 60px 0 20px;
+}
+
+footer a {
+    color: var(--color-light);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--color-white);
+}
+
+/* WhatsApp Flutuante */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: white;
 }
