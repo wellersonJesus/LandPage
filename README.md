@@ -30,7 +30,7 @@ php api/src/Database/init_db.php
 php api/src/Database/seeds.php
 
 # Apagar Migrates (Reset) 
-rm api/database/database.sqlite && php api/src/Database/init_db.php
+rm api/src/Database/db/landpage.db && php api/src/Database/init_db.php
 ```
 
 ## Status dos Recursos
@@ -79,8 +79,8 @@ run api frontend
 | ci: | Alterações em arquivos e scripts de configuração.| 
 | docs: | Mudanças apenas na documentação (README, comentários no código).|
 | chore: | Tarefas de manutenção que não modificam o código fonte ou os testes (ex: atualizar o .gitignore).|
-| revert: | Quando você desfaz (reverte) um commit anterior.|
- 
+| revert: | Quando você desfaz (reverte) um commit anterior.| 
+```
 
 ## Deploy
 
