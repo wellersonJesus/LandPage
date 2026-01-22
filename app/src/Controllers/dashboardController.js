@@ -202,7 +202,7 @@ window.loadModule = (moduleId, element) => {
             renderGenericModule(contentDiv, 'Skills & Carreira', ['Skills', 'Cursos']);
             break;
         case 'admin':
-            renderGenericModule(contentDiv, 'Administração', ['Usuários', 'Logs do Sistema']);
+            renderAdminModule(contentDiv);
             break;
         default:
             contentDiv.innerHTML = '<h2>Módulo não encontrado</h2>';
@@ -456,3 +456,117 @@ function renderGenericModule(container, title, tabs) {
         <div class="tab-content">${contentHtml}</div>
     `;
 }
+
+async function renderAdminModule(container) {
+    container.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-secondary">Administração de Usuários</h2>
+            <button class="btn btn-primary" onclick="alert('Funcionalidade de convite em breve')"><i class="bi bi-person-plus me-2"></i>Novo Usuário</button>
+        </div>
+        <div class="card card-custom shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">Usuário</th>
+                                <th>Email</th>
+                                <th>Função (Role)</th>
+                                <th>Data Cadastro</th>
+                                <th class="text-end pe-4">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-table">
+                            <tr><td colspan="5" class="text-center py-4"><div class="spinner-border text-primary"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${API_URL}/usuarios`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (!response.ok) throw new Error('Falha ao carregar usuários');
+        
+        const users = await response.json();
+        const tbody = document.getElementById('admin-users-table');
+        
+        if (users.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4">Nenhum usuário encontrado.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = users.map(user => {
+            const isProtected = user.role === 'infra_admin';
+            return `
+            <tr>
+                <td class="ps-4 fw-bold">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                            <i class="bi bi-person text-secondary"></i>
+                        </div>
+                        ${user.nome || 'Sem Nome'}
+                    </div>
+                </td>
+                <td>${user.email}</td>
+                <td>
+                    <select class="form-select form-select-sm" style="width: 140px;" 
+                        onchange="updateUserRole(${user.id}, this.value)" ${isProtected ? 'disabled' : ''}>
+                        <option value="user" ${user.role === 'user' ? 'selected' : ''}>Usuário</option>
+                        <option value="gestor" ${user.role === 'gestor' ? 'selected' : ''}>Gestor</option>
+                        <option value="financeiro" ${user.role === 'financeiro' ? 'selected' : ''}>Financeiro</option>
+                        <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                        ${isProtected ? '<option value="infra_admin" selected>Super Admin</option>' : ''}
+                    </select>
+                </td>
+                <td class="text-muted small">${new Date(user.created_at).toLocaleDateString('pt-BR')}</td>
+                <td class="text-end pe-4">
+                    ${!isProtected ? `
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})" title="Excluir">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    ` : '<span class="badge bg-secondary"><i class="bi bi-shield-lock"></i> Protegido</span>'}
+                </td>
+            </tr>
+        `}).join('');
+
+    } catch (error) {
+        document.getElementById('admin-users-table').innerHTML = `<tr><td colspan="5" class="text-center text-danger py-4">${error.message}</td></tr>`;
+    }
+}
+
+// Funções globais para ações da tabela
+window.updateUserRole = async (id, newRole) => {
+    const token = localStorage.getItem('token');
+    if(!confirm(`Deseja alterar a permissão deste usuário para ${newRole}?`)) return;
+
+    await fetch(`${API_URL}/usuarios/${id}`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role: newRole })
+    });
+};
+
+window.deleteUser = async (id) => {
+    const token = localStorage.getItem('token');
+    if(!confirm('Tem certeza? Esta ação não pode ser desfeita.')) return;
+
+    const response = await fetch(`${API_URL}/usuarios/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    
+    if(response.ok) {
+        // Recarrega o módulo para atualizar a lista
+        const adminLink = document.querySelector(`.sidebar .nav-link[onclick*="'admin'"]`);
+        if(adminLink) adminLink.click();
+    } else {
+        const data = await response.json();
+        alert(data.error || 'Erro ao excluir');
+    }
+};
