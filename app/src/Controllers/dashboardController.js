@@ -29,7 +29,7 @@ function displayUserInfo() {
     const userNameDisplay = document.getElementById('user-name-display');
     
     if (nome && userNameDisplay) {
-        userNameDisplay.textContent = `Olá, ${nome}`;
+        userNameDisplay.textContent = nome;
     }
 }
 
@@ -58,8 +58,8 @@ function renderSidebar() {
     const maxMobileItems = 3; // Exibe 3 módulos + botão "Mais"
 
     MODULES.forEach(module => {
-        // Verifica se o usuário tem permissão (infra_admin tem acesso a tudo)
-        if (module.roles.includes('*') || (userRole && module.roles.includes(userRole)) || userRole === 'infra_admin') {
+        // Exibe todos os módulos na sidebar
+        if (true) {
             const li = document.createElement('li');
             li.className = 'nav-item';
             li.innerHTML = `
@@ -204,24 +204,131 @@ window.loadModule = (moduleId, element) => {
 
 function renderDashboardCharts(container) {
     container.innerHTML = `
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard Geral</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-white fw-bold">Receita vs Despesa (Anual)</div>
-                    <div class="card-body">
-                        <canvas id="financeChart"></canvas>
+        <!-- Topo: KPIs (Indicadores Rápidos) -->
+        <div class="row mb-4 g-3">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-2">Financeiro</h6>
+                            <h3 class="fw-bold text-success mb-0">R$ 15.200</h3>
+                        </div>
+                        <small class="text-muted mt-2"><i class="bi bi-arrow-up-right text-success"></i> Lucro este mês</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-white fw-bold">Status dos Servidores</div>
-                    <div class="card-body">
-                        <canvas id="serverChart"></canvas>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-2">Operacional</h6>
+                            <h3 class="fw-bold text-primary mb-0">12/15</h3>
+                        </div>
+                        <small class="text-muted mt-2"><i class="bi bi-hdd-network"></i> Ativos Online</small>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-2">Contratos</h6>
+                            <h3 class="fw-bold text-info mb-0">8 Ativos</h3>
+                        </div>
+                        <small class="text-muted mt-2"><i class="bi bi-exclamation-circle text-warning"></i> 2 vencendo em breve</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-2">Performance</h6>
+                            <h3 class="fw-bold text-warning mb-0">85%</h3>
+                        </div>
+                        <small class="text-muted mt-2"><i class="bi bi-speedometer2"></i> Meta de KM atingida</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meio: Gráficos de Tendência -->
+        <div class="row mb-4 g-3">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 fw-bold py-3">Evolução Financeira (6 Meses)</div>
+                    <div class="card-body">
+                        <canvas id="financeLineChart" style="max-height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 fw-bold py-3">Horas Trabalhadas (Semana)</div>
+                    <div class="card-body">
+                        <canvas id="hoursBarChart" style="max-height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baixo: Listas de Ação Rápida -->
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 fw-bold py-3">Próximos Eventos</div>
+                    <ul class="list-group list-group-flush small">
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar-event me-2 text-primary"></i>Reunião Geral</span>
+                            <span class="badge bg-light text-dark">Hoje</span>
+                        </li>
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-flag me-2 text-success"></i>Feriado Nacional</span>
+                            <span class="badge bg-light text-dark">15/11</span>
+                        </li>
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-people me-2 text-info"></i>Treinamento</span>
+                            <span class="badge bg-light text-dark">20/11</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 fw-bold py-3">Alertas de Manutenção</div>
+                    <ul class="list-group list-group-flush small">
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-server me-2 text-muted"></i>Servidor AWS-01</span>
+                            <span class="badge bg-warning text-dark">Preventiva</span>
+                        </li>
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-laptop me-2 text-muted"></i>Notebook Dell</span>
+                            <span class="badge bg-danger">Corretiva</span>
+                        </li>
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-router me-2 text-muted"></i>Router Principal</span>
+                            <span class="badge bg-info">Config</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 fw-bold py-3">Parcelas a Vencer</div>
+                    <ul class="list-group list-group-flush small">
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span>Empréstimo BB</span>
+                            <span class="text-danger fw-bold">R$ 1.200</span>
+                        </li>
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span>Financiamento Veículo</span>
+                            <span class="text-danger fw-bold">R$ 850</span>
+                        </li>
+                        <li class="list-group-item border-0 px-4 py-2 d-flex justify-content-between align-items-center">
+                            <span>Seguro Empresarial</span>
+                            <span class="text-danger fw-bold">R$ 400</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -229,18 +336,63 @@ function renderDashboardCharts(container) {
 
     // Renderiza Gráficos com Chart.js (Simulação)
     if (typeof Chart !== 'undefined') {
-        new Chart(document.getElementById('financeChart'), {
-            type: 'bar',
+        // Gráfico de Linha: Receita vs Despesa
+        new Chart(document.getElementById('financeLineChart'), {
+            type: 'line',
             data: {
                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-                datasets: [{ label: 'Receita', data: [12, 19, 3, 5, 2, 3], backgroundColor: '#759e9e' }]
+                datasets: [
+                    {
+                        label: 'Receita',
+                        data: [12000, 15000, 14000, 18000, 22000, 25000],
+                        borderColor: '#759e9e',
+                        backgroundColor: 'rgba(117, 158, 158, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'Despesa',
+                        data: [10000, 11000, 10500, 12000, 11500, 13000],
+                        borderColor: '#ff6b6b',
+                        backgroundColor: 'rgba(255, 107, 107, 0.0)',
+                        tension: 0.4,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
             }
         });
-        new Chart(document.getElementById('serverChart'), {
-            type: 'doughnut',
+
+        // Gráfico de Barras: Horas Trabalhadas
+        new Chart(document.getElementById('hoursBarChart'), {
+            type: 'bar',
             data: {
-                labels: ['Online', 'Offline'],
-                datasets: [{ data: [10, 2], backgroundColor: ['#28a745', '#dc3545'] }]
+                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+                datasets: [{
+                    label: 'Horas',
+                    data: [8, 9, 8.5, 8, 7],
+                    backgroundColor: '#97b6b6',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
             }
         });
     }
