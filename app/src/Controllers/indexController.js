@@ -36,10 +36,11 @@ async function handleLogin(e) {
         if (response.ok) {
             localStorage.setItem('token', data.token);
             localStorage.setItem('role', data.role);
+            localStorage.setItem('nome', data.nome);
             errorDiv.style.display = 'none';
             
-            // Recarrega a página para o app.js redirecionar para o dashboard
-            window.location.reload();
+            // Redireciona para a dashboard
+            window.location.href = '/dashboard';
         } else {
             throw new Error(data.message || 'Erro ao fazer login');
         }

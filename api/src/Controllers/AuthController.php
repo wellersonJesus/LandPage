@@ -51,14 +51,15 @@ class AuthController {
 
         try {
             if ($envAdminEmail && $envAdminPass && $email === $envAdminEmail && $senha === $envAdminPass) {
+                $adminName = $_ENV['ADMIN_NAME'] ?? getenv('ADMIN_NAME') ?: 'Admin';
                 $token = JwtService::create([
                     'id' => 0,
-                    'nome' => $_ENV['ADMIN_NAME'] ?? getenv('ADMIN_NAME') ?: 'Admin',
+                    'nome' => $adminName,
                     'email' => $email,
                     'role' => 'infra_admin' // Role especial com acesso total
                 ]);
                 
-                echo json_encode(["token" => $token, "role" => "infra_admin"]);
+                echo json_encode(["token" => $token, "role" => "infra_admin", "nome" => $adminName]);
                 return;
             }
 
@@ -77,7 +78,7 @@ class AuthController {
                         'email' => $user['email'],
                         'role' => $user['role'] // admin, gestor, financeiro, user
                     ]);
-                    echo json_encode(["token" => $token, "role" => $user['role']]);
+                    echo json_encode(["token" => $token, "role" => $user['role'], "nome" => $user['nome']]);
                     return;
                 }
             }

@@ -7,9 +7,19 @@ const API_URL = 'http://localhost:8000/api';
 export const dashboardController = {
     init: () => {
         console.log('Dashboard Controller Initialized');
+        displayUserInfo();
         loadEmpresas();
     }
 };
+
+function displayUserInfo() {
+    const nome = localStorage.getItem('nome');
+    const userNameDisplay = document.getElementById('user-name-display');
+    
+    if (nome && userNameDisplay) {
+        userNameDisplay.textContent = `Olá, ${nome}`;
+    }
+}
 
 async function loadEmpresas() {
     const token = localStorage.getItem('token');
@@ -40,8 +50,7 @@ async function loadEmpresas() {
 function renderTable(empresas) {
     const dashboardSection = document.getElementById('dashboard-section');
     
-    dashboardSection.innerHTML = `
-        <h2 class="mb-4 text-secondary">Painel de Empresas</h2>
+    dashboardSection.innerHTML = `        
         <div class="card card-custom">
             <div class="card-body p-0">
                 <div class="table-responsive">
