@@ -4,7 +4,7 @@
   "description": "Frontend da aplicação Landpage",
   "main": "js/app.js",
   "scripts": {
-    "start": "php -S localhost:3000"
+    "start": "node src/Services/apiService.js"
   },
   "author": "",
   "license": "ISC",
