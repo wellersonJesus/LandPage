@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initApp() {
     const token = localStorage.getItem('token');
-    const path = window.location.pathname;
+    const path = window.location.pathname.toLowerCase();
 
     // Lógica de Roteamento e Proteção de Rotas
-    if (path.startsWith('/dashboard')) {
+    if (path === '/dashboard' || path === '/dashboard/') {
         // Se o usuário tenta acessar o dashboard sem estar logado...
         if (!token) {
             window.location.href = '/'; // ...redireciona para a página inicial.
@@ -19,7 +19,7 @@ function initApp() {
         if (routes['/dashboard']) {
             routes['/dashboard'].init();
         }
-    } else { // Para a rota raiz '/' e qualquer outra.
+    } else if (path === '/' || path === '/index.html') {
         // Se o usuário está na página inicial mas já tem um token...
         if (token) {
             window.location.href = '/dashboard'; // ...redireciona para o dashboard.
