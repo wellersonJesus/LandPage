@@ -8,7 +8,7 @@ const API_URL = 'http://localhost:8000/api';
 const MODULES = [
     { id: 'dashboard', label: 'Dashboard Principal', icon: 'bi-speedometer2', roles: ['*'] },
     { id: 'financeiro', label: 'Gestão Financeira', icon: 'bi-cash-coin', roles: ['infra_admin', 'financeiro'] },
-    { id: 'institucional', label: 'Institucional & Contratos', icon: 'bi-building', roles: ['infra_admin', 'admin', 'gestor'] },
+    { id: 'institucional', label: 'Institucional & Contratos', icon: 'bi bi-journals', roles: ['infra_admin', 'admin', 'gestor'] },
     { id: 'operacional', label: 'Operacional & Ativos', icon: 'bi-hdd-network', roles: ['infra_admin', 'admin'] },
     { id: 'planejamento', label: 'Planejamento', icon: 'bi-calendar-event', roles: ['infra_admin', 'gestor'] },
     { id: 'skills', label: 'Skills & Carreira', icon: 'bi-mortarboard', roles: ['infra_admin', 'gestor'] },
@@ -36,9 +36,26 @@ function displayUserInfo() {
 function renderSidebar() {
     const userRole = localStorage.getItem('role');
     const sidebarContainer = document.getElementById('sidebar-nav-items');
-    if (!sidebarContainer) return;
+    const mobileContainer = document.getElementById('mobile-nav-items');
+    const mobileGrid = document.getElementById('mobile-menu-grid');
 
-    sidebarContainer.innerHTML = '';
+    if (sidebarContainer) sidebarContainer.innerHTML = '';
+    if (mobileContainer) mobileContainer.innerHTML = '';
+    if (mobileGrid) mobileGrid.innerHTML = '';
+
+    // Botão de alternância (Toggle) no topo da sidebar para Desktop
+    const liToggle = document.createElement('li');
+    liToggle.className = 'nav-item mb-2 d-none d-md-block border-bottom pb-2';
+    liToggle.innerHTML = `
+        <a class="nav-link" href="#" onclick="toggleSidebar()" id="sidebar-toggle-link" title="Expandir/Recolher">
+            <i class="bi bi-list me-2"></i>
+            <span>Menu</span>
+        </a>
+    `;
+    if (sidebarContainer) sidebarContainer.appendChild(liToggle);
+
+    let mobileCount = 0;
+    const maxMobileItems = 3; // Exibe 3 módulos + botão "Mais"
 
     MODULES.forEach(module => {
         // Verifica se o usuário tem permissão (infra_admin tem acesso a tudo)
@@ -48,24 +65,110 @@ function renderSidebar() {
             li.innerHTML = `
                 <a class="nav-link" href="#" onclick="window.loadModule('${module.id}', this)">
                     <i class="bi ${module.icon} me-2"></i>
-                    ${module.label}
+                    <span>${module.label}</span>
                 </a>
             `;
-            sidebarContainer.appendChild(li);
+            if (sidebarContainer) sidebarContainer.appendChild(li);
+
+            // Mobile Item (Ícone + Texto curto)
+            if (mobileContainer) {
+            // Mobile Bottom Nav (Apenas os primeiros)
+            if (mobileContainer && mobileCount < maxMobileItems) {
+                const liMobile = document.createElement('li');
+                liMobile.className = 'nav-item';
+                liMobile.innerHTML = `
+                    <a class="nav-link d-flex flex-column align-items-center text-muted px-3" href="#" onclick="window.loadModule('${module.id}', this)">
+                    <a class="nav-link d-flex flex-column align-items-center text-muted px-3" href="#" onclick="window.loadModule('${module.id}', this)" id="mobile-link-${module.id}">
+                        <i class="bi ${module.icon} fs-4"></i>
+                        <span style="font-size: 10px;">${module.label.split(' ')[0]}</span>
+                    </a>
+                `;
+                mobileContainer.appendChild(liMobile);
+                mobileCount++;
+            }
+
+            // Mobile Offcanvas Grid (Todos os módulos)
+            if (mobileGrid) {
+                const col = document.createElement('div');
+                col.className = 'col-4 text-center';
+                col.innerHTML = `
+                    <div class="p-3 border rounded-3 bg-white shadow-sm h-100 d-flex flex-column align-items-center justify-content-center" 
+                         onclick="window.loadModule('${module.id}', null); const bsOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('mobileMenuOffcanvas')); if(bsOffcanvas) bsOffcanvas.hide();"
+                         style="cursor: pointer;">
+                        <i class="bi ${module.icon} fs-1 text-primary mb-2"></i>
+                        <div class="small fw-bold text-dark lh-sm">${module.label}</div>
+                    </div>
+                `;
+                mobileGrid.appendChild(col);
+            }
         }
     });
+
+    // Adiciona botão Sair na Sidebar
+    // Adiciona botão Sair na Sidebar (Desktop)
+    const liLogout = document.createElement('li');
+    liLogout.className = 'nav-item mt-3 border-top pt-2';
+    liLogout.innerHTML = `
+        <a class="nav-link text-danger" href="#" onclick="logout()">
+            <i class="bi bi-box-arrow-right me-2"></i>
+            <span>Sair</span>
+        </a>
+    `;
+    if (sidebarContainer) sidebarContainer.appendChild(liLogout);
+
+    // Mobile Logout
+    // Botão "Mais" na Barra Inferior (Mobile)
+    if (mobileContainer) {
+        const liMobileLogout = document.createElement('li');
+        liMobileLogout.className = 'nav-item';
+        liMobileLogout.innerHTML = `
+            <a class="nav-link d-flex flex-column align-items-center text-danger px-3" href="#" onclick="logout()">
+                <i class="bi bi-box-arrow-right fs-4"></i>
+                <span style="font-size: 10px;">Sair</span>
+        const liMore = document.createElement('li');
+        liMore.className = 'nav-item';
+        liMore.innerHTML = `
+            <a class="nav-link d-flex flex-column align-items-center text-muted px-3" href="#" data-bs-toggle="offcanvas" data-bs-target="#mobileMenuOffcanvas">
+                <i class="bi bi-grid-3x3-gap-fill fs-4"></i>
+                <span style="font-size: 10px;">Mais</span>
+            </a>
+        `;
+        mobileContainer.appendChild(liMobileLogout);
+        mobileContainer.appendChild(liMore);
+    }
+}
+
+window.toggleSidebar = () => {
+    const sidebar = document.getElementById('sidebarMenu');
+    const main = document.querySelector('main');
+    sidebar.classList.toggle('collapsed');
+    main.classList.toggle('expanded');
 }
 
 // Função global para ser chamada pelo onclick
 window.loadModule = (moduleId, element) => {
     // Atualiza classe active
     if (element) {
-        document.querySelectorAll('.sidebar .nav-link').forEach(el => el.classList.remove('active'));
+        // Remove active de todos os links (sidebar e mobile)
+        document.querySelectorAll('.sidebar .nav-link, #mobile-nav-items .nav-link').forEach(el => el.classList.remove('active'));
         element.classList.add('active');
     } else {
         // Se não passou elemento (init), ativa o primeiro correspondente
         const firstLink = document.querySelector(`.sidebar .nav-link[onclick*="${moduleId}"]`);
         if (firstLink) firstLink.classList.add('active');
+        // Ativa também no mobile
+        const mobileLink = document.querySelector(`#mobile-nav-items .nav-link[onclick*="${moduleId}"]`);
+        if (mobileLink) mobileLink.classList.add('active');
+    }
+
+    // Atualiza o ícone e texto do botão de toggle (Menu) conforme o módulo selecionado
+    const selectedModule = MODULES.find(m => m.id === moduleId);
+    const toggleLink = document.getElementById('sidebar-toggle-link');
+    if (selectedModule && toggleLink) {
+        const icon = toggleLink.querySelector('i');
+        const span = toggleLink.querySelector('span');
+        if (icon) icon.className = `bi ${selectedModule.icon} me-2`;
+        if (span) span.textContent = selectedModule.label;
     }
 
     const contentDiv = document.getElementById('main-content');

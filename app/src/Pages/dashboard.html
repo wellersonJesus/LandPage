@@ -18,23 +18,18 @@
 <body>
 
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/"><i class="bi bi-grid-1x2-fill me-lg-2"></i><span class="d-none d-lg-inline">Landpage System</span></a>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item text-white me-3 d-none d-md-block">
-                        <i class="bi bi-person-circle me-1"></i>
-                        <span id="user-name-display">Usuário</span>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light btn-sm ms-3" onclick="logout()">
-                            <i class="bi bi-box-arrow-right me-1"></i> Sair
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <nav class="navbar navbar-dark navbar-custom fixed-top flex-md-nowrap p-0 shadow">
+        <!-- Logo / Marca (Oculto no mobile) -->
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 d-none d-md-block" href="/">
+            <i class="bi bi-grid-1x2-fill me-2"></i><span>Landpage System</span>
+        </a>
+
+        <!-- Área Direita (Usuário e Sair) - Desktop Apenas -->
+        <ul class="navbar-nav px-3 ms-auto d-none d-md-flex flex-row align-items-center">
+            <li class="nav-item text-white me-3">
+                <span id="user-name-display">Usuário</span>
+            </li>
+        </ul>
     </nav>
 
     <!-- Elemento oculto para compatibilidade com app.js (evita erros de null) -->
@@ -45,8 +40,8 @@
         <div class="row">
             <!-- Sidebar (Menu Lateral) -->
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse mt-5 pt-3">
-                <div class="position-sticky pt-3 sidebar-sticky">
-                    <ul class="nav flex-column" id="sidebar-nav-items">
+                <div class="position-sticky pt-3 sidebar-sticky d-flex flex-column h-100">
+                    <ul class="nav flex-column mb-auto" id="sidebar-nav-items">
                         <!-- Itens do menu injetados via JS -->
                     </ul>
                 </div>
@@ -65,8 +60,17 @@
         </div>
     </div>
 
+    <!-- Bottom Navigation (Mobile Only) -->
+    <nav class="navbar fixed-bottom navbar-light bg-white border-top d-md-none shadow-lg" style="z-index: 1050;">
+        <div class="container-fluid overflow-x-auto">
+            <ul class="nav w-100 d-flex flex-nowrap justify-content-between align-items-center" id="mobile-nav-items">
+                <!-- Itens do menu mobile injetados via JS -->
+            </ul>
+        </div>
+    </nav>
+
     <!-- Footer -->
-    <footer class="fixed-bottom bg-white border-top py-3">
+    <footer class="fixed-bottom bg-white border-top py-3 d-none d-md-block">
         <div class="container text-center">
             <small class="text-muted">&copy; 2026 Landpage System.</small>
         </div>
