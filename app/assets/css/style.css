@@ -188,3 +188,23 @@ footer a:hover {
     transform: scale(1.1);
     color: white;
 }
+
+/* Animações de Imagem */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.img-hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-hover-effect:hover {
+    transform: scale(1.03);
+    box-shadow: 0 1rem 3rem rgba(117, 158, 158, 0.25) !important;
+}
