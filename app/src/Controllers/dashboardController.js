@@ -25,11 +25,13 @@ export const dashboardController = {
 };
 
 function displayUserInfo() {
+    // Recupera o campo 'nome' da tabela USUARIO salvo no login
     const nome = localStorage.getItem('nome');
     const userNameDisplay = document.getElementById('user-name-display');
     
-    if (nome && userNameDisplay) {
-        userNameDisplay.textContent = nome;
+    if (userNameDisplay) {
+        // Exibe o nome do usuário ou 'Usuário' como padrão se estiver vazio
+        userNameDisplay.textContent = nome ? nome : 'Usuário';
     }
 }
 
@@ -58,8 +60,13 @@ function renderSidebar() {
     const maxMobileItems = 3; // Exibe 3 módulos + botão "Mais"
 
     MODULES.forEach(module => {
-        // Exibe todos os módulos na sidebar
-        if (true) {
+        // Verifica permissões:
+        // 1. Módulo público (*)
+        // 2. Role do usuário está na lista do módulo
+        // 3. Usuário é infra_admin ou admin (acesso total)
+        const hasAccess = module.roles.includes('*') || (userRole && module.roles.includes(userRole)) || userRole === 'infra_admin' || userRole === 'admin';
+
+        if (hasAccess) {
             const li = document.createElement('li');
             li.className = 'nav-item';
             li.innerHTML = `
