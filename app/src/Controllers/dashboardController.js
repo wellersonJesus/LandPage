@@ -70,14 +70,11 @@ function renderSidebar() {
             `;
             if (sidebarContainer) sidebarContainer.appendChild(li);
 
-            // Mobile Item (Ícone + Texto curto)
-            if (mobileContainer) {
             // Mobile Bottom Nav (Apenas os primeiros)
             if (mobileContainer && mobileCount < maxMobileItems) {
                 const liMobile = document.createElement('li');
                 liMobile.className = 'nav-item';
                 liMobile.innerHTML = `
-                    <a class="nav-link d-flex flex-column align-items-center text-muted px-3" href="#" onclick="window.loadModule('${module.id}', this)">
                     <a class="nav-link d-flex flex-column align-items-center text-muted px-3" href="#" onclick="window.loadModule('${module.id}', this)" id="mobile-link-${module.id}">
                         <i class="bi ${module.icon} fs-4"></i>
                         <span style="font-size: 10px;">${module.label.split(' ')[0]}</span>
@@ -95,8 +92,7 @@ function renderSidebar() {
                     <div class="p-3 border rounded-3 bg-white shadow-sm h-100 d-flex flex-column align-items-center justify-content-center" 
                          onclick="window.loadModule('${module.id}', null); const bsOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('mobileMenuOffcanvas')); if(bsOffcanvas) bsOffcanvas.hide();"
                          style="cursor: pointer;">
-                        <i class="bi ${module.icon} fs-1 text-primary mb-2"></i>
-                        <div class="small fw-bold text-dark lh-sm">${module.label}</div>
+                        <i class="bi ${module.icon} fs-1 text-primary"></i>
                     </div>
                 `;
                 mobileGrid.appendChild(col);
@@ -104,7 +100,6 @@ function renderSidebar() {
         }
     });
 
-    // Adiciona botão Sair na Sidebar
     // Adiciona botão Sair na Sidebar (Desktop)
     const liLogout = document.createElement('li');
     liLogout.className = 'nav-item mt-3 border-top pt-2';
@@ -116,15 +111,8 @@ function renderSidebar() {
     `;
     if (sidebarContainer) sidebarContainer.appendChild(liLogout);
 
-    // Mobile Logout
     // Botão "Mais" na Barra Inferior (Mobile)
     if (mobileContainer) {
-        const liMobileLogout = document.createElement('li');
-        liMobileLogout.className = 'nav-item';
-        liMobileLogout.innerHTML = `
-            <a class="nav-link d-flex flex-column align-items-center text-danger px-3" href="#" onclick="logout()">
-                <i class="bi bi-box-arrow-right fs-4"></i>
-                <span style="font-size: 10px;">Sair</span>
         const liMore = document.createElement('li');
         liMore.className = 'nav-item';
         liMore.innerHTML = `
@@ -133,8 +121,21 @@ function renderSidebar() {
                 <span style="font-size: 10px;">Mais</span>
             </a>
         `;
-        mobileContainer.appendChild(liMobileLogout);
         mobileContainer.appendChild(liMore);
+    }
+
+    // Mobile Offcanvas Logout (Adicionado à grade)
+    if (mobileGrid) {
+        const col = document.createElement('div');
+        col.className = 'col-4 text-center';
+        col.innerHTML = `
+            <div class="p-3 border rounded-3 bg-white shadow-sm h-100 d-flex flex-column align-items-center justify-content-center" 
+                 onclick="logout()"
+                 style="cursor: pointer;">
+                <i class="bi bi-box-arrow-right fs-1 text-danger"></i>
+            </div>
+        `;
+        mobileGrid.appendChild(col);
     }
 }
 
