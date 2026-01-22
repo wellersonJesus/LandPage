@@ -48,7 +48,15 @@ cd api
 composer install
 composer dump-autoload
 cd ..
+
+# Run api
+php -S localhost:8000 -t api/public
 ```
+
+| Backend | Acesso | Status |
+|---|---|---|
+| API | [localhost:8000](http://localhost:8000/?) |  ✅ Implementado |
+
 
 ### 3. APP
 
@@ -57,16 +65,13 @@ cd ..
 cd app
 npm install
 npm start
-cd ..
 ```
 
-### 4. Executar Aplicação (Em terminais separados)
+| Frontend | Acesso | Status |
+|---|---|---|
+| APP | [localhost:3000](http://localhost:3000/?) |  ✅ Implementado |
 
-```bash
-php -S localhost:8000 -t api/public
-```
-
-### 5 Deploy
+### 4 Deploy
 
 ```bash
 ### Deploy api restfull
@@ -91,13 +96,11 @@ run deploy
 | chore: | Tarefas de manutenção que não modificam o código fonte ou os testes (ex: atualizar o .gitignore).|
 | revert: | Quando você desfaz (reverte) um commit anterior.| 
 
-## Link & acesso
+## Documentação 
 
 | Documentação | Acesso | Status |
 |---|---|---|
-| API | [localhost:8000](http://localhost:8000/?) |  ✅ Implementado |
-| APP | [localhost:3000](http://localhost:3000/?) |  ✅ Implementado |
-| Swagger | [doc - Landpage](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
+| Swagger | [Landpage system](http://localhost:8000/docs/Swagger/) | ✅ Implementado |
 
 
 ## 🎨 Paleta de Cores
