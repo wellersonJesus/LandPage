@@ -52,7 +52,13 @@ async function loadUsers() {
                 <td class="text-muted small">${new Date(user.created_at).toLocaleDateString('pt-BR')}</td>
                 <td class="text-end pe-4">
                     ${!isProtected ? `
-                        <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})" title="Excluir">
+                        <button class="btn btn-sm btn-outline-success me-1" onclick="openNewUser()" title="Novo">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary me-1" onclick="editUser(${user.id})" title="Atualizar">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(${user.id})" title="Remover">
                             <i class="bi bi-trash"></i>
                         </button>
                     ` : '<span class="badge bg-secondary"><i class="bi bi-shield-lock"></i> Protegido</span>'}
