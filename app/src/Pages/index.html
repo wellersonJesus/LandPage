@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landpage - Gestão Inteligente</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="/src/assets/img/favicon.png">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/src/assets/css/style.css">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
@@ -55,7 +55,7 @@
 
                     <!-- Imagem Hero -->
                     <div class="col-lg-6 d-none d-lg-block text-end">
-                        <img src="../../assets/img/home-office.png" alt="Dashboard Preview" class="img-fluid rounded shadow-lg animate-float" style="width: 100%; max-width: 600px; height: auto;">
+                        <img src="/src/assets/img/home-office.png" alt="Dashboard Preview" class="img-fluid rounded shadow-lg animate-float" style="width: 100%; max-width: 600px; height: auto;">
                     </div>
                 </div>
             </div>
@@ -78,8 +78,8 @@
         <section id="solucao">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 text-end">
-                        <img src="../../assets/img/planilhas.png" alt="Dashboard Preview" class="img-fluid rounded shadow-lg img-hover-effect" style="width: 100%; max-width: 600px; height: auto;">
+                    <div class="col-lg-6 text-end order-lg-first">
+                        <img src="/src/assets/img/planilhas.png" alt="Dashboard Preview" class="img-fluid rounded shadow-lg img-hover-effect" style="width: 100%; max-width: 600px; height: auto;">
                    </div>
                     <div class="col-lg-6 mt-4 mt-lg-0 ps-lg-5">
                         <h2 class="section-title text-start">Cansado de planilhas desconexas?</h2>
@@ -235,7 +235,7 @@
         </section>
 
         <!-- 10. Footer -->
-        <footer>
+        <footer class="bg-dark text-white pt-5 pb-4">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 mb-4">
@@ -248,9 +248,9 @@
                     <div class="col-md-4 mb-4">
                         <h5 class="fw-bold mb-3">Links Rápidos</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#beneficios">Benefícios</a></li>
-                            <li><a href="#como-funciona">Como Funciona</a></li>
-                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                            <li><a href="#beneficios" class="text-white-50 text-decoration-none">Benefícios</a></li>
+                            <li><a href="#como-funciona" class="text-white-50 text-decoration-none">Como Funciona</a></li>
+                            <li><a href="#" class="text-white-50 text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 mb-4">
@@ -260,14 +260,14 @@
                             (11) 99999-9999
                         </p>
                         <div class="d-flex gap-3">
-                            <a href="#"><i class="bi bi-instagram fs-5"></i></a>
-                            <a href="#"><i class="bi bi-linkedin fs-5"></i></a>
-                            <a href="#"><i class="bi bi-facebook fs-5"></i></a>
+                            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+                            <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                            <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="border-top border-secondary pt-3 mt-3 text-center small text-white-50">
-                    &copy; 2024 Landpage System. Todos os direitos reservados. | <a href="#">Política de Privacidade</a>
+                    &copy; 2026 Landpage System. Todos os direitos reservados. | <a href="#" class="text-white-50 text-decoration-none">Política de Privacidade</a>
                 </div>
             </div>
         </footer>
@@ -323,6 +323,6 @@
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../app.js" type="module"></script>
+    <script src="/src/app.js" type="module"></script>
 </body>
 </html>

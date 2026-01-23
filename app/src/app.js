@@ -1,4 +1,4 @@
-import { routes } from './src/Routers/appRoutes.js';
+import { routes } from './Routers/appRoutes.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();

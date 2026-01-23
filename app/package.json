@@ -2,9 +2,9 @@
   "name": "landpage-frontend",
   "version": "1.0.0",
   "description": "Frontend da aplicação Landpage",
-  "main": "js/app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node src/Services/apiService.js"
+    "start": "node src/server.js"
   },
   "author": "",
   "license": "ISC",
