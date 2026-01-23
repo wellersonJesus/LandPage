@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Rede;
+namespace App\Controllers;
 
 class RedeController extends BaseController {
-    public function __construct() {
-        $this->model = new Rede();
-    }
+    protected $table = 'REDE';
 }

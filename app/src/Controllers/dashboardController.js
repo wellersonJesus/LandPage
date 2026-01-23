@@ -5,6 +5,7 @@
 import { API_URL } from '../Services/api.js';
 import { administracaoController } from './administracaoController.js';
 import { financeiroController } from './financeiroController.js';
+import { skillsController } from './skillsController.js';
 import { GenericTabs } from '../Components/Tabs/GenericTabs.js';
 
 // Definição dos Módulos e Permissões
@@ -202,7 +203,7 @@ window.loadModule = (moduleId, element) => {
             GenericTabs.render(contentDiv, 'Planejamento', ['Calendário', 'Eventos']);
             break;
         case 'skills':
-            GenericTabs.render(contentDiv, 'Skills & Carreira', ['Skills', 'Cursos']);
+            skillsController.render(contentDiv);
             break;
         case 'admin':
             administracaoController.render(contentDiv);

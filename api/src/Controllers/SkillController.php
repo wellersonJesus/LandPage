@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Skill;
+namespace App\Controllers;
 
 class SkillController extends BaseController {
-    public function __construct() {
-        $this->model = new Skill();
-    }
+    protected $table = 'SKILL';
 }

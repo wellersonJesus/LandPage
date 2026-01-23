@@ -3,9 +3,9 @@
 Arquitetura desacoplada (SPA + API RESTful).
 
 <div align="center">
-  <img src="app/assets/img/landpage.png" alt="Preview Landpage" width="30%">
-  <img src="app/assets/img/beneficios.png" alt="Preview Beneficios" width="34%">
-  <img src="app/assets/img/como-funciona.png" alt="Preview Comoo funciona" width="34%">
+  <img src="app/src/assets/img/landpage-01.png" alt="Preview Landpage" width="32%">
+  <img src="app/src/assets/img/landpage-dashboard-07.png" alt="Preview Beneficios" width="32%">
+  <img src="app/src/assets/img/landpage-Modulo-Administracao-Governancia-10.png" alt="Preview Comoo funciona" width="32%">
 </div>
 
 ## 🛠 Tecnologias

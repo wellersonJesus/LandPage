@@ -43,6 +43,9 @@ $router->resource('/api/lancamentos', 'LancamentoController');
 $router->resource('/api/contas', 'ContaController');
 $router->resource('/api/emprestimos', 'EmprestimoController');
 $router->resource('/api/investimentos', 'InvestimentoController');
+$router->resource('/api/skills', 'SkillController');
+$router->resource('/api/cursos', 'CursoController');
+$router->resource('/api/redes', 'RedeController');
 
 // Despacha a requisição
 $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

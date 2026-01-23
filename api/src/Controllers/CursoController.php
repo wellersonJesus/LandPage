@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Curso;
+namespace App\Controllers;
 
 class CursoController extends BaseController {
-    public function __construct() {
-        $this->model = new Curso();
-    }
+    protected $table = 'CURSO';
 }
