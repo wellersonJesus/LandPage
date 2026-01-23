@@ -2,64 +2,85 @@
 
 namespace App\Controllers;
 
+use App\Config\Database;
+use PDO;
+
 class BaseController {
-    protected $model;
+    protected $pdo;
+    protected $table;
+
+    public function __construct() {
+        $this->pdo = Database::getConnection();
+    }
 
     public function index() {
-        $data = $this->model->getAll();
-        echo json_encode($data);
+        $stmt = $this->pdo->query("SELECT * FROM {$this->table}");
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
     public function show($id) {
-        $data = $this->model->find($id);
-        if ($data) {
-            echo json_encode($data);
+        $stmt = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = ?");
+        $stmt->execute([$id]);
+        echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+    }
+
+    public function store($data = null) {
+        if ($data === null) {
+            $data = json_decode(file_get_contents("php://input"), true);
+        }
+        if (!$data) return;
+
+        $columns = implode(", ", array_keys($data));
+        $placeholders = implode(", ", array_fill(0, count($data), "?"));
+        
+        $sql = "INSERT INTO {$this->table} ($columns) VALUES ($placeholders)";
+        $stmt = $this->pdo->prepare($sql);
+        
+        if ($stmt->execute(array_values($data))) {
+            http_response_code(201);
+            echo json_encode(["message" => "Criado com sucesso", "id" => $this->pdo->lastInsertId()]);
         } else {
-            http_response_code(404);
-            echo json_encode(["message" => "Registro não encontrado"]);
+            http_response_code(500);
+            echo json_encode(["error" => "Erro ao criar registro"]);
         }
     }
 
-    public function store() {
-        $data = json_decode(file_get_contents("php://input"), true);
-        if ($data) {
-            try {
-                $id = $this->model->create($data);
-                http_response_code(201);
-                echo json_encode(["message" => "Criado com sucesso", "id" => $id]);
-            } catch (\Exception $e) {
-                http_response_code(500);
-                echo json_encode(["error" => $e->getMessage()]);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(["message" => "Dados inválidos"]);
+    public function update($id, $data = null) {
+        if ($data === null) {
+            $data = json_decode(file_get_contents("php://input"), true);
         }
-    }
+        if (!$data) return;
 
-    public function update($id) {
-        $data = json_decode(file_get_contents("php://input"), true);
-        if ($data) {
-            try {
-                $this->model->update($id, $data);
-                echo json_encode(["message" => "Atualizado com sucesso"]);
-            } catch (\Exception $e) {
-                http_response_code(500);
-                echo json_encode(["error" => $e->getMessage()]);
-            }
+        $set = "";
+        foreach ($data as $key => $value) {
+            $set .= "$key = ?, ";
+        }
+        $set = rtrim($set, ", ");
+
+        $sql = "UPDATE {$this->table} SET $set WHERE id = ?";
+        $values = array_values($data);
+        $values[] = $id;
+
+        $stmt = $this->pdo->prepare($sql);
+        if ($stmt->execute($values)) {
+            echo json_encode(["message" => "Atualizado com sucesso"]);
         } else {
-            http_response_code(400);
-            echo json_encode(["message" => "Dados inválidos"]);
+            http_response_code(500);
+            echo json_encode(["error" => "Erro ao atualizar registro"]);
         }
     }
 
     public function delete($id) {
-        try {
-            $this->model->delete($id);
-            echo json_encode(["message" => "Deletado com sucesso"]);
-        } catch (\Exception $e) {
+        $stmt = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = ?");
+        if ($stmt->execute([$id])) {
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(["message" => "Deletado com sucesso"]);
+            } else {
+                echo json_encode(["message" => "Registro não encontrado ou já deletado"]);
+            }
+        } else {
             http_response_code(500);
-            echo json_encode(["error" => $e->getMessage()]);
+            echo json_encode(["error" => "Erro ao deletar registro"]);
         }
     }
 }

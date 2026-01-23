@@ -1,5 +1,7 @@
 import { API_URL } from '../Services/api.js';
 import { UserModal } from '../Components/Modals/UserModal.js';
+import { LicenseModal } from '../Components/Modals/LicenseModal.js';
+import { AuditModal } from '../Components/Modals/AuditModal.js';
 import { AdministracaoTabs } from '../Components/Tabs/AdministracaoTabs.js';
 
 export const administracaoController = {
@@ -8,11 +10,7 @@ export const administracaoController = {
 
         // Definição das Abas Principais e seus Sub-itens
         const mainTabs = [
-            { id: 'financas', label: 'Finanças', sub: ['Gestão', 'Lançamentos', 'Empréstimos', 'Investimentos'] },
-            { id: 'operacoes', label: 'Operações', sub: ['Contratos', 'Manutenção', 'Calendário', 'Empresa'] },
-            { id: 'tecnologia', label: 'Tecnologia', sub: ['Servidores', 'Plataformas', 'Dispositivos', 'Contas'] },
-            { id: 'perfil', label: 'Perfil & Skills', sub: ['Skills', 'Cursos', 'Redes'] },
-            { id: 'admin', label: 'Admin', sub: ['Usuários', 'Configurações'] }
+            { id: 'admin', label: 'Admin', sub: ['Usuários', 'Governança'] }
         ];
 
         // Constrói a Navegação Principal
@@ -30,7 +28,7 @@ export const administracaoController = {
                     <div class="tab-pane fade ${isActive}" id="main-tab-${tab.id}">
                         <ul class="nav nav-tabs mb-3" id="admin-sub-tabs">
                             <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#admin-sub-users">Usuários</button></li>
-                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#admin-sub-config">Configurações</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#admin-sub-governance">Governança</button></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="admin-sub-users">
@@ -55,8 +53,26 @@ export const administracaoController = {
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="admin-sub-config">
-                                <div class="alert alert-light border mt-3">Configurações globais do sistema em breve.</div>
+                            <div class="tab-pane fade" id="admin-sub-governance">
+                                <div class="card card-custom shadow-sm border-0">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover align-middle mb-0">
+                                                <thead class="bg-light">
+                                                    <tr>
+                                                        <th class="ps-4">Empresa</th>
+                                                        <th>Licenças (Uso/Limite)</th>
+                                                        <th>Status</th>
+                                                        <th class="text-end pe-4">Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="admin-governance-table">
+                                                    <tr><td colspan="4" class="text-center py-4"><div class="spinner-border text-primary"></div></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,3 +143,7 @@ window.deleteUser = async (id) => {
         alert(data.error || 'Erro ao excluir');
     }
 };
+
+// Funções globais para Governança
+window.manageLicenses = (id) => LicenseModal.open(id);
+window.auditAccess = (id) => AuditModal.open(id);

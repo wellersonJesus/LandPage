@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Empresa;
+namespace App\Controllers;
 
 class EmpresaController extends BaseController {
-    public function __construct() {
-        $this->model = new Empresa();
-    }
+    protected $table = 'EMPRESA';
 }

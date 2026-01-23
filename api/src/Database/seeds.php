@@ -36,20 +36,21 @@ try {
     $createdAt = date('Y-m-d H:i:s');
 
     // Admin
-    $sql = "INSERT OR IGNORE INTO USUARIO (nome, email, senha, role, created_at) VALUES (:nome, :email, :senha, 'admin', :created_at)";
+    $sql = "INSERT OR IGNORE INTO USUARIO (nome, email, senha, role, created_at, empresa_id) VALUES (:nome, :email, :senha, 'admin', :created_at, :empresa_id)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':nome' => $adminName,
         ':email' => $adminEmail,
         ':senha' => $passwordHash,
-        ':created_at' => $createdAt
+        ':created_at' => $createdAt,
+        ':empresa_id' => 1 // Admin vinculado à primeira empresa
     ]);
 
     // Outros Usuários
     $users = [
-        ['User Operacional', 'operacional@landpage.com', 'user'],
-        ['User Financeiro', 'financeiro@landpage.com', 'financeiro'],
-        ['User Gestor', 'gestor@landpage.com', 'gestor']
+        ['User Operacional', 'operacional@landpage.com', 'user', 1],
+        ['User Financeiro', 'financeiro@landpage.com', 'financeiro', 1],
+        ['User Gestor', 'gestor@landpage.com', 'gestor', 2]
     ];
     foreach ($users as $u) {
         $stmt->execute([

@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Conta;
+namespace App\Controllers;
 
 class ContaController extends BaseController {
-    public function __construct() {
-        $this->model = new Conta();
-    }
+    protected $table = 'CONTA';
 }

@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Gestao;
+namespace App\Controllers;
 
 class GestaoController extends BaseController {
-    public function __construct() {
-        $this->model = new Gestao();
-    }
+    protected $table = 'GESTAO';
 }

@@ -4,12 +4,13 @@
 
 import { API_URL } from '../Services/api.js';
 import { administracaoController } from './administracaoController.js';
+import { financeiroController } from './financeiroController.js';
 import { GenericTabs } from '../Components/Tabs/GenericTabs.js';
 
 // Definição dos Módulos e Permissões
 const MODULES = [
     { id: 'dashboard', label: 'Dashboard Principal', icon: 'bi-speedometer2', roles: ['*'] },
-    { id: 'financeiro', label: 'Gestão Financeira', icon: 'bi-cash-coin', roles: ['infra_admin', 'financeiro'] },
+    { id: 'financeiro', label: 'Gestão', icon: 'bi-cash-coin', roles: ['infra_admin', 'financeiro'] },
     { id: 'institucional', label: 'Institucional & Contratos', icon: 'bi bi-journals', roles: ['infra_admin', 'admin', 'gestor'] },
     { id: 'operacional', label: 'Operacional & Ativos', icon: 'bi-hdd-network', roles: ['infra_admin', 'admin'] },
     { id: 'planejamento', label: 'Planejamento', icon: 'bi-calendar-event', roles: ['infra_admin', 'gestor'] },
@@ -189,7 +190,7 @@ window.loadModule = (moduleId, element) => {
             renderDashboardCharts(contentDiv);
             break;
         case 'financeiro':
-            GenericTabs.render(contentDiv, 'Gestão Financeira', ['Gestão', 'Lançamentos', 'Empréstimos', 'Investimentos', 'Contas']);
+            financeiroController.render(contentDiv);
             break;
         case 'institucional':
             renderInstitucionalModule(contentDiv);

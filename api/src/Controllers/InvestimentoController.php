@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Investimento;
+namespace App\Controllers;
 
 class InvestimentoController extends BaseController {
-    public function __construct() {
-        $this->model = new Investimento();
-    }
+    protected $table = 'INVESTIMENTO';
 }

@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Lancamento;
+namespace App\Controllers;
 
 class LancamentoController extends BaseController {
-    public function __construct() {
-        $this->model = new Lancamento();
-    }
+    protected $table = 'LANCAMENTO';
 }

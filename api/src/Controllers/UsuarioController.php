@@ -1,66 +1,28 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Usuario;
-use OpenApi\Annotations as OA;
+namespace App\Controllers;
 
-/**
- * @OA\Tag(name="Usuarios", description="Gerenciamento de usuários")
- *
- * @OA\Get(
- *     path="/api/usuarios",
- *     tags={"Usuarios"},
- *     summary="Lista todos os usuários",
- *     security={{"bearerAuth":{}}},
- *     @OA\Response(
- *         response=200,
- *         description="Lista de usuários",
- *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Usuario"))
- *     )
- * )
- *
- * @OA\Post(
- *     path="/api/usuarios",
- *     tags={"Usuarios"},
- *     summary="Cria um novo usuário",
- *     security={{"bearerAuth":{}}},
- *     @OA\RequestBody(
- *         required=true,
- *         @OA\JsonContent(ref="#/components/schemas/Usuario")
- *     ),
- *     @OA\Response(response=201, description="Usuário criado")
- * )
- *
- * @OA\Get(
- *     path="/api/usuarios/{id}",
- *     tags={"Usuarios"},
- *     summary="Busca um usuário por ID",
- *     security={{"bearerAuth":{}}},
- *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
- *     @OA\Response(response=200, description="Dados do usuário", @OA\JsonContent(ref="#/components/schemas/Usuario")),
- *     @OA\Response(response=404, description="Não encontrado")
- * )
- *
- * @OA\Put(
- *     path="/api/usuarios/{id}",
- *     tags={"Usuarios"},
- *     summary="Atualiza um usuário",
- *     security={{"bearerAuth":{}}},
- *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
- *     @OA\RequestBody(required=true, @OA\JsonContent(ref="#/components/schemas/Usuario")),
- *     @OA\Response(response=200, description="Atualizado com sucesso")
- * )
- *
- * @OA\Delete(
- *     path="/api/usuarios/{id}",
- *     tags={"Usuarios"},
- *     summary="Remove um usuário",
- *     security={{"bearerAuth":{}}},
- *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
- *     @OA\Response(response=200, description="Deletado com sucesso")
- * )
- */
 class UsuarioController extends BaseController {
-    public function __construct() {
-        $this->model = new Usuario();
+    protected $table = 'USUARIO';
+
+    // Sobrescreve store para hash de senha
+    public function store($data = null) {
+        if ($data === null) {
+            $data = json_decode(file_get_contents("php://input"), true);
+        }
+        if (isset($data['senha'])) {
+            $data['senha'] = password_hash($data['senha'], PASSWORD_DEFAULT);
+        }
+        parent::store($data); 
+    }
+
+    public function update($id, $data = null) {
+        if ($data === null) {
+            $data = json_decode(file_get_contents("php://input"), true);
+        }
+        if (isset($data['senha'])) {
+            $data['senha'] = password_hash($data['senha'], PASSWORD_DEFAULT);
+        }
+        parent::update($id, $data);
     }
 }

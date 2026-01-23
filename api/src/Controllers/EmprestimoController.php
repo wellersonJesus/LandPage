@@ -1,9 +1,7 @@
-<?php namespace App\Controllers;
+<?php
 
-use App\Models\Emprestimo;
+namespace App\Controllers;
 
 class EmprestimoController extends BaseController {
-    public function __construct() {
-        $this->model = new Emprestimo();
-    }
+    protected $table = 'EMPRESTIMO';
 }

@@ -1,8 +1,7 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Config\Database;
 use App\Router;
 use Dotenv\Dotenv;
 
@@ -15,42 +14,35 @@ if (file_exists(__DIR__ . '/../.env')) {
     $dotenv->safeLoad();
 }
 
-// Cabeçalhos CORS para permitir acesso do Frontend
+// Configuração de CORS (Essencial para evitar 'Failed to fetch')
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+// Responde imediatamente a requisições OPTIONS (Pre-flight)
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
-// Rota simples de teste e inicialização do banco
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+header("Content-Type: application/json");
 
-// Log inicial para debug
-error_log("Index: Requisição recebida para $uri");
-
-if ($uri === '/api/install') {
-    try {
-        $pdo = Database::getConnection();
-        $sql = require __DIR__ . '/../src/Database/Migrations/001_create_initial.php';
-        $pdo->exec($sql);
-        echo json_encode(["message" => "Banco de dados instalado com sucesso."]);
-    } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(["error" => $e->getMessage()]);
-    }
-    exit;
-}
-
-// Inicializa o Router
 $router = new Router();
 
-// Carrega as rotas definidas em src/Routes/api.php
-require __DIR__ . '/../src/Routes/api.php';
+// Rotas de Autenticação
+$router->add('POST', '/api/login', 'AuthController', 'login');
 
-// Despacha a rota
-$router->dispatch($_SERVER['REQUEST_METHOD'], $uri);
+// Rotas de Recursos (CRUD Automático)
+$router->resource('/api/usuarios', 'UsuarioController');
+$router->resource('/api/empresas', 'EmpresaController');
+$router->resource('/api/gestao', 'GestaoController');
+$router->resource('/api/lancamentos', 'LancamentoController');
+$router->resource('/api/contas', 'ContaController');
+$router->resource('/api/emprestimos', 'EmprestimoController');
+$router->resource('/api/investimentos', 'InvestimentoController');
+
+// Despacha a requisição
+$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
