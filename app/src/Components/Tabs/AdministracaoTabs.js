@@ -4,7 +4,8 @@ export const AdministracaoTabs = {
     init: async () => {
         loadUsers();
         loadGovernance();
-    }
+    },
+    loadGovernance: loadGovernance // Expõe a função para ser usada no filtro
 };
 
 async function loadUsers() {
@@ -81,6 +82,7 @@ async function loadUsers() {
 async function loadGovernance() {
     const token = localStorage.getItem('token');
     const tbody = document.getElementById('admin-governance-table');
+    const searchTerm = document.getElementById('search-governance')?.value.toLowerCase() || '';
     
     if (!tbody) return;
 
@@ -103,6 +105,11 @@ async function loadGovernance() {
                 { id: 2, nome: 'Agro Business', limite_usuarios: 5, usuarios_ativos: 5 },
                 { id: 3, nome: 'Educa Mais', limite_usuarios: 3, usuarios_ativos: 1 }
             ];
+        }
+
+        // Filtragem no frontend
+        if (searchTerm) {
+            companies = companies.filter(comp => comp.nome.toLowerCase().includes(searchTerm));
         }
         
         if (companies.length === 0) {
