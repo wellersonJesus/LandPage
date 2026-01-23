@@ -32,6 +32,12 @@ export const administracaoController = {
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="admin-sub-users">
+                                <div class="d-flex justify-content-end align-items-center mb-3">
+                                    <div class="input-group w-50">
+                                        <input type="text" class="form-control" id="search-users" placeholder="Buscar usuário..." oninput="filterUsers()">
+                                        <button class="btn btn-outline-secondary" type="button" onclick="filterUsers()"><i class="bi bi-search"></i></button>
+                                    </div>
+                                </div>
                                 <div class="card card-custom shadow-sm border-0">
                                     <div class="card-body p-0">
                                         <div class="table-responsive">
@@ -147,3 +153,8 @@ window.deleteUser = async (id) => {
 // Funções globais para Governança
 window.manageLicenses = (id) => LicenseModal.open(id);
 window.auditAccess = (id) => AuditModal.open(id);
+
+// Função de filtro para usuários
+window.filterUsers = () => {
+    AdministracaoTabs.init();
+};

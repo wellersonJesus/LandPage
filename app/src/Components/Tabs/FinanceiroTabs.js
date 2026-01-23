@@ -7,12 +7,14 @@ export const FinanceiroTabs = {
         loadData('contas', 'contas');
         loadData('emprestimos', 'emprestimos');
         loadData('investimentos', 'investimentos');
-    }
+    },
+    loadData: loadData // Expõe a função para ser usada no filtro
 };
 
 async function loadData(endpoint, tableIdSuffix) {
     const token = localStorage.getItem('token');
     const tbody = document.getElementById(`fin-${tableIdSuffix}-table`);
+    const searchTerm = document.getElementById(`search-${tableIdSuffix}`)?.value.toLowerCase() || '';
     if (!tbody) return;
 
     try {
@@ -22,8 +24,15 @@ async function loadData(endpoint, tableIdSuffix) {
         
         if (!response.ok) throw new Error('Erro ao carregar dados');
         
-        const data = await response.json();
+        let data = await response.json();
         
+        // Filtragem no frontend
+        if (searchTerm) {
+            data = data.filter(item => {
+                return Object.values(item).some(val => String(val).toLowerCase().includes(searchTerm));
+            });
+        }
+
         if (data.length === 0) {
             tbody.innerHTML = '<tr><td colspan="100%" class="text-center py-4">Nenhum registro encontrado.</td></tr>';
             return;
@@ -39,7 +48,6 @@ async function loadData(endpoint, tableIdSuffix) {
 function renderRow(type, item) {
     const actions = `
         <td class="text-end pe-4">
-            <button class="btn btn-sm btn-outline-success me-1" onclick="openNewFinanceiro('${type}')" title="Novo"><i class="bi bi-plus-lg"></i></button>
             <button class="btn btn-sm btn-outline-primary me-1" onclick="editFinanceiro('${type}', ${item.id})" title="Atualizar"><i class="bi bi-pencil"></i></button>
             <button class="btn btn-sm btn-outline-danger" onclick="deleteFinanceiro('${type}', ${item.id})" title="Remover"><i class="bi bi-trash"></i></button>
         </td>

@@ -10,6 +10,7 @@ export const AdministracaoTabs = {
 async function loadUsers() {
     const token = localStorage.getItem('token');
     const tbody = document.getElementById('admin-users-table');
+    const searchTerm = document.getElementById('search-users')?.value.toLowerCase() || '';
     
     if (!tbody) return;
 
@@ -20,8 +21,13 @@ async function loadUsers() {
         
         if (!response.ok) throw new Error('Falha ao carregar usuários');
         
-        const users = await response.json();
+        let users = await response.json();
         
+        // Filtragem no frontend
+        if (searchTerm) {
+            users = users.filter(user => user.nome.toLowerCase().includes(searchTerm) || user.email.toLowerCase().includes(searchTerm));
+        }
+
         if (users.length === 0) {
             tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4">Nenhum usuário encontrado.</td></tr>';
             return;

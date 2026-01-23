@@ -25,6 +25,12 @@ export const financeiroController = {
             const isActive = index === 0 ? 'show active' : '';
             return `
                 <div class="tab-pane fade ${isActive}" id="fin-tab-${tab.id}">
+                    <div class="d-flex justify-content-end align-items-center mb-3">
+                        <div class="input-group w-50">
+                            <input type="text" class="form-control" id="search-${tab.id}" placeholder="Buscar..." oninput="filterFinanceiro('${tab.id}')">
+                            <button class="btn btn-outline-secondary" type="button" onclick="filterFinanceiro('${tab.id}')"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
                     <div class="card card-custom shadow-sm border-0">
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -88,4 +94,8 @@ window.deleteFinanceiro = async (type, id) => {
     } catch(e) {
         alert(e.message);
     }
+};
+
+window.filterFinanceiro = (type) => {
+    FinanceiroTabs.loadData(type, type);
 };
